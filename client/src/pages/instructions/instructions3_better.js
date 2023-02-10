@@ -91,7 +91,7 @@ const InstructionsTask3 = (props) => {
   const tweetText = {
     claim: "",
     evidence: "",
-    name: "Johnathan Nolander",
+    name: "",
     handle: "",
     image: "",
   };
@@ -149,7 +149,7 @@ const InstructionsTask3 = (props) => {
               screen_name={"JNolander"}
               // style={{ width: "50%" }}
             >
-              <TweetQuote
+              {/* <TweetQuote
                 text={
                   "Steven Spielberg's latest three movies were among the worst rated in Rotten Tomatoes."
                 }
@@ -159,7 +159,7 @@ const InstructionsTask3 = (props) => {
                 src={
                   "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Steven_Spielberg_%2836057844341%29.jpg/800px-Steven_Spielberg_%2836057844341%29.jpg?20170801002525"
                 }
-              ></TweetQuote>
+              ></TweetQuote> */}
             </Tweet>
             <div ref={sliderRef}>
               <CustomSlider
@@ -173,7 +173,7 @@ const InstructionsTask3 = (props) => {
               ></CustomSlider>
             </div>
             {/* <div className={classes.pointToSliderRight}> */}
-            <div className={classes.pointToTweetRight}>
+            {/* <div className={classes.pointToTweetRight}>
               <div style={{ display: "flex", flexDirection: "row" }}>
                 <span>
                   For each tweet and news headline, we will ask you to provide
@@ -181,8 +181,8 @@ const InstructionsTask3 = (props) => {
                 </span>
                 <span>👉👉</span>
               </div>
-            </div>
-            <div className={classes.pointToSliderRight}>
+            </div> */}
+            {/* <div className={classes.pointToSliderRight}>
               <div style={{ display: "flex", flexDirection: "row" }}>
                 <span>
                   You will use a slider to give us a response to this question.
@@ -198,7 +198,7 @@ const InstructionsTask3 = (props) => {
                 </span>
                 <span>👉👉</span>
               </div>
-            </div>
+            </div> */}
             {/* </div> */}
           </div>
           {/* <div className={classes.slider}></div> */}

@@ -19,31 +19,31 @@ const PreSurveyPage = (props) => {
   const extraQuestions =
     questionCondition == "strength"
       ? [
-          {
-            name: "support",
-            type: "radiogroup",
-            title: `When I read: "Spielberg is one of the worst directors of the recent decade." I should:`,
-            isRequired: true,
-            choices: [
-              "Evaluate whether it is supported by the headline.",
-              "Give my opinion whether I think it is true regardless of the headline.",
-              "I don't know.",
-            ],
-            correctAnswer: "Evaluate whether it is supported by the headline.",
-          },
+          // {
+          //   name: "support",
+          //   type: "radiogroup",
+          //   title: `When I read: "Spielberg is one of the worst directors of the recent decade." I should:`,
+          //   isRequired: true,
+          //   choices: [
+          //     "Evaluate whether it is supported by the headline.",
+          //     "Give my opinion whether I think it is true regardless of the headline.",
+          //     "I don't know.",
+          //   ],
+          //   correctAnswer: "Evaluate whether it is supported by the headline.",
+          // },
 
-          {
-            name: "headline_true",
-            type: "radiogroup",
-            title: `When I read: "Steven Spielberg's latest three movies were among the worst rated in Rotten Tomatoes." I should:`,
-            isRequired: true,
-            choices: [
-              "Evaluate whether the headline is accurate.",
-              "Assume that the headline is true.",
-              "I don't know.",
-            ],
-            correctAnswer: "Assume that the headline is true.",
-          },
+          // {
+          //   name: "headline_true",
+          //   type: "radiogroup",
+          //   title: `When I read: "Steven Spielberg's latest three movies were among the worst rated in Rotten Tomatoes." I should:`,
+          //   isRequired: true,
+          //   choices: [
+          //     "Evaluate whether the headline is accurate.",
+          //     "Assume that the headline is true.",
+          //     "I don't know.",
+          //   ],
+          //   correctAnswer: "Assume that the headline is true.",
+          // },
         ]
       : [];
 
@@ -69,34 +69,34 @@ const PreSurveyPage = (props) => {
       },
       {
         elements: [
-          {
-            type: "html",
-            html: "<h4>We are asking you to respond to these questions to make sure you understand the task at hand. You will not be able to move forward if you answer incorrectly.<h4/>",
-          },
-          {
-            name: "claim",
-            type: "radiogroup",
-            title: `The tweet: "Spielberg is one of the worst directors of the recent decade." is ___.`,
-            isRequired: true,
-            choices: [
-              "a conclusion about a topic",
-              "a news headline",
-              "I don't know",
-            ],
-            correctAnswer: "a conclusion about a topic",
-          },
-          {
-            name: "headline",
-            type: "radiogroup",
-            title: `The tweet: "Steven Spielberg's latest three movies were among the worst rated in Rotten Tomatoes." is ___.`,
-            isRequired: true,
-            choices: [
-              "a conclusion about a topic",
-              "a news headline",
-              "I don't know",
-            ],
-            correctAnswer: "a news headline",
-          },
+          // {
+          //   type: "html",
+          //   html: "<h4>We are asking you to respond to these questions to make sure you understand the task at hand. You will not be able to move forward if you answer incorrectly.<h4/>",
+          // },
+          // {
+          //   name: "claim",
+          //   type: "radiogroup",
+          //   title: `The tweet: "Spielberg is one of the worst directors of the recent decade." is ___.`,
+          //   isRequired: true,
+          //   choices: [
+          //     "a conclusion about a topic",
+          //     "a news headline",
+          //     "I don't know",
+          //   ],
+          //   correctAnswer: "a conclusion about a topic",
+          // },
+          // {
+          //   name: "headline",
+          //   type: "radiogroup",
+          //   title: `The tweet: "Steven Spielberg's latest three movies were among the worst rated in Rotten Tomatoes." is ___.`,
+          //   isRequired: true,
+          //   choices: [
+          //     "a conclusion about a topic",
+          //     "a news headline",
+          //     "I don't know",
+          //   ],
+          //   correctAnswer: "a news headline",
+          // },
           ...extraQuestions,
         ],
       },
@@ -245,7 +245,7 @@ const PreSurveyPage = (props) => {
           about our study.
         </Typography>
         <Divider></Divider>
-        <div style={{ width: "50%", margin: "30px" }}>
+        {/* <div style={{ width: "50%", margin: "30px" }}>
           <Tweet
             text={`Spielberg is one of the worst directors of the recent decade.`}
             accName={"Johnathan Nolander"}
@@ -264,7 +264,7 @@ const PreSurveyPage = (props) => {
               }
             ></TweetQuote>
           </Tweet>
-        </div>
+        </div> */}
       </div>
       <Divider></Divider>
       <Survey.Survey

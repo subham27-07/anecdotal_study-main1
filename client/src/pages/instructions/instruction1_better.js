@@ -154,9 +154,9 @@ const Instructions1 = (props) => {
         >
           <span>
             {" "}
-            Hi! In this study, we will show you a series of tweets that quote
-            news headlines. Click continue to see the tweet + quoted news
-            headline.
+            Hi! In this study, we will show you a series ofnew articles where you will be asked to draw a visualization based on your understadning and we will ask you 
+            few more question on drug overdose. Click continue to see the  news
+            articles.
           </span>
         </div>
         <div
@@ -165,14 +165,14 @@ const Instructions1 = (props) => {
         >
           <span>
             {" "}
-            In each tweet, you will see a person making a{" "}
-            <span className={classes.emph}>conclusion</span>. Here is an example
-            from Johnathan Nolander, at right
+            In each news articles you will see a visualization making a{" "}
+            <span className={classes.emph}>claim</span>. Here is an example
+           of visualization on how you will be asked to draw, at right
           </span>
           <span>👉👉👉👉</span>
         </div>
 
-        <div
+        {/* <div
           className={classes.pointToQuoteLeft}
           style={stage == 2 ? easinStyle : hiddenStyle}
         >
@@ -182,7 +182,7 @@ const Instructions1 = (props) => {
             Here is a <span className={classes.emph}>headline</span> from a news
             story that Johnathan quotes
           </p>
-        </div>
+        </div> */}
         <div
           style={{
             textAlign: "center",

@@ -18,21 +18,28 @@ const PreSurveyPage = (props) => {
         name: "batBall",
         type: "text",
         title:
-          "A bat and a ball cost $1.10 in total. The bat costs $1.00 more than the ball. How much does the ball cost? _____ cents",
+          "If you’re running a race and you pass the person in second place, what place are you in?? _____ place",
         isRequired: true,
       },
       {
         name: "5Machines",
         type: "text",
         title:
-          "If it takes 5 machines 5 min to make 5 widgets, how long would it take 100 machines to make 100 widgets? _____ min.",
+          "A farmer had 15 sheep and all but 8 died. How many are left? _____ sheeps.",
         isRequired: true,
       },
       {
         name: "lakeSize",
         type: "text",
         title:
-          "In a lake, there is a patch of lily pads. Every day, the patch doubles in size. If it takes 48 days for the patch to cover the entire lake, how long would it take for the patch to cover half of the lake? _____ days. ",
+          "Emily’s father has three daughters. The first two are named April and May. What is the third daughter’s name? _____ name. ",
+        isRequired: true,
+      },
+      {
+        name: "lakeSize",
+        type: "text",
+        title:
+          "How many cubic feet of dirt are there in a hole that is 3’ deep x 3’ wide x 3’ long?? _____ volume. ",
         isRequired: true,
       },
     ],

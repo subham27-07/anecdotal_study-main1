@@ -151,7 +151,7 @@ const Instructions1 = (props) => {
               screen_name={"SunnyHollywood"}
               showImage={true}
               src={
-                "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Steven_Spielberg_%2836057844341%29.jpg/800px-Steven_Spielberg_%2836057844341%29.jpg?20170801002525"
+                "https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/new.gif"
               }
             ></TweetQuote>
           </Tweet>
