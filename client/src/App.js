@@ -24,6 +24,10 @@ import InstructionsShare from "./pages/instructions/instructionsShare_better";
 import Instructions3 from "./pages/instructions/instructions3_better";
 import Instructions4 from "./pages/instructions/instructions4_better";
 import Quiz from "./pages/survey/quiz";
+import Quiz1 from "./pages/survey/quiz1";
+import Quiz2 from "./pages/survey/quiz2";
+import Quiz3 from "./pages/survey/quiz3";
+
 //pages
 import LoadingCircle from "./components/loading/loading";
 import axios from "axios";
@@ -227,6 +231,15 @@ const App = () => {
               </Route>
               <Route path="/quiz">
                 <Quiz></Quiz>
+              </Route>
+              <Route path="/quiz1">
+                <Quiz1></Quiz1>
+              </Route>
+              <Route path="/quiz2">
+                <Quiz2></Quiz2>
+              </Route>
+              <Route path="/quiz3">
+                <Quiz3></Quiz3>
               </Route>
               <Route path="/task1">
                 <Task

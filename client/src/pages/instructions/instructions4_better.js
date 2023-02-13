@@ -226,7 +226,7 @@ const InstructionsTask3 = (props) => {
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            paddingTop: "10px",
+            paddingTop: "90px",
             paddingBottom: "10px",
           }}
         >

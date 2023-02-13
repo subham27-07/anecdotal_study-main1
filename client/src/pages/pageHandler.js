@@ -2,17 +2,30 @@ const pages = [
   "consent",
   "pre",
   "instructions1",
-  "instructions2",
-  "instructions3",
   "quiz",
-  "task1",
+  "quiz2",
+  "quiz3",
+  "quiz1",
   "cogref",
-  "task2",
-  "instructions4",
-  "task3",
-  "post",
   "debrief",
 ];
+
+// const pages = [
+//   "consent",
+//   "pre",
+//   "instructions1",
+//   "instructions2",
+//   "instructions3",
+//   "quiz",
+//   "quiz1",
+//   "task1",
+//   "cogref",
+//   "task2",
+//   "instructions4",
+//   "task3",
+//   "post",
+//   "debrief",
+// ];
 
 // gets next page path.
 

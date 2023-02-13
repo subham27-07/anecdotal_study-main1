@@ -10,7 +10,7 @@ import { useRecoilValue } from "recoil";
 import { questionState } from "../../atoms/questionSelector";
 import "survey-react/survey.css";
 
-const PreSurveyPage = (props) => {
+const PreSurveyPage3 = (props) => {
   const quizResponses = useRef([]);
   const history = useHistory();
   const location = useLocation();
@@ -19,63 +19,119 @@ const PreSurveyPage = (props) => {
   const extraQuestions =
     questionCondition == "strength"
       ? [
-          
+        //   {
+        //     name: "support",
+        //     type: "radiogroup",
+        //     title: `When I read: "Spielberg is one of the worst directors of the recent decade." I should:`,
+        //     isRequired: true,
+        //     choices: [
+        //       "Evaluate whether it is supported by the headline.",
+        //       "Give my opinion whether I think it is true regardless of the headline.",
+        //       "I don't know.",
+        //     ],
+        //     correctAnswer: "Evaluate whether it is supported by the headline.",
+        //   },
+
+        //   {
+        //     name: "headline_true",
+        //     type: "radiogroup",
+        //     title: `When I read: "Steven Spielberg's latest three movies were among the worst rated in Rotten Tomatoes." I should:`,
+        //     isRequired: true,
+        //     choices: [
+        //       "Evaluate whether the headline is accurate.",
+        //       "Assume that the headline is true.",
+        //       "I don't know.",
+        //     ],
+        //     correctAnswer: "Assume that the headline is true.",
+        //   },
         ]
       : [];
 
   const json = {
     pages: [
+    //   {
+    //     elements: [
+    //       {
+    //         name: "understand_before",
+    //         type: "radiogroup",
+    //         title: "Do you understand what this study is asking you to do?",
+    //         isRequired: true,
+    //         choices: ["yes", "no"],
+    //       },
+    //       {
+    //         name: "understand-text_before",
+    //         type: "text",
+    //         title:
+    //           "Please in sentence or two, please describe what this study is asking you to do",
+    //         isRequired: true,
+    //       },
+    //     ],
+    //   },
       {
         elements: [
           {
-            name: "understand_before",
-            type: "radiogroup",
-            title: "Do you understand what this study is asking you to do?",
-            isRequired: true,
-            choices: ["yes", "no"],
+            type: "html",
+            html: "<h4><h4/>",
           },
           {
-            name: "understand-text_before",
-            type: "text",
-            title:
-              "Please in sentence or two, please describe what this study is asking you to do",
+            name: "claim",
+            type: "radiogroup",
+            title: ` "To what extent is the topic of drug overdose related to your core values?"`,
             isRequired: true,
+            choices: [
+                "Not at All",
+                "Somewhat Not Interested",
+                "Neutral",
+                "Somewhat Interested",
+                "Extremely Interested",
+            ],
+            // correctAnswer: "a conclusion about a topic",
           },
+          {
+            name: "new",
+            type: "radiogroup",
+            title: ` "To what extent is it important for you to defend your point of view on the topic of drug overdose?" `,
+            isRequired: true,
+            choices: [
+                "Not at All",
+                "Somewhat Not Interested",
+                "Neutral",
+                "Somewhat Interested",
+                "Extremely Interested",
+            ],
+            // correctAnswer: "a news headline",
+          },
+          {
+            name: "headline",
+            type: "radiogroup",
+            title: ` "How interested are you in learning about drug overdose?" `,
+            isRequired: true,
+            choices: [
+                "Not at All",
+                "Somewhat Not Interested",
+                "Neutral",
+                "Somewhat Interested",
+                "Extremely Interested",
+            ],
+            // correctAnswer: "a news headline",
+          },
+          {
+            name: "suport",
+            type: "radiogroup",
+            title: ` "To what extent are you motivated to know the truth about drug overdose ?" `,
+            isRequired: true,
+            choices: [
+                "Not at All",
+                "Somewhat Not Interested",
+                "Neutral",
+                "Somewhat Interested",
+                "Extremely Interested",
+            ],
+            // correctAnswer: "a news headline",
+          },
+          ...extraQuestions,
         ],
       },
-      // {
-      //   elements: [
-      //     {
-      //       type: "html",
-      //       html: "<h4>We are asking you to respond to these questions to make sure you understand the task at hand. You will not be able to move forward if you answer incorrectly.<h4/>",
-      //     },
-      //     {
-      //       name: "claim",
-      //       type: "radiogroup",
-      //       title: `The tweet: "Spielberg is one of the worst directors of the recent decade." is ___.`,
-      //       isRequired: true,
-      //       choices: [
-      //         "a conclusion about a topic",
-      //         "a news headline",
-      //         "I don't know",
-      //       ],
-      //       // correctAnswer: "a conclusion about a topic",
-      //     },
-      //     {
-      //       name: "headline",
-      //       type: "radiogroup",
-      //       title: `The tweet: "Steven Spielberg's latest three movies were among the worst rated in Rotten Tomatoes." is ___.`,
-      //       isRequired: true,
-      //       choices: [
-      //         "a conclusion about a topic",
-      //         "a news headline",
-      //         "I don't know",
-      //       ],
-      //       // correctAnswer: "a news headline",
-      //     },
-      //     ...extraQuestions,
-      //   ],
-      // },
     ],
   };
 
@@ -116,7 +172,7 @@ const PreSurveyPage = (props) => {
     // console.log(options);
 
     console.log("Survey results: " + JSON.stringify(quizResponses.current));
-    axios.post("/api/quiz", quizResponses.current).then((response) => {
+    axios.post("/api/quiz1", quizResponses.current).then((response) => {
       let nextPage = pageHandler(location.pathname);
       history.push(nextPage);
     });
@@ -124,7 +180,7 @@ const PreSurveyPage = (props) => {
 
   const onCurrentPageChanging = (survey, option) => {
     if (!option.isNextPage) return;
-    let allTrue = false;
+    let allTrue = true;
     survey.getAllQuestions().forEach((q) => {
       if (survey.currentPage == q.page) {
         let correct = isAnswerCorrect(q);
@@ -135,11 +191,11 @@ const PreSurveyPage = (props) => {
       }
     });
     console.log(allTrue);
-    // if (allTrue) {
-    //   option.allowChanging = true;
-    // } else {
-    //   option.allowChanging = false;
-    // }
+    if (allTrue) {
+      option.allowChanging = true;
+    } else {
+      option.allowChanging = false;
+    }
     // console.log(survey.currentPage());
     // option.oldCurrentPage.questions.forEach((q) => {
     //   console.log(q);
@@ -216,31 +272,10 @@ const PreSurveyPage = (props) => {
         }}
       >
         <Typography variant="h5">
-          It is really important that you understand the task in our study. One
-          last thing before we start, please respond to the following questions
-          about our study.
+         Please Answer the questions below👇.
         </Typography>
         <Divider></Divider>
-        <div style={{ width: "50%", margin: "30px" }}>
-          <Tweet
-            text={`Spielberg is one of the worst directors of the recent decade.`}
-            accName={"Johnathan Nolander"}
-            screen_name={"JNolander"}
-            style={{ width: "50%" }}
-          >
-            <TweetQuote
-              text={
-                "Steven Spielberg's latest three movies were among the worst rated in Rotten Tomatoes."
-              }
-              accName={"Sunny Hollywood News"}
-              screen_name={"SunnyHollywood"}
-              showImage={true}
-              src={
-                "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Steven_Spielberg_%2836057844341%29.jpg/800px-Steven_Spielberg_%2836057844341%29.jpg?20170801002525"
-              }
-            ></TweetQuote>
-          </Tweet>
-        </div>
+        
       </div>
       <Divider></Divider>
       <Survey.Survey
@@ -253,4 +288,4 @@ const PreSurveyPage = (props) => {
   );
 };
 
-export default PreSurveyPage;
+export default PreSurveyPage3;

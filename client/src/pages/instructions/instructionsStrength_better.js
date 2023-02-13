@@ -157,7 +157,7 @@ const Instructions1 = (props) => {
           </Tweet>
         </div>
         <div className={classes.pointToTweetRight}>
-          <div style={stage == 0 ? easinStyle : hiddenStyle}>
+          {/* <div style={stage == 0 ? easinStyle : hiddenStyle}>
             <span>
               {" "}
               Your job will be to evaluate how well the{" "}
@@ -165,21 +165,21 @@ const Instructions1 = (props) => {
               supported by the <span className={classes.emph}>headline</span>{" "}
               (bottom)
             </span>
-          </div>
+          </div> */}
           <br />
         </div>
 
         <div className={classes.pointToTweetRight}>
-          <div style={stage >= 1 ? easinStyle : hiddenStyle}>
+          {/* <div style={stage >= 1 ? easinStyle : hiddenStyle}>
             <span>
               Here's the tough part! When you evaluate the{" "}
               <span className={classes.emph}>conclusion</span>, try to ignore
               your own opinions.
             </span>
             <span>👉👉</span>
-          </div>
+          </div> */}
           <br />
-          <div style={stage >= 2 ? easinStyle : hiddenStyle}>
+          {/* <div style={stage >= 2 ? easinStyle : hiddenStyle}>
             <span>
               {" "}
               You should only evaluate the{" "}
@@ -188,37 +188,37 @@ const Instructions1 = (props) => {
               <span className={classes.emph}>headline</span>.
             </span>
             <span>👉👉</span>
-          </div>
+          </div> */}
           <br />
-          <div style={stage >= 3 ? easinStyle : hiddenStyle}>
+          {/* <div style={stage >= 3 ? easinStyle : hiddenStyle}>
             <span>
               So in this case, it doesn't matter whether you personally believe
               Spielberg is one of the worst directors in history or not.
             </span>
-          </div>
+          </div> */}
         </div>
 
         <div className={classes.pointToTweetLeft}>
           <div style={stage >= 4 ? easinStyle : hiddenStyle}>
             {/* <span style={{ marginRight: "10px" }}>👈👈</span> */}
-            <span>
+            {/* <span>
               Please assume that the news headline is factually correct, even if
               that seems unlikely to you.
-            </span>
+            </span> */}
           </div>
           <br />
-          <div style={stage >= 5 ? easinStyle : hiddenStyle}>
+          {/* <div style={stage >= 5 ? easinStyle : hiddenStyle}>
             <span style={{ marginRight: "10px" }}>👈👈</span>
             <span>
               So in this case, assume that the latest three Spielberg movies
               were in fact among the worst rated Rotten Tomatoes movies!
             </span>
-          </div>
+          </div> */}
         </div>
         <div
           style={{
             textAlign: "center",
-            paddingTop: "10px",
+            paddingTop: "90px",
             paddingBottom: "10px",
           }}
         >

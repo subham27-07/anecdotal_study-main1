@@ -199,7 +199,7 @@ const Instructions1 = (props) => {
         <div
           style={{
             textAlign: "center",
-            paddingTop: "10px",
+            paddingTop: "90px",
             paddingBottom: "10px",
           }}
         >
