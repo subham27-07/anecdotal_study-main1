@@ -13,7 +13,7 @@ export const questionSelector = selector({
     switch (questionCondition) {
       case "strength":
         getQL = (tweetText) => {
-          return `To what extent does the quoted news headline support ${tweetText.name}'s conclusion?`;
+          return `To what extent does the quoted news headline support conclusion?`;
         };
         return getQL;
 
