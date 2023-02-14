@@ -13,24 +13,13 @@ export const questionSelector = selector({
     switch (questionCondition) {
       case "strength":
         getQL = (tweetText) => {
-          return `What is your opinion on drug overdose in the US ${tweetText.name}?`;
+          return `What is your opinion on drug overdose in the US ?`;
         };
         return getQL;
         break;
-
-      case "share":
-        getQL = (tweetText) => {
-          return `Would you consider sharing ${tweetText.name}'s tweet on social media (for example Twitter, Facebook, or Whatsapp)?`;
-        };
-        return getQL;
-        break;
-      default:
-        getQL = (tweetText) => {
-          return `To what extent does the quoted news headline support ${tweetText.name}'s conclusion?`;
-        };
-        return getQL;
     }
   },
+  
 });
 
 
@@ -47,12 +36,6 @@ export const qualQuestionSelector = selector({
         };
         return getQL;
 
-        break;
-      case "share":
-        getQL = (tweetText) => {
-          return `For the tweet above👆 You made the below👇 judgment when asked: "Would you consider sharing ${tweetText.name}'s tweet on social media"`;
-        };
-        return getQL;
         break;
     }
   },
@@ -80,7 +63,7 @@ export const labelSelector = selector({
         break;
       case "strength":
         return [
-          "Extreme Problem",
+          "Extremely Serious Problem",
           "Serious Problem",
           "Moderate Problem",
           "Minor Problem",

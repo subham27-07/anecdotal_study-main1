@@ -30,7 +30,7 @@ const BottomNav = (props) => {
   let location = useLocation();
   const getValue = (location) => {
     if (
-      ["/instructions1", "/instructions2", "/instructions3", "/quiz","/quiz1","/quiz2","/quiz3","/viz"].includes(
+      ["/instructions1", "/quiz","/quiz1","/quiz2","/quiz3","/quiz4","/quiz5","/viz"].includes(
         location
       )
     ) {
@@ -67,12 +67,12 @@ const BottomNav = (props) => {
         pointerEvents: "None",
       }}
     >
-      <BottomNavigationAction
+      {/* <BottomNavigationAction
         label="Consent"
         value="/consent"
         classes={classes}
-      />
-      <BottomNavigationAction
+      /> */}
+      {/* <BottomNavigationAction
         label="Pre-questionnaire"
         value="/pre"
         classes={classes}
@@ -81,24 +81,25 @@ const BottomNav = (props) => {
         label="Instructions"
         value="/instructions"
         classes={classes}
-      />
-      <BottomNavigationAction
+      /> */}
+      
+      {/* <BottomNavigationAction
         label="Task 1 and 2"
         value="/task1_2"
         classes={classes}
-      />
-      <BottomNavigationAction label="Task 3" value="/task3" classes={classes} />
+      /> */}
+      {/* <BottomNavigationAction label="Task 3" value="/task3" classes={classes} /> */}
       {/* <BottomNavigationAction label="Task 2" value="/task2" classes={classes} /> */}
-      <BottomNavigationAction
+      {/* <BottomNavigationAction
         label="Post-questionnaire"
         value="/post"
         classes={classes}
-      />
-      <BottomNavigationAction
+      /> */}
+      {/* <BottomNavigationAction
         label="Debrief"
         value="/debrief"
         classes={classes}
-      />
+      /> */}
     </BottomNavigation>
   );
 };

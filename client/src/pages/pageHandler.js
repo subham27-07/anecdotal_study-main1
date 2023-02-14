@@ -6,6 +6,8 @@ const pages = [
   "quiz2",
   "quiz3",
   "quiz1",
+  "quiz4",
+  "quiz5",
   "cogref",
   "debrief",
 ];

@@ -9,10 +9,11 @@ import $ from "jquery";
 
 const StyledSlider = styled(Slider)(({ theme }) => ({
   height: 5,
+  width:650,
   "& .MuiSlider-mark": {
     backgroundColor: "black",
-    height: 5,
-    width: 1,
+    height: 10,
+    width: 2,
     // '&[data-index="1"]': {
     //   width: 0,
     // },
@@ -20,12 +21,12 @@ const StyledSlider = styled(Slider)(({ theme }) => ({
     //   width: 0,
     // },
     "&.MuiSlider-markActive": {
-      opacity: 1,
+      opacity: 5,
       backgroundColor: "currentColor",
     },
     "&.MuiSlider-markLabelActive": {
       opacity: 1,
-      color: "rgba(0, 0, 0, 0.6)",
+      color: "rgba(0, 6, 0, 0.6)",
       backgroundColor: "black",
     },
   },

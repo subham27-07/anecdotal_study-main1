@@ -10,7 +10,7 @@ import { useRecoilValue } from "recoil";
 import { questionState } from "../../atoms/questionSelector";
 import "survey-react/survey.css";
 
-const PreSurveyPage3 = (props) => {
+const PreSurveyPage1 = (props) => {
   const quizResponses = useRef([]);
   const history = useHistory();
   const location = useLocation();
@@ -49,24 +49,24 @@ const PreSurveyPage3 = (props) => {
 
   const json = {
     pages: [
-    //   {
-    //     elements: [
-    //       {
-    //         name: "understand_before",
-    //         type: "radiogroup",
-    //         title: "Do you understand what this study is asking you to do?",
-    //         isRequired: true,
-    //         choices: ["yes", "no"],
-    //       },
-    //       {
-    //         name: "understand-text_before",
-    //         type: "text",
-    //         title:
-    //           "Please in sentence or two, please describe what this study is asking you to do",
-    //         isRequired: true,
-    //       },
-    //     ],
-    //   },
+      {
+        elements: [
+        //   {
+        //     name: "understand_before",
+        //     type: "radiogroup",
+        //     title: "Do you understand what this study is asking you to do?",
+        //     isRequired: true,
+        //     choices: ["yes", "no"],
+        //   },
+        //   {
+        //     name: "understand-text_before",
+        //     type: "text",
+        //     title:
+        //       "Please in sentence or two, please describe what this study is asking you to do",
+        //     isRequired: true,
+        //   },
+        ],
+      },
       {
         elements: [
           {
@@ -76,59 +76,18 @@ const PreSurveyPage3 = (props) => {
           {
             name: "claim",
             type: "radiogroup",
-            title: ` "To what extent is the topic of drug overdose related to your core values?"`,
+            title: `"How would you categorize this trend"`,
             isRequired: true,
             choices: [
-                "Not at All",
-                "Somewhat Not Interested",
-                "Neutral",
-                "Somewhat Interested",
-                "Extremely Interested",
+              "Significant Decrease",
+              "Slight Decrease",
+              "Mostly Flat",
+              "Slight Increase",
+              "Significant Increase",
             ],
             // correctAnswer: "a conclusion about a topic",
           },
-          {
-            name: "new",
-            type: "radiogroup",
-            title: ` "To what extent is it important for you to defend your point of view on the topic of drug overdose?" `,
-            isRequired: true,
-            choices: [
-                "Not at All",
-                "Somewhat Not Interested",
-                "Neutral",
-                "Somewhat Interested",
-                "Extremely Interested",
-            ],
-            // correctAnswer: "a news headline",
-          },
-          {
-            name: "headline",
-            type: "radiogroup",
-            title: ` "How interested are you in learning about drug overdose?" `,
-            isRequired: true,
-            choices: [
-                "Not at All",
-                "Somewhat Not Interested",
-                "Neutral",
-                "Somewhat Interested",
-                "Extremely Interested",
-            ],
-            // correctAnswer: "a news headline",
-          },
-          {
-            name: "suport",
-            type: "radiogroup",
-            title: ` "To what extent are you motivated to know the truth about drug overdose ?" `,
-            isRequired: true,
-            choices: [
-                "Not at All",
-                "Somewhat Not Interested",
-                "Neutral",
-                "Somewhat Interested",
-                "Extremely Interested",
-            ],
-            // correctAnswer: "a news headline",
-          },
+          
           ...extraQuestions,
         ],
       },
@@ -172,7 +131,7 @@ const PreSurveyPage3 = (props) => {
     // console.log(options);
 
     console.log("Survey results: " + JSON.stringify(quizResponses.current));
-    axios.post("/api/quiz3", quizResponses.current).then((response) => {
+    axios.post("/api/quiz5", quizResponses.current).then((response) => {
       let nextPage = pageHandler(location.pathname);
       history.push(nextPage);
     });
@@ -251,6 +210,7 @@ const PreSurveyPage3 = (props) => {
       options.html = html;
     }
   });
+  
 
   return (
     <Container
@@ -272,10 +232,29 @@ const PreSurveyPage3 = (props) => {
         }}
       >
         <Typography variant="h5">
-         Please Answer the questions below👇.
+          Think about the temporal tend on the number of Americans died from Syntehtic opioids(mostly fentanyl)
         </Typography>
         <Divider></Divider>
-        
+        {/* <div style={{ width: "50%", margin: "30px" }}>
+          <Tweet
+            text={`Spielberg is one of the worst directors of the recent decade.`}
+            accName={"Johnathan Nolander"}
+            screen_name={"JNolander"}
+            style={{ width: "50%" }}
+          >
+            <TweetQuote
+              text={
+                "Steven Spielberg's latest three movies were among the worst rated in Rotten Tomatoes."
+              }
+              accName={"Sunny Hollywood News"}
+              screen_name={"SunnyHollywood"}
+              showImage={true}
+              src={
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Steven_Spielberg_%2836057844341%29.jpg/800px-Steven_Spielberg_%2836057844341%29.jpg?20170801002525"
+              }
+            ></TweetQuote>
+          </Tweet>
+        </div> */}
       </div>
       <Divider></Divider>
       <Survey.Survey
@@ -288,4 +267,4 @@ const PreSurveyPage3 = (props) => {
   );
 };
 
-export default PreSurveyPage3;
+export default PreSurveyPage1;

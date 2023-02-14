@@ -119,6 +119,32 @@ router.post("/quiz1", (req, res) => {
   );
 });
 
+router.post("/quiz4", (req, res) => {
+  console.log(req.body);
+  let usertoken = req.session.usertoken;
+  Response.findOneAndUpdate(
+    { usertoken: usertoken },
+    { quiz4: req.body },
+    (err, doc) => {
+      if (err) req.status(404).send(err);
+      else res.json(req.body);
+    }
+  );
+});
+
+router.post("/quiz5", (req, res) => {
+  console.log(req.body);
+  let usertoken = req.session.usertoken;
+  Response.findOneAndUpdate(
+    { usertoken: usertoken },
+    { quiz5: req.body },
+    (err, doc) => {
+      if (err) req.status(404).send(err);
+      else res.json(req.body);
+    }
+  );
+});
+
 router.post("/quiz2", (req, res) => {
   console.log(req.body);
   let usertoken = req.session.usertoken;

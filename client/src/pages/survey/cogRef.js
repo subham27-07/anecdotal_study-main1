@@ -29,14 +29,14 @@ const PreSurveyPage = (props) => {
         isRequired: true,
       },
       {
-        name: "lakeSize",
+        name: "Name",
         type: "text",
         title:
           "Emily’s father has three daughters. The first two are named April and May. What is the third daughter’s name? _____ name. ",
         isRequired: true,
       },
       {
-        name: "lakeSize",
+        name: "Volume",
         type: "text",
         title:
           "How many cubic feet of dirt are there in a hole that is 3’ deep x 3’ wide x 3’ long?? _____ volume. ",

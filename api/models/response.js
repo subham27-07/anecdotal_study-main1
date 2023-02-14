@@ -25,6 +25,8 @@ const responseSchema = new Schema({
   quiz1: Schema.Types.Mixed,
   quiz2: Schema.Types.Mixed,
   quiz3: Schema.Types.Mixed,
+  quiz4: Schema.Types.Mixed,
+  quiz5: Schema.Types.Mixed,
   cogref: Schema.Types.Mixed,
   instructions: Schema.Types.Mixed,
   preq: Schema.Types.Mixed,

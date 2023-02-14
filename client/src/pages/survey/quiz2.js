@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import { atom, selector } from "recoil";
 import { useHistory, useLocation } from "react-router-dom";
 import pageHandler from "../pageHandler";
 import axios from "axios";
@@ -46,6 +47,9 @@ const PreSurveyPage2 = (props) => {
         //   },
         ]
       : [];
+
+
+      
 
   const json = {
     pages: [
@@ -158,7 +162,7 @@ const PreSurveyPage2 = (props) => {
     // console.log(options);
 
     console.log("Survey results: " + JSON.stringify(quizResponses.current));
-    axios.post("/api/quiz1", quizResponses.current).then((response) => {
+    axios.post("/api/quiz2", quizResponses.current).then((response) => {
       let nextPage = pageHandler(location.pathname);
       history.push(nextPage);
     });
@@ -273,5 +277,39 @@ const PreSurveyPage2 = (props) => {
     </Container>
   );
 };
+
+export const labelSelector = selector({
+    key: "labelQuestionSelector",
+    get: ({ get }) => {
+      let questionCondition = get(questionState);
+      switch (questionCondition) {
+        case "share":
+          // return [
+          //   "Not likely at all",
+          //   "Slightly likely",
+          //   "Moderately Likely",
+          //   "Completely likely",
+          // ];
+          // return ["No", "Slightly", "Moderately", "Strongly"];
+          return [
+            "Definitely no",
+            "Probably no",
+            "Probably yes",
+            "Definitely yes",
+          ];
+          break;
+        case "strength":
+          return [
+            "Extremely Serious Problem",
+            "Serious Problem",
+            "Moderate Problem",
+            "Minor Problem",
+            "Not a Problem",
+          ];
+  
+          break;
+      }
+    },
+  });
 
 export default PreSurveyPage2;
