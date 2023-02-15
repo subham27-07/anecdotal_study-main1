@@ -154,9 +154,7 @@ const Instructions1 = (props) => {
         >
           <span>
             {" "}
-            Hi! In this study, we will show you a series ofnew articles where you will be asked to draw a visualization based on your understadning and we will ask you 
-            few more question on drug overdose. Click continue to see the  news
-            articles.
+            Hi!! In this study, we will show you a few news articles related to drug overdose. We will also ask your opinion on this topic. Click continue to proceed.
           </span>
         </div>
         <div
@@ -165,9 +163,9 @@ const Instructions1 = (props) => {
         >
           <span>
             {" "}
-            In each news articles you will see a visualization making a{" "}
-            <span className={classes.emph}>claim</span>. Here is an example
-           of visualization on how you will be asked to draw, at right
+            You may be asked to complete a timeline visualization. The animation on the right shows how you can use your mouse to draw a curve and <span className={classes.emph}>adjust individual data points.</span>
+
+          
           </span>
           <span>👉👉👉👉</span>
         </div>

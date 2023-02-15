@@ -1,9 +1,9 @@
-import React, { useRef } from "react";
+import React, { useRef,useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import pageHandler from "../pageHandler";
 import axios from "axios";
 import * as Survey from "survey-react";
-import { Divider, Typography, Container } from "@mui/material";
+import { Divider, Typography, Container, Button } from "@mui/material";
 import Tweet from "../../components/tweet/tweet";
 import TweetQuote from "../../components/tweet/tweetQuote";
 import { useRecoilValue } from "recoil";
@@ -108,6 +108,9 @@ const PreSurveyPage1 = (props) => {
 
   Survey.StylesManager.applyTheme();
 
+  const [completed, setCompleted] = useState(false);
+  const [message, setMessage] = useState("");
+
   const onCompleting = (survey, options) => {
     // console.log(options);
     let allTrue = true;
@@ -130,10 +133,13 @@ const PreSurveyPage1 = (props) => {
     //Write survey results into database
     // console.log(options);
 
+    setCompleted(true);
+    setMessage("");
+
     console.log("Survey results: " + JSON.stringify(quizResponses.current));
     axios.post("/api/quiz5", quizResponses.current).then((response) => {
       let nextPage = pageHandler(location.pathname);
-      history.push(nextPage);
+    //   history.push(nextPage);
     });
   };
 
@@ -232,37 +238,52 @@ const PreSurveyPage1 = (props) => {
         }}
       >
         <Typography variant="h5">
-          Think about the temporal tend on the number of Americans died from Syntehtic opioids(mostly fentanyl)
+          Think about the temporal tend on the Substance use disorders refers to direct deaths from overdoses of illicit drugs synthetic opioids (mostly fentanyl).
         </Typography>
         <Divider></Divider>
-        {/* <div style={{ width: "50%", margin: "30px" }}>
-          <Tweet
-            text={`Spielberg is one of the worst directors of the recent decade.`}
-            accName={"Johnathan Nolander"}
-            screen_name={"JNolander"}
-            style={{ width: "50%" }}
-          >
-            <TweetQuote
-              text={
-                "Steven Spielberg's latest three movies were among the worst rated in Rotten Tomatoes."
-              }
-              accName={"Sunny Hollywood News"}
-              screen_name={"SunnyHollywood"}
-              showImage={true}
-              src={
-                "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Steven_Spielberg_%2836057844341%29.jpg/800px-Steven_Spielberg_%2836057844341%29.jpg?20170801002525"
-              }
-            ></TweetQuote>
-          </Tweet>
-        </div> */}
+
       </div>
       <Divider></Divider>
+      
       <Survey.Survey
         model={model}
         onComplete={onComplete}
         onCompleting={onCompleting}
         onCurrentPageChanging={onCurrentPageChanging}
       />
+      {completed ? (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            paddingTop: "30px",
+          }}
+        >
+          <Typography variant="h5">{message}</Typography>
+          <img src={"https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/7.JPG"} width="60%" height="100%" alt="Completion image" />
+          <p align="justify">Death rate from substance use disorders, <span style={{ fontWeight: "bold" }}>1999 to 2019</span>  Substance use disorders refers to direct deaths from 
+                overdoses of <span style={{ fontWeight: "bold" }}>illicit drugs synthetic opioids (mostly fentanyl)</span> .  The United States is currently in the grips of a powerful drug epidemic, with the share of population with 
+                drug use disorders steadily climbing every year. 
+                A drug use disorder is a mental disorder that affects a person’s brain and behavior, leading to a person’s inability to control their use of drugs 
+                including legal or illegal drugs Drug use disorders occur when an individual compulsively
+                misuses drugs or alcohol and continues abusing the substance despite knowing the negative impact it has on their life..
+                
+            </p>
+          
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => {
+              let nextPage = pageHandler(location.pathname);
+              history.push(nextPage);
+            }}
+          >
+            Continue
+          </Button>
+        </div>
+      ) : null}
     </Container>
   );
 };

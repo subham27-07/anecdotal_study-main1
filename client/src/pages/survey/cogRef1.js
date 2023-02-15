@@ -12,36 +12,16 @@ const PreSurveyPage = (props) => {
     elements: [
       {
         type: "html",
-        html: "<h4>Please respond to these questions. Your responses do not impact your payment!<h4/>",
+        html: "<h4>Please read through the article below👇. Your responses do not impact your payment!<h4/>",
       },
       {
-        name: "batBall",
+        name: "Superbowl",
         type: "text",
         title:
-          "If you’re running a race and you pass the person in second place, what place are you in?? _____ place",
+          "The Eagles made sure to mention that field conditions didn't decide the game. (It's not like we were playing on ice and they were playing on grass; we all had to play on it, Eagles head coach Nick Sirianni said.) But it affected both teams. The Eagles had 70 sacks in the regular season and none Sunday. There were factors that went into that, such as the Chiefs using a quick passing game. But the field conditions probably slowed down the Eagles pass rushers a bit.It was hard. I beat my man a couple times, trying to turn the corner and just was slipping, Reddick said. It was very disappointing. It’s the NFL, you’d think it would be better so we can get some better play. But it is what it is. Reddick said he didn't want to use the turf as an excuse. He said the Chiefs deserved to win. But it was clearly a point of frustration. Maybe the league can look at it and tell Arizona they’ve got to step their stuff up,Reddick said. I don’t know. It’s not my decision to make, it’s not my call to make.",
         isRequired: true,
       },
-      {
-        name: "5Machines",
-        type: "text",
-        title:
-          "A farmer had 15 sheep and all but 8 died. How many are left? _____ sheeps.",
-        isRequired: true,
-      },
-      {
-        name: "Name",
-        type: "text",
-        title:
-          "Emily’s father has three daughters. The first two are named April and May. What is the third daughter’s name? _____ name. ",
-        isRequired: true,
-      },
-      {
-        name: "Volume",
-        type: "text",
-        title:
-          "How many cubic feet of dirt are there in a hole that is 3’ deep x 3’ wide x 3’ long?? _____ volume. ",
-        isRequired: true,
-      },
+      
     ],
   };
   var defaultThemeColors = Survey.StylesManager.ThemeColors["default"];
@@ -58,7 +38,7 @@ const PreSurveyPage = (props) => {
   const onComplete = (survey, options) => {
     //Write survey results into database
     console.log("Survey results: " + JSON.stringify(survey.data));
-    axios.post("/api/cogref", survey.data).then((response) => {
+    axios.post("/api/cogref1", survey.data).then((response) => {
       console.log(response);
       let nextPage = pageHandler(location.pathname);
       history.push(nextPage);
@@ -78,7 +58,6 @@ const PreSurveyPage = (props) => {
   const model = new Survey.Model(json);
   model.showCompletedPage = false;
   return (
-    
     <div
       style={{
         width: "100%",

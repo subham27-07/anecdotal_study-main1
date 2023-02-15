@@ -15,6 +15,7 @@ import QualTask from "./pages/study/task_qual";
 import PreSurveyPage from "./pages/survey/pre";
 import PostSurveyPage from "./pages/survey/post";
 import CogRefSurveyPage from "./pages/survey/cogRef";
+import CogRefSurveyPage1 from "./pages/survey/cogRef1";
 import ConsentPage from "./pages/consent/consent";
 import DebriefPage from "./pages/debrief/debrief";
 import Instructions1 from "./pages/instructions/instruction1_better";
@@ -269,6 +270,7 @@ const App = () => {
                 ></Task>
               </Route>
               <Route path="/cogref" component={CogRefSurveyPage}></Route>
+              <Route path="/cogref1" component={CogRefSurveyPage1}></Route>
               <Route path="/task2">
                 <Task
                   phase={1}

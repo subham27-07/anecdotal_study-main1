@@ -12,6 +12,7 @@ const pages = [
   "quiz8",
   "quiz7",
   "cogref",
+  "cogref1",
   "debrief",
 ];
 

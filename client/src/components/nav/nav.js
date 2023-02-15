@@ -44,7 +44,7 @@ export default function NavBar(props) {
             }}
           >
             <Typography variant="h6" className={classes.title}>
-              Social Media News Judgment Study
+            News Articles with Data Visualizations Study
             </Typography>
           </div>
           {/* <Stack direction="row" spacing={1} alignItems="center" style={{}}>

@@ -31,6 +31,7 @@ const responseSchema = new Schema({
   quiz7: Schema.Types.Mixed,
   quiz8: Schema.Types.Mixed,
   cogref: Schema.Types.Mixed,
+  cogref1: Schema.Types.Mixed,
   instructions: Schema.Types.Mixed,
   preq: Schema.Types.Mixed,
   postq: Schema.Types.Mixed,

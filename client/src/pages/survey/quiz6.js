@@ -10,7 +10,7 @@ import { useRecoilValue } from "recoil";
 import { questionState } from "../../atoms/questionSelector";
 import "survey-react/survey.css";
 
-const PreSurveyPage = (props) => {
+const PreSurveyPage1 = (props) => {
   const quizResponses = useRef([]);
   const history = useHistory();
   const location = useLocation();
@@ -28,11 +28,11 @@ const PreSurveyPage = (props) => {
       {
         elements: [
             {
-                name: "understand-text_before",
-                type: "text",
-                title:
-                  "Please write in a sentence about what you understood from the article",
+                name: "understand_before",
+                type: "radiogroup",
+                title: "Would you consider sharing this information with your family/friends?",
                 isRequired: true,
+                choices: ["yes", "no"],
               },
           
         ],
@@ -239,4 +239,4 @@ const PreSurveyPage = (props) => {
   );
 };
 
-export default PreSurveyPage;
+export default PreSurveyPage1;
