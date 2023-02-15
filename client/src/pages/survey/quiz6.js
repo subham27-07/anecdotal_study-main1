@@ -30,9 +30,9 @@ const PreSurveyPage1 = (props) => {
             {
                 name: "understand_before",
                 type: "radiogroup",
-                title: "Would you consider sharing this information with your family/friends?",
-                isRequired: true,
-                choices: ["yes", "no"],
+                title: "Please continue with the study",
+                // isRequired: true,
+                // choices: ["yes", "no"],
               },
           
         ],
@@ -215,7 +215,7 @@ const PreSurveyPage1 = (props) => {
         <Divider></Divider>
         <div style={{ width: "60%", margin: "50px" }}>
           
-        <img src={"https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/8.JPG"} width="110%" height="100%" />
+        <img src={"https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/9.JPG"} width="110%" height="100%" />
         {/* <p align="justify"> has increased by more than 650 percent.  In 2015, more Americans died from drug overdoses than from car accidents and gun homicides combined. It’s the worst drug overdose epidemic in American history, spurred by rising drug abuse, increased availability of prescription opioids and an influx of potent synthetics like fentanyl and carfentanil. Drug overdoses are now the leading cause of death for Americans under 50.“It’s horrifying,” said Dr. Dan Ciccarone, a heroin researcher and a professor of family and community medicine at the University of California, San Francisco. “It’s not even the magnitude — it’s the steepness at which it’s climbing.” Preliminary numbers for 2017 suggest that overdose deaths are growing...</p> */}
         <p align="justify">    has increased by more than 650 percent.  In 2015, more Americans died from drug overdoses than from car accidents 
             and gun homicides combined. It’s the worst drug overdose epidemic in American history, spurred by rising drug abuse, 

@@ -239,7 +239,7 @@ const PreSurveyPage1 = (props) => {
         }}
       >
         <Typography variant="h5">
-          Think about the temporal tend on the share of population with drug use disorders.
+        Since 1999, the number of Americans who have died every year from <span style={{ fontWeight: "bold" }}> Drug Overdose... </span>
         </Typography>
         <Divider></Divider>
 
@@ -263,7 +263,7 @@ const PreSurveyPage1 = (props) => {
           }}
         >
           <Typography variant="h5">{message}</Typography>
-          <img src={"https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/8.JPG"} width="60%" height="100%" alt="Completion image" />
+          <img src={"https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/9.JPG"} width="60%" height="100%" alt="Completion image" />
           <p align="justify">    has increased by more than 650 percent.  In 2015, more Americans died from drug overdoses than from car accidents 
             and gun homicides combined. It’s the worst drug overdose epidemic in American history, spurred by rising drug abuse, 
             increased availability of prescription opioids and an influx of <span style={{ fontWeight: "bold" }}>Data Sharing</span> <span></span>potent synthetics like fentanyl and carfentanil. 
@@ -271,7 +271,6 @@ const PreSurveyPage1 = (props) => {
             professor of family and community medicine at the University of California, San Francisco. “It’s not even the magnitude — it’s the steepness at 
             which it’s climbing.”
              Preliminary numbers for 2017 suggest that overdose deaths are growing...
-        
             </p>
           
           <Button

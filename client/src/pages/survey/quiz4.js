@@ -239,7 +239,7 @@ const PreSurveyPage1 = (props) => {
         }}
       >
         <Typography variant="h5">
-          Think about the temporal tend on the share of population with drug use disorders.
+        Since 1999, the number of Americans share of population with <span style={{ fontWeight: "bold" }}> drug use disorders... </span>
         </Typography>
         <Divider></Divider>
 
@@ -263,7 +263,7 @@ const PreSurveyPage1 = (props) => {
           }}
         >
           <Typography variant="h5">{message}</Typography>
-          <img src={"https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/6.JPG"} width="60%" height="100%" alt="Completion image" />
+          <img src={"https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/11.JPG"} width="60%" height="100%" alt="Completion image" />
           <p align="justify">Share of population with drug use disorders <span style={{ fontWeight: "bold" }}> 1999 to 2019</span>  The United States is currently in the grips of a powerful drug epidemic, 
                 with the <span style={{ fontWeight: "bold" }}>share of population </span>  with drug use disorders steadily climbing every year. A drug use disorder is a mental disorder that affects a person’s brain and behavior, leading to a person’s 
                 inability to control their use of drugs including legal or illegal drugs. Drug use disorders occur when an individual 

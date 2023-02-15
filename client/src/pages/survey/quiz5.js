@@ -238,7 +238,7 @@ const PreSurveyPage1 = (props) => {
         }}
       >
         <Typography variant="h5">
-          Think about the temporal tend on the Substance use disorders refers to direct deaths from overdoses of illicit drugs synthetic opioids (mostly fentanyl).
+        Since 1999, the number of Americans who have died every year from overdoses of <span style={{ fontWeight: "bold" }}> illicit drugs synthetic opioids (mostly fentanyl)... </span> 
         </Typography>
         <Divider></Divider>
 
@@ -262,7 +262,7 @@ const PreSurveyPage1 = (props) => {
           }}
         >
           <Typography variant="h5">{message}</Typography>
-          <img src={"https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/7.JPG"} width="60%" height="100%" alt="Completion image" />
+          <img src={"https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/10.JPG"} width="60%" height="100%" alt="Completion image" />
           <p align="justify">Death rate from substance use disorders, <span style={{ fontWeight: "bold" }}>1999 to 2019</span>  Substance use disorders refers to direct deaths from 
                 overdoses of <span style={{ fontWeight: "bold" }}>illicit drugs synthetic opioids (mostly fentanyl)</span> .  The United States is currently in the grips of a powerful drug epidemic, with the share of population with 
                 drug use disorders steadily climbing every year. 
