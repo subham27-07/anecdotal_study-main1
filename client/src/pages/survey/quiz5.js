@@ -262,13 +262,9 @@ const PreSurveyPage1 = (props) => {
           }}
         >
           <Typography variant="h5">{message}</Typography>
-          <img src={"https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/10.JPG"} width="60%" height="100%" alt="Completion image" />
-          <p align="justify">Death rate from substance use disorders, <span style={{ fontWeight: "bold" }}>1999 to 2019</span>  Substance use disorders refers to direct deaths from 
-                overdoses of <span style={{ fontWeight: "bold" }}>illicit drugs synthetic opioids (mostly fentanyl)</span> .  The United States is currently in the grips of a powerful drug epidemic, with the share of population with 
-                drug use disorders steadily climbing every year. 
-                A drug use disorder is a mental disorder that affects a person’s brain and behavior, leading to a person’s inability to control their use of drugs 
-                including legal or illegal drugs Drug use disorders occur when an individual compulsively
-                misuses drugs or alcohol and continues abusing the substance despite knowing the negative impact it has on their life..
+          <img src={"https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/13.JPG"} width="60%" height="100%" alt="Completion image" />
+          <p align="justify">...Death rate from substance use disorders, <span style={{ fontWeight: "bold" }}>1999 to 2019</span>  Substance use disorders refers to direct deaths from 
+                overdoses of <span style={{ fontWeight: "bold" }}>illicit drugs synthetic opioids (mostly fentanyl)</span> .  “We know that substance use is more dangerous than it has ever been, as fentanyl has continued to permeate the illicit drug supply, increasing the risk for overdoses among both people with substance use disorders as well as those who use drugs occasionally,” said Dr. Nora Volkow, director of the National Institute on Drug Abuse. Deaths involving synthetic opioids such as fentanyl increased by a marked 18% in 2021, according to the CDC data. Deaths involving cocaine and psychostimulants such as methamphetamine were also significantly more frequent, while those involving heroin decreased.
                 
             </p>
           

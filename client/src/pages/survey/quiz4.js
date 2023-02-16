@@ -263,8 +263,8 @@ const PreSurveyPage1 = (props) => {
           }}
         >
           <Typography variant="h5">{message}</Typography>
-          <img src={"https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/11.JPG"} width="60%" height="100%" alt="Completion image" />
-          <p align="justify">Share of population with drug use disorders <span style={{ fontWeight: "bold" }}> 1999 to 2019</span>  The United States is currently in the grips of a powerful drug epidemic, 
+          <img src={"https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/14.JPG"} width="60%" height="100%" alt="Completion image" />
+          <p align="justify">...Share of population with drug use disorders <span style={{ fontWeight: "bold" }}> 1999 to 2019</span>  The United States is currently in the grips of a powerful drug epidemic, 
                 with the <span style={{ fontWeight: "bold" }}>share of population </span>  with drug use disorders steadily climbing every year. A drug use disorder is a mental disorder that affects a person’s brain and behavior, leading to a person’s 
                 inability to control their use of drugs including legal or illegal drugs. Drug use disorders occur when an individual 
                 compulsively misuses drugs or alcohol and continues abusing the substance despite knowing the negative impact it has on their life.

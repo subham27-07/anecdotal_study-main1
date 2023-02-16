@@ -215,7 +215,7 @@ const PreSurveyPage1 = (props) => {
         <Divider></Divider>
         <div style={{ width: "60%", margin: "50px" }}>
           
-        <img src={"https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/11.JPG"} width="110%" height="100%" />
+        <img src={"https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/14.JPG"} width="110%" height="100%" />
         {/* <p align="justify"> has increased by more than 650 percent.  In 2015, more Americans died from drug overdoses than from car accidents and gun homicides combined. It’s the worst drug overdose epidemic in American history, spurred by rising drug abuse, increased availability of prescription opioids and an influx of potent synthetics like fentanyl and carfentanil. Drug overdoses are now the leading cause of death for Americans under 50.“It’s horrifying,” said Dr. Dan Ciccarone, a heroin researcher and a professor of family and community medicine at the University of California, San Francisco. “It’s not even the magnitude — it’s the steepness at which it’s climbing.” Preliminary numbers for 2017 suggest that overdose deaths are growing...</p> */}
         <p align="justify">Death rate from substance use disorders, <span style={{ fontWeight: "bold" }}>1999 to 2019</span>  Substance use disorders refers to direct deaths from 
         overdoses of <span style={{ fontWeight: "bold" }}>illicit drugs synthetic opioids (mostly fentanyl)</span> .  The United States is currently in the grips of a powerful drug epidemic, with the share of population with 

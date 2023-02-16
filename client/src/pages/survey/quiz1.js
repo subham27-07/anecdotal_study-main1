@@ -263,7 +263,7 @@ const PreSurveyPage1 = (props) => {
           }}
         >
           <Typography variant="h5">{message}</Typography>
-          <img src={"https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/9.JPG"} width="60%" height="100%" alt="Completion image" />
+          <img src={"https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/12.JPG"} width="60%" height="100%" alt="Completion image" />
           <p align="justify">    has increased by more than 650 percent.  In 2015, more Americans died from drug overdoses than from car accidents 
             and gun homicides combined. It’s the worst drug overdose epidemic in American history, spurred by rising drug abuse, 
             increased availability of prescription opioids and an influx of <span style={{ fontWeight: "bold" }}>Data Sharing</span> <span></span>potent synthetics like fentanyl and carfentanil. 
