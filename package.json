@@ -1,7 +1,9 @@
 {
   "name": "thesis-user-study",
   "version": "1.0.0",
-  "engines":{ "node": "16.16.0"},
+  "engines":{ "node": "^16.16.0",
+  "npm": "8.2.0"},
+  
   "scripts": {
     "client": "cd client && npm start",
     "server": "nodemon server.js",
