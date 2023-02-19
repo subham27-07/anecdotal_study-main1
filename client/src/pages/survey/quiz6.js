@@ -27,13 +27,23 @@ const PreSurveyPage1 = (props) => {
     pages: [
       {
         elements: [
+          {
+            type: "html",
+            html: "<p style='font-size: 22px;'>Since 2002, the number of Americans who have died every year from <span style='font-weight: bold;'>Drug Overdose...</span>  </p>",
+           
+          },
             {
-                name: "understand_before",
+                name: "",
                 type: "radiogroup",
-                title: "Please continue with the study",
+                title: "",
                 // isRequired: true,
                 // choices: ["yes", "no"],
               },
+              {
+                type: "html",
+                name: "image_and_text",
+                html: "<div style='text-align: center'><img src='https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/b.JPG' width='80%' height='100%' /><br/><br/><p style='text-align: justify'>has increased by more than 650 percent.  In 2015, more Americans died from drug overdoses than from car accidents and gun homicides combined. It’s the worst drug overdose epidemic in American history, spurred by rising drug abuse, increased availability of prescription opioids and an influx of <span style='font-weight: bold;'> Drug Overdose</span> potent synthetics like fentanyl and carfentanil. Drug overdoses are now the leading cause of death for Americans under 50.“It’s horrifying,” said Dr. Dan Ciccarone, a heroin researcher and a professor of family and community medicine at the University of California, San Francisco. “It’s not even the magnitude — it’s the steepness at which it’s climbing.”Preliminary numbers for 2017 suggest that overdose deaths are growing...</p></div>",
+            },
           
         ],
       },
@@ -179,6 +189,8 @@ const PreSurveyPage1 = (props) => {
 
   const model = new Survey.Model(json);
   model.showCompletedPage = false;
+  model.questionTitleTemplate = "";
+  model.showQuestionNumbers = "none";
   model.onTextMarkdown.add((sender, options) => {
     var text = options.text;
     var html = getTextHtml(text, correctStr, true);
@@ -209,32 +221,22 @@ const PreSurveyPage1 = (props) => {
           justifyContent: "center",
         }}
       >
-        <Typography variant="h5">
-        Since 1999, the number of Americans who have died every year from <span style={{ fontWeight: "bold" }}> Drug Overdose... </span>
+        <Typography variant="h3">
+          How Bad Is the   <span style={{ fontWeight: "bold" }}> Drug Overdose... </span> Epidemic?   
         </Typography>
         <Divider></Divider>
-        <div style={{ width: "60%", margin: "50px" }}>
-          
-        <img src={"https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/12.JPG"} width="110%" height="100%" />
-        {/* <p align="justify"> has increased by more than 650 percent.  In 2015, more Americans died from drug overdoses than from car accidents and gun homicides combined. It’s the worst drug overdose epidemic in American history, spurred by rising drug abuse, increased availability of prescription opioids and an influx of potent synthetics like fentanyl and carfentanil. Drug overdoses are now the leading cause of death for Americans under 50.“It’s horrifying,” said Dr. Dan Ciccarone, a heroin researcher and a professor of family and community medicine at the University of California, San Francisco. “It’s not even the magnitude — it’s the steepness at which it’s climbing.” Preliminary numbers for 2017 suggest that overdose deaths are growing...</p> */}
-        <p align="justify">    has increased by more than 650 percent.  In 2015, more Americans died from drug overdoses than from car accidents 
-            and gun homicides combined. It’s the worst drug overdose epidemic in American history, spurred by rising drug abuse, 
-            increased availability of prescription opioids and an influx of <span style={{ fontWeight: "bold" }}>Data Sharing</span> <span></span>potent synthetics like fentanyl and carfentanil. 
-            Drug overdoses are now the leading cause of death for Americans under 50.“It’s horrifying,” said Dr. Dan Ciccarone, a heroin researcher and a 
-            professor of family and community medicine at the University of California, San Francisco. “It’s not even the magnitude — it’s the steepness at 
-            which it’s climbing.”
-             Preliminary numbers for 2017 suggest that overdose deaths are growing...
         
-      </p>
-        </div>
       </div>
       <Divider></Divider>
       <Survey.Survey
         model={model}
         onComplete={onComplete}
         onCompleting={onCompleting}
+        
         onCurrentPageChanging={onCurrentPageChanging}
+        
       />
+      
     </Container>
   );
 };

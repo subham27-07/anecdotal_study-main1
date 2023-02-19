@@ -27,13 +27,23 @@ const PreSurveyPage1 = (props) => {
     pages: [
       {
         elements: [
+          {
+            type: "html",
+            html: "<p style='font-size: 22px;'>Since 2002, the number of Americans share of population with <span style='font-weight: bold;'>drug use disorders...</span>  </p>",
+           
+          },
             {
-              name: "understand_before",
+              name: "",
               type: "radiogroup",
-              title: "Please continue with the study",
+              title: "",
               // isRequired: true,
               // choices: ["yes", "no"],
               },
+              {
+                type: "html",
+                name: "image_and_text",
+                html: "<div style='text-align: center'><img src='https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/c.JPG' width='80%' height='100%' /><br/><br/><p style='text-align: justify'>...Share of population with drug use disorders <span style='font-weight: bold;'> 2002 to 2019 </span> The United States is currently in the grips of a powerful drug epidemic, with drug use disorders steadily climbing every year. A drug use disorder is a mental disorder that affects a person’s brain and behavior, leading to a person’s inability to control their use of drugs including legal or illegal drugs. Drug use disorders occur when an individual compulsively misuses drugs or alcohol and continues abusing the substance despite knowing the negative impact it has on their life.</p></div>",
+            },
           
         ],
       },
@@ -179,6 +189,8 @@ const PreSurveyPage1 = (props) => {
 
   const model = new Survey.Model(json);
   model.showCompletedPage = false;
+  model.questionTitleTemplate = "";
+  model.showQuestionNumbers = "none";
   model.onTextMarkdown.add((sender, options) => {
     var text = options.text;
     var html = getTextHtml(text, correctStr, true);
@@ -209,23 +221,11 @@ const PreSurveyPage1 = (props) => {
           justifyContent: "center",
         }}
       >
-        <Typography variant="h5">
-        Since 1999, the number of Americans share of population with <span style={{ fontWeight: "bold" }}> drug use disorders... </span>
+        <Typography variant="h3">
+          How Bad Is the   <span style={{ fontWeight: "bold" }}> Drug Overdose... </span> Epidemic?   
         </Typography>
         <Divider></Divider>
-        <div style={{ width: "60%", margin: "50px" }}>
-          
-        <img src={"https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/14.JPG"} width="110%" height="100%" />
-        {/* <p align="justify"> has increased by more than 650 percent.  In 2015, more Americans died from drug overdoses than from car accidents and gun homicides combined. It’s the worst drug overdose epidemic in American history, spurred by rising drug abuse, increased availability of prescription opioids and an influx of potent synthetics like fentanyl and carfentanil. Drug overdoses are now the leading cause of death for Americans under 50.“It’s horrifying,” said Dr. Dan Ciccarone, a heroin researcher and a professor of family and community medicine at the University of California, San Francisco. “It’s not even the magnitude — it’s the steepness at which it’s climbing.” Preliminary numbers for 2017 suggest that overdose deaths are growing...</p> */}
-        <p align="justify">Death rate from substance use disorders, <span style={{ fontWeight: "bold" }}>1999 to 2019</span>  Substance use disorders refers to direct deaths from 
-        overdoses of <span style={{ fontWeight: "bold" }}>illicit drugs synthetic opioids (mostly fentanyl)</span> .  The United States is currently in the grips of a powerful drug epidemic, with the share of population with 
-        drug use disorders steadily climbing every year. 
-        A drug use disorder is a mental disorder that affects a person’s brain and behavior, leading to a person’s inability to control their use of drugs 
-        including legal or illegal drugs Drug use disorders occur when an individual compulsively
-         misuses drugs or alcohol and continues abusing the substance despite knowing the negative impact it has on their life..
         
-      </p>
-        </div>
       </div>
       <Divider></Divider>
       <Survey.Survey

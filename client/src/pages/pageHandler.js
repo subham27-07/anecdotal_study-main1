@@ -2,6 +2,8 @@ const pages = [
   "consent",
   "pre",
   "instructions1",
+  "instructions2",
+  "instructions3",
   "quiz",
   "quiz2",
   "quiz3",

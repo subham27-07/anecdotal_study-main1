@@ -19,31 +19,7 @@ const PreSurveyPage1 = (props) => {
   const extraQuestions =
     questionCondition == "strength"
       ? [
-        //   {
-        //     name: "support",
-        //     type: "radiogroup",
-        //     title: `When I read: "Spielberg is one of the worst directors of the recent decade." I should:`,
-        //     isRequired: true,
-        //     choices: [
-        //       "Evaluate whether it is supported by the headline.",
-        //       "Give my opinion whether I think it is true regardless of the headline.",
-        //       "I don't know.",
-        //     ],
-        //     correctAnswer: "Evaluate whether it is supported by the headline.",
-        //   },
-
-        //   {
-        //     name: "headline_true",
-        //     type: "radiogroup",
-        //     title: `When I read: "Steven Spielberg's latest three movies were among the worst rated in Rotten Tomatoes." I should:`,
-        //     isRequired: true,
-        //     choices: [
-        //       "Evaluate whether the headline is accurate.",
-        //       "Assume that the headline is true.",
-        //       "I don't know.",
-        //     ],
-        //     correctAnswer: "Assume that the headline is true.",
-        //   },
+        
         ]
       : [];
 
@@ -51,28 +27,14 @@ const PreSurveyPage1 = (props) => {
     pages: [
       {
         elements: [
-        //   {
-        //     name: "understand_before",
-        //     type: "radiogroup",
-        //     title: "Do you understand what this study is asking you to do?",
-        //     isRequired: true,
-        //     choices: ["yes", "no"],
-        //   },
-        //   {
-        //     name: "understand-text_before",
-        //     type: "text",
-        //     title:
-        //       "Please in sentence or two, please describe what this study is asking you to do",
-        //     isRequired: true,
-        //   },
+        
         ],
       },
       {
         elements: [
           {
             type: "html",
-            html: "<p style='font-size: 22px;'>Since 2002, the number of Americans who have died every year from <span style='font-weight: bold;'>Drug Overdose</span>  </p>",
-           
+            html: "<h4><h4/>",
           },
           {
             name: "claim",
@@ -86,7 +48,7 @@ const PreSurveyPage1 = (props) => {
               "Slight Increase",
               "Significant Increase",
             ],
-            // correctAnswer: "a conclusion about a topic",
+            
           },
           
           ...extraQuestions,
@@ -118,18 +80,10 @@ const PreSurveyPage1 = (props) => {
     // console.log(options);
     let allTrue = true;
     survey.getAllQuestions().forEach((q) => {
-    //   let correct = isAnswerCorrect(q);
-    //   correct = correct == undefined ? true : correct;
-
-    //   allTrue = allTrue && correct;
-    //   renderCorrectAnswer(q);
+    
     });
     quizResponses.current.push(survey.data);
-    // if (allTrue) {
-    //   options.allowComplete = true;
-    // } else {
-    //   options.allowComplete = false;
-    // }
+    
   };
 
   const onComplete = (survey, options) => {
@@ -150,11 +104,7 @@ const PreSurveyPage1 = (props) => {
     let allTrue = true;
     survey.getAllQuestions().forEach((q) => {
       if (survey.currentPage == q.page) {
-        // let correct = isAnswerCorrect(q);
-        // correct = correct == undefined ? true : correct;
-
-        // allTrue = allTrue && correct;
-        // renderCorrectAnswer(q);
+       
       }
     });
     console.log(allTrue);
@@ -163,10 +113,7 @@ const PreSurveyPage1 = (props) => {
     } else {
       option.allowChanging = false;
     }
-    // console.log(survey.currentPage());
-    // option.oldCurrentPage.questions.forEach((q) => {
-    //   console.log(q);
-    // });
+    
   };
 
   function getTextHtml(text, str, isCorrect) {
@@ -180,43 +127,13 @@ const PreSurveyPage1 = (props) => {
       "</span>"
     );
   }
-  // function isAnswerCorrect(q) {
-  //   const right = q.correctAnswer;
-  //   if (right == undefined) return undefined;
-  //   if (!right || q.isEmpty()) return undefined;
-  //   var left = q.value;
-  //   if (!Array.isArray(right)) return right == left;
-  //   if (!Array.isArray(left)) left = [left];
-  //   for (var i = 0; i < left.length; i++) {
-  //     if (right.indexOf(left[i]) < 0) return false;
-  //   }
-  //   return true;
-  // }
-
-  // function renderCorrectAnswer(q) {
-  //   if (!q) return;
-  //   const isCorrect = isAnswerCorrect(q);
-  //   if (!q.prevTitle) {
-  //     q.prevTitle = q.title;
-  //   }
-  //   if (isCorrect === undefined) {
-  //     q.title = q.prevTitle;
-  //   } else {
-  //     q.title = q.prevTitle + " " + (isCorrect ? correctStr : inCorrectStr);
-  //   }
-  // }
+ 
 
   const model = new Survey.Model(json);
   model.showCompletedPage = false;
   model.onTextMarkdown.add((sender, options) => {
     var text = options.text;
-    // var html = getTextHtml(text, correctStr, true);
-    // if (!html) {
-    //   html = getTextHtml(text, inCorrectStr, false);
-    // }
-    // if (!!html) {
-    //   options.html = html;
-    // }
+    
   });
   
 
@@ -239,9 +156,9 @@ const PreSurveyPage1 = (props) => {
           justifyContent: "center",
         }}
       >
-        <Typography variant="h3">
-          How Bad Is the   <span style={{ fontWeight: "bold" }}> Drug Overdose... </span> Epidemic?   
-        </Typography> 
+        <Typography variant="h5">
+        How Bad Is the   <span style={{ fontWeight: "bold" }}> Drug Overdose... </span> Epidemic?
+        </Typography>
         <Divider></Divider>
 
       </div>
@@ -264,7 +181,7 @@ const PreSurveyPage1 = (props) => {
           }}
         >
           <Typography variant="h5">{message}</Typography>
-          <img src={"https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/b.JPG"} width="60%" height="100%" alt="Completion image" />
+          <img src={"https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/a.JPG"} width="60%" height="100%" alt="Completion image" />
           <p align="justify">    has increased by more than 650 percent.  In 2015, more Americans died from drug overdoses than from car accidents 
             and gun homicides combined. It’s the worst drug overdose epidemic in American history, spurred by rising drug abuse, 
             increased availability of prescription opioids and an influx of <span style={{ fontWeight: "bold" }}>Data Sharing</span> <span></span>potent synthetics like fentanyl and carfentanil. 

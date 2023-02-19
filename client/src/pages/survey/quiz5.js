@@ -71,7 +71,8 @@ const PreSurveyPage1 = (props) => {
         elements: [
           {
             type: "html",
-            html: "<h4><h4/>",
+            html: "<p style='font-size: 22px;'>Since 2002, the number of Americans who have died every year from overdoses of <span style='font-weight: bold;'>synthetic opioids...</span>  </p>",
+           
           },
           {
             name: "claim",
@@ -237,8 +238,8 @@ const PreSurveyPage1 = (props) => {
           justifyContent: "center",
         }}
       >
-        <Typography variant="h5">
-        Since 1999, the number of Americans who have died every year from overdoses of <span style={{ fontWeight: "bold" }}> illicit drugs synthetic opioids (mostly fentanyl)... </span> 
+        <Typography variant="h3">
+          How Bad Is the   <span style={{ fontWeight: "bold" }}> Drug Overdose... </span> Epidemic?   
         </Typography>
         <Divider></Divider>
 
@@ -262,8 +263,8 @@ const PreSurveyPage1 = (props) => {
           }}
         >
           <Typography variant="h5">{message}</Typography>
-          <img src={"https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/13.JPG"} width="60%" height="100%" alt="Completion image" />
-          <p align="justify">...Death rate from substance use disorders, <span style={{ fontWeight: "bold" }}>1999 to 2019</span>  Substance use disorders refers to direct deaths from 
+          <img src={"https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/d.JPG"} width="60%" height="100%" alt="Completion image" />
+          <p align="justify">...Death rate from substance use disorders, <span style={{ fontWeight: "bold" }}>2002 to 2019</span>  Substance use disorders refers to direct deaths from 
                 overdoses of <span style={{ fontWeight: "bold" }}>illicit drugs synthetic opioids (mostly fentanyl)</span> .  “We know that substance use is more dangerous than it has ever been, as fentanyl has continued to permeate the illicit drug supply, increasing the risk for overdoses among both people with substance use disorders as well as those who use drugs occasionally,” said Dr. Nora Volkow, director of the National Institute on Drug Abuse. Deaths involving synthetic opioids such as fentanyl increased by a marked 18% in 2021, according to the CDC data. Deaths involving cocaine and psychostimulants such as methamphetamine were also significantly more frequent, while those involving heroin decreased.
                 
             </p>

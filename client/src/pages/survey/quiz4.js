@@ -70,7 +70,8 @@ const PreSurveyPage1 = (props) => {
         elements: [
           {
             type: "html",
-            html: "<h4><h4/>",
+            html: "<p style='font-size: 22px;'>Since 2002, the number of Americans share of population with <span style='font-weight: bold;'>drug use disorders...</span>  </p>",
+           
           },
           {
             name: "claim",
@@ -238,9 +239,13 @@ const PreSurveyPage1 = (props) => {
           justifyContent: "center",
         }}
       >
-        <Typography variant="h5">
-        Since 1999, the number of Americans share of population with <span style={{ fontWeight: "bold" }}> drug use disorders... </span>
-        </Typography>
+        
+        <Typography variant="h3">
+          How Bad Is the   <span style={{ fontWeight: "bold" }}> Drug Overdose... </span> Epidemic?   
+        </Typography>     
+
+
+
         <Divider></Divider>
 
       </div>
@@ -263,8 +268,8 @@ const PreSurveyPage1 = (props) => {
           }}
         >
           <Typography variant="h5">{message}</Typography>
-          <img src={"https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/14.JPG"} width="60%" height="100%" alt="Completion image" />
-          <p align="justify">...Share of population with drug use disorders <span style={{ fontWeight: "bold" }}> 1999 to 2019</span>  The United States is currently in the grips of a powerful drug epidemic, 
+          <img src={"https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/c.JPG"} width="60%" height="100%" alt="Completion image" />
+          <p align="justify">...Share of population with drug use disorders <span style={{ fontWeight: "bold" }}> 2002 to 2019</span>  The United States is currently in the grips of a powerful drug epidemic, 
                 with the <span style={{ fontWeight: "bold" }}>share of population </span>  with drug use disorders steadily climbing every year. A drug use disorder is a mental disorder that affects a person’s brain and behavior, leading to a person’s 
                 inability to control their use of drugs including legal or illegal drugs. Drug use disorders occur when an individual 
                 compulsively misuses drugs or alcohol and continues abusing the substance despite knowing the negative impact it has on their life.

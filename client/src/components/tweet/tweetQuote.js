@@ -13,13 +13,13 @@ function parseString(encodedString) {
 }
 const useStyles = makeStyles({
   tweetCard: {
-    width: "",
-    padding: "10px",
-    border: "0.5px",
-    borderColor: "#AAB8C2",
-    borderStyle: "solid",
-    borderRadius: "8px",
-    marginTop: "10px",
+    // width: "",
+    // padding: "10px",
+    // border: "0.5px",
+    // borderColor: "#AAB8C2",
+    // borderStyle: "solid",
+    // borderRadius: "8px",
+    // marginTop: "10px",
   },
 });
 

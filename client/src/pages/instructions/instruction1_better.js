@@ -3,9 +3,13 @@ import axios from "axios";
 import { Button, Divider, Typography, Container } from "@mui/material/";
 import { useHistory, useLocation } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
+import * as Survey from "survey-react";
 import Tweet from "../../components/tweet/tweet";
 import TweetQuote from "../../components/tweet/tweetQuote";
+import { useRecoilValue } from "recoil";
+import { questionState } from "../../atoms/questionSelector";
 import pageHandler from "../pageHandler";
+import "survey-react/survey.css";
 
 const messageFontSize = "min(1.3vw, 20px)";
 
@@ -70,6 +74,8 @@ const Instructions1 = (props) => {
   const [positions, setPositions] = useState(null);
   const quoteRef = useRef(null);
   const location = useLocation();
+  const quizResponses = useRef([]);
+  const questionCondition = useRecoilValue(questionState);
   const [stage, setStage] = useState(-1);
   const maxStage = 3;
   const history = useHistory();
@@ -97,6 +103,118 @@ const Instructions1 = (props) => {
     setPositions(p);
   };
 
+
+  const extraQuestions =
+    questionCondition == "strength"
+      ? [
+        
+        ]
+      : [];
+
+  const json = {
+    pages: [
+      {
+        elements: [
+        
+        ],
+      },
+      {
+        elements: [
+          {
+            type: "html",
+            html: "<h4><h4/>",
+          },
+          {
+            name: "claim",
+            type: "radiogroup",
+            title: `"How would you categorize this trend"`,
+            isRequired: true,
+            choices: [
+              "Significant Decrease",
+              "Slight Decrease",
+              "Mostly Flat",
+              "Slight Increase",
+              "Significant Increase",
+            ],
+            
+          },
+          
+          ...extraQuestions,
+        ],
+      },
+    ],
+  };
+
+  var defaultThemeColors = Survey.StylesManager.ThemeColors["default"];
+  defaultThemeColors["$main-color"] = "black";
+  defaultThemeColors["$main-hover-color"] = "lightgrey";
+  defaultThemeColors["$text-color"] = "#4a4a4a";
+  defaultThemeColors["$header-color"] = "#7ff07f";
+
+  defaultThemeColors["$header-background-color"] = "#4a4a4a";
+  defaultThemeColors["$body-container-background-color"] = "#f8f8f8";
+
+  const onCompleting = (survey, options) => {
+    // console.log(options);
+    let allTrue = true;
+    survey.getAllQuestions().forEach((q) => {
+    
+    });
+    // quizResponses.current.push(survey.data);
+    
+  };
+
+  const onComplete = (survey, options) => {
+    //Write survey results into database
+    // console.log(options);
+    // setCompleted(true);
+    // setMessage("");
+
+    // console.log("Survey results: " + JSON.stringify(quizResponses.current));
+    // axios.post("/api/quiz1", quizResponses.current).then((response) => {
+    //   let nextPage = pageHandler(location.pathname);
+    // //   history.push(nextPage);
+    // });
+  };
+
+  const onCurrentPageChanging = (survey, option) => {
+    if (!option.isNextPage) return;
+    let allTrue = true;
+    survey.getAllQuestions().forEach((q) => {
+      if (survey.currentPage == q.page) {
+       
+      }
+    });
+    console.log(allTrue);
+    if (allTrue) {
+      option.allowChanging = true;
+    } else {
+      option.allowChanging = false;
+    }
+    
+  };
+
+  function getTextHtml(text, str, isCorrect) {
+    if (text.indexOf(str) < 0) return undefined;
+    return (
+      text.substring(0, text.indexOf(str)) +
+      "<span style='color:" +
+      (isCorrect ? "black" : "black") +
+      "'>" +
+      str +
+      "</span>"
+    );
+  }
+
+  const model = new Survey.Model(json);
+  model.showCompletedPage = false;
+  model.onTextMarkdown.add((sender, options) => {
+    var text = options.text;
+    
+  });
+  
+
+
   useEffect(() => {
     window.addEventListener("resize", setTweetPositions);
   }, []);
@@ -123,11 +241,21 @@ const Instructions1 = (props) => {
   }, [stage]);
 
   return (
-    <Container maxWidth="xl" className={classes.instructContainer}>
+    <Container
+      maxWidth={false}
+      style={{
+        width: "100%",
+        overflow: "auto",
+        height: "100%",
+        paddingTop: "30px",
+        paddingBottm: "30px",
+      }}
+    >
+      
       <div className={classes.grid}>
         <div
           className={classes.tweet}
-          style={stage >= 1 ? easinStyle : hiddenStyle}
+          style={stage >= 0 ? easinStyle : hiddenStyle}
           ref={tweetRef}
         >
           <Tweet
@@ -143,20 +271,49 @@ const Instructions1 = (props) => {
               screen_name={""}
               showImage={true}
               src={
-                "https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/new.gif"
+                ""
               }
             ></TweetQuote>
           </Tweet>
         </div>
+
+        
+        
         <div
           className={classes.pointToTweetRight}
           style={stage == 0 ? easinStyle : hiddenStyle}
         >
           <span>
             {" "}
-            Hi!! In this study, we will show you a few news articles related to drug overdose. We will also ask your opinion on this topic. Click continue to proceed.
+            Hi!! In this study we ask you to read a few news articles that contain data visualizations. Click continue to proceed.
           </span>
         </div>
+
+
+        <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Typography variant="h5">
+        How family income predicts children’s <span style={{ fontWeight: "bold" }}> college chances? </span>
+        </Typography>
+        <Divider></Divider>
+        
+
+
+        <Survey.Survey
+        
+        model={model}
+        onComplete={onComplete}
+        onCompleting={onCompleting}
+        onCurrentPageChanging={onCurrentPageChanging}
+      />
+
+      </div>
         <div
           className={classes.pointToTweetRight}
           style={stage >= 1 ? easinStyle : hiddenStyle}

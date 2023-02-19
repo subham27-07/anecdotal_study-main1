@@ -39,16 +39,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: messageFontSize,
     position: "absolute",
     right: ({ positions }) =>
-      positions ? `${positions.tweet.right + 50}px` : "none",
-    top: ({ positions }) => (positions ? `${positions.tweet.top}px` : "none"),
-  },
-  pointToTweetLeft: {
-    margin: 0,
-    width: "300px",
-    fontSize: messageFontSize,
-    position: "absolute",
-    left: ({ positions }) =>
-      positions ? `${positions.tweet.right + 50}px` : "none",
+      positions ? `${positions.tweet.right + 20}px` : "none",
     top: ({ positions }) => (positions ? `${positions.tweet.top}px` : "none"),
   },
   pointToQuoteLeft: {
@@ -57,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: messageFontSize,
     position: "absolute",
     left: ({ positions }) =>
-      positions ? `${positions.quote.right + 50}px` : "none",
+      positions ? `${positions.quote.right + 20}px` : "none",
     top: ({ positions }) => (positions ? `${positions.quote.top}px` : "none"),
   },
 }));
@@ -80,10 +71,9 @@ const Instructions1 = (props) => {
   const quoteRef = useRef(null);
   const location = useLocation();
   const [stage, setStage] = useState(-1);
-  const maxStage = 6;
+  const maxStage = 3;
   const history = useHistory();
   const classes = useStyles({ positions: positions });
-
   const handleClick = () => {
     incrementStage();
   };
@@ -97,12 +87,13 @@ const Instructions1 = (props) => {
     console.log(tweetParent);
     if (tweetParent == null) return;
     let tweet = tweetParent.querySelector(".tweetComponent");
+
     let quote = tweetParent.querySelector(".quoteComponent");
+
     let p = {
       quote: quote.getBoundingClientRect(),
       tweet: tweet.getBoundingClientRect(),
     };
-    console.log(p);
     setPositions(p);
   };
 
@@ -113,6 +104,7 @@ const Instructions1 = (props) => {
   useEffect(() => {
     if (tweetRef.current != null) {
       setTweetPositions();
+      // window.addEventListener("resize", setTweetPositions);
     }
   }, [tweetRef, quoteRef]);
 
@@ -141,14 +133,14 @@ const Instructions1 = (props) => {
           <Tweet
             text={``}
             accName={""}
-            screen_name={"JNolander"}
+            screen_name={""}
           >
             <TweetQuote
               text={
                 ""
               }
               accName={""}
-              screen_name={"SunnyHollywood"}
+              screen_name={""}
               showImage={true}
               src={
                 "https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/new.gif"
@@ -156,65 +148,39 @@ const Instructions1 = (props) => {
             ></TweetQuote>
           </Tweet>
         </div>
-        <div className={classes.pointToTweetRight}>
-          <div style={stage == 0 ? easinStyle : hiddenStyle}>
-            <span>
-              {" "}
-              Your job will be to evaluate how well the{" "}
-              <span className={classes.emph}>conclusion</span> (top) is
-              supported by the <span className={classes.emph}>headline</span>{" "}
-              (bottom)
-            </span>
-          </div>
-          <br />
+        <div
+          className={classes.pointToTweetRight}
+          style={stage == 0 ? easinStyle : hiddenStyle}
+        >
+          <span>
+            {" "}
+            Hi!! In this study we ask you to read a few news articles that contain data visualizations. Click continue to proceed.
+          </span>
         </div>
+        {/* <div
+          className={classes.pointToTweetRight}
+          style={stage >= 1 ? easinStyle : hiddenStyle}
+        >
+          <span>
+            {" "}
+            You may be asked to complete a timeline visualization. The animation on the right shows how you can use your mouse to draw a curve and <span className={classes.emph}>adjust individual data points.</span>
 
-        <div className={classes.pointToTweetRight}>
-          <div style={stage >= 1 ? easinStyle : hiddenStyle}>
-            <span>
-              Here's the tough part! When you evaluate the{" "}
-              <span className={classes.emph}>conclusion</span>, try to ignore
-              your own opinions.
-            </span>
-            <span>👉👉</span>
-          </div>
-          <br />
-          <div style={stage >= 2 ? easinStyle : hiddenStyle}>
-            <span>
-              {" "}
-              You should only evaluate the{" "}
-              <span className={classes.emph}> logic </span> of making that
-              conclusion based on the{" "}
-              <span className={classes.emph}>headline</span>.
-            </span>
-            <span>👉👉</span>
-          </div>
-          <br />
-          <div style={stage >= 3 ? easinStyle : hiddenStyle}>
-            <span>
-              So in this case, it doesn't matter whether you personally believe
-              Spielberg is one of the worst directors in history or not.
-            </span>
-          </div>
-        </div>
+          
+          </span>
+          <span>👉👉👉👉</span>
+        </div> */}
 
-        <div className={classes.pointToTweetLeft}>
-          <div style={stage >= 4 ? easinStyle : hiddenStyle}>
-            <span style={{ marginRight: "10px" }}>👈👈</span>
-            <span>
-              Please assume that the news headline is factually correct, even if
-              that seems unlikely to you.
-            </span>
-          </div>
-          <br />
-          <div style={stage >= 5 ? easinStyle : hiddenStyle}>
-            <span style={{ marginRight: "10px" }}>👈👈</span>
-            <span>
-              So in this case, assume that the latest three Spielberg movies
-              were in fact among the worst rated Rotten Tomatoes movies!
-            </span>
-          </div>
-        </div>
+        {/* <div
+          className={classes.pointToQuoteLeft}
+          style={stage == 2 ? easinStyle : hiddenStyle}
+        >
+          <p>👈👈👈👈</p>
+          <p>
+            {" "}
+            Here is a <span className={classes.emph}>headline</span> from a news
+            story that Johnathan quotes
+          </p>
+        </div> */}
         <div
           style={{
             textAlign: "center",
