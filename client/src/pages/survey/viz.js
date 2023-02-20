@@ -11,119 +11,117 @@ import TweetQuote from "../../components/tweet/tweetQuote";
 import { useRecoilValue } from "recoil";
 import { questionState } from "../../atoms/questionSelector";
 import "survey-react/survey.css";
-const LineChart = lazy(() => import('./visualizations/LineChart2'));
+const LineChart = lazy(() => import('./visualizations/LineChart'));
 
-
-const Viz1 = () => {
+const Viz = () => {
+    
   const lineData = [
     {
       id: 1,
-      value: 16849,
+      value: 2.51,
       year: 1999,
     },
     {
       id: 1,
-      value: 17415,
+      value: 2.55,
       year: 2000,
     },
     {
       id: 1,
-      value: 19394,
+      value: 2.60,
       year: 2001,
     },
     {
       id: 1,
-      value: 23518,
+      value: 2.67,
       year: 2002,
     },
     {
       id: 1,
-      value: 25785,
+      value: 2.75,
       year: 2003,
     },
     {
       id: 1,
-      value: 27424,
+      value: 2.81,
       year: 2004,
     },
     {
       id: 1,
-      value: 29813,
+      value: 2.87,
       year: 2005,
     },
     {
       id: 1,
-      value: 34425,
+      value: 2.91,
       year: 2006,
     },
     {
       id: 1,
-      value: 36010,
+      value: 2.94,
       year: 2007,
     },
     {
       id: 1,
-      value: 36450,
+      value: 2.98,
       year: 2008,
     },
     {
       id: 1,
-      value: 37004,
+      value: 3.01,
       year: 2009,
     },
     {
       id: 1,
-      value: 38329,
+      value: 1,
       year: 2010,
     },
     {
       id: 1,
-      value: 41340,
+      value: 1,
       year: 2011,
     },
     {
       id: 1,
-      value: 41502,
+      value: 1,
       year: 2012,
     },
     {
       id: 1,
-      value: 43982,
+      value: 1,
       year: 2013,
     },
     {
       id: 1,
-      value: 47055,
+      value: 1,
       year: 2014,
     },
     {
       id: 1,
-      value: 52404,
+      value: 1,
       year: 2015,
     },
     {
       id: 1,
-      value: 63632,
+      value: 5,
       year: 2016,
     },
     {
       id: 1,
-      value: 70237,
+      value: 6,
       year: 2017,
     },
     {
       id: 1,
-      value: 67367,
+      value: 6,
       year: 2018,
     },
     {
       id: 1,
-      value: 70630,
+      value: 8,
       year: 2019,
     },
-    
   ];
-
 
   const quizResponses = useRef([]);
   const history = useHistory();
@@ -264,6 +262,8 @@ const Viz1 = () => {
     var html = getTextHtml(text, correctStr, true);
     
   });
+
+  
   
   return (
     <Container
@@ -305,13 +305,7 @@ const Viz1 = () => {
       </div>
     </Container>
     
-  
-
-   
   );
 }
 
-export default Viz1;
-
-
-
+export default Viz;

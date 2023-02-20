@@ -19,31 +19,7 @@ const PreSurveyPage1 = (props) => {
   const extraQuestions =
     questionCondition == "strength"
       ? [
-        //   {
-        //     name: "support",
-        //     type: "radiogroup",
-        //     title: `When I read: "Spielberg is one of the worst directors of the recent decade." I should:`,
-        //     isRequired: true,
-        //     choices: [
-        //       "Evaluate whether it is supported by the headline.",
-        //       "Give my opinion whether I think it is true regardless of the headline.",
-        //       "I don't know.",
-        //     ],
-        //     correctAnswer: "Evaluate whether it is supported by the headline.",
-        //   },
-
-        //   {
-        //     name: "headline_true",
-        //     type: "radiogroup",
-        //     title: `When I read: "Steven Spielberg's latest three movies were among the worst rated in Rotten Tomatoes." I should:`,
-        //     isRequired: true,
-        //     choices: [
-        //       "Evaluate whether the headline is accurate.",
-        //       "Assume that the headline is true.",
-        //       "I don't know.",
-        //     ],
-        //     correctAnswer: "Assume that the headline is true.",
-        //   },
+        
         ]
       : [];
 
@@ -51,20 +27,7 @@ const PreSurveyPage1 = (props) => {
     pages: [
       {
         elements: [
-        //   {
-        //     name: "understand_before",
-        //     type: "radiogroup",
-        //     title: "Do you understand what this study is asking you to do?",
-        //     isRequired: true,
-        //     choices: ["yes", "no"],
-        //   },
-        //   {
-        //     name: "understand-text_before",
-        //     type: "text",
-        //     title:
-        //       "Please in sentence or two, please describe what this study is asking you to do",
-        //     isRequired: true,
-        //   },
+        
         ],
       },
       {
@@ -86,7 +49,7 @@ const PreSurveyPage1 = (props) => {
               "Slight Increase",
               "Significant Increase",
             ],
-            // correctAnswer: "a conclusion about a topic",
+            
           },
           
           ...extraQuestions,
@@ -115,33 +78,24 @@ const PreSurveyPage1 = (props) => {
 // 
 
   const onCompleting = (survey, options) => {
-    // console.log(options);
+    
     let allTrue = true;
     survey.getAllQuestions().forEach((q) => {
-    //   let correct = isAnswerCorrect(q);
-    //   correct = correct == undefined ? true : correct;
-
-    //   allTrue = allTrue && correct;
-    //   renderCorrectAnswer(q);
+    
     });
     quizResponses.current.push(survey.data);
-    // if (allTrue) {
-    //   options.allowComplete = true;
-    // } else {
-    //   options.allowComplete = false;
-    // }
+    
   };
 
   const onComplete = (survey, options) => {
-    //Write survey results into database
-    // console.log(options);
+    
     setCompleted(true);
     setMessage("");
 
     console.log("Survey results: " + JSON.stringify(quizResponses.current));
     axios.post("/api/quiz1", quizResponses.current).then((response) => {
       let nextPage = pageHandler(location.pathname);
-    //   history.push(nextPage);
+    
     });
   };
 
@@ -150,11 +104,7 @@ const PreSurveyPage1 = (props) => {
     let allTrue = true;
     survey.getAllQuestions().forEach((q) => {
       if (survey.currentPage == q.page) {
-        // let correct = isAnswerCorrect(q);
-        // correct = correct == undefined ? true : correct;
-
-        // allTrue = allTrue && correct;
-        // renderCorrectAnswer(q);
+        
       }
     });
     console.log(allTrue);
@@ -163,10 +113,7 @@ const PreSurveyPage1 = (props) => {
     } else {
       option.allowChanging = false;
     }
-    // console.log(survey.currentPage());
-    // option.oldCurrentPage.questions.forEach((q) => {
-    //   console.log(q);
-    // });
+    
   };
 
   function getTextHtml(text, str, isCorrect) {
@@ -180,43 +127,13 @@ const PreSurveyPage1 = (props) => {
       "</span>"
     );
   }
-  // function isAnswerCorrect(q) {
-  //   const right = q.correctAnswer;
-  //   if (right == undefined) return undefined;
-  //   if (!right || q.isEmpty()) return undefined;
-  //   var left = q.value;
-  //   if (!Array.isArray(right)) return right == left;
-  //   if (!Array.isArray(left)) left = [left];
-  //   for (var i = 0; i < left.length; i++) {
-  //     if (right.indexOf(left[i]) < 0) return false;
-  //   }
-  //   return true;
-  // }
-
-  // function renderCorrectAnswer(q) {
-  //   if (!q) return;
-  //   const isCorrect = isAnswerCorrect(q);
-  //   if (!q.prevTitle) {
-  //     q.prevTitle = q.title;
-  //   }
-  //   if (isCorrect === undefined) {
-  //     q.title = q.prevTitle;
-  //   } else {
-  //     q.title = q.prevTitle + " " + (isCorrect ? correctStr : inCorrectStr);
-  //   }
-  // }
+  
 
   const model = new Survey.Model(json);
   model.showCompletedPage = false;
   model.onTextMarkdown.add((sender, options) => {
     var text = options.text;
-    // var html = getTextHtml(text, correctStr, true);
-    // if (!html) {
-    //   html = getTextHtml(text, inCorrectStr, false);
-    // }
-    // if (!!html) {
-    //   options.html = html;
-    // }
+    
   });
   
 

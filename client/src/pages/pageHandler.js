@@ -3,7 +3,6 @@ const pages = [
   "pre",
   "instructions1",
   "instructions2",
-  "instructions3",
   "quiz",
   "quiz2",
   "quiz3",
@@ -15,6 +14,9 @@ const pages = [
   "quiz8",
   "cogref",
   "cogref1",
+  "viz1",
+  "viz",
+  "viz2",
   "debrief",
 ];
 

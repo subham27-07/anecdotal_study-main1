@@ -19,54 +19,13 @@ const PreSurveyPage3 = (props) => {
   const extraQuestions =
     questionCondition == "strength"
       ? [
-        //   {
-        //     name: "support",
-        //     type: "radiogroup",
-        //     title: `When I read: "Spielberg is one of the worst directors of the recent decade." I should:`,
-        //     isRequired: true,
-        //     choices: [
-        //       "Evaluate whether it is supported by the headline.",
-        //       "Give my opinion whether I think it is true regardless of the headline.",
-        //       "I don't know.",
-        //     ],
-        //     correctAnswer: "Evaluate whether it is supported by the headline.",
-        //   },
-
-        //   {
-        //     name: "headline_true",
-        //     type: "radiogroup",
-        //     title: `When I read: "Steven Spielberg's latest three movies were among the worst rated in Rotten Tomatoes." I should:`,
-        //     isRequired: true,
-        //     choices: [
-        //       "Evaluate whether the headline is accurate.",
-        //       "Assume that the headline is true.",
-        //       "I don't know.",
-        //     ],
-        //     correctAnswer: "Assume that the headline is true.",
-        //   },
+        
         ]
       : [];
 
   const json = {
     pages: [
-    //   {
-    //     elements: [
-    //       {
-    //         name: "understand_before",
-    //         type: "radiogroup",
-    //         title: "Do you understand what this study is asking you to do?",
-    //         isRequired: true,
-    //         choices: ["yes", "no"],
-    //       },
-    //       {
-    //         name: "understand-text_before",
-    //         type: "text",
-    //         title:
-    //           "Please in sentence or two, please describe what this study is asking you to do",
-    //         isRequired: true,
-    //       },
-    //     ],
-    //   },
+    
       {
         elements: [
           {

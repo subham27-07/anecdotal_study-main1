@@ -30,6 +30,9 @@ const responseSchema = new Schema({
   quiz6: Schema.Types.Mixed,
   quiz7: Schema.Types.Mixed,
   quiz8: Schema.Types.Mixed,
+  viz: Schema.Types.Mixed,
+  viz1: Schema.Types.Mixed,
+  viz2: Schema.Types.Mixed,
   cogref: Schema.Types.Mixed,
   cogref1: Schema.Types.Mixed,
   instructions: Schema.Types.Mixed,
@@ -39,5 +42,37 @@ const responseSchema = new Schema({
 });
 
 // const Response = mongoose.model("tresponse", responseSchema);
+
+// const lineDataSchema1 = new mongoose.Schema({
+//   year: { type: Number, required: true },
+//   value: { type: Number, required: true },
+//   type: { type: String, required: true },
+//   userId: { type: String, required: true },
+//   createdAt: { type: Date, default: Date.now }
+// });
+
+// const lineDataSchema2 = new mongoose.Schema({
+//   year: { type: Number, required: true },
+//   value: { type: Number, required: true },
+//   type: { type: String, required: true },
+//   userId: { type: String, required: true },
+//   createdAt: { type: Date, default: Date.now }
+// });
+
+// const lineDataSchema3 = new mongoose.Schema({
+//   year: { type: Number, required: true },
+//   value: { type: Number, required: true },
+//   type: { type: String, required: true },
+//   userId: { type: String, required: true },
+//   createdAt: { type: Date, default: Date.now }
+// });
+
+// const LineData1 = mongoose.model('LineData', lineDataSchema1);
+// const LineData2 = mongoose.model('LineData', lineDataSchema2);
+// const LineData3 = mongoose.model('LineData', lineDataSchema3);
+
+// module.exports = LineData1;
+// module.exports = LineData2;
+// module.exports = LineData3;
 
 module.exports = responseSchema;

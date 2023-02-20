@@ -160,10 +160,7 @@ const Instructions1 = (props) => {
           <div style={stage == 0 ? easinStyle : hiddenStyle}>
             <span>
               {" "}
-              Your job will be to evaluate how well the{" "}
-              <span className={classes.emph}>conclusion</span> (top) is
-              supported by the <span className={classes.emph}>headline</span>{" "}
-              (bottom)
+              Here is the title of the article <span>👉👉</span>
             </span>
           </div>
           <br />
@@ -172,39 +169,38 @@ const Instructions1 = (props) => {
         <div className={classes.pointToTweetRight}>
           <div style={stage >= 1 ? easinStyle : hiddenStyle}>
             <span>
-              Here's the tough part! When you evaluate the{" "}
-              <span className={classes.emph}>conclusion</span>, try to ignore
-              your own opinions.
+            Here is the title of the article <span>👉👉</span>
             </span>
-            <span>👉👉</span>
+            
           </div>
           <br />
           <div style={stage >= 2 ? easinStyle : hiddenStyle}>
             <span>
               {" "}
-              You should only evaluate the{" "}
-              <span className={classes.emph}> logic </span> of making that
-              conclusion based on the{" "}
-              <span className={classes.emph}>headline</span>.
+              {" "}
+              <span>
+            Here is the title of the article <span>👉👉</span>
             </span>
-            <span>👉👉</span>
+            </span>
+            
           </div>
           <br />
           <div style={stage >= 3 ? easinStyle : hiddenStyle}>
             <span>
-              So in this case, it doesn't matter whether you personally believe
-              Spielberg is one of the worst directors in history or not.
+            Here is a visualization presenting data to answer the question <span>👉👉</span>
+            </span>
+          </div> <br></br>
+          <div style={stage >= 4 ? easinStyle : hiddenStyle}>
+            <span>
+            Here is a textual description of the data visualization <span>👉👉</span>
             </span>
           </div>
         </div>
 
-        <div className={classes.pointToTweetLeft}>
+        {/* <div className={classes.pointToTweetLeft}>
           <div style={stage >= 4 ? easinStyle : hiddenStyle}>
             <span style={{ marginRight: "10px" }}>👈👈</span>
-            <span>
-              Please assume that the news headline is factually correct, even if
-              that seems unlikely to you.
-            </span>
+            Here is a textual description of the data visualization <span>👉👉</span>
           </div>
           <br />
           <div style={stage >= 5 ? easinStyle : hiddenStyle}>
@@ -214,7 +210,7 @@ const Instructions1 = (props) => {
               were in fact among the worst rated Rotten Tomatoes movies!
             </span>
           </div>
-        </div>
+        </div> */}
         <div
           style={{
             textAlign: "center",

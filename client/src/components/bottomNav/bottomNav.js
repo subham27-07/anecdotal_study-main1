@@ -30,7 +30,7 @@ const BottomNav = (props) => {
   let location = useLocation();
   const getValue = (location) => {
     if (
-      ["/instructions1", "/quiz","/quiz1","/quiz2","/quiz3","/quiz4","/quiz5","/quiz6","/quiz7","/quiz8","/viz"].includes(
+      ["/instructions1", "/quiz","/quiz1","/quiz2","/quiz3","/quiz4","/quiz5","/quiz6","/quiz7","/quiz8"].includes(
         location
       )
     ) {

@@ -31,6 +31,9 @@ import Quiz5 from "./pages/survey/quiz5";
 import Quiz6 from "./pages/survey/quiz6";
 import Quiz7 from "./pages/survey/quiz7";
 import Quiz8 from "./pages/survey/quiz8";
+import Viz from "./pages/survey/viz";
+import Viz1 from "./pages/survey/viz1";
+import Viz2 from "./pages/survey/viz2";
 import Quiz2 from "./pages/survey/quiz2";
 import Quiz3 from "./pages/survey/quiz3";
 
@@ -261,6 +264,15 @@ const App = () => {
               </Route>
               <Route path="/quiz8">
                 <Quiz8></Quiz8>
+              </Route>
+              <Route path="/viz">
+                <Viz></Viz>
+              </Route>
+              <Route path="/viz1">
+                <Viz1></Viz1>
+              </Route>
+              <Route path="/viz2">
+                <Viz2></Viz2>
               </Route>
               <Route path="/task1">
                 <Task

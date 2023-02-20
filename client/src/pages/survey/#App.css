@@ -1,0 +1,52 @@
+.App {
+    text-align: center;
+  }
+  
+  #line-chart {
+    height: 300px;
+  }
+  
+  .area {
+    fill: #45C1C0;
+    opacity: .4;
+  }
+  
+  .line {
+    fill: none;
+    stroke: rgb(38, 15, 208);
+    stroke-width: 4;
+  }
+  
+  .your-line {
+    fill: none;
+    stroke: hwb(17 6% 2%);
+    stroke-width: 3;
+    stroke-dasharray: 5 5;
+  }
+  
+  .axis-x-line path {
+    stroke: rgb(182, 182, 182);
+    stroke-width: 2;
+  }
+  
+  .axis-x-line line,
+  .axis-y-line line {
+    display: none;
+  }
+  
+  .axis-x-line text,
+  .axis-y-line text {
+    color: rgb(136, 136, 136);
+    font-size: 1rem;
+  }
+  
+  .axis-y-line path {
+    display: none;
+  }
+  
+  .overlay {
+    cursor: pointer;
+    fill: none;
+    pointer-events: all;
+  }
+  
