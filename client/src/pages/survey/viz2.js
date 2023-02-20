@@ -151,14 +151,15 @@ const Viz2 = () => {
     
       {
         elements: [
-          {
-            type: "html",
-            html: "<h4><h4/>",
-          },
+        {
+                type: "html",
+                html: "<p style='font-size: 22px;'>Since 2002, the number of Americans who have died every year from overdoses of <span style='font-weight: bold;'>synthetic opioids...</span>  </p>",
+               
+        },
           {
             name: "claim",
             type: "radiogroup",
-            title: ` "To what extent is the topic of drug overdose related to your core values?"`,
+            title: ` "I would recommend this article to my family and friends"`,
             isRequired: true,
             choices: [
                 "Not at All",
@@ -173,7 +174,21 @@ const Viz2 = () => {
           {
             name: "suport",
             type: "radiogroup",
-            title: ` "To what extent are you motivated to know the truth about drug overdose ?" `,
+            title: ` "The content of this article is surprising to me" `,
+            isRequired: true,
+            choices: [
+                "Not at All",
+                "A little",
+                "Moderately",
+                "A lot",
+                "Extremely",
+            ],
+            // correctAnswer: "a news headline",
+          },
+          {
+            name: "viewOpinion",
+            type: "radiogroup",
+            title: ` "I felt interested in reading this article" `,
             isRequired: true,
             choices: [
                 "Not at All",

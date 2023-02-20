@@ -136,7 +136,7 @@ class LineChart extends Component {
     svg.append('text')
       .attr('class', 'text-2016')
       .attr('x', x(2002))
-      .attr('y', y(2518))
+      .attr('y', y(25849))
       .attr('font-size','20px')
       .text('23518');
 

@@ -182,13 +182,10 @@ const PreSurveyPage1 = (props) => {
         >
           <Typography variant="h5">{message}</Typography>
           <img src={"https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/b.JPG"} width="60%" height="100%" alt="Completion image" />
-          <p align="justify">    has increased by more than 650 percent.  In 2015, more Americans died from drug overdoses than from car accidents 
+          <p align="justify">    has increased by more than <span style={{ fontWeight: "bold" }}>222.16 percent</span>.  In 2015, more Americans died from drug overdoses than from car accidents 
             and gun homicides combined. It’s the worst drug overdose epidemic in American history, spurred by rising drug abuse, 
-            increased availability of prescription opioids and an influx of <span style={{ fontWeight: "bold" }}>Data Sharing</span> <span></span>potent synthetics like fentanyl and carfentanil. 
-            Drug overdoses are now the leading cause of death for Americans under 50.“It’s horrifying,” said Dr. Dan Ciccarone, a heroin researcher and a 
-            professor of family and community medicine at the University of California, San Francisco. “It’s not even the magnitude — it’s the steepness at 
-            which it’s climbing.”
-             Preliminary numbers for 2017 suggest that overdose deaths are growing...
+            increased availability of prescription opioids and an influx of Data Sharing <span></span>potent synthetics like fentanyl and carfentanil. 
+            Drug overdoses are now the leading cause of death for Americans under 50.
             </p>
           
           <Button

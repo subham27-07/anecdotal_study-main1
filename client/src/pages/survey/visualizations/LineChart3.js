@@ -128,21 +128,21 @@ class LineChart extends Component {
     svg.append('text')
       .attr('class', 'text-2015')
       .attr('x', x(1999))
-      .attr('y', y(2.75))
+      .attr('y', y(1200))
       .attr('font-size','20px')
-      .text('2.75');
+      .text('730');
 
     svg.append('text')
       .attr('class', 'text-2016')
       .attr('x', x(2002))
-      .attr('y', y(3))
+      .attr('y', y(1500))
       .attr('font-size','20px')
-      .text('3.25');
+      .text('1295');
 
     svg.append('circle')
       .attr('class', 'bubble-2015')
       .attr('cx', x(2002))
-      .attr('cy', y(2.75))
+      .attr('cy', y(3))
       .attr('r', 7)
       .style('fill', '#54EAEA')
       .style('opacity', 0.7);
@@ -150,7 +150,7 @@ class LineChart extends Component {
     svg.append('circle')
       .attr('class', 'bubble-2016')
       .attr('cx', x(1999))
-      .attr('cy', y(2.5))
+      .attr('cy', y(3))
       .attr('r', 7)
       .style('fill', '#54EAEA')
       .style('opacity', 0.7); 
