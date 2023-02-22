@@ -1,16 +1,139 @@
-import React, { useRef } from "react";
+import React, { useRef, lazy, Suspense } from 'react';
+
+
 import { useHistory, useLocation } from "react-router-dom";
 import pageHandler from "../pageHandler";
 import axios from "axios";
 import * as Survey from "survey-react";
-import { Divider, Typography, Container } from "@mui/material";
+import { Divider, Typography, Container, Button } from "@mui/material";
 import Tweet from "../../components/tweet/tweet";
 import TweetQuote from "../../components/tweet/tweetQuote";
 import { useRecoilValue } from "recoil";
 import { questionState } from "../../atoms/questionSelector";
 import "survey-react/survey.css";
+const LineChart = lazy(() => import('./visualizations/LineChart3'));
 
-const PreSurveyPage3 = (props) => {
+
+const Recall_Opioids = () => {
+  const lineData = [
+    {
+      id: 1,
+      value: 730,
+      year: 1999,
+    },
+    {
+      id: 1,
+      value: 782,
+      year: 2000,
+    },
+    {
+      id: 1,
+      value: 957,
+      year: 2001,
+    },
+    {
+      id: 1,
+      value: 1295,
+      year: 2002,
+    },
+    {
+      id: 1,
+      value: 1400,
+      year: 2003,
+    },
+    {
+      id: 1,
+      value: 1664,
+      year: 2004,
+    },
+    {
+      id: 1,
+      value: 1742,
+      year: 2005,
+    },
+    {
+      id: 1,
+      value: 2707,
+      year: 2006,
+    },
+    {
+      id: 1,
+      value: 2213,
+      year: 2007,
+    },
+    {
+      id: 1,
+      value: 2306,
+      year: 2008,
+    },
+    {
+      id: 1,
+      value: 2946,
+      year: 2009,
+    },
+    {
+      id: 1,
+      value: 3007,
+      year: 2010,
+    },
+    {
+      id: 1,
+      value: 2666,
+      year: 2011,
+    },
+    {
+      id: 1,
+      value: 2628,
+      year: 2012,
+    },
+    {
+      id: 1,
+      value: 3105,
+      year: 2013,
+    },
+    {
+      id: 1,
+      value: 5544,
+      year: 2014,
+    },
+    {
+      id: 1,
+      value: 9580,
+      year: 2015,
+    },
+    {
+      id: 1,
+      value: 19413,
+      year: 2016,
+    },
+    {
+      id: 1,
+      value: 28466,
+      year: 2017,
+    },
+    {
+      id: 1,
+      value: 31335,
+      year: 2018,
+    },
+    {
+      id: 1,
+      value: 36359,
+      year: 2019,
+    },
+    {
+        id: 1,
+        value: 56516,
+        year: 2020,
+    },
+    {
+        id: 1,
+        value: 70601,
+        year: 2021,
+    },
+  ];
+
+
   const quizResponses = useRef([]);
   const history = useHistory();
   const location = useLocation();
@@ -28,14 +151,15 @@ const PreSurveyPage3 = (props) => {
     
       {
         elements: [
-          {
-            type: "html",
-            html: "<h4><h4/>",
-          },
+        {
+                type: "html",
+                html: "<p style='font-size: 22px;'>Since 2002, the number of Americans who have died every year from overdoses of <span style='font-weight: bold;'>synthetic opioids...</span>  </p>",
+               
+        },
           {
             name: "claim",
             type: "radiogroup",
-            title: ` "To what extent is the topic of drug overdose related to your core values?"`,
+            title: ` "I would recommend this article to my family and friends"`,
             isRequired: true,
             choices: [
                 "Not at All",
@@ -46,38 +170,25 @@ const PreSurveyPage3 = (props) => {
             ],
             // correctAnswer: "a conclusion about a topic",
           },
-          {
-            name: "new",
-            type: "radiogroup",
-            title: ` "To what extent is it important for you to defend your point of view on the topic of drug overdose?" `,
-            isRequired: true,
-            choices: [
-                "Not at All",
-                "A little",
-                "Moderately",
-                "A lot",
-                "Extremely",
-            ],
-            // correctAnswer: "a news headline",
-          },
-          {
-            name: "headline",
-            type: "radiogroup",
-            title: ` "How interested are you in learning about drug overdose?" `,
-            isRequired: true,
-            choices: [
-                "Not at All",
-                "A little",
-                "Moderately",
-                "A lot",
-                "Extremely",
-            ],
-            // correctAnswer: "a news headline",
-          },
+          
           {
             name: "suport",
             type: "radiogroup",
-            title: ` "To what extent are you motivated to know the truth about drug overdose ?" `,
+            title: ` "The content of this article is surprising to me" `,
+            isRequired: true,
+            choices: [
+                "Not at All",
+                "A little",
+                "Moderately",
+                "A lot",
+                "Extremely",
+            ],
+            // correctAnswer: "a news headline",
+          },
+          {
+            name: "viewOpinion",
+            type: "radiogroup",
+            title: ` "I felt interested in reading this article" `,
             isRequired: true,
             choices: [
                 "Not at All",
@@ -131,7 +242,7 @@ const PreSurveyPage3 = (props) => {
     // console.log(options);
 
     console.log("Survey results: " + JSON.stringify(quizResponses.current));
-    axios.post("/api/quiz3", quizResponses.current).then((response) => {
+    axios.post("/api/recall_Opioids", quizResponses.current).then((response) => {
       let nextPage = pageHandler(location.pathname);
       history.push(nextPage);
     });
@@ -210,14 +321,15 @@ const PreSurveyPage3 = (props) => {
       options.html = html;
     }
   });
-
+  
   return (
+    
     <Container
       maxWidth={false}
       style={{
         width: "100%",
         overflow: "auto",
-        height: "100%",
+        minHeight: "600px",
         paddingTop: "30px",
         paddingBottm: "30px",
       }}
@@ -230,21 +342,27 @@ const PreSurveyPage3 = (props) => {
           justifyContent: "center",
         }}
       >
-        <Typography variant="h5">
-         Please Answer the questions below👇.
+        <Typography variant="h3">
+          How Bad Is the <span style={{ fontWeight: "bold" }}>Drug Overdose</span> Epidemic?
         </Typography>
-        <Divider></Divider>
         
       </div>
-      <Divider></Divider>
-      <Survey.Survey
-        model={model}
-        onComplete={onComplete}
-        onCompleting={onCompleting}
-        onCurrentPageChanging={onCurrentPageChanging}
-      />
+
+      <div className="viz" style={{ display: "flex", flexDirection: "column" }}>
+        <div style={{ width: "100%", height: "500px" }}>
+          <Suspense fallback={<div>loading...</div>}>
+            <LineChart type="value" data={lineData} idLine={1} startYear={2002} />
+          </Suspense>
+        </div>
+        <Survey.Survey
+          model={model}
+          onComplete={onComplete}
+          onCompleting={onCompleting}
+          onCurrentPageChanging={onCurrentPageChanging}
+        />
+      </div>
     </Container>
   );
-};
+}
 
-export default PreSurveyPage3;
+export default Recall_Opioids;

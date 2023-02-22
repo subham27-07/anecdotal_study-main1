@@ -184,12 +184,12 @@ router.post("/noelicitation_AmericanPopulation", (req, res) => {
   );
 });
 
-router.post("/quiz8", (req, res) => {
+router.post("/noelicitation_Opioids", (req, res) => {
   console.log(req.body);
   let usertoken = req.session.usertoken;
   Response.findOneAndUpdate(
     { usertoken: usertoken },
-    { quiz8: req.body },
+    { noelicitation_Opioids: req.body },
     (err, doc) => {
       if (err) req.status(404).send(err);
       else res.json(req.body);
@@ -197,12 +197,12 @@ router.post("/quiz8", (req, res) => {
   );
 });
 
-router.post("/viz", (req, res) => {
+router.post("/recall_drugOverdose", (req, res) => {
   console.log(req.body);
   let usertoken = req.session.usertoken;
   Response.findOneAndUpdate(
     { usertoken: usertoken },
-    { viz: req.body },
+    { recall_drugOverdose: req.body },
     (err, doc) => {
       if (err) req.status(404).send(err);
       else res.json(req.body);
@@ -223,12 +223,51 @@ router.post("/viz1", (req, res) => {
   );
 });
 
-router.post("/viz2", (req, res) => {
+router.post("/visualElicitation_drugOverdose", (req, res) => {
   console.log(req.body);
   let usertoken = req.session.usertoken;
   Response.findOneAndUpdate(
     { usertoken: usertoken },
-    { viz2: req.body },
+    { visualElicitation_drugOverdose: req.body },
+    (err, doc) => {
+      if (err) req.status(404).send(err);
+      else res.json(req.body);
+    }
+  );
+});
+
+router.post("/visualElicitation_population", (req, res) => {
+  console.log(req.body);
+  let usertoken = req.session.usertoken;
+  Response.findOneAndUpdate(
+    { usertoken: usertoken },
+    { visualElicitation_population: req.body },
+    (err, doc) => {
+      if (err) req.status(404).send(err);
+      else res.json(req.body);
+    }
+  );
+});
+
+router.post("/visualElicitation_Opioids", (req, res) => {
+  console.log(req.body);
+  let usertoken = req.session.usertoken;
+  Response.findOneAndUpdate(
+    { usertoken: usertoken },
+    { visualElicitation_Opioids: req.body },
+    (err, doc) => {
+      if (err) req.status(404).send(err);
+      else res.json(req.body);
+    }
+  );
+});
+
+router.post("/recall_Opioids", (req, res) => {
+  console.log(req.body);
+  let usertoken = req.session.usertoken;
+  Response.findOneAndUpdate(
+    { usertoken: usertoken },
+    { recall_Opioids: req.body },
     (err, doc) => {
       if (err) req.status(404).send(err);
       else res.json(req.body);
@@ -238,12 +277,12 @@ router.post("/viz2", (req, res) => {
 
 
 
-router.post("/quiz2", (req, res) => {
+router.post("/attitude_Elicitation", (req, res) => {
   console.log(req.body);
   let usertoken = req.session.usertoken;
   Response.findOneAndUpdate(
     { usertoken: usertoken },
-    { quiz2: req.body },
+    { attitude_Elicitation: req.body },
     (err, doc) => {
       if (err) req.status(404).send(err);
       else res.json(req.body);
@@ -251,12 +290,12 @@ router.post("/quiz2", (req, res) => {
   );
 });
 
-router.post("/quiz3", (req, res) => {
+router.post("/topic_Involvement", (req, res) => {
   console.log(req.body);
   let usertoken = req.session.usertoken;
   Response.findOneAndUpdate(
     { usertoken: usertoken },
-    { quiz3: req.body },
+    { topic_Involvement: req.body },
     (err, doc) => {
       if (err) req.status(404).send(err);
       else res.json(req.body);

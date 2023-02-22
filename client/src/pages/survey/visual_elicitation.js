@@ -11,117 +11,119 @@ import TweetQuote from "../../components/tweet/tweetQuote";
 import { useRecoilValue } from "recoil";
 import { questionState } from "../../atoms/questionSelector";
 import "survey-react/survey.css";
-const LineChart = lazy(() => import('./visualizations/LineChart'));
+const LineChart = lazy(() => import('./visualizations/LineChart2'));
 
-const Viz = () => {
-    
+
+const Viz1 = () => {
   const lineData = [
     {
       id: 1,
-      value: 2.51,
+      value: 16849,
       year: 1999,
     },
     {
       id: 1,
-      value: 2.55,
+      value: 17415,
       year: 2000,
     },
     {
       id: 1,
-      value: 2.60,
+      value: 19394,
       year: 2001,
     },
     {
       id: 1,
-      value: 2.67,
+      value: 23518,
       year: 2002,
     },
     {
       id: 1,
-      value: 2.75,
+      value: 25785,
       year: 2003,
     },
     {
       id: 1,
-      value: 2.81,
+      value: 27424,
       year: 2004,
     },
     {
       id: 1,
-      value: 2.87,
+      value: 29813,
       year: 2005,
     },
     {
       id: 1,
-      value: 2.91,
+      value: 34425,
       year: 2006,
     },
     {
       id: 1,
-      value: 2.94,
+      value: 36010,
       year: 2007,
     },
     {
       id: 1,
-      value: 2.98,
+      value: 36450,
       year: 2008,
     },
     {
       id: 1,
-      value: 3.01,
+      value: 37004,
       year: 2009,
     },
     {
       id: 1,
-      value: 1,
+      value: 38329,
       year: 2010,
     },
     {
       id: 1,
-      value: 1,
+      value: 41340,
       year: 2011,
     },
     {
       id: 1,
-      value: 1,
+      value: 41502,
       year: 2012,
     },
     {
       id: 1,
-      value: 1,
+      value: 43982,
       year: 2013,
     },
     {
       id: 1,
-      value: 1,
+      value: 47055,
       year: 2014,
     },
     {
       id: 1,
-      value: 1,
+      value: 52404,
       year: 2015,
     },
     {
       id: 1,
-      value: 5,
+      value: 63632,
       year: 2016,
     },
     {
       id: 1,
-      value: 6,
+      value: 70237,
       year: 2017,
     },
     {
       id: 1,
-      value: 6,
+      value: 67367,
       year: 2018,
     },
     {
       id: 1,
-      value: 8,
+      value: 70630,
       year: 2019,
     },
+    
   ];
+
 
   const quizResponses = useRef([]);
   const history = useHistory();
@@ -142,7 +144,7 @@ const Viz = () => {
         elements: [
           {
             type: "html",
-            html: "<p style='font-size: 22px;'>Since 2002, share of Americans  population with <span style='font-weight: bold;'>drug use disorders...</span>  </p>",
+            html: "<p style='font-size: 22px;'>Since 2002, the number of Americans who have died every year from <span style='font-weight: bold;'>Drug Overdose...</span>  </p>",
            
           },
           
@@ -232,7 +234,7 @@ const Viz = () => {
     // console.log(options);
 
     console.log("Survey results: " + JSON.stringify(quizResponses.current));
-    axios.post("/api/quiz3", quizResponses.current).then((response) => {
+    axios.post("/api/viz1", quizResponses.current).then((response) => {
       let nextPage = pageHandler(location.pathname);
       history.push(nextPage);
     });
@@ -276,8 +278,6 @@ const Viz = () => {
     var html = getTextHtml(text, correctStr, true);
     
   });
-
-  
   
   return (
     <Container
@@ -319,7 +319,13 @@ const Viz = () => {
       </div>
     </Container>
     
+  
+
+   
   );
 }
 
-export default Viz;
+export default Viz1;
+
+
+

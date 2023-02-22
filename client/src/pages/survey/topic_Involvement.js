@@ -1,130 +1,16 @@
-import React, { useRef, lazy, Suspense } from 'react';
-
-
+import React, { useRef } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import pageHandler from "../pageHandler";
 import axios from "axios";
 import * as Survey from "survey-react";
-import { Divider, Typography, Container, Button } from "@mui/material";
+import { Divider, Typography, Container } from "@mui/material";
 import Tweet from "../../components/tweet/tweet";
 import TweetQuote from "../../components/tweet/tweetQuote";
 import { useRecoilValue } from "recoil";
 import { questionState } from "../../atoms/questionSelector";
 import "survey-react/survey.css";
-const LineChart = lazy(() => import('./visualizations/LineChart2'));
 
-
-const Viz1 = () => {
-  const lineData = [
-    {
-      id: 1,
-      value: 16849,
-      year: 1999,
-    },
-    {
-      id: 1,
-      value: 17415,
-      year: 2000,
-    },
-    {
-      id: 1,
-      value: 19394,
-      year: 2001,
-    },
-    {
-      id: 1,
-      value: 23518,
-      year: 2002,
-    },
-    {
-      id: 1,
-      value: 25785,
-      year: 2003,
-    },
-    {
-      id: 1,
-      value: 27424,
-      year: 2004,
-    },
-    {
-      id: 1,
-      value: 29813,
-      year: 2005,
-    },
-    {
-      id: 1,
-      value: 34425,
-      year: 2006,
-    },
-    {
-      id: 1,
-      value: 36010,
-      year: 2007,
-    },
-    {
-      id: 1,
-      value: 36450,
-      year: 2008,
-    },
-    {
-      id: 1,
-      value: 37004,
-      year: 2009,
-    },
-    {
-      id: 1,
-      value: 38329,
-      year: 2010,
-    },
-    {
-      id: 1,
-      value: 41340,
-      year: 2011,
-    },
-    {
-      id: 1,
-      value: 41502,
-      year: 2012,
-    },
-    {
-      id: 1,
-      value: 43982,
-      year: 2013,
-    },
-    {
-      id: 1,
-      value: 47055,
-      year: 2014,
-    },
-    {
-      id: 1,
-      value: 52404,
-      year: 2015,
-    },
-    {
-      id: 1,
-      value: 63632,
-      year: 2016,
-    },
-    {
-      id: 1,
-      value: 70237,
-      year: 2017,
-    },
-    {
-      id: 1,
-      value: 67367,
-      year: 2018,
-    },
-    {
-      id: 1,
-      value: 70630,
-      year: 2019,
-    },
-    
-  ];
-
-
+const Topic_Involvement = (props) => {
   const quizResponses = useRef([]);
   const history = useHistory();
   const location = useLocation();
@@ -144,14 +30,12 @@ const Viz1 = () => {
         elements: [
           {
             type: "html",
-            html: "<p style='font-size: 22px;'>Since 2002, the number of Americans who have died every year from <span style='font-weight: bold;'>Drug Overdose...</span>  </p>",
-           
+            html: "<h4><h4/>",
           },
-          
           {
             name: "claim",
             type: "radiogroup",
-            title: ` "I would recommend this article to my family and friends"`,
+            title: ` "To what extent is the topic of drug overdose related to your core values?"`,
             isRequired: true,
             choices: [
                 "Not at All",
@@ -162,11 +46,10 @@ const Viz1 = () => {
             ],
             // correctAnswer: "a conclusion about a topic",
           },
-          
           {
-            name: "suport",
+            name: "new",
             type: "radiogroup",
-            title: ` "The content of this article is surprising to me" `,
+            title: ` "To what extent is it important for you to defend your point of view on the topic of drug overdose?" `,
             isRequired: true,
             choices: [
                 "Not at All",
@@ -178,9 +61,23 @@ const Viz1 = () => {
             // correctAnswer: "a news headline",
           },
           {
-            name: "viewOpinion",
+            name: "headline",
             type: "radiogroup",
-            title: ` "I felt interested in reading this article" `,
+            title: ` "How interested are you in learning about drug overdose?" `,
+            isRequired: true,
+            choices: [
+                "Not at All",
+                "A little",
+                "Moderately",
+                "A lot",
+                "Extremely",
+            ],
+            // correctAnswer: "a news headline",
+          },
+          {
+            name: "suport",
+            type: "radiogroup",
+            title: ` "To what extent are you motivated to know the truth about drug overdose ?" `,
             isRequired: true,
             choices: [
                 "Not at All",
@@ -215,11 +112,11 @@ const Viz1 = () => {
     // console.log(options);
     let allTrue = true;
     survey.getAllQuestions().forEach((q) => {
-      // let correct = isAnswerCorrect(q);
-      // correct = correct == undefined ? true : correct;
+      let correct = isAnswerCorrect(q);
+      correct = correct == undefined ? true : correct;
 
-      // allTrue = allTrue && correct;
-      // renderCorrectAnswer(q);
+      allTrue = allTrue && correct;
+      renderCorrectAnswer(q);
     });
     quizResponses.current.push(survey.data);
     if (allTrue) {
@@ -234,7 +131,7 @@ const Viz1 = () => {
     // console.log(options);
 
     console.log("Survey results: " + JSON.stringify(quizResponses.current));
-    axios.post("/api/viz1", quizResponses.current).then((response) => {
+    axios.post("/api/topic_Involvement", quizResponses.current).then((response) => {
       let nextPage = pageHandler(location.pathname);
       history.push(nextPage);
     });
@@ -245,7 +142,11 @@ const Viz1 = () => {
     let allTrue = true;
     survey.getAllQuestions().forEach((q) => {
       if (survey.currentPage == q.page) {
-        
+        let correct = isAnswerCorrect(q);
+        correct = correct == undefined ? true : correct;
+
+        allTrue = allTrue && correct;
+        renderCorrectAnswer(q);
       }
     });
     console.log(allTrue);
@@ -254,6 +155,10 @@ const Viz1 = () => {
     } else {
       option.allowChanging = false;
     }
+    // console.log(survey.currentPage());
+    // option.oldCurrentPage.questions.forEach((q) => {
+    //   console.log(q);
+    // });
   };
 
   function getTextHtml(text, str, isCorrect) {
@@ -267,25 +172,52 @@ const Viz1 = () => {
       "</span>"
     );
   }
-  
+  function isAnswerCorrect(q) {
+    const right = q.correctAnswer;
+    if (right == undefined) return undefined;
+    if (!right || q.isEmpty()) return undefined;
+    var left = q.value;
+    if (!Array.isArray(right)) return right == left;
+    if (!Array.isArray(left)) left = [left];
+    for (var i = 0; i < left.length; i++) {
+      if (right.indexOf(left[i]) < 0) return false;
+    }
+    return true;
+  }
 
-  
+  function renderCorrectAnswer(q) {
+    if (!q) return;
+    const isCorrect = isAnswerCorrect(q);
+    if (!q.prevTitle) {
+      q.prevTitle = q.title;
+    }
+    if (isCorrect === undefined) {
+      q.title = q.prevTitle;
+    } else {
+      q.title = q.prevTitle + " " + (isCorrect ? correctStr : inCorrectStr);
+    }
+  }
 
   const model = new Survey.Model(json);
   model.showCompletedPage = false;
   model.onTextMarkdown.add((sender, options) => {
     var text = options.text;
     var html = getTextHtml(text, correctStr, true);
-    
+    if (!html) {
+      html = getTextHtml(text, inCorrectStr, false);
+    }
+    if (!!html) {
+      options.html = html;
+    }
   });
-  
+
   return (
     <Container
       maxWidth={false}
       style={{
         width: "100%",
         overflow: "auto",
-        minHeight: "600px",
+        height: "100%",
         paddingTop: "30px",
         paddingBottm: "30px",
       }}
@@ -298,30 +230,21 @@ const Viz1 = () => {
           justifyContent: "center",
         }}
       >
-        <Typography variant="h3">
-          How Bad Is the <span style={{ fontWeight: "bold" }}>Drug Overdose</span> Epidemic?
+        <Typography variant="h5">
+         Please Answer the questions below👇.
         </Typography>
+        <Divider></Divider>
         
       </div>
-
-      <div className="viz" style={{ display: "flex", flexDirection: "column" }}>
-        <div style={{ width: "100%", height: "500px" }}>
-          <Suspense fallback={<div>loading...</div>}>
-            <LineChart type="value" data={lineData} idLine={1} startYear={2002} />
-          </Suspense>
-        </div>
-        <Survey.Survey
-          model={model}
-          onComplete={onComplete}
-          onCompleting={onCompleting}
-          onCurrentPageChanging={onCurrentPageChanging}
-        />
-      </div>
+      <Divider></Divider>
+      <Survey.Survey
+        model={model}
+        onComplete={onComplete}
+        onCompleting={onCompleting}
+        onCurrentPageChanging={onCurrentPageChanging}
+      />
     </Container>
   );
-}
+};
 
-export default Viz1;
-
-
-
+export default Topic_Involvement;

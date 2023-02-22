@@ -240,6 +240,8 @@ class LineChart extends Component {
       .attr('d', line.defined(d => d.defined));
 
     
+
+    
     this.userDataLine.forEach((data) => {
       console.log(`Year: ${data.year}, Y Value: ${data[type]}`);
     });
@@ -253,6 +255,8 @@ class LineChart extends Component {
     const latestData = this.userDataLine[this.userDataLine.length - 1];
     const text = svg.selectAll('.value-text').data([latestData]);
 
+    
+
     text.exit().remove();
 
     text.enter().append('text')
@@ -261,12 +265,12 @@ class LineChart extends Component {
       .attr('x', d => x(d.year))
       .attr('y', d => y(d[type]))
       .text(d => `${d[type]}`);
-  
 
-    
-    if (this.clipAnimation) {
-      this.userDataLine = this.userDataLine.filter(d => d.year <= year);
-    }
+      // if (!this.clipAnimation && d3.mean(this.userDataLine, d => d.defined) === 1) {
+      //   this.clipAnimation = true;
+      //   this.clipElement.transition().duration(1000).attr('width', x(dataXMax));
+      // }
+
   });
 
   clampFunc = (a, b, c) => Math.max(a, Math.min(b, c));

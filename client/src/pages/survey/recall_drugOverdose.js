@@ -1,17 +1,128 @@
-import React, { useRef } from "react";
-import { atom, selector } from "recoil";
+import React, { useRef, lazy, Suspense } from 'react';
+
+
 import { useHistory, useLocation } from "react-router-dom";
 import pageHandler from "../pageHandler";
 import axios from "axios";
 import * as Survey from "survey-react";
-import { Divider, Typography, Container } from "@mui/material";
+import { Divider, Typography, Container, Button } from "@mui/material";
 import Tweet from "../../components/tweet/tweet";
 import TweetQuote from "../../components/tweet/tweetQuote";
 import { useRecoilValue } from "recoil";
 import { questionState } from "../../atoms/questionSelector";
 import "survey-react/survey.css";
+const LineChart = lazy(() => import('./visualizations/LineChart'));
 
-const PreSurveyPage2 = (props) => {
+const Recall_drugOverdose = () => {
+    
+  const lineData = [
+    {
+      id: 1,
+      value: 2.51,
+      year: 1999,
+    },
+    {
+      id: 1,
+      value: 2.55,
+      year: 2000,
+    },
+    {
+      id: 1,
+      value: 2.60,
+      year: 2001,
+    },
+    {
+      id: 1,
+      value: 2.67,
+      year: 2002,
+    },
+    {
+      id: 1,
+      value: 2.75,
+      year: 2003,
+    },
+    {
+      id: 1,
+      value: 2.81,
+      year: 2004,
+    },
+    {
+      id: 1,
+      value: 2.87,
+      year: 2005,
+    },
+    {
+      id: 1,
+      value: 2.91,
+      year: 2006,
+    },
+    {
+      id: 1,
+      value: 2.94,
+      year: 2007,
+    },
+    {
+      id: 1,
+      value: 2.98,
+      year: 2008,
+    },
+    {
+      id: 1,
+      value: 3.01,
+      year: 2009,
+    },
+    {
+      id: 1,
+      value: 1,
+      year: 2010,
+    },
+    {
+      id: 1,
+      value: 1,
+      year: 2011,
+    },
+    {
+      id: 1,
+      value: 1,
+      year: 2012,
+    },
+    {
+      id: 1,
+      value: 1,
+      year: 2013,
+    },
+    {
+      id: 1,
+      value: 1,
+      year: 2014,
+    },
+    {
+      id: 1,
+      value: 1,
+      year: 2015,
+    },
+    {
+      id: 1,
+      value: 5,
+      year: 2016,
+    },
+    {
+      id: 1,
+      value: 6,
+      year: 2017,
+    },
+    {
+      id: 1,
+      value: 6,
+      year: 2018,
+    },
+    {
+      id: 1,
+      value: 8,
+      year: 2019,
+    },
+  ];
+
   const quizResponses = useRef([]);
   const history = useHistory();
   const location = useLocation();
@@ -20,61 +131,61 @@ const PreSurveyPage2 = (props) => {
   const extraQuestions =
     questionCondition == "strength"
       ? [
-       
+        
         ]
       : [];
 
-
-      
-
   const json = {
     pages: [
-   
+    
       {
         elements: [
           {
             type: "html",
-            html: "<h4><h4/>",
+            html: "<p style='font-size: 22px;'>Since 2002, share of Americans  population with <span style='font-weight: bold;'>drug use disorders...</span>  </p>",
+           
           },
+          
           {
             name: "claim",
             type: "radiogroup",
-            title: ` "What is your opinion on drug overdose in US ?"`,
+            title: ` "I would recommend this article to my family and friends"`,
             isRequired: true,
             choices: [
-                "Extremely serious problem",
-                "serious problem",
-                "Moderate problem",
-                "Minor Problem",
-                "Not at all a problem",
+                "Not at All",
+                "A little",
+                "Moderately",
+                "A lot",
+                "Extremely",
             ],
             // correctAnswer: "a conclusion about a topic",
           },
+          
           {
-            name: "new",
+            name: "suport",
             type: "radiogroup",
-            title: ` "Should the US make combating drug abuse and overdose a priority, i:e allocating tax dollars to treatment and prevention programs?" `,
+            title: ` "The content of this article is surprising to me" `,
             isRequired: true,
             choices: [
-                "High Priority",
-                "Moderate Priority",
-                "Neutral",
-                "Low Priority",
-                "Not a Priority"
+                "Not at All",
+                "A little",
+                "Moderately",
+                "A lot",
+                "Extremely",
             ],
             // correctAnswer: "a news headline",
           },
           {
-            name: "headline",
+            name: "viewOpinion",
             type: "radiogroup",
-            title: ` "What is your opinion on drug legalization and decrimination in the US?" `,
+            title: ` "I felt interested in reading this article" `,
             isRequired: true,
             choices: [
-                "Strongly Oppose",
-              "Somewhat Oppose",
-              "Neutral",
-              "Somewhat Favor",
-              "Strongly Favor",
+                "Not at All",
+                "A little",
+                "Moderately",
+                "A lot",
+                "Extremely",
             ],
             // correctAnswer: "a news headline",
           },
@@ -102,11 +213,11 @@ const PreSurveyPage2 = (props) => {
     // console.log(options);
     let allTrue = true;
     survey.getAllQuestions().forEach((q) => {
-      let correct = isAnswerCorrect(q);
-      correct = correct == undefined ? true : correct;
+      // let correct = isAnswerCorrect(q);
+      // correct = correct == undefined ? true : correct;
 
-      allTrue = allTrue && correct;
-      renderCorrectAnswer(q);
+      // allTrue = allTrue && correct;
+      // renderCorrectAnswer(q);
     });
     quizResponses.current.push(survey.data);
     if (allTrue) {
@@ -121,7 +232,7 @@ const PreSurveyPage2 = (props) => {
     // console.log(options);
 
     console.log("Survey results: " + JSON.stringify(quizResponses.current));
-    axios.post("/api/quiz2", quizResponses.current).then((response) => {
+    axios.post("/api/recall_drugOverdose", quizResponses.current).then((response) => {
       let nextPage = pageHandler(location.pathname);
       history.push(nextPage);
     });
@@ -132,11 +243,7 @@ const PreSurveyPage2 = (props) => {
     let allTrue = true;
     survey.getAllQuestions().forEach((q) => {
       if (survey.currentPage == q.page) {
-        let correct = isAnswerCorrect(q);
-        correct = correct == undefined ? true : correct;
-
-        allTrue = allTrue && correct;
-        renderCorrectAnswer(q);
+        
       }
     });
     console.log(allTrue);
@@ -145,10 +252,6 @@ const PreSurveyPage2 = (props) => {
     } else {
       option.allowChanging = false;
     }
-    // console.log(survey.currentPage());
-    // option.oldCurrentPage.questions.forEach((q) => {
-    //   console.log(q);
-    // });
   };
 
   function getTextHtml(text, str, isCorrect) {
@@ -162,52 +265,27 @@ const PreSurveyPage2 = (props) => {
       "</span>"
     );
   }
-  function isAnswerCorrect(q) {
-    const right = q.correctAnswer;
-    if (right == undefined) return undefined;
-    if (!right || q.isEmpty()) return undefined;
-    var left = q.value;
-    if (!Array.isArray(right)) return right == left;
-    if (!Array.isArray(left)) left = [left];
-    for (var i = 0; i < left.length; i++) {
-      if (right.indexOf(left[i]) < 0) return false;
-    }
-    return true;
-  }
+  
 
-  function renderCorrectAnswer(q) {
-    if (!q) return;
-    const isCorrect = isAnswerCorrect(q);
-    if (!q.prevTitle) {
-      q.prevTitle = q.title;
-    }
-    if (isCorrect === undefined) {
-      q.title = q.prevTitle;
-    } else {
-      q.title = q.prevTitle + " " + (isCorrect ? correctStr : inCorrectStr);
-    }
-  }
+  
 
   const model = new Survey.Model(json);
   model.showCompletedPage = false;
   model.onTextMarkdown.add((sender, options) => {
     var text = options.text;
     var html = getTextHtml(text, correctStr, true);
-    if (!html) {
-      html = getTextHtml(text, inCorrectStr, false);
-    }
-    if (!!html) {
-      options.html = html;
-    }
+    
   });
 
+  
+  
   return (
     <Container
       maxWidth={false}
       style={{
         width: "100%",
         overflow: "auto",
-        height: "100%",
+        minHeight: "600px",
         paddingTop: "30px",
         paddingBottm: "30px",
       }}
@@ -220,48 +298,28 @@ const PreSurveyPage2 = (props) => {
           justifyContent: "center",
         }}
       >
-        <Typography variant="h5">
-        Please Answer the questions below👇.
+        <Typography variant="h3">
+          How Bad Is the <span style={{ fontWeight: "bold" }}>Drug Overdose</span> Epidemic?
         </Typography>
-        <Divider></Divider>
         
       </div>
-      <Divider></Divider>
-      <Survey.Survey
-        model={model}
-        onComplete={onComplete}
-        onCompleting={onCompleting}
-        onCurrentPageChanging={onCurrentPageChanging}
-      />
+
+      <div className="viz" style={{ display: "flex", flexDirection: "column" }}>
+        <div style={{ width: "100%", height: "500px" }}>
+          <Suspense fallback={<div>loading...</div>}>
+            <LineChart type="value" data={lineData} idLine={1} startYear={2002} />
+          </Suspense>
+        </div>
+        <Survey.Survey
+          model={model}
+          onComplete={onComplete}
+          onCompleting={onCompleting}
+          onCurrentPageChanging={onCurrentPageChanging}
+        />
+      </div>
     </Container>
+    
   );
-};
+}
 
-export const labelSelector = selector({
-    key: "labelQuestionSelector",
-    get: ({ get }) => {
-      let questionCondition = get(questionState);
-      switch (questionCondition) {
-        case "share":
-          return [
-            "Definitely no",
-            "Probably no",
-            "Probably yes",
-            "Definitely yes",
-          ];
-          break;
-        case "strength":
-          return [
-            "Extremely Serious Problem",
-            "Serious Problem",
-            "Moderate Problem",
-            "Minor Problem",
-            "Not a Problem",
-          ];
-  
-          break;
-      }
-    },
-  });
-
-export default PreSurveyPage2;
+export default Recall_drugOverdose;

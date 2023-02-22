@@ -30,12 +30,15 @@ import Textelicitation_AmericanPopulation from "./pages/survey/textelicitation_A
 import Textelicitation_Opioids from "./pages/survey/textelicitation_Opioids";
 import Noelicitation_drugOverdose from "./pages/survey/noelicitation_drugOverdose";
 import Noelicitation_AmericanPopulation from "./pages/survey/noelicitation_AmericanPopulation";
-import Quiz8 from "./pages/survey/quiz8";
-import Viz from "./pages/survey/viz";
+import Noelicitation_Opioids from "./pages/survey/noelicitation_Opioids";
+import Recall_drugOverdose from "./pages/survey/recall_drugOverdose";
 import Viz1 from "./pages/survey/viz1";
-import Viz2 from "./pages/survey/viz2";
-import Quiz2 from "./pages/survey/quiz2";
-import Quiz3 from "./pages/survey/quiz3";
+import VisualElicitation_drugOverdose from "./pages/survey/visualElicitation_drugOverdose";
+import VisualElicitation_population from "./pages/survey/visualElicitation_population";
+import VisualElicitation_Opioids from "./pages/survey/visualElicitation_Opioids";
+import Recall_Opioids from "./pages/survey/recall_Opioids";
+import Attitude_Elicitation from "./pages/survey/attitude_Elicitation";
+import Topic_Involvement from "./pages/survey/topic_Involvement";
 
 //pages
 import LoadingCircle from "./components/loading/loading";
@@ -246,11 +249,11 @@ const App = () => {
               <Route path="/textelicitation_drugOverdose">
                 <Textelicitation_drugOverdose></Textelicitation_drugOverdose>
               </Route>
-              <Route path="/quiz2">
-                <Quiz2></Quiz2>
+              <Route path="/attitude_Elicitation">
+                <Attitude_Elicitation></Attitude_Elicitation>
               </Route>
-              <Route path="/quiz3">
-                <Quiz3></Quiz3>
+              <Route path="/topic_Involvement">
+                <Topic_Involvement></Topic_Involvement>
               </Route>
               <Route path="/textelicitation_AmericanPopulation">
                 <Textelicitation_AmericanPopulation></Textelicitation_AmericanPopulation>
@@ -264,17 +267,26 @@ const App = () => {
               <Route path="/noelicitation_AmericanPopulation">
                 <Noelicitation_AmericanPopulation></Noelicitation_AmericanPopulation>
               </Route>
-              <Route path="/quiz8">
-                <Quiz8></Quiz8>
+              <Route path="/noelicitation_Opioids">
+                <Noelicitation_Opioids></Noelicitation_Opioids>
               </Route>
-              <Route path="/viz">
-                <Viz></Viz>
+              <Route path="/recall_drugOverdose">
+                <Recall_drugOverdose></Recall_drugOverdose>
               </Route>
               <Route path="/viz1">
                 <Viz1></Viz1>
               </Route>
-              <Route path="/viz2">
-                <Viz2></Viz2>
+              <Route path="/visualElicitation_drugOverdose">
+                <VisualElicitation_drugOverdose></VisualElicitation_drugOverdose>
+              </Route>
+              <Route path="/visualElicitation_population">
+                <VisualElicitation_population></VisualElicitation_population>
+              </Route>
+              <Route path="/visualElicitation_Opioids">
+                <VisualElicitation_Opioids></VisualElicitation_Opioids>
+              </Route>
+              <Route path="/recall_Opioids">
+                <Recall_Opioids></Recall_Opioids>
               </Route>
               <Route path="/task1">
                 <Task
