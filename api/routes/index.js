@@ -132,12 +132,12 @@ router.post("/quiz1", (req, res) => {
   );
 });
 
-router.post("/quiz4", (req, res) => {
+router.post("/textelicitation_AmericanPopulation", (req, res) => {
   console.log(req.body);
   let usertoken = req.session.usertoken;
   Response.findOneAndUpdate(
     { usertoken: usertoken },
-    { quiz4: req.body },
+    { textelicitation_AmericanPopulation: req.body },
     (err, doc) => {
       if (err) req.status(404).send(err);
       else res.json(req.body);
@@ -145,12 +145,12 @@ router.post("/quiz4", (req, res) => {
   );
 });
 
-router.post("/quiz5", (req, res) => {
+router.post("/textelicitation_Opioids", (req, res) => {
   console.log(req.body);
   let usertoken = req.session.usertoken;
   Response.findOneAndUpdate(
     { usertoken: usertoken },
-    { quiz5: req.body },
+    { textelicitation_Opioids: req.body },
     (err, doc) => {
       if (err) req.status(404).send(err);
       else res.json(req.body);
@@ -158,12 +158,12 @@ router.post("/quiz5", (req, res) => {
   );
 });
 
-router.post("/quiz6", (req, res) => {
+router.post("/noelicitation_drugOverdose", (req, res) => {
   console.log(req.body);
   let usertoken = req.session.usertoken;
   Response.findOneAndUpdate(
     { usertoken: usertoken },
-    { quiz6: req.body },
+    { noelicitation_drugOverdose: req.body },
     (err, doc) => {
       if (err) req.status(404).send(err);
       else res.json(req.body);
@@ -171,12 +171,12 @@ router.post("/quiz6", (req, res) => {
   );
 });
 
-router.post("/quiz7", (req, res) => {
+router.post("/noelicitation_AmericanPopulation", (req, res) => {
   console.log(req.body);
   let usertoken = req.session.usertoken;
   Response.findOneAndUpdate(
     { usertoken: usertoken },
-    { quiz7: req.body },
+    { noelicitation_AmericanPopulation: req.body },
     (err, doc) => {
       if (err) req.status(404).send(err);
       else res.json(req.body);

@@ -10,7 +10,7 @@ import { useRecoilValue } from "recoil";
 import { questionState } from "../../atoms/questionSelector";
 import "survey-react/survey.css";
 
-const PreSurveyPage1 = (props) => {
+const Textelicitation_Opioids = (props) => {
   const quizResponses = useRef([]);
   const history = useHistory();
   const location = useLocation();
@@ -138,7 +138,7 @@ const PreSurveyPage1 = (props) => {
     setMessage("");
 
     console.log("Survey results: " + JSON.stringify(quizResponses.current));
-    axios.post("/api/quiz5", quizResponses.current).then((response) => {
+    axios.post("/api/textelicitation_Opioids", quizResponses.current).then((response) => {
       let nextPage = pageHandler(location.pathname);
     //   history.push(nextPage);
     });
@@ -285,4 +285,4 @@ const PreSurveyPage1 = (props) => {
   );
 };
 
-export default PreSurveyPage1;
+export default Textelicitation_Opioids;

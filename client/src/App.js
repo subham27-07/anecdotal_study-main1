@@ -25,11 +25,11 @@ import InstructionsShare from "./pages/instructions/instructionsShare_better";
 import Instructions3 from "./pages/instructions/instructions3_better";
 import Instructions4 from "./pages/instructions/instructions4_better";
 import Quiz from "./pages/survey/quiz";
-import Quiz1 from "./pages/survey/quiz1";
-import Quiz4 from "./pages/survey/quiz4";
-import Quiz5 from "./pages/survey/quiz5";
-import Quiz6 from "./pages/survey/quiz6";
-import Quiz7 from "./pages/survey/quiz7";
+import Textelicitation_drugOverdose from "./pages/survey/textelicitation_drugOverdose";
+import Textelicitation_AmericanPopulation from "./pages/survey/textelicitation_AmericanPopulation";
+import Textelicitation_Opioids from "./pages/survey/textelicitation_Opioids";
+import Noelicitation_drugOverdose from "./pages/survey/noelicitation_drugOverdose";
+import Noelicitation_AmericanPopulation from "./pages/survey/noelicitation_AmericanPopulation";
 import Quiz8 from "./pages/survey/quiz8";
 import Viz from "./pages/survey/viz";
 import Viz1 from "./pages/survey/viz1";
@@ -60,6 +60,8 @@ function useQuery() {
 const App = () => {
   let query = useQuery();
   const questions = ["strength", "share"];
+  const conditions =["text","viz","control"];
+  const condition=choose(conditions)
   // const questions = ["strength"];
   // const questions = ["share"];
   const DEV = false;
@@ -241,8 +243,8 @@ const App = () => {
               <Route path="/quiz">
                 <Quiz></Quiz>
               </Route>
-              <Route path="/quiz1">
-                <Quiz1></Quiz1>
+              <Route path="/textelicitation_drugOverdose">
+                <Textelicitation_drugOverdose></Textelicitation_drugOverdose>
               </Route>
               <Route path="/quiz2">
                 <Quiz2></Quiz2>
@@ -250,17 +252,17 @@ const App = () => {
               <Route path="/quiz3">
                 <Quiz3></Quiz3>
               </Route>
-              <Route path="/quiz4">
-                <Quiz4></Quiz4>
+              <Route path="/textelicitation_AmericanPopulation">
+                <Textelicitation_AmericanPopulation></Textelicitation_AmericanPopulation>
               </Route>
-              <Route path="/quiz5">
-                <Quiz5></Quiz5>
+              <Route path="/textelicitation_Opioids">
+                <Textelicitation_Opioids></Textelicitation_Opioids>
               </Route>
-              <Route path="/quiz6">
-                <Quiz6></Quiz6>
+              <Route path="/noelicitation_drugOverdose">
+                <Noelicitation_drugOverdose></Noelicitation_drugOverdose>
               </Route>
-              <Route path="/quiz7">
-                <Quiz7></Quiz7>
+              <Route path="/noelicitation_AmericanPopulation">
+                <Noelicitation_AmericanPopulation></Noelicitation_AmericanPopulation>
               </Route>
               <Route path="/quiz8">
                 <Quiz8></Quiz8>
