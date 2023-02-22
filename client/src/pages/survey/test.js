@@ -45,6 +45,8 @@ const PreSurveyPage1 = (props) => {
               "Significant Decrease",
               "Slight Decrease",
               "Mostly Flat",
+              "Slight Increase",
+              "Significant Increase",
             ],
             
           },
@@ -155,7 +157,7 @@ const PreSurveyPage1 = (props) => {
         }}
       >
         <Typography variant="h5">
-        How Bad Is the   <span style={{ fontWeight: "bold" }}> Drug Overdose... </span> Epidemic?
+        How Bad Is the <span style={{ fontWeight: "bold" }}> Drug Overdose </span>
         </Typography>
         <Divider></Divider>
 

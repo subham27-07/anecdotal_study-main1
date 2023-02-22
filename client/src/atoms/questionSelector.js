@@ -13,7 +13,18 @@ export const questionSelector = selector({
     switch (questionCondition) {
       case "strength":
         getQL = (tweetText) => {
+<<<<<<< HEAD
           return `What is your opinion on drug overdose in the US ?`;
+=======
+          return `To what extent does the quoted news headline support conclusion?`;
+        };
+        return getQL;
+
+        break;
+      case "share":
+        getQL = (tweetText) => {
+          return `Would you consider sharing ${tweetText.name}'s tweet on social media (for example Twitter, Facebook, or Whatsapp)?`;
+>>>>>>> master
         };
         return getQL;
         break;
