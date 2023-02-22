@@ -10,7 +10,7 @@ import { useRecoilValue } from "recoil";
 import { questionState } from "../../atoms/questionSelector";
 import "survey-react/survey.css";
 
-const PreSurveyPage = (props) => {
+const Topic_Involvement = (props) => {
   const quizResponses = useRef([]);
   const history = useHistory();
   const location = useLocation();
@@ -19,31 +19,78 @@ const PreSurveyPage = (props) => {
   const extraQuestions =
     questionCondition == "strength"
       ? [
-          
+        
         ]
       : [];
 
   const json = {
     pages: [
+    
       {
         elements: [
           {
-            name: "understand_before",
-            type: "radiogroup",
-            title: "Do you understand what this study is asking you to do?",
-            isRequired: true,
-            choices: ["yes", "no"],
+            type: "html",
+            html: "<h4><h4/>",
           },
           {
-            name: "understand-text_before",
-            type: "text",
-            title:
-              "Please in sentence or two, please describe what this study is asking you to do",
+            name: "claim",
+            type: "radiogroup",
+            title: ` "To what extent is the topic of drug overdose related to your core values?"`,
             isRequired: true,
+            choices: [
+                "Not at All",
+                "A little",
+                "Moderately",
+                "A lot",
+                "Extremely",
+            ],
+            // correctAnswer: "a conclusion about a topic",
           },
+          {
+            name: "new",
+            type: "radiogroup",
+            title: ` "To what extent is it important for you to defend your point of view on the topic of drug overdose?" `,
+            isRequired: true,
+            choices: [
+                "Not at All",
+                "A little",
+                "Moderately",
+                "A lot",
+                "Extremely",
+            ],
+            // correctAnswer: "a news headline",
+          },
+          {
+            name: "headline",
+            type: "radiogroup",
+            title: ` "How interested are you in learning about drug overdose?" `,
+            isRequired: true,
+            choices: [
+                "Not at All",
+                "A little",
+                "Moderately",
+                "A lot",
+                "Extremely",
+            ],
+            // correctAnswer: "a news headline",
+          },
+          {
+            name: "suport",
+            type: "radiogroup",
+            title: ` "To what extent are you motivated to know the truth about drug overdose ?" `,
+            isRequired: true,
+            choices: [
+                "Not at All",
+                "A little",
+                "Moderately",
+                "A lot",
+                "Extremely",
+            ],
+            // correctAnswer: "a news headline",
+          },
+          ...extraQuestions,
         ],
       },
-      
     ],
   };
 
@@ -84,7 +131,7 @@ const PreSurveyPage = (props) => {
     // console.log(options);
 
     console.log("Survey results: " + JSON.stringify(quizResponses.current));
-    axios.post("/api/quiz", quizResponses.current).then((response) => {
+    axios.post("/api/topic_Involvement", quizResponses.current).then((response) => {
       let nextPage = pageHandler(location.pathname);
       history.push(nextPage);
     });
@@ -92,7 +139,7 @@ const PreSurveyPage = (props) => {
 
   const onCurrentPageChanging = (survey, option) => {
     if (!option.isNextPage) return;
-    let allTrue = false;
+    let allTrue = true;
     survey.getAllQuestions().forEach((q) => {
       if (survey.currentPage == q.page) {
         let correct = isAnswerCorrect(q);
@@ -103,11 +150,11 @@ const PreSurveyPage = (props) => {
       }
     });
     console.log(allTrue);
-    // if (allTrue) {
-    //   option.allowChanging = true;
-    // } else {
-    //   option.allowChanging = false;
-    // }
+    if (allTrue) {
+      option.allowChanging = true;
+    } else {
+      option.allowChanging = false;
+    }
     // console.log(survey.currentPage());
     // option.oldCurrentPage.questions.forEach((q) => {
     //   console.log(q);
@@ -184,15 +231,10 @@ const PreSurveyPage = (props) => {
         }}
       >
         <Typography variant="h5">
-          It is really important that you understand the task in our study. One
-          last thing before we start, please respond to the following questions
-          about our study.
+         Please Answer the questions below👇.
         </Typography>
         <Divider></Divider>
-        {/* <div style={{ width: "50%", margin: "30px" }}>
-          
-        <img src={"https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/1.JPG"} width="120%" height="100%" />
-        </div> */}
+        
       </div>
       <Divider></Divider>
       <Survey.Survey
@@ -205,4 +247,4 @@ const PreSurveyPage = (props) => {
   );
 };
 
-export default PreSurveyPage;
+export default Topic_Involvement;

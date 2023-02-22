@@ -15,6 +15,7 @@ import QualTask from "./pages/study/task_qual";
 import PreSurveyPage from "./pages/survey/pre";
 import PostSurveyPage from "./pages/survey/post";
 import CogRefSurveyPage from "./pages/survey/cogRef";
+import CogRefSurveyPage1 from "./pages/survey/cogRef1";
 import ConsentPage from "./pages/consent/consent";
 import DebriefPage from "./pages/debrief/debrief";
 import Instructions1 from "./pages/instructions/instruction1_better";
@@ -24,6 +25,21 @@ import InstructionsShare from "./pages/instructions/instructionsShare_better";
 import Instructions3 from "./pages/instructions/instructions3_better";
 import Instructions4 from "./pages/instructions/instructions4_better";
 import Quiz from "./pages/survey/quiz";
+import Textelicitation_drugOverdose from "./pages/survey/textelicitation_drugOverdose";
+import Textelicitation_AmericanPopulation from "./pages/survey/textelicitation_AmericanPopulation";
+import Textelicitation_Opioids from "./pages/survey/textelicitation_Opioids";
+import Noelicitation_drugOverdose from "./pages/survey/noelicitation_drugOverdose";
+import Noelicitation_AmericanPopulation from "./pages/survey/noelicitation_AmericanPopulation";
+import Noelicitation_Opioids from "./pages/survey/noelicitation_Opioids";
+import Recall_drugOverdose from "./pages/survey/recall_drugOverdose";
+import Viz1 from "./pages/survey/viz1";
+import VisualElicitation_drugOverdose from "./pages/survey/visualElicitation_drugOverdose";
+import VisualElicitation_population from "./pages/survey/visualElicitation_population";
+import VisualElicitation_Opioids from "./pages/survey/visualElicitation_Opioids";
+import Recall_Opioids from "./pages/survey/recall_Opioids";
+import Attitude_Elicitation from "./pages/survey/attitude_Elicitation";
+import Topic_Involvement from "./pages/survey/topic_Involvement";
+
 //pages
 import LoadingCircle from "./components/loading/loading";
 import axios from "axios";
@@ -47,6 +63,8 @@ function useQuery() {
 const App = () => {
   let query = useQuery();
   const questions = ["strength", "share"];
+  const conditions =["text","viz","control"];
+  const condition=choose(conditions)
   // const questions = ["strength"];
   // const questions = ["share"];
   const DEV = false;
@@ -228,6 +246,48 @@ const App = () => {
               <Route path="/quiz">
                 <Quiz></Quiz>
               </Route>
+              <Route path="/textelicitation_drugOverdose">
+                <Textelicitation_drugOverdose></Textelicitation_drugOverdose>
+              </Route>
+              <Route path="/attitude_Elicitation">
+                <Attitude_Elicitation></Attitude_Elicitation>
+              </Route>
+              <Route path="/topic_Involvement">
+                <Topic_Involvement></Topic_Involvement>
+              </Route>
+              <Route path="/textelicitation_AmericanPopulation">
+                <Textelicitation_AmericanPopulation></Textelicitation_AmericanPopulation>
+              </Route>
+              <Route path="/textelicitation_Opioids">
+                <Textelicitation_Opioids></Textelicitation_Opioids>
+              </Route>
+              <Route path="/noelicitation_drugOverdose">
+                <Noelicitation_drugOverdose></Noelicitation_drugOverdose>
+              </Route>
+              <Route path="/noelicitation_AmericanPopulation">
+                <Noelicitation_AmericanPopulation></Noelicitation_AmericanPopulation>
+              </Route>
+              <Route path="/noelicitation_Opioids">
+                <Noelicitation_Opioids></Noelicitation_Opioids>
+              </Route>
+              <Route path="/recall_drugOverdose">
+                <Recall_drugOverdose></Recall_drugOverdose>
+              </Route>
+              <Route path="/viz1">
+                <Viz1></Viz1>
+              </Route>
+              <Route path="/visualElicitation_drugOverdose">
+                <VisualElicitation_drugOverdose></VisualElicitation_drugOverdose>
+              </Route>
+              <Route path="/visualElicitation_population">
+                <VisualElicitation_population></VisualElicitation_population>
+              </Route>
+              <Route path="/visualElicitation_Opioids">
+                <VisualElicitation_Opioids></VisualElicitation_Opioids>
+              </Route>
+              <Route path="/recall_Opioids">
+                <Recall_Opioids></Recall_Opioids>
+              </Route>
               <Route path="/task1">
                 <Task
                   phase={0}
@@ -236,6 +296,7 @@ const App = () => {
                 ></Task>
               </Route>
               <Route path="/cogref" component={CogRefSurveyPage}></Route>
+              <Route path="/cogref1" component={CogRefSurveyPage1}></Route>
               <Route path="/task2">
                 <Task
                   phase={1}

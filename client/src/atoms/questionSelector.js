@@ -24,14 +24,12 @@ export const questionSelector = selector({
         };
         return getQL;
         break;
-      default:
-        getQL = (tweetText) => {
-          return `To what extent does the quoted news headline support ${tweetText.name}'s conclusion?`;
-        };
-        return getQL;
     }
   },
+  
 });
+
+
 
 export const qualQuestionSelector = selector({
   key: "qualQuestionSelector",
@@ -45,12 +43,6 @@ export const qualQuestionSelector = selector({
         };
         return getQL;
 
-        break;
-      case "share":
-        getQL = (tweetText) => {
-          return `For the tweet above👆 You made the below👇 judgment when asked: "Would you consider sharing ${tweetText.name}'s tweet on social media"`;
-        };
-        return getQL;
         break;
     }
   },
@@ -78,10 +70,11 @@ export const labelSelector = selector({
         break;
       case "strength":
         return [
-          "Does not support",
-          "Slightly supports",
-          "Moderately supports",
-          "Strongly supports",
+          "Extremely Serious Problem",
+          "Serious Problem",
+          "Moderate Problem",
+          "Minor Problem",
+          "Not a Problem",
         ];
 
         break;

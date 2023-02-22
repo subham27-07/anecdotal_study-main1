@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import { atom, selector } from "recoil";
 import { useHistory, useLocation } from "react-router-dom";
 import pageHandler from "../pageHandler";
 import axios from "axios";
@@ -10,7 +11,7 @@ import { useRecoilValue } from "recoil";
 import { questionState } from "../../atoms/questionSelector";
 import "survey-react/survey.css";
 
-const PreSurveyPage = (props) => {
+const Attitude_Elicitation = (props) => {
   const quizResponses = useRef([]);
   const history = useHistory();
   const location = useLocation();
@@ -19,31 +20,67 @@ const PreSurveyPage = (props) => {
   const extraQuestions =
     questionCondition == "strength"
       ? [
-          
+       
         ]
       : [];
 
+
+      
+
   const json = {
     pages: [
+   
       {
         elements: [
           {
-            name: "understand_before",
-            type: "radiogroup",
-            title: "Do you understand what this study is asking you to do?",
-            isRequired: true,
-            choices: ["yes", "no"],
+            type: "html",
+            html: "<h4><h4/>",
           },
           {
-            name: "understand-text_before",
-            type: "text",
-            title:
-              "Please in sentence or two, please describe what this study is asking you to do",
+            name: "claim",
+            type: "radiogroup",
+            title: ` "What is your opinion on drug overdose in US ?"`,
             isRequired: true,
+            choices: [
+                "Extremely serious problem",
+                "serious problem",
+                "Moderate problem",
+                "Minor Problem",
+                "Not at all a problem",
+            ],
+            // correctAnswer: "a conclusion about a topic",
           },
+          {
+            name: "new",
+            type: "radiogroup",
+            title: ` "Should the US make combating drug abuse and overdose a priority, i:e allocating tax dollars to treatment and prevention programs?" `,
+            isRequired: true,
+            choices: [
+                "High Priority",
+                "Moderate Priority",
+                "Neutral",
+                "Low Priority",
+                "Not a Priority"
+            ],
+            // correctAnswer: "a news headline",
+          },
+          {
+            name: "headline",
+            type: "radiogroup",
+            title: ` "What is your opinion on drug legalization and decrimination in the US?" `,
+            isRequired: true,
+            choices: [
+                "Strongly Oppose",
+              "Somewhat Oppose",
+              "Neutral",
+              "Somewhat Favor",
+              "Strongly Favor",
+            ],
+            // correctAnswer: "a news headline",
+          },
+          ...extraQuestions,
         ],
       },
-      
     ],
   };
 
@@ -84,7 +121,7 @@ const PreSurveyPage = (props) => {
     // console.log(options);
 
     console.log("Survey results: " + JSON.stringify(quizResponses.current));
-    axios.post("/api/quiz", quizResponses.current).then((response) => {
+    axios.post("/api/attitude_Elicitation", quizResponses.current).then((response) => {
       let nextPage = pageHandler(location.pathname);
       history.push(nextPage);
     });
@@ -92,7 +129,7 @@ const PreSurveyPage = (props) => {
 
   const onCurrentPageChanging = (survey, option) => {
     if (!option.isNextPage) return;
-    let allTrue = false;
+    let allTrue = true;
     survey.getAllQuestions().forEach((q) => {
       if (survey.currentPage == q.page) {
         let correct = isAnswerCorrect(q);
@@ -103,11 +140,11 @@ const PreSurveyPage = (props) => {
       }
     });
     console.log(allTrue);
-    // if (allTrue) {
-    //   option.allowChanging = true;
-    // } else {
-    //   option.allowChanging = false;
-    // }
+    if (allTrue) {
+      option.allowChanging = true;
+    } else {
+      option.allowChanging = false;
+    }
     // console.log(survey.currentPage());
     // option.oldCurrentPage.questions.forEach((q) => {
     //   console.log(q);
@@ -184,15 +221,10 @@ const PreSurveyPage = (props) => {
         }}
       >
         <Typography variant="h5">
-          It is really important that you understand the task in our study. One
-          last thing before we start, please respond to the following questions
-          about our study.
+        Please Answer the questions below👇.
         </Typography>
         <Divider></Divider>
-        {/* <div style={{ width: "50%", margin: "30px" }}>
-          
-        <img src={"https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/1.JPG"} width="120%" height="100%" />
-        </div> */}
+        
       </div>
       <Divider></Divider>
       <Survey.Survey
@@ -205,4 +237,31 @@ const PreSurveyPage = (props) => {
   );
 };
 
-export default PreSurveyPage;
+export const labelSelector = selector({
+    key: "labelQuestionSelector",
+    get: ({ get }) => {
+      let questionCondition = get(questionState);
+      switch (questionCondition) {
+        case "share":
+          return [
+            "Definitely no",
+            "Probably no",
+            "Probably yes",
+            "Definitely yes",
+          ];
+          break;
+        case "strength":
+          return [
+            "Extremely Serious Problem",
+            "Serious Problem",
+            "Moderate Problem",
+            "Minor Problem",
+            "Not a Problem",
+          ];
+  
+          break;
+      }
+    },
+  });
+
+export default Attitude_Elicitation;

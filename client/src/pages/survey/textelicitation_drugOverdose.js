@@ -1,16 +1,16 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import pageHandler from "../pageHandler";
 import axios from "axios";
 import * as Survey from "survey-react";
-import { Divider, Typography, Container } from "@mui/material";
+import { Divider, Typography, Container, Button } from "@mui/material";
 import Tweet from "../../components/tweet/tweet";
 import TweetQuote from "../../components/tweet/tweetQuote";
 import { useRecoilValue } from "recoil";
 import { questionState } from "../../atoms/questionSelector";
 import "survey-react/survey.css";
 
-const PreSurveyPage = (props) => {
+const Textelicitation_drugOverdose = (props) => {
   const quizResponses = useRef([]);
   const history = useHistory();
   const location = useLocation();
@@ -19,7 +19,7 @@ const PreSurveyPage = (props) => {
   const extraQuestions =
     questionCondition == "strength"
       ? [
-          
+        
         ]
       : [];
 
@@ -27,23 +27,34 @@ const PreSurveyPage = (props) => {
     pages: [
       {
         elements: [
-          {
-            name: "understand_before",
-            type: "radiogroup",
-            title: "Do you understand what this study is asking you to do?",
-            isRequired: true,
-            choices: ["yes", "no"],
-          },
-          {
-            name: "understand-text_before",
-            type: "text",
-            title:
-              "Please in sentence or two, please describe what this study is asking you to do",
-            isRequired: true,
-          },
+        
         ],
       },
-      
+      {
+        elements: [
+          {
+            type: "html",
+            html: "<p style='font-size: 22px;'>Since 2002, the number of Americans who have died every year from <span style='font-weight: bold;'>Drug Overdose</span>  </p>",
+           
+          },
+          {
+            name: "claim",
+            type: "radiogroup",
+            title: `"How would you categorize this trend"`,
+            isRequired: true,
+            choices: [
+              "Significant Decrease",
+              "Slight Decrease",
+              "Mostly Flat",
+              "Slight Increase",
+              "Significant Increase",
+            ],
+            
+          },
+          
+          ...extraQuestions,
+        ],
+      },
     ],
   };
 
@@ -60,58 +71,49 @@ const PreSurveyPage = (props) => {
   const inCorrectStr = "Incorrect";
 
   Survey.StylesManager.applyTheme();
+  //  
+
+  const [completed, setCompleted] = useState(false);
+  const [message, setMessage] = useState("");
+// 
 
   const onCompleting = (survey, options) => {
-    // console.log(options);
+    
     let allTrue = true;
     survey.getAllQuestions().forEach((q) => {
-      let correct = isAnswerCorrect(q);
-      correct = correct == undefined ? true : correct;
-
-      allTrue = allTrue && correct;
-      renderCorrectAnswer(q);
+    
     });
     quizResponses.current.push(survey.data);
-    if (allTrue) {
-      options.allowComplete = true;
-    } else {
-      options.allowComplete = false;
-    }
+    
   };
 
   const onComplete = (survey, options) => {
-    //Write survey results into database
-    // console.log(options);
+    
+    setCompleted(true);
+    setMessage("");
 
     console.log("Survey results: " + JSON.stringify(quizResponses.current));
-    axios.post("/api/quiz", quizResponses.current).then((response) => {
+    axios.post("/api/textelicitation_drugOverdose", quizResponses.current).then((response) => {
       let nextPage = pageHandler(location.pathname);
-      history.push(nextPage);
+    
     });
   };
 
   const onCurrentPageChanging = (survey, option) => {
     if (!option.isNextPage) return;
-    let allTrue = false;
+    let allTrue = true;
     survey.getAllQuestions().forEach((q) => {
       if (survey.currentPage == q.page) {
-        let correct = isAnswerCorrect(q);
-        correct = correct == undefined ? true : correct;
-
-        allTrue = allTrue && correct;
-        renderCorrectAnswer(q);
+        
       }
     });
     console.log(allTrue);
-    // if (allTrue) {
-    //   option.allowChanging = true;
-    // } else {
-    //   option.allowChanging = false;
-    // }
-    // console.log(survey.currentPage());
-    // option.oldCurrentPage.questions.forEach((q) => {
-    //   console.log(q);
-    // });
+    if (allTrue) {
+      option.allowChanging = true;
+    } else {
+      option.allowChanging = false;
+    }
+    
   };
 
   function getTextHtml(text, str, isCorrect) {
@@ -125,44 +127,15 @@ const PreSurveyPage = (props) => {
       "</span>"
     );
   }
-  function isAnswerCorrect(q) {
-    const right = q.correctAnswer;
-    if (right == undefined) return undefined;
-    if (!right || q.isEmpty()) return undefined;
-    var left = q.value;
-    if (!Array.isArray(right)) return right == left;
-    if (!Array.isArray(left)) left = [left];
-    for (var i = 0; i < left.length; i++) {
-      if (right.indexOf(left[i]) < 0) return false;
-    }
-    return true;
-  }
-
-  function renderCorrectAnswer(q) {
-    if (!q) return;
-    const isCorrect = isAnswerCorrect(q);
-    if (!q.prevTitle) {
-      q.prevTitle = q.title;
-    }
-    if (isCorrect === undefined) {
-      q.title = q.prevTitle;
-    } else {
-      q.title = q.prevTitle + " " + (isCorrect ? correctStr : inCorrectStr);
-    }
-  }
+  
 
   const model = new Survey.Model(json);
   model.showCompletedPage = false;
   model.onTextMarkdown.add((sender, options) => {
     var text = options.text;
-    var html = getTextHtml(text, correctStr, true);
-    if (!html) {
-      html = getTextHtml(text, inCorrectStr, false);
-    }
-    if (!!html) {
-      options.html = html;
-    }
+    
   });
+  
 
   return (
     <Container
@@ -183,26 +156,52 @@ const PreSurveyPage = (props) => {
           justifyContent: "center",
         }}
       >
-        <Typography variant="h5">
-          It is really important that you understand the task in our study. One
-          last thing before we start, please respond to the following questions
-          about our study.
-        </Typography>
+        <Typography variant="h3">
+          How Bad Is the   <span style={{ fontWeight: "bold" }}> Drug Overdose... </span> Epidemic?   
+        </Typography> 
         <Divider></Divider>
-        {/* <div style={{ width: "50%", margin: "30px" }}>
-          
-        <img src={"https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/1.JPG"} width="120%" height="100%" />
-        </div> */}
+
       </div>
       <Divider></Divider>
+      
       <Survey.Survey
         model={model}
         onComplete={onComplete}
         onCompleting={onCompleting}
         onCurrentPageChanging={onCurrentPageChanging}
       />
+      {completed ? (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            paddingTop: "30px",
+          }}
+        >
+          <Typography variant="h5">{message}</Typography>
+          <img src={"https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/b.JPG"} width="60%" height="100%" alt="Completion image" />
+          <p align="justify">    has increased by more than <span style={{ fontWeight: "bold" }}>222.16 percent</span>.  In 2015, more Americans died from drug overdoses than from car accidents 
+            and gun homicides combined. It’s the worst drug overdose epidemic in American history, spurred by rising drug abuse, 
+            increased availability of prescription opioids and an influx of Data Sharing <span></span>potent synthetics like fentanyl and carfentanil. 
+            Drug overdoses are now the leading cause of death for Americans under 50.
+            </p>
+          
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => {
+              let nextPage = pageHandler(location.pathname);
+              history.push(nextPage);
+            }}
+          >
+            Continue
+          </Button>
+        </div>
+      ) : null}
     </Container>
   );
 };
 
-export default PreSurveyPage;
+export default Textelicitation_drugOverdose;

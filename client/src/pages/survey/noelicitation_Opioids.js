@@ -10,7 +10,7 @@ import { useRecoilValue } from "recoil";
 import { questionState } from "../../atoms/questionSelector";
 import "survey-react/survey.css";
 
-const PreSurveyPage = (props) => {
+const Noelicitation_Opioids = (props) => {
   const quizResponses = useRef([]);
   const history = useHistory();
   const location = useLocation();
@@ -28,22 +28,58 @@ const PreSurveyPage = (props) => {
       {
         elements: [
           {
-            name: "understand_before",
-            type: "radiogroup",
-            title: "Do you understand what this study is asking you to do?",
-            isRequired: true,
-            choices: ["yes", "no"],
+            type: "html",
+            html: "<p style='font-size: 22px;'>Since 2002, the number of Americans who have died every year from overdoses of <span style='font-weight: bold;'>synthetic opioids...</span>  </p>",
+           
           },
-          {
-            name: "understand-text_before",
-            type: "text",
-            title:
-              "Please in sentence or two, please describe what this study is asking you to do",
-            isRequired: true,
-          },
+            {
+              name: "",
+              type: "radiogroup",
+              title: "",
+              // isRequired: true,
+              // choices: ["yes", "no"],
+              },
+              {
+                type: "html",
+                name: "image_and_text",
+                html: "<div style='text-align: center'><img src='https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/d.JPG' width='80%' height='100%' /><br/><br/><p style='text-align: justify'>...has increased by more than <span style='font-weight: bold;'> 5451 percent </span>. Substance use disorders refers to direct deaths from overdoses of illicit drugs synthetic opioids (mostly fentanyl).  “We know that substance use is more dangerous than it has ever been, as fentanyl has continued to permeate the illicit drug supply, increasing the risk for overdoses among both people with substance use disorders as well as those who use drugs occasionally,” said Dr. Nora Volkow, director of the National Institute on Drug Abuse. Deaths involving synthetic opioids such as fentanyl increased by a marked 18% in 2021, according to the CDC data. Deaths involving cocaine and psychostimulants such as methamphetamine were also significantly more frequent, while those involving heroin decreased.</p></div>",
+            },
+          
         ],
       },
-      
+      // {
+      //   elements: [
+      //     {
+      //       type: "html",
+      //       html: "<h4>We are asking you to respond to these questions to make sure you understand the task at hand. You will not be able to move forward if you answer incorrectly.<h4/>",
+      //     },
+      //     {
+      //       name: "claim",
+      //       type: "radiogroup",
+      //       title: `The tweet: "Spielberg is one of the worst directors of the recent decade." is ___.`,
+      //       isRequired: true,
+      //       choices: [
+      //         "a conclusion about a topic",
+      //         "a news headline",
+      //         "I don't know",
+      //       ],
+      //       // correctAnswer: "a conclusion about a topic",
+      //     },
+      //     {
+      //       name: "headline",
+      //       type: "radiogroup",
+      //       title: `The tweet: "Steven Spielberg's latest three movies were among the worst rated in Rotten Tomatoes." is ___.`,
+      //       isRequired: true,
+      //       choices: [
+      //         "a conclusion about a topic",
+      //         "a news headline",
+      //         "I don't know",
+      //       ],
+      //       // correctAnswer: "a news headline",
+      //     },
+      //     ...extraQuestions,
+      //   ],
+      // },
     ],
   };
 
@@ -84,7 +120,7 @@ const PreSurveyPage = (props) => {
     // console.log(options);
 
     console.log("Survey results: " + JSON.stringify(quizResponses.current));
-    axios.post("/api/quiz", quizResponses.current).then((response) => {
+    axios.post("/api/noelicitation_Opioids", quizResponses.current).then((response) => {
       let nextPage = pageHandler(location.pathname);
       history.push(nextPage);
     });
@@ -153,6 +189,8 @@ const PreSurveyPage = (props) => {
 
   const model = new Survey.Model(json);
   model.showCompletedPage = false;
+  model.questionTitleTemplate = "";
+  model.showQuestionNumbers = "none";
   model.onTextMarkdown.add((sender, options) => {
     var text = options.text;
     var html = getTextHtml(text, correctStr, true);
@@ -183,16 +221,11 @@ const PreSurveyPage = (props) => {
           justifyContent: "center",
         }}
       >
-        <Typography variant="h5">
-          It is really important that you understand the task in our study. One
-          last thing before we start, please respond to the following questions
-          about our study.
+        <Typography variant="h3">
+          How Bad Is the   <span style={{ fontWeight: "bold" }}> Drug Overdose... </span> Epidemic?   
         </Typography>
         <Divider></Divider>
-        {/* <div style={{ width: "50%", margin: "30px" }}>
-          
-        <img src={"https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/1.JPG"} width="120%" height="100%" />
-        </div> */}
+        
       </div>
       <Divider></Divider>
       <Survey.Survey
@@ -205,4 +238,4 @@ const PreSurveyPage = (props) => {
   );
 };
 
-export default PreSurveyPage;
+export default Noelicitation_Opioids;

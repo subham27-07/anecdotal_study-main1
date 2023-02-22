@@ -155,7 +155,7 @@ const InstructionsTask3 = (props) => {
               screen_name={"JNolander"}
               // style={{ width: "50%" }}
             >
-              <TweetQuote
+              {/* <TweetQuote
                 text={
                   "Steven Spielberg's latest three movies were among the worst rated in Rotten Tomatoes."
                 }
@@ -165,7 +165,7 @@ const InstructionsTask3 = (props) => {
                 src={
                   "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Steven_Spielberg_%2836057844341%29.jpg/800px-Steven_Spielberg_%2836057844341%29.jpg?20170801002525"
                 }
-              ></TweetQuote>
+              ></TweetQuote> */}
             </Tweet>
             <div ref={sliderRef}>
               <CustomSlider
@@ -186,18 +186,18 @@ const InstructionsTask3 = (props) => {
             {/* <div className={classes.pointToSliderRight}> */}
             <div className={classes.pointToTweetRight}>
               <div style={{ display: "flex", flexDirection: "row" }}>
-                <span>
+                {/* <span>
                   Next, we will show you the responses you have provided for
                   every tweet. We ask that you think about your responses and
                   the tweet and tell us{" "}
                   <span className={classes.emph}>
                     the reasons you have for your judgment.
                   </span>
-                </span>
+                </span> */}
                 {/* <span>👉👉</span> */}
               </div>
             </div>
-            <div className={classes.pointToSliderRight}>
+            {/* <div className={classes.pointToSliderRight}>
               <div style={{ display: "flex", flexDirection: "row" }}>
                 <span>
                   You can see your response for the Spielberg tweet here.
@@ -214,7 +214,7 @@ const InstructionsTask3 = (props) => {
                 <span>Type down your responses in the provided text box.</span>
                 <span>👉👉</span>
               </div>
-            </div>
+            </div> */}
             {/* </div> */}
           </div>
           {/* <div className={classes.slider}></div> */}
@@ -226,7 +226,7 @@ const InstructionsTask3 = (props) => {
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            paddingTop: "10px",
+            paddingTop: "90px",
             paddingBottom: "10px",
           }}
         >

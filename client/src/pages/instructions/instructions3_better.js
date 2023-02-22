@@ -91,7 +91,7 @@ const InstructionsTask3 = (props) => {
   const tweetText = {
     claim: "",
     evidence: "",
-    name: "Johnathan Nolander",
+    name: "",
     handle: "",
     image: "",
   };
@@ -207,7 +207,7 @@ const InstructionsTask3 = (props) => {
           className={classes.button}
           style={{
             textAlign: "center",
-            paddingTop: "10px",
+            paddingTop: "90px",
             paddingBottom: "10px",
           }}
         >
