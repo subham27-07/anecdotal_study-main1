@@ -45,8 +45,6 @@ const PreSurveyPage1 = (props) => {
               "Significant Decrease",
               "Slight Decrease",
               "Mostly Flat",
-              "Slight Increase",
-              "Significant Increase",
             ],
             
           },
