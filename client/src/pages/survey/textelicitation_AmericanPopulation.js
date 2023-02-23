@@ -204,7 +204,7 @@ const Textelicitation_AmericanPopulation = (props) => {
       >
         
         <Typography variant="h3">
-          How Bad Is the   <span style={{ fontWeight: "bold" }}> Drug Overdose... </span> Epidemic?   
+          How Bad Is the   <span style={{ fontWeight: "bold" }}> Drug Overdose</span> Epidemic?   
         </Typography>     
 
 
