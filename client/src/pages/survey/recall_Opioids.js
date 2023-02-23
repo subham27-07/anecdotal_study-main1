@@ -266,10 +266,7 @@ const Recall_Opioids = () => {
     } else {
       option.allowChanging = false;
     }
-    // console.log(survey.currentPage());
-    // option.oldCurrentPage.questions.forEach((q) => {
-    //   console.log(q);
-    // });
+    
   };
 
   function getTextHtml(text, str, isCorrect) {

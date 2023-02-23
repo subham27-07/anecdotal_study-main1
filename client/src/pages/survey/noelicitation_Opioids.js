@@ -47,39 +47,6 @@ const Noelicitation_Opioids = (props) => {
           
         ],
       },
-      // {
-      //   elements: [
-      //     {
-      //       type: "html",
-      //       html: "<h4>We are asking you to respond to these questions to make sure you understand the task at hand. You will not be able to move forward if you answer incorrectly.<h4/>",
-      //     },
-      //     {
-      //       name: "claim",
-      //       type: "radiogroup",
-      //       title: `The tweet: "Spielberg is one of the worst directors of the recent decade." is ___.`,
-      //       isRequired: true,
-      //       choices: [
-      //         "a conclusion about a topic",
-      //         "a news headline",
-      //         "I don't know",
-      //       ],
-      //       // correctAnswer: "a conclusion about a topic",
-      //     },
-      //     {
-      //       name: "headline",
-      //       type: "radiogroup",
-      //       title: `The tweet: "Steven Spielberg's latest three movies were among the worst rated in Rotten Tomatoes." is ___.`,
-      //       isRequired: true,
-      //       choices: [
-      //         "a conclusion about a topic",
-      //         "a news headline",
-      //         "I don't know",
-      //       ],
-      //       // correctAnswer: "a news headline",
-      //     },
-      //     ...extraQuestions,
-      //   ],
-      // },
     ],
   };
 
@@ -139,15 +106,6 @@ const Noelicitation_Opioids = (props) => {
       }
     });
     console.log(allTrue);
-    // if (allTrue) {
-    //   option.allowChanging = true;
-    // } else {
-    //   option.allowChanging = false;
-    // }
-    // console.log(survey.currentPage());
-    // option.oldCurrentPage.questions.forEach((q) => {
-    //   console.log(q);
-    // });
   };
 
   function getTextHtml(text, str, isCorrect) {
