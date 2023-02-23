@@ -12,7 +12,7 @@ const PreSurveyPage = (props) => {
     elements: [
       {
         type: "html",
-        html: "<h4>Please respond to these questions. Your responses do not impact your payment!<h4/>",
+        html: "<h4>Please respond to these questions below👇 <h4/>",
       },
       {
         name: "batBall",
