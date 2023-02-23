@@ -33,7 +33,7 @@ const Textelicitation_AmericanPopulation = (props) => {
         elements: [
           {
             type: "html",
-            html: "<p style='font-size: 22px;'>Since 2002, share of Americans  population with <span style='font-weight: bold;'>drug use disorders...</span>  </p>",
+            html: "<p style='font-size: 22px;'> 👉👉👉 <span style='font-weight: bold; color:gray;'> Article 2.</span> Since 2002, <span style='font-weight: bold;'>percentage</span> of Americans  population with <span style='font-weight: bold;'>drug use disorders...</span>  </p>",
            
           },
           {
