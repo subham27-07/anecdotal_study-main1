@@ -1,0 +1,31 @@
+.textBody{
+    font-family: Times, "Times New Roman", Georgia, Serif, serif;
+}
+
+.paragraph{
+    margin-top: 3%;
+    text-align: justify;
+}
+.title{
+    font-style: italic;
+}
+
+.txtNormal{
+
+    font-size: 1.25rem;
+    font-style: normal;
+}
+
+.txtImportant{
+    font-weight: bold;
+}
+
+.txtUnique{
+    font-style:italic;
+}
+
+.txtImportantUnique{
+    font-weight: bold;
+    font-style: italic;
+    color: red;
+}

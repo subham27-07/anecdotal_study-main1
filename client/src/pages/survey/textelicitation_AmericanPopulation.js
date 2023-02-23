@@ -4,7 +4,7 @@ import pageHandler from "../pageHandler";
 import axios from "axios";
 import * as Survey from "survey-react";
 import { Divider, Typography, Container, Button } from "@mui/material";
-
+import styles from './articles.module.css'
 import { useRecoilValue } from "recoil";
 import { questionState } from "../../atoms/questionSelector";
 import "survey-react/survey.css";
@@ -16,7 +16,7 @@ const Textelicitation_AmericanPopulation = (props) => {
   const questionCondition = useRecoilValue(questionState);
   // console.log(questionCondition);
   const extraQuestions =
-    questionCondition == "strength"
+    questionCondition === "strength"
       ? [
         
         ]
@@ -33,7 +33,7 @@ const Textelicitation_AmericanPopulation = (props) => {
         elements: [
           {
             type: "html",
-            html: "<p style='font-size: 22px;'>Since 2002, share of Americans  population with <span style='font-weight: bold;'>drug use disorders...</span>  </p>",
+            html: "<span style='font-family: serif; font-size: 1.25rem;'>Since 2002, share of Americans  population with <span style='font-weight: bold'>drug use disorders...</span>  </span>",
            
           },
           {
@@ -204,7 +204,8 @@ const Textelicitation_AmericanPopulation = (props) => {
       >
         
         <Typography variant="h3">
-          How Bad Is the   <span style={{ fontWeight: "bold" }}> Drug Overdose... </span> Epidemic?   
+                    <span className={`${styles.textBody} ${styles.title}`}>How Bad Is the <span
+                        style={{fontWeight: "bold"}}> Drug Overdose </span> epidemic?</span>
         </Typography>     
 
 
@@ -232,11 +233,10 @@ const Textelicitation_AmericanPopulation = (props) => {
         >
           <Typography variant="h5">{message}</Typography>
           <img src={"https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/c.JPG"} width="60%" height="100%" alt="Completion image" />
-          <p align="justify">...has increased by more than <span style={{ fontWeight: "bold" }}>137 percent</span>.  The United States is currently in the grips of a powerful drug epidemic, 
+          <p className={`${styles.paragraph} ${styles.textBody} ${styles.txtNormal}`}>...has increased by more than <span className={styles.txtImportant}>137 percent</span>.  The United States is currently in the grips of a powerful drug epidemic,
                 with the share of population with drug use disorders steadily climbing every year. A drug use disorder is a mental disorder that affects a person’s brain and behavior, leading to a person’s 
                 inability to control their use of drugs including legal or illegal drugs. Drug use disorders occur when an individual 
                 compulsively misuses drugs or alcohol and continues abusing the substance despite knowing the negative impact it has on their life.
-                
             </p>
           
           <Button
