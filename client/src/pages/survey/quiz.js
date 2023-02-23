@@ -103,15 +103,6 @@ const PreSurveyPage = (props) => {
       }
     });
     console.log(allTrue);
-    // if (allTrue) {
-    //   option.allowChanging = true;
-    // } else {
-    //   option.allowChanging = false;
-    // }
-    // console.log(survey.currentPage());
-    // option.oldCurrentPage.questions.forEach((q) => {
-    //   console.log(q);
-    // });
   };
 
   function getTextHtml(text, str, isCorrect) {
@@ -189,10 +180,7 @@ const PreSurveyPage = (props) => {
           about our study.
         </Typography>
         <Divider></Divider>
-        {/* <div style={{ width: "50%", margin: "30px" }}>
-          
-        <img src={"https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/1.JPG"} width="120%" height="100%" />
-        </div> */}
+        
       </div>
       <Divider></Divider>
       <Survey.Survey

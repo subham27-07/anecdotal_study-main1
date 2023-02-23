@@ -117,8 +117,6 @@ const Attitude_Elicitation = (props) => {
   };
 
   const onComplete = (survey, options) => {
-    //Write survey results into database
-    // console.log(options);
 
     console.log("Survey results: " + JSON.stringify(quizResponses.current));
     axios.post("/api/attitude_Elicitation", quizResponses.current).then((response) => {
@@ -145,10 +143,6 @@ const Attitude_Elicitation = (props) => {
     } else {
       option.allowChanging = false;
     }
-    // console.log(survey.currentPage());
-    // option.oldCurrentPage.questions.forEach((q) => {
-    //   console.log(q);
-    // });
   };
 
   function getTextHtml(text, str, isCorrect) {

@@ -213,11 +213,7 @@ const Recall_drugOverdose = () => {
     // console.log(options);
     let allTrue = true;
     survey.getAllQuestions().forEach((q) => {
-      // let correct = isAnswerCorrect(q);
-      // correct = correct == undefined ? true : correct;
-
-      // allTrue = allTrue && correct;
-      // renderCorrectAnswer(q);
+    
     });
     quizResponses.current.push(survey.data);
     if (allTrue) {
@@ -228,9 +224,7 @@ const Recall_drugOverdose = () => {
   };
 
   const onComplete = (survey, options) => {
-    //Write survey results into database
-    // console.log(options);
-
+    
     console.log("Survey results: " + JSON.stringify(quizResponses.current));
     axios.post("/api/recall_drugOverdose", quizResponses.current).then((response) => {
       let nextPage = pageHandler(location.pathname);
