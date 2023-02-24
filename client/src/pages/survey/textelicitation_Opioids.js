@@ -25,15 +25,7 @@ const Textelicitation_Opioids = (props) => {
     const json = {
         pages: [
             {
-                elements: [],
-            },
-            {
                 elements: [
-                    {
-                        type: "html",
-                        html: "<span style='font-family: serif; font-size: 1.25rem;'>👉👉👉 <span style='font-weight: bold; color:gray;'> Article 3.</span> Since 2002, the <span style='font-weight: bold'>number</span> of Americans who have died every year from overdoses of <span style='font-weight: bold;'>synthetic opioids...</span>  </span>",
-
-                    },
                     {
                         name: "claim",
                         type: "radiogroup",
@@ -203,10 +195,14 @@ const Textelicitation_Opioids = (props) => {
                             <span className={`${styles.textBody} ${styles.title}`}>How Bad Is the <span
                                 style={{fontWeight: "bold"}}> Drug Overdose </span> epidemic?</span>
                 </Typography>
-                <Divider></Divider>
+                <Typography variant={"body1"}>
+                   <span
+                       className={styles.txtImportantUnique}>Article 3</span><p> Since 2002, the <span
+                        className={styles.txtImportant}>number</span> of Americans who have died every year from overdoses of <span
+                    className={styles.txtImportant}>synthetic opioids _______.</span></p>
+                </Typography>
 
             </div>
-            <Divider></Divider>
 
             <Survey.Survey
                 model={model}
@@ -227,10 +223,19 @@ const Textelicitation_Opioids = (props) => {
                     <Typography variant="h5">{message}</Typography>
                     <img src={"https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/d.JPG"} width="60%"
                          height="100%" alt="Completion image"/>
-                    <p className={`${styles.paragraph} ${styles.textBody} ${styles.txtNormal}`}>...has increased by more than <span
-                        style={{fontWeight: "bold"}}>5451 percent</span>. Substance use disorders refers to direct deaths from
-                overdoses of <span style={{fontWeight: "bold"}}>illicit drugs synthetic opioids (mostly fentanyl)</span> .“We know that substance use is more dangerous than it has ever been, as fentanyl has continued to permeate the illicit drug supply, increasing the risk for overdoses among both people with substance use disorders as well as those who use drugs occasionally,” said Dr. Nora Volkow, director of the National Institute on Drug Abuse. Deaths involving synthetic opioids such as fentanyl increased by a marked 18% in 2021, according to the CDC data. Deaths involving cocaine and psychostimulants such as methamphetamine were also significantly more frequent, while those involving heroin decreased.
-          </p>
+                    <p className={`${styles.paragraph} ${styles.textBody} ${styles.txtNormal}`}>...has increased by more
+                        than <span
+                            style={{fontWeight: "bold"}}>5451 percent</span>. Substance use disorders refers to direct
+                        deaths from
+                        overdoses of <span style={{fontWeight: "bold"}}>illicit drugs synthetic opioids (mostly fentanyl)</span> .“We
+                        know that substance use is more dangerous than it has ever been, as fentanyl has continued to
+                        permeate the illicit drug supply, increasing the risk for overdoses among both people with
+                        substance use disorders as well as those who use drugs occasionally,” said Dr. Nora Volkow,
+                        director of the National Institute on Drug Abuse. Deaths involving synthetic opioids such as
+                        fentanyl increased by a marked 18% in 2021, according to the CDC data. Deaths involving cocaine
+                        and psychostimulants such as methamphetamine were also significantly more frequent, while those
+                        involving heroin decreased.
+                    </p>
 
                     <Button
                         variant="contained"

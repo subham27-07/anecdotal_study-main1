@@ -37,7 +37,7 @@
   .axis-x-line text,
   .axis-y-line text {
     color: rgb(136, 136, 136);
-    font-size: 1rem;
+    font-size: .8rem;
   }
   
   .axis-y-line path {

@@ -1,5 +1,6 @@
 .textBody{
-    font-family: Times, "Times New Roman", Georgia, Serif, serif;
+    /*font-family: Times, "Times New Roman", Georgia, Serif, serif;*/
+    /*font-family: 'Roboto', sans-serif;*/
 }
 
 .paragraph{
@@ -7,12 +8,12 @@
     text-align: justify;
 }
 .title{
-    font-style: italic;
+    /*font-style: italic;*/
 }
 
 .txtNormal{
 
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-style: normal;
 }
 
@@ -25,7 +26,20 @@
 }
 
 .txtImportantUnique{
+    background-color: darkred;
     font-weight: bold;
     font-style: italic;
-    color: red;
+    color: white;
+    padding: 0 10px;
+    border-radius: 10pt;
+}
+
+
+.actions{
+    margin: 3% auto;
+    align-self: center;
+}
+
+.actions:hover{
+    background-color: mediumseagreen;
 }

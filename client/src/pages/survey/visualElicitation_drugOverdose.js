@@ -188,8 +188,8 @@ const VisualElicitation_drugOverdose = () => {
         width: "100%",
         overflow: "auto",
         minHeight: "600px",
-        paddingTop: "30px",
-        paddingBottm: "30px",
+        paddingTop: "2%",
+        // paddingBottm: "5%",
       }}
     >
       <div
@@ -201,14 +201,14 @@ const VisualElicitation_drugOverdose = () => {
         }}
       >
         <Typography variant="h3">
-              <span className={`${styles.textBody} ${styles.title}`}>How Bad Is the <span
+              <span>How Bad Is the <span
                   style={{fontWeight: "bold"}}> Drug Overdose </span> epidemic?</span>
         </Typography>
-        
+
       </div>
-      <Survey.Survey
-        model={model}
-      />
+      {/*<Survey.Survey*/}
+      {/*  model={model}*/}
+      {/*/>*/}
 
       <div className="viz" style={{ display: "flex", flexDirection: "column" }}>
         <div style={{ width: "100%", height: "500px" }}>
@@ -216,9 +216,9 @@ const VisualElicitation_drugOverdose = () => {
             <LineChart type="value" data={lineData} idLine={1} startYear={2002} />
           </Suspense>
         </div>
-        
+
       </div>
-      
+
       <div>
         <Button
               variant="contained"
@@ -227,11 +227,11 @@ const VisualElicitation_drugOverdose = () => {
                 let nextPage = pageHandler(location.pathname);
                 history.push(nextPage);
               }}
-              style={{marginTop: '300px',marginLeft: '500px', marginRight: '20px'}}
+              style={{marginTop: '5%',marginLeft: '500px', marginRight: '20px'}}
             >
               Continue
         </Button>
-      
+
       </div>
     </Container>
 

@@ -199,7 +199,7 @@ const App = () => {
   return (
     <div className="app" style={{ height: "100%", lineHeight: "150%" }}>
       <Router>
-        <NavBar height={"7%"} className="navBar"></NavBar>
+        {/*<NavBar height={"7%"} className="navBar"></NavBar>*/}
         <div
           style={{ width: "100%", height: "86%", overflow: "auto" }}
           id="scrollWrapper"
@@ -325,7 +325,7 @@ const App = () => {
             </Switch>
           </Container>
         </div>
-        <BottomNav height="7%"></BottomNav>
+        {/*<BottomNav height="7%"></BottomNav>*/}
       </Router>
       <LoadingCircle opacity={loadingOpacity}></LoadingCircle>
     </div>
