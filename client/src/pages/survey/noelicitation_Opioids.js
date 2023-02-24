@@ -29,7 +29,7 @@ const Noelicitation_Opioids = (props) => {
         elements: [
           {
             type: "html",
-            html: "<p style='font-size: 22px;'>Since 2002, the number of Americans who have died every year from overdoses of <span style='font-weight: bold;'>synthetic opioids...</span>  </p>",
+            html: "<p style='font-family: serif; font-size: 1.25rem;''>Since 2002, the number of Americans who have died every year from overdoses of <span style='font-weight: bold;'>synthetic opioids...</span>  </p>",
            
           },
             {
@@ -42,7 +42,8 @@ const Noelicitation_Opioids = (props) => {
               {
                 type: "html",
                 name: "image_and_text",
-                html: "<div style='text-align: center'><img src='https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/d.JPG' width='80%' height='100%' /><br/><br/><p style='text-align: justify'>...has increased by more than <span style='font-weight: bold;'> 5451 percent </span>. Substance use disorders refers to direct deaths from overdoses of illicit drugs synthetic opioids (mostly fentanyl).  “We know that substance use is more dangerous than it has ever been, as fentanyl has continued to permeate the illicit drug supply, increasing the risk for overdoses among both people with substance use disorders as well as those who use drugs occasionally,” said Dr. Nora Volkow, director of the National Institute on Drug Abuse. Deaths involving synthetic opioids such as fentanyl increased by a marked 18% in 2021, according to the CDC data. Deaths involving cocaine and psychostimulants such as methamphetamine were also significantly more frequent, while those involving heroin decreased.</p></div>",
+                html: "<div style='text-align: center'><img src='https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/d.JPG' width='80%' height='100%' />" +
+                    "<p style='text-align: justify; font-family: serif; font-size: 1.25rem;'>...has increased by more than <span style='font-weight: bold;'> 5451 percent </span>. Substance use disorders refers to direct deaths from overdoses of illicit drugs synthetic opioids (mostly fentanyl).  “We know that substance use is more dangerous than it has ever been, as fentanyl has continued to permeate the illicit drug supply, increasing the risk for overdoses among both people with substance use disorders as well as those who use drugs occasionally,” said Dr. Nora Volkow, director of the National Institute on Drug Abuse. Deaths involving synthetic opioids such as fentanyl increased by a marked 18% in 2021, according to the CDC data. Deaths involving cocaine and psychostimulants such as methamphetamine were also significantly more frequent, while those involving heroin decreased.</p></div>",
             },
           
         ],
