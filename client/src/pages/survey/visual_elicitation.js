@@ -12,7 +12,7 @@ import { useRecoilValue } from "recoil";
 import { questionState } from "../../atoms/questionSelector";
 import "survey-react/survey.css";
 const LineChart = lazy(() => import('./visualizations/LineChart2'));
-
+import styles from './articles.module.css'
 
 const Viz1 = () => {
   const lineData = [
@@ -144,8 +144,9 @@ const Viz1 = () => {
         elements: [
           {
             type: "html",
-            html: "<p style='font-size: 22px;'>Since 2002, the number of Americans who have died every year from <span style='font-weight: bold;'>Drug Overdose...</span>  </p>",
-           
+            html: "<p style='font-family: serif; font-size: 1.25rem;'>Since 2002, the number of Americans who have died every year from" +
+                "<span style='font-weight: bold;'>Drug Overdose...</span>  </p>",
+           x
           },
           
           {
@@ -274,8 +275,8 @@ const Viz1 = () => {
   const model = new Survey.Model(json);
   model.showCompletedPage = false;
   model.onTextMarkdown.add((sender, options) => {
-    var text = options.text;
-    var html = getTextHtml(text, correctStr, true);
+    let text = options.text;
+    let html = getTextHtml(text, correctStr, true);
     
   });
   
@@ -299,7 +300,8 @@ const Viz1 = () => {
         }}
       >
         <Typography variant="h3">
-          How Bad Is the <span style={{ fontWeight: "bold" }}>Drug Overdose</span> Epidemic?
+    <span className={`${styles.textBody} ${styles.title}`}>How Bad Is the <span
+      style={{fontWeight: "bold"}}> Drug Overdose </span> epidemic?</span>
         </Typography>
         
       </div>

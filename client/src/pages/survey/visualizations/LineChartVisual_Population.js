@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as d3 from 'd3';
 import { Divider, Typography, Container, Button } from "@mui/material";
+import styles from "../articles.module.css";
 
 
 
@@ -327,7 +328,7 @@ class LineChart extends Component {
             </Button>
           </div>
           { this.state.showText && (
-            <p align="justify">...has increased by more than <span style={{ fontWeight: "bold" }}>137 percent</span>.  The United States is currently in the grips of a powerful drug epidemic, 
+            <p className={`${styles.textBody} ${styles.paragraph} ${styles.txtNormal}`}>...has increased by more than <span style={{ fontWeight: "bold" }}>137 percent</span>.  The United States is currently in the grips of a powerful drug epidemic,
             with the share of population with drug use disorders steadily climbing every year. A drug use disorder is a mental disorder that affects a person’s brain and behavior, leading to a person’s 
             inability to control their use of drugs including legal or illegal drugs. Drug use disorders occur when an individual 
             compulsively misuses drugs or alcohol and continues abusing the substance despite knowing the negative impact it has on their life.
