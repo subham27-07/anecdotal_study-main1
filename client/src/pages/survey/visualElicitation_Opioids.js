@@ -11,6 +11,7 @@ import TweetQuote from "../../components/tweet/tweetQuote";
 import { useRecoilValue } from "recoil";
 import { questionState } from "../../atoms/questionSelector";
 import "survey-react/survey.css";
+import styles from "./articles.module.css";
 const LineChart = lazy(() => import('./visualizations/LineChartVisual_Opioids'));
 
 
@@ -167,7 +168,8 @@ const VisualElicitation_Opioids = () => {
         }}
       >
         <Typography variant="h3">
-          How Bad Is the <span style={{ fontWeight: "bold" }}>Drug Overdose</span> Epidemic?
+              <span className={`${styles.textBody} ${styles.title}`}>How Bad Is the <span
+                  style={{fontWeight: "bold"}}> Drug Overdose </span> epidemic?</span>
         </Typography>
         
       </div>

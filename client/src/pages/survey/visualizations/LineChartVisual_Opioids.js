@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as d3 from 'd3';
 import { Divider, Typography, Container, Button } from "@mui/material";
+import styles from "../articles.module.css";
 
 
 
@@ -325,7 +326,7 @@ class LineChart extends Component {
             </Button>
           </div>
           { this.state.showText && (
-            <p align="justify">...has increased by more than <span style={{ fontWeight: "bold" }}>5451 percent</span>.  Substance use disorders refers to direct deaths from 
+            <p className={`${styles.textBody} ${styles.paragraph} ${styles.txtNormal}`}>...has increased by more than <span style={{ fontWeight: "bold" }}>5451 percent</span>.  Substance use disorders refers to direct deaths from
             overdoses of <span style={{ fontWeight: "bold" }}>illicit drugs synthetic opioids (mostly fentanyl)</span> .  “We know that substance use is more dangerous than it has ever been, as fentanyl has continued to permeate the illicit drug supply, increasing the risk for overdoses among both people with substance use disorders as well as those who use drugs occasionally,” said Dr. Nora Volkow, director of the National Institute on Drug Abuse. Deaths involving synthetic opioids such as fentanyl increased by a marked 18% in 2021, according to the CDC data. Deaths involving cocaine and psychostimulants such as methamphetamine were also significantly more frequent, while those involving heroin decreased.
         </p>
           ) }

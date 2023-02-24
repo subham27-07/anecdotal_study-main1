@@ -16,9 +16,9 @@ const PreSurveyPage = (props) => {
       },
       {
         name: "Superbowl",
-        type: "text",
-        title:
-          "The Eagles made sure to mention that field conditions didn't decide the game. (It's not like we were playing on ice and they were playing on grass; we all had to play on it, Eagles head coach Nick Sirianni said.) But it affected both teams. The Eagles had 70 sacks in the regular season and none Sunday. There were factors that went into that, such as the Chiefs using a quick passing game. But the field conditions probably slowed down the Eagles pass rushers a bit.It was hard. I beat my man a couple times, trying to turn the corner and just was slipping, Reddick said. It was very disappointing. It’s the NFL, you’d think it would be better so we can get some better play. But it is what it is. Reddick said he didn't want to use the turf as an excuse. He said the Chiefs deserved to win. But it was clearly a point of frustration. Maybe the league can look at it and tell Arizona they’ve got to step their stuff up,Reddick said. I don’t know. It’s not my decision to make, it’s not my call to make.",
+        type: "html",
+        html:
+          "<p style='text-align: justify; font-family: serif; font-size: 1.25rem;'>The Eagles made sure to mention that field conditions didn't decide the game. (It's not like we were playing on ice and they were playing on grass; we all had to play on it, Eagles head coach Nick Sirianni said.) But it affected both teams. The Eagles had 70 sacks in the regular season and none Sunday. There were factors that went into that, such as the Chiefs using a quick passing game. But the field conditions probably slowed down the Eagles pass rushers a bit.It was hard. I beat my man a couple times, trying to turn the corner and just was slipping, Reddick said. It was very disappointing. It’s the NFL, you’d think it would be better so we can get some better play. But it is what it is. Reddick said he didn't want to use the turf as an excuse. He said the Chiefs deserved to win. But it was clearly a point of frustration. Maybe the league can look at it and tell Arizona they’ve got to step their stuff up,Reddick said. I don’t know. It’s not my decision to make, it’s not my call to make.</p>",
         isRequired: true,
       },
       

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import * as d3 from 'd3';
 import { Divider, Typography, Container, Button } from "@mui/material";
-
+import styles from '../articles.module.css'
 
 
 const marginConvention = (selection, props) => {
@@ -322,9 +322,9 @@ class LineChart extends Component {
             </Button>
           </div>
           { this.state.showText && (
-            <p align="justify"> ...has increased by more than <span style={{ fontWeight: "bold" }}>222.16 percent</span>.  In 2015, more Americans died from drug overdoses than from car accidents
+            <p className={`${styles.textBody} ${styles.paragraph} ${styles.txtNormal}`}> ...has increased by more than <span style={{ fontWeight: "bold" }}>222.16 percent</span>.  In 2015, more Americans died from drug overdoses than from car accidents
             and gun homicides combined. It’s the worst drug overdose epidemic in American history, spurred by rising drug abuse, 
-            increased availability of prescription opioids and an influx of Data Sharing <span></span>potent synthetics like fentanyl and carfentanil. 
+            increased availability of prescription opioids and an influx of Data Sharing potent synthetics like fentanyl and carfentanil.
             Drug overdoses are now the leading cause of death for Americans under 50.
             </p>
           ) }
