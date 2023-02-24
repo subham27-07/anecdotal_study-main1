@@ -145,6 +145,48 @@ const VisualElicitation_Opioids = () => {
     setClipAnimation(true);
   };
 
+  const questionCondition = useRecoilValue(questionState);
+
+  const extraQuestions =
+    questionCondition == "strength"
+      ? [
+
+        ]
+      : [];
+
+  const json = {
+    pages: [
+      {
+        elements: [
+          {
+            type: "html",
+            html: "<span style='font-family: serif; font-size: 1.25rem;'>👉👉👉 <span style='font-weight: bold; color:gray;'> Article 3.</span> Since 2002, the <span style='font-weight: bold'>number</span> of Americans who have died every year from overdoses of <span style='font-weight: bold;'>synthetic opioids...</span>  </span>",
+
+          },
+           
+
+        ],
+      },
+
+    ],
+  };
+
+  var defaultThemeColors = Survey.StylesManager.ThemeColors["default"];
+  defaultThemeColors["$main-color"] = "black";
+  defaultThemeColors["$main-hover-color"] = "lightgrey";
+  defaultThemeColors["$text-color"] = "#4a4a4a";
+  defaultThemeColors["$header-color"] = "#7ff07f";
+
+  defaultThemeColors["$header-background-color"] = "#4a4a4a";
+  defaultThemeColors["$body-container-background-color"] = "#f8f8f8";
+
+  Survey.StylesManager.applyTheme();
+
+  const model = new Survey.Model(json);
+  model.showCompletedPage = false;
+  model.questionTitleTemplate = "";
+  model.showQuestionNumbers = "none";
+
   
 
   return (
@@ -173,6 +215,9 @@ const VisualElicitation_Opioids = () => {
         </Typography>
         
       </div>
+      <Survey.Survey
+        model={model}
+      />
 
       <div className="viz" style={{ display: "flex", flexDirection: "column" }}>
         <div style={{ width: "100%", height: "500px" }}>

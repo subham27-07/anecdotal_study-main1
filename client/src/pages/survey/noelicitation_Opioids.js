@@ -30,16 +30,14 @@ const Noelicitation_Opioids = (props) => {
         elements: [
           {
             type: "html",
-            html: "<p style='font-family: serif; font-size: 1.25rem;'>Since 2002, the number of Americans who have died every year from overdoses of <span style='font-weight: bold;'>synthetic opioids...</span>  </p>",
-           
+            html: "<span style='font-family: serif; font-size: 1.25rem;'>👉👉👉 <span style='font-weight: bold; color:gray;'> Article 3.</span> Since 2002, the <span style='font-weight: bold'>number</span> of Americans who have died every year from overdoses of <span style='font-weight: bold;'>synthetic opioids...</span>  </span>",
+
           },
-            {
-              name: "",
-              type: "radiogroup",
-              title: "",
-              // isRequired: true,
-              // choices: ["yes", "no"],
-              },
+            // {
+            //   name: "",
+            //   type: "radiogroup",
+            //   title: "",
+            // },
               {
                 type: "html",
                 name: "image_and_text",
@@ -61,28 +59,11 @@ const Noelicitation_Opioids = (props) => {
   defaultThemeColors["$header-background-color"] = "#4a4a4a";
   defaultThemeColors["$body-container-background-color"] = "#f8f8f8";
 
-  const correctStr = "Correct";
-  const inCorrectStr = "Incorrect";
+
 
   Survey.StylesManager.applyTheme();
 
-  const onCompleting = (survey, options) => {
-    // console.log(options);
-    let allTrue = true;
-    survey.getAllQuestions().forEach((q) => {
-      let correct = isAnswerCorrect(q);
-      correct = correct == undefined ? true : correct;
 
-      allTrue = allTrue && correct;
-      renderCorrectAnswer(q);
-    });
-    quizResponses.current.push(survey.data);
-    if (allTrue) {
-      options.allowComplete = true;
-    } else {
-      options.allowComplete = false;
-    }
-  };
 
   const onComplete = (survey, options) => {
     //Write survey results into database
@@ -95,72 +76,13 @@ const Noelicitation_Opioids = (props) => {
     });
   };
 
-  const onCurrentPageChanging = (survey, option) => {
-    if (!option.isNextPage) return;
-    let allTrue = false;
-    survey.getAllQuestions().forEach((q) => {
-      if (survey.currentPage == q.page) {
-        let correct = isAnswerCorrect(q);
-        correct = correct == undefined ? true : correct;
 
-        allTrue = allTrue && correct;
-        renderCorrectAnswer(q);
-      }
-    });
-    console.log(allTrue);
-  };
-
-  function getTextHtml(text, str, isCorrect) {
-    if (text.indexOf(str) < 0) return undefined;
-    return (
-      text.substring(0, text.indexOf(str)) +
-      "<span style='color:" +
-      (isCorrect ? "green" : "red") +
-      "'>" +
-      str +
-      "</span>"
-    );
-  }
-  function isAnswerCorrect(q) {
-    const right = q.correctAnswer;
-    if (right == undefined) return undefined;
-    if (!right || q.isEmpty()) return undefined;
-    var left = q.value;
-    if (!Array.isArray(right)) return right == left;
-    if (!Array.isArray(left)) left = [left];
-    for (var i = 0; i < left.length; i++) {
-      if (right.indexOf(left[i]) < 0) return false;
-    }
-    return true;
-  }
-
-  function renderCorrectAnswer(q) {
-    if (!q) return;
-    const isCorrect = isAnswerCorrect(q);
-    if (!q.prevTitle) {
-      q.prevTitle = q.title;
-    }
-    if (isCorrect === undefined) {
-      q.title = q.prevTitle;
-    } else {
-      q.title = q.prevTitle + " " + (isCorrect ? correctStr : inCorrectStr);
-    }
-  }
 
   const model = new Survey.Model(json);
   model.showCompletedPage = false;
   model.questionTitleTemplate = "";
   model.showQuestionNumbers = "none";
-  model.onTextMarkdown.add((sender, options) => {
-    var text = options.text;
-    var html = getTextHtml(text, correctStr, true);
-    if (!html) {
-      html = getTextHtml(text, inCorrectStr, false);
-    }
-    if (!!html) {
-      options.html = html;
-    }
-  });
+
 
   return (
     <Container
@@ -192,8 +114,7 @@ const Noelicitation_Opioids = (props) => {
       <Survey.Survey
         model={model}
         onComplete={onComplete}
-        onCompleting={onCompleting}
-        onCurrentPageChanging={onCurrentPageChanging}
+        
       />
     </Container>
   );

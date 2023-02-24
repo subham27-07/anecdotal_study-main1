@@ -19,6 +19,7 @@ const pages = [
   "viz1",
   "recall_drugOverdose",
   "recall_Opioids",
+  "attitude_ElicitationPost",
   "debrief",
 ];
 
