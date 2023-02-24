@@ -29,7 +29,7 @@ const Noelicitation_drugOverdose = (props) => {
         elements: [
           {
             type: "html",
-            html: "<p style='font-size: 22px;'>Since 2002, the number of Americans who have died every year from <span style='font-weight: bold;'>Drug Overdose...</span>  </p>",
+            html: "<p style='font-size: 22px;'> 👉👉👉 <span style='font-weight: bold; color:gray;'> Article 1.</span>  Since 2002, the <span style='font-weight: bold;'>number</span> of Americans who have died every year from <span style='font-weight: bold;'>Drug Overdose</span>  </p>",
            
           },
             {
@@ -65,27 +65,7 @@ const Noelicitation_drugOverdose = (props) => {
 
   Survey.StylesManager.applyTheme();
 
-  const onCompleting = (survey, options) => {
-    // console.log(options);
-    let allTrue = true;
-    survey.getAllQuestions().forEach((q) => {
-      let correct = isAnswerCorrect(q);
-      correct = correct == undefined ? true : correct;
-
-      allTrue = allTrue && correct;
-      renderCorrectAnswer(q);
-    });
-    quizResponses.current.push(survey.data);
-    if (allTrue) {
-      options.allowComplete = true;
-    } else {
-      options.allowComplete = false;
-    }
-  };
-
   const onComplete = (survey, options) => {
-    //Write survey results into database
-    // console.log(options);
 
     console.log("Survey results: " + JSON.stringify(quizResponses.current));
     axios.post("/api/noelicitation_drugOverdose", quizResponses.current).then((response) => {
@@ -94,81 +74,13 @@ const Noelicitation_drugOverdose = (props) => {
     });
   };
 
-  const onCurrentPageChanging = (survey, option) => {
-    if (!option.isNextPage) return;
-    let allTrue = false;
-    survey.getAllQuestions().forEach((q) => {
-      if (survey.currentPage == q.page) {
-        let correct = isAnswerCorrect(q);
-        correct = correct == undefined ? true : correct;
-
-        allTrue = allTrue && correct;
-        renderCorrectAnswer(q);
-      }
-    });
-    console.log(allTrue);
-    // if (allTrue) {
-    //   option.allowChanging = true;
-    // } else {
-    //   option.allowChanging = false;
-    // }
-    // console.log(survey.currentPage());
-    // option.oldCurrentPage.questions.forEach((q) => {
-    //   console.log(q);
-    // });
-  };
-
-  function getTextHtml(text, str, isCorrect) {
-    if (text.indexOf(str) < 0) return undefined;
-    return (
-      text.substring(0, text.indexOf(str)) +
-      "<span style='color:" +
-      (isCorrect ? "green" : "red") +
-      "'>" +
-      str +
-      "</span>"
-    );
-  }
-  function isAnswerCorrect(q) {
-    const right = q.correctAnswer;
-    if (right == undefined) return undefined;
-    if (!right || q.isEmpty()) return undefined;
-    var left = q.value;
-    if (!Array.isArray(right)) return right == left;
-    if (!Array.isArray(left)) left = [left];
-    for (var i = 0; i < left.length; i++) {
-      if (right.indexOf(left[i]) < 0) return false;
-    }
-    return true;
-  }
-
-  function renderCorrectAnswer(q) {
-    if (!q) return;
-    const isCorrect = isAnswerCorrect(q);
-    if (!q.prevTitle) {
-      q.prevTitle = q.title;
-    }
-    if (isCorrect === undefined) {
-      q.title = q.prevTitle;
-    } else {
-      q.title = q.prevTitle + " " + (isCorrect ? correctStr : inCorrectStr);
-    }
-  }
+  
 
   const model = new Survey.Model(json);
   model.showCompletedPage = false;
   model.questionTitleTemplate = "";
   model.showQuestionNumbers = "none";
-  model.onTextMarkdown.add((sender, options) => {
-    var text = options.text;
-    var html = getTextHtml(text, correctStr, true);
-    if (!html) {
-      html = getTextHtml(text, inCorrectStr, false);
-    }
-    if (!!html) {
-      options.html = html;
-    }
-  });
+  
 
   return (
     <Container
@@ -190,7 +102,7 @@ const Noelicitation_drugOverdose = (props) => {
         }}
       >
         <Typography variant="h3">
-          How Bad Is the   <span style={{ fontWeight: "bold" }}> Drug Overdose... </span> Epidemic?   
+          How Bad Is the   <span style={{ fontWeight: "bold" }}> Drug Overdose </span> Epidemic?   
         </Typography>
         <Divider></Divider>
         
@@ -199,9 +111,7 @@ const Noelicitation_drugOverdose = (props) => {
       <Survey.Survey
         model={model}
         onComplete={onComplete}
-        onCompleting={onCompleting}
-        
-        onCurrentPageChanging={onCurrentPageChanging}
+       
         
       />
       
