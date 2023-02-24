@@ -38,6 +38,7 @@ import VisualElicitation_population from "./pages/survey/visualElicitation_popul
 import VisualElicitation_Opioids from "./pages/survey/visualElicitation_Opioids";
 import Recall_Opioids from "./pages/survey/recall_Opioids";
 import Attitude_Elicitation from "./pages/survey/attitude_Elicitation";
+import Attitude_ElicitationPost from "./pages/survey/attitude_ElicitationPost";
 import Topic_Involvement from "./pages/survey/topic_Involvement";
 
 //pages
@@ -287,6 +288,9 @@ const App = () => {
               </Route>
               <Route path="/recall_Opioids">
                 <Recall_Opioids></Recall_Opioids>
+              </Route>
+              <Route path="/attitude_ElicitationPost">
+                <Attitude_ElicitationPost></Attitude_ElicitationPost>
               </Route>
               <Route path="/task1">
                 <Task

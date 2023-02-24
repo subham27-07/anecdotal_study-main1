@@ -31,7 +31,7 @@ const Textelicitation_Opioids = (props) => {
                 elements: [
                     {
                         type: "html",
-                        html: "<span style='font-family: serif; font-size: 1.25rem;'>Since 2002, the number of Americans who have died every year from overdoses of <span style='font-weight: bold;'>synthetic opioids...</span>  </span>",
+                        html: "<span style='font-family: serif; font-size: 1.25rem;'>👉👉👉 <span style='font-weight: bold; color:gray;'> Article 3.</span> Since 2002, the <span style='font-weight: bold'>number</span> of Americans who have died every year from overdoses of <span style='font-weight: bold;'>synthetic opioids...</span>  </span>",
 
                     },
                     {

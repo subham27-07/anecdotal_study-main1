@@ -31,7 +31,7 @@ const Textelicitation_drugOverdose = (props) => {
                 elements: [
                     {
                         type: "html",
-                        html: "<span style='font-family: serif; font-size: 1.25rem;'>Since 2002, the number of Americans who have died every year from" +
+                        html: "<span style='font-family: serif; font-size: 1.25rem;'> 👉👉👉 <span style='font-weight: bold; color:gray;'> Article 1.</span> Since 2002, the <span style='font-weight: bold'>number</span> of Americans who have died every year from" +
                             "<span style='font-weight: bold'> Drug Overdose</span> ...</span>",
 
                     },
