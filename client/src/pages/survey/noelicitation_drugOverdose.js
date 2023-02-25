@@ -28,21 +28,8 @@ const Noelicitation_drugOverdose = (props) => {
                 elements: [
                     {
                         type: "html",
-                        html: "<span style='font-family: serif; font-size: 1.25rem;'> 👉👉👉 <span style='font-weight: bold; color:gray;'> Article 1.</span> Since 2002, the <span style='font-weight: bold'>number</span> of Americans who have died every year from" +
-                            "<span style='font-weight: bold'> Drug Overdose</span> ...</span>",
-
-                    },
-                    // {
-                    //     name: "",
-                    //     type: "radiogroup",
-                    //     title: "",
-                    // },
-                    {
-                        type: "html",
                         name: "image_and_text",
-                        html: "<div style='text-align: center'>" +
-                            "<img src='https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/b.JPG' width='80%' height='100%' />" +
-                            "<p style='text-align: justify; font-family: serif; font-size: 1.25rem;'>...has increased by more than <span style='font-weight: bold;'> 222.82 percent </span>. In 2015, more Americans died from drug overdoses than from car accidents and gun homicides combined. It’s the worst drug overdose epidemic in American history, spurred by rising drug abuse, increased availability of prescription opioids and an influx of Drug Overdose potent synthetics like fentanyl and carfentanil. Drug overdoses are now the leading cause of death for Americans under 50.</p></div>",
+                        html: "",
                     },
 
                 ],
@@ -53,7 +40,7 @@ const Noelicitation_drugOverdose = (props) => {
 
     var defaultThemeColors = Survey.StylesManager.ThemeColors["default"];
     defaultThemeColors["$main-color"] = "black";
-    defaultThemeColors["$main-hover-color"] = "lightgrey";
+    defaultThemeColors["$main-hover-color"] = "darkorange";
     defaultThemeColors["$text-color"] = "#4a4a4a";
     defaultThemeColors["$header-color"] = "#7ff07f";
 
@@ -79,43 +66,61 @@ const Noelicitation_drugOverdose = (props) => {
     model.showCompletedPage = false;
     model.questionTitleTemplate = "";
     model.showQuestionNumbers = "none";
-    
+
 
     return (
-        <Container
-            maxWidth={false}
-            style={{
-                width: "100%",
-                overflow: "auto",
-                height: "100%",
-                paddingTop: "30px",
-                paddingBottm: "30px",
-            }}
-        >
-            <div
+        <div>
+            <Container
+                maxWidth={false}
                 style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center",
+                    width: "100%",
+                    overflow: "auto",
+                    height: "100%",
+                    paddingTop: "30px",
+                    paddingBottm: "30px",
                 }}
             >
-                <Typography variant="h3">
+                <div
+                    style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        justifyContent: "center",
+                    }}
+                >
+                    <Typography variant="h3">
                                      <span className={`${styles.textBody} ${styles.title}`}>How Bad Is the <span
                                          style={{fontWeight: "bold"}}> Drug Overdose </span> epidemic?</span>
-                </Typography>
-                <Divider></Divider>
+                    </Typography>
+                    <Typography variant={"body1"}>
+                        <span className={styles.txtImportantUnique}>Article 1</span><p>Since 2002, the<span
+                        className={styles.txtImportant}>number</span> of Americans who have died every year from
+                        <span className={styles.txtImportant}> Drug Overdose...</span></p>
+                    </Typography>
 
-            </div>
-            <Divider></Divider>
-            <Survey.Survey
-                model={model}
-                onComplete={onComplete}
-                
-            />
+                </div>
 
-        </Container>
-    );
+                <div>
+                    <img src='https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/b.JPG' width='100%'
+                         height='100%' alt=''/>
+                    <p className={`${styles.paragraph} ${styles.textBody}`}>Since 2002, the <span
+                        className={styles.txtImportant}>number</span> of Americans who have died every year from
+                        <span className={styles.txtImportant}> Drug Overdose</span>has increased by more than <span
+                        className={styles.txtImportant}> 222.82 percent </span>. In 2015, more Americans died from drug overdoses than from
+                        car accidents and gun homicides combined. It’s the worst drug overdose epidemic in American
+                        history, spurred by rising drug abuse, increased availability of prescription opioids and an
+                        influx of Drug Overdose potent synthetics like fentanyl and carfentanil. Drug overdoses are now
+                        the leading cause of death for Americans under 50.</p></div>
+                <Survey.Survey
+                    model={model}
+                    onComplete={onComplete}
+                />
+
+            </Container>
+        </div>
+
+    )
+        ;
 };
 
 export default Noelicitation_drugOverdose;

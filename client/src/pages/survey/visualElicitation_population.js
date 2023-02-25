@@ -149,7 +149,7 @@ const VisualElicitation_population = () => {
         elements: [
           {
             type: "html",
-            html: "<span style='font-family: serif; font-size: 1.25rem;'> 👉👉👉 <span style='font-weight: bold; color:gray;'> Article 2.</span> Since 2002, <span style='font-weight: bold'>percentage</span>  of Americans  population with <span style='font-weight: bold'>drug use disorders...</span>  </span>",
+            html: "",
            
           },
            
@@ -202,9 +202,9 @@ const VisualElicitation_population = () => {
         </Typography>
         
       </div>
-      <Survey.Survey
-        model={model}
-      />
+      {/*<Survey.Survey*/}
+      {/*  model={model}*/}
+      {/*/>*/}
 
       <div className="viz" style={{ display: "flex", flexDirection: "column" }}>
         <div style={{ width: "100%", height: "500px" }}>
