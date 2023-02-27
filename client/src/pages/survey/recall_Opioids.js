@@ -1,4 +1,4 @@
-import React, { useRef, lazy, Suspense } from 'react';
+import React, { useRef, lazy, Suspense, useState} from 'react';
 
 
 import { useHistory, useLocation } from "react-router-dom";
@@ -11,7 +11,8 @@ import TweetQuote from "../../components/tweet/tweetQuote";
 import { useRecoilValue } from "recoil";
 import { questionState } from "../../atoms/questionSelector";
 import "survey-react/survey.css";
-const LineChart = lazy(() => import('./visualizations/LineChart3'));
+import styles from "./articles.module.css";
+const LineChart = lazy(() => import('./visualizations/LineChartVisual_Opioids'));
 
 
 const Recall_Opioids = () => {
@@ -137,71 +138,36 @@ const Recall_Opioids = () => {
   const quizResponses = useRef([]);
   const history = useHistory();
   const location = useLocation();
+
+  const [clipAnimation, setClipAnimation] = useState(false);
+
+  const handleShowAnimation = () => {
+    setClipAnimation(true);
+  };
+
   const questionCondition = useRecoilValue(questionState);
-  // console.log(questionCondition);
+
   const extraQuestions =
     questionCondition == "strength"
       ? [
-        
+
         ]
       : [];
 
   const json = {
     pages: [
-    
       {
         elements: [
-        {
-                type: "html",
-                html: "<p style='font-size: 22px;'>Since 2002, the number of Americans who have died every year from overdoses of <span style='font-weight: bold;'>synthetic opioids...</span>  </p>",
-               
-        },
           {
-            name: "claim",
-            type: "radiogroup",
-            title: ` "I would recommend this article to my family and friends"`,
-            isRequired: true,
-            choices: [
-                "Not at All",
-                "A little",
-                "Moderately",
-                "A lot",
-                "Extremely",
-            ],
-            // correctAnswer: "a conclusion about a topic",
+            type: "html",
+            html: "<span style='font-family: serif; font-size: 1.25rem;'>👉👉👉 <span style='font-weight: bold; color:gray;'> Article 3.</span> Since 2002, the <span style='font-weight: bold'>number</span> of Americans who have died every year from overdoses of <span style='font-weight: bold;'>synthetic opioids...</span>  </span>",
+
           },
-          
-          {
-            name: "suport",
-            type: "radiogroup",
-            title: ` "The content of this article is surprising to me" `,
-            isRequired: true,
-            choices: [
-                "Not at All",
-                "A little",
-                "Moderately",
-                "A lot",
-                "Extremely",
-            ],
-            // correctAnswer: "a news headline",
-          },
-          {
-            name: "viewOpinion",
-            type: "radiogroup",
-            title: ` "I felt interested in reading this article" `,
-            isRequired: true,
-            choices: [
-                "Not at All",
-                "A little",
-                "Moderately",
-                "A lot",
-                "Extremely",
-            ],
-            // correctAnswer: "a news headline",
-          },
-          ...extraQuestions,
+           
+
         ],
       },
+
     ],
   };
 
@@ -214,111 +180,15 @@ const Recall_Opioids = () => {
   defaultThemeColors["$header-background-color"] = "#4a4a4a";
   defaultThemeColors["$body-container-background-color"] = "#f8f8f8";
 
-  const correctStr = "Correct";
-  const inCorrectStr = "Incorrect";
-
   Survey.StylesManager.applyTheme();
-
-  const onCompleting = (survey, options) => {
-    // console.log(options);
-    let allTrue = true;
-    survey.getAllQuestions().forEach((q) => {
-      let correct = isAnswerCorrect(q);
-      correct = correct == undefined ? true : correct;
-
-      allTrue = allTrue && correct;
-      renderCorrectAnswer(q);
-    });
-    quizResponses.current.push(survey.data);
-    if (allTrue) {
-      options.allowComplete = true;
-    } else {
-      options.allowComplete = false;
-    }
-  };
-
-  const onComplete = (survey, options) => {
-    //Write survey results into database
-    // console.log(options);
-
-    console.log("Survey results: " + JSON.stringify(quizResponses.current));
-    axios.post("/api/recall_Opioids", quizResponses.current).then((response) => {
-      let nextPage = pageHandler(location.pathname);
-      history.push(nextPage);
-    });
-  };
-
-  const onCurrentPageChanging = (survey, option) => {
-    if (!option.isNextPage) return;
-    let allTrue = true;
-    survey.getAllQuestions().forEach((q) => {
-      if (survey.currentPage == q.page) {
-        let correct = isAnswerCorrect(q);
-        correct = correct == undefined ? true : correct;
-
-        allTrue = allTrue && correct;
-        renderCorrectAnswer(q);
-      }
-    });
-    console.log(allTrue);
-    if (allTrue) {
-      option.allowChanging = true;
-    } else {
-      option.allowChanging = false;
-    }
-    
-  };
-
-  function getTextHtml(text, str, isCorrect) {
-    if (text.indexOf(str) < 0) return undefined;
-    return (
-      text.substring(0, text.indexOf(str)) +
-      "<span style='color:" +
-      (isCorrect ? "green" : "red") +
-      "'>" +
-      str +
-      "</span>"
-    );
-  }
-  function isAnswerCorrect(q) {
-    const right = q.correctAnswer;
-    if (right == undefined) return undefined;
-    if (!right || q.isEmpty()) return undefined;
-    var left = q.value;
-    if (!Array.isArray(right)) return right == left;
-    if (!Array.isArray(left)) left = [left];
-    for (var i = 0; i < left.length; i++) {
-      if (right.indexOf(left[i]) < 0) return false;
-    }
-    return true;
-  }
-
-  function renderCorrectAnswer(q) {
-    if (!q) return;
-    const isCorrect = isAnswerCorrect(q);
-    if (!q.prevTitle) {
-      q.prevTitle = q.title;
-    }
-    if (isCorrect === undefined) {
-      q.title = q.prevTitle;
-    } else {
-      q.title = q.prevTitle + " " + (isCorrect ? correctStr : inCorrectStr);
-    }
-  }
 
   const model = new Survey.Model(json);
   model.showCompletedPage = false;
-  model.onTextMarkdown.add((sender, options) => {
-    var text = options.text;
-    var html = getTextHtml(text, correctStr, true);
-    if (!html) {
-      html = getTextHtml(text, inCorrectStr, false);
-    }
-    if (!!html) {
-      options.html = html;
-    }
-  });
+  model.questionTitleTemplate = "";
+  model.showQuestionNumbers = "none";
+
   
+
   return (
     
     <Container
@@ -340,23 +210,41 @@ const Recall_Opioids = () => {
         }}
       >
         <Typography variant="h3">
-          How Bad Is the <span style={{ fontWeight: "bold" }}>Drug Overdose</span> Epidemic?
+              <span className={`${styles.textBody} ${styles.title}`}>How Bad Is the <span
+                  style={{fontWeight: "bold"}}> Drug Overdose </span> epidemic?</span>
+        </Typography>
+        <Typography variant={"body1"}>
+                   <span
+                       className={styles.txtImportantUnique}>Article 3</span><p> Since 2002, the <span
+                className={styles.txtImportant}>number</span> of Americans who have died every year from overdoses of <span
+                className={styles.txtImportant}>synthetic opioids _______.</span></p>
         </Typography>
         
       </div>
+      {/* <Survey.Survey
+        model={model}
+      /> */}
 
       <div className="viz" style={{ display: "flex", flexDirection: "column" }}>
-        <div style={{ width: "100%", height: "500px" }}>
+        <div style={{ width: "200%", height: "50%" }}>
           <Suspense fallback={<div>loading...</div>}>
             <LineChart type="value" data={lineData} idLine={1} startYear={2002} />
           </Suspense>
         </div>
-        <Survey.Survey
-          model={model}
-          onComplete={onComplete}
-          onCompleting={onCompleting}
-          onCurrentPageChanging={onCurrentPageChanging}
-        />
+      </div>
+      <div>
+        <Button
+              variant="contained"
+              color="primary"
+              onClick={() => {
+                let nextPage = pageHandler(location.pathname);
+                history.push(nextPage);
+              }}
+              style={{marginTop: '300px',marginLeft: '500px', marginRight: '20px'}}
+            >
+              Continue
+        </Button>
+      
       </div>
     </Container>
   );

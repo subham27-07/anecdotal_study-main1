@@ -200,6 +200,11 @@ const VisualElicitation_population = () => {
               <span className={`${styles.textBody} ${styles.title}`}>How Bad Is the <span
                   style={{fontWeight: "bold"}}> Drug Overdose </span> epidemic?</span>
         </Typography>
+        <Typography variant={"body1"}>
+                        <span className={styles.txtImportantUnique}>Article 2</span><p> Since 2002, <span
+                        className={styles.txtImportant}>percentage</span> of American population with <span
+                        className={styles.txtImportant}>drug use disorders _______.</span></p>
+        </Typography>
         
       </div>
       {/*<Survey.Survey*/}
@@ -207,7 +212,7 @@ const VisualElicitation_population = () => {
       {/*/>*/}
 
       <div className="viz" style={{ display: "flex", flexDirection: "column" }}>
-        <div style={{ width: "100%", height: "500px" }}>
+        <div style={{ width: "100%",margin:"0 auto"}}>
           <Suspense fallback={<div>loading...</div>}>
             <LineChart type="value" data={lineData} idLine={1} startYear={2002} />
           </Suspense>

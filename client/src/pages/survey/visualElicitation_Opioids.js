@@ -213,14 +213,20 @@ const VisualElicitation_Opioids = () => {
               <span className={`${styles.textBody} ${styles.title}`}>How Bad Is the <span
                   style={{fontWeight: "bold"}}> Drug Overdose </span> epidemic?</span>
         </Typography>
+        <Typography variant={"body1"}>
+                   <span
+                       className={styles.txtImportantUnique}>Article 3</span><p> Since 2002, the <span
+                className={styles.txtImportant}>number</span> of Americans who have died every year from overdoses of <span
+                className={styles.txtImportant}>synthetic opioids _______.</span></p>
+        </Typography>
         
       </div>
-      <Survey.Survey
+      {/* <Survey.Survey
         model={model}
-      />
+      /> */}
 
       <div className="viz" style={{ display: "flex", flexDirection: "column" }}>
-        <div style={{ width: "100%", height: "500px" }}>
+        <div style={{ width: "100%",margin:"0 auto"}}>
           <Suspense fallback={<div>loading...</div>}>
             <LineChart type="value" data={lineData} idLine={1} startYear={2002} />
           </Suspense>
