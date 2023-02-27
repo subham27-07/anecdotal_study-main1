@@ -278,7 +278,7 @@ class LineChart extends Component {
       text.enter().append('text')
         .merge(text)
         .attr('class', 'value-text')
-        .attr('x', d => x(d.year))
+        .attr('x', d => x(d.year)+ 150)
         .attr('y', d => y(d[type]))
         .text(d => `${d[type]}`);
     }
