@@ -48,13 +48,13 @@ class LineChart extends Component {
     this.setState({userDataLine:this.userDataLine})
     const userDrawnValue = this.userDataLine.filter(d => d.defined === true);
 
-    const width = 900;
+    const width = 500;
     const height = 425;
     const margin = {
       top: 50,
-      right: 150,
+      right: 10,
       bottom: 100,
-      left: 150,
+      left: 50,
     };
     const svgContainer = d3.select(this.svgReal.current);
    
@@ -175,7 +175,11 @@ class LineChart extends Component {
         .tickValues(availableYears)
         .tickFormat(d3.format('.4')));
         
-    
+    // 
+    // Rotate x-axis labels
+    svg.selectAll(".axis-x-line text")
+    .attr("transform", "rotate(-45)")
+    .style("text-anchor", "end");
     // 
     svg.append('g')
       .attr('class', 'grid')
@@ -278,7 +282,7 @@ class LineChart extends Component {
       text.enter().append('text')
         .merge(text)
         .attr('class', 'value-text')
-        .attr('x', d => x(d.year)+ 150)
+        .attr('x', d => x(d.year)+ 10)
         .attr('y', d => y(d[type]))
         .text(d => `${d[type]}`);
     }

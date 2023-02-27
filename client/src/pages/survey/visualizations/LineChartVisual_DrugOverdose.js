@@ -174,7 +174,11 @@ class LineChart extends Component {
         .tickValues(availableYears)
         .tickFormat(d3.format('.4')));
         
-    
+    // 
+    // Rotate x-axis labels
+    svg.selectAll(".axis-x-line text")
+    .attr("transform", "rotate(-45)")
+    .style("text-anchor", "end");
     // 
     svg.append('g')
       .attr('class', 'grid')
@@ -196,6 +200,8 @@ class LineChart extends Component {
       )
       .style('stroke-dasharray', ('3, 3'))
       .style('opacity', 0.1);
+    // 
+    
     // 
     svg.append('g')
       .attr('class', 'grid')

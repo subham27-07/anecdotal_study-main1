@@ -135,8 +135,6 @@ const VisualElicitation_drugOverdose = () => {
     setClipAnimation(true);
   };
 
-
-
   const questionCondition = useRecoilValue(questionState);
 
   const extraQuestions =
@@ -220,7 +218,7 @@ const VisualElicitation_drugOverdose = () => {
       {/*/>*/}
 
       <div className="viz" style={{ display: "flex", flexDirection: "column" }}>
-        <div style={{ width: "60%",margin:"0 auto"}}>
+        <div style={{ width: "100%",margin:"0 auto"}}>
           <Suspense fallback={<div>loading...</div>}>
             <LineChart type="value" data={lineData} idLine={1} startYear={2002} />
           </Suspense>
