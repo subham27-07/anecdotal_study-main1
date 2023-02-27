@@ -1,12 +1,11 @@
 import React, { useRef } from "react";
-import { atom, selector } from "recoil";
+
 import { useHistory, useLocation } from "react-router-dom";
 import pageHandler from "../pageHandler";
 import axios from "axios";
 import * as Survey from "survey-react";
 import { Divider, Typography, Container } from "@mui/material";
-import Tweet from "../../components/tweet/tweet";
-import TweetQuote from "../../components/tweet/tweetQuote";
+
 import { useRecoilValue } from "recoil";
 import { questionState } from "../../atoms/questionSelector";
 import "survey-react/survey.css";
@@ -230,32 +229,5 @@ const Attitude_ElicitationPost = (props) => {
     </Container>
   );
 };
-
-export const labelSelector = selector({
-    key: "labelQuestionSelector",
-    get: ({ get }) => {
-      let questionCondition = get(questionState);
-      switch (questionCondition) {
-        case "share":
-          return [
-            "Definitely no",
-            "Probably no",
-            "Probably yes",
-            "Definitely yes",
-          ];
-          break;
-        case "strength":
-          return [
-            "Extremely Serious Problem",
-            "Serious Problem",
-            "Moderate Problem",
-            "Minor Problem",
-            "Not a Problem",
-          ];
-  
-          break;
-      }
-    },
-  });
 
 export default Attitude_ElicitationPost;

@@ -130,9 +130,12 @@ const VisualElicitation_drugOverdose = () => {
   const location = useLocation();
   const [clipAnimation, setClipAnimation] = useState(false);
 
+
   const handleShowAnimation = () => {
     setClipAnimation(true);
   };
+
+
 
   const questionCondition = useRecoilValue(questionState);
 
@@ -151,7 +154,7 @@ const VisualElicitation_drugOverdose = () => {
             type: "html",
             html: "<span style='font-family: serif; font-size: 1.25rem;'> 👉👉👉 <span style='font-weight: bold; color:gray;'> Article 1.</span> Since 2002, the <span style='font-weight: bold'>number</span> of Americans who have died every year from" +
                 "<span style='font-weight: bold'> Drug Overdose</span> ...</span>",
-
+ 
           },
            
 
@@ -205,13 +208,19 @@ const VisualElicitation_drugOverdose = () => {
                   style={{fontWeight: "bold"}}> Drug Overdose </span> epidemic?</span>
         </Typography>
 
+        <Typography variant={"body1"}>
+                        <span className={styles.txtImportantUnique}> Article 1</span> <p>Since 2002, the <span
+                        className={styles.txtImportant}>number</span> of Americans who have died every year from
+                            <span className={styles.txtImportant}> Drug Overdose _______.</span> </p>
+         </Typography>
+
       </div>
       {/*<Survey.Survey*/}
       {/*  model={model}*/}
       {/*/>*/}
 
       <div className="viz" style={{ display: "flex", flexDirection: "column" }}>
-        <div style={{ width: "100%", height: "500px" }}>
+        <div style={{ width: "60%",margin:"0 auto"}}>
           <Suspense fallback={<div>loading...</div>}>
             <LineChart type="value" data={lineData} idLine={1} startYear={2002} />
           </Suspense>

@@ -31,7 +31,8 @@ class LineChart extends Component {
     this.clipElement = null;
     this.clipAnimation = false;
     this.state = {
-        showText: false
+        showText: false,
+        userDataLine:[]
       };
   }
 
@@ -44,6 +45,7 @@ class LineChart extends Component {
       data, type, idLine, startYear,
     } = this.props;
     this.userDataLine = this.transformData();
+    this.setState({userDataLine:this.userDataLine})
     const userDrawnValue = this.userDataLine.filter(d => d.defined === true);
 
     const width = 900;
@@ -73,9 +75,9 @@ class LineChart extends Component {
     y.domain([0, 80000]);
     
   
-    const yFormat = d3.scaleLinear()
-      .domain([0, d3.max(data, d => d[type])])
-      .range([0, 90000]);
+    // const yFormat = d3.scaleLinear()
+    //   .domain([0, d3.max(data, d => d[type])])
+    //   .range([0, 90000]);
 
     svg.append('g')
       .attr('class', 'axis-y-line')
@@ -98,7 +100,7 @@ class LineChart extends Component {
     const dataXMax = d3.max(data, d => d.year);
 
     x.domain(d3.extent(data, d => d.year));
-    y.domain([0, dataYMax]);
+    y.domain([0, 80000]);
 
     let mainLine;
     if (idLine) {
@@ -248,44 +250,39 @@ class LineChart extends Component {
     
 
     this.userDataLine = this.userDataLine.map((d) => {
-      if (Math.abs(d.year - year) < 0.5) return { ...d, [type]: Math.round(newVal * 4) / 4, defined: true };
+      // if (Math.abs(d.year - year) < 0.5) return { ...d, [type]: Math.round(newVal * 4) / 4, defined: true };
+      if (Math.abs(d.year - year) < 0.5) return { ...d, [type]: Math.floor(newVal), defined: true };
       return d;
     });
+
+    this.setState({ userDataLine : this.userDataLine});
+
     this.youDrawIt
       .data([this.userDataLine])
       .attr('d', line.defined(d => d.defined));
-
-    
 
     
     this.userDataLine.forEach((data) => {
       console.log(`Year: ${data.year}, Y Value: ${data[type]}`);
     });
 
-    this.youDrawIt
-    .data([this.userDataLine])
-    .attr('d', line.defined(d => d.defined));
+    const definedValues = this.userDataLine.filter(d => d.defined === true);
+    if (definedValues.length === this.userDataLine.length) {
+      const svg = d3.select('svg');
 
-    const svg = d3.select('svg');
+      const latestData = this.userDataLine[this.userDataLine.length - 1];
+      const text = svg.selectAll('.value-text').data([latestData]);
 
-    const latestData = this.userDataLine[this.userDataLine.length - 1];
-    const text = svg.selectAll('.value-text').data([latestData]);
+      text.exit().remove();
 
-    
+      text.enter().append('text')
+        .merge(text)
+        .attr('class', 'value-text')
+        .attr('x', d => x(d.year))
+        .attr('y', d => y(d[type]))
+        .text(d => `${d[type]}`);
+    }
 
-    text.exit().remove();
-
-    text.enter().append('text')
-      .merge(text)
-      .attr('class', 'value-text')
-      .attr('x', d => x(d.year))
-      .attr('y', d => y(d[type]))
-      .text(d => `${d[type]}`);
-
-      // if (!this.clipAnimation && d3.mean(this.userDataLine, d => d.defined) === 1) {
-      //   this.clipAnimation = true;
-      //   this.clipElement.transition().duration(1000).attr('width', x(dataXMax));
-      // }
 
   });
 
@@ -304,10 +301,13 @@ class LineChart extends Component {
   }
 
   handleClick = () => {
-    this.setState({ showText: true });
-    this.renderAnimation();
+    const definedValues = this.userDataLine.filter(d => d.defined === true);
+    if (definedValues.length === this.userDataLine.length) {
+      this.setState({ showText: true });
+      this.renderAnimation();
+    }
+    console.log(this.userDataLine)
   };
-
 
   render() {
     return (
@@ -316,11 +316,13 @@ class LineChart extends Component {
             <svg ref={this.svgReal} />
           </div>
           <div style={{marginTop: '20px'}}>
-            <Button
+          <Button
               variant="contained"
               color="primary"
+              // disabled={this.userDataLine.filter(d => d.defined === true).length === this.userDataLine.length?true:false}
+              disabled={this.state.userDataLine.every((d)=>d.defined===true)?false:true}
               onClick={this.handleClick}
-              style={{marginTop: '60px',marginLeft: '500px', marginRight: '20px'}}
+              style={{marginTop: '120px',marginLeft: '300px', marginRight: '20px'}}
             >
               Complete
             </Button>

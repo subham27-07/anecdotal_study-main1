@@ -31,7 +31,8 @@ class LineChart extends Component {
     this.clipElement = null;
     this.clipAnimation = false;
     this.state = {
-        showText: false
+        showText: false,
+        userDataLine:[]
       };
   }
 
@@ -44,15 +45,16 @@ class LineChart extends Component {
       data, type, idLine, startYear,
     } = this.props;
     this.userDataLine = this.transformData();
+    this.setState({userDataLine:this.userDataLine})
     const userDrawnValue = this.userDataLine.filter(d => d.defined === true);
 
     const width = 900;
     const height = 425;
     const margin = {
       top: 50,
-      right: 150,
+      right: 30,
       bottom: 30,
-      left: 150,
+      left: 50,
     };
     const svgContainer = d3.select(this.svgReal.current);
    
@@ -99,7 +101,7 @@ class LineChart extends Component {
     const dataXMax = d3.max(data, d => d.year);
 
     x.domain(d3.extent(data, d => d.year));
-    y.domain([0, dataYMax]);
+    y.domain([0, 10]);
 
     let mainLine;
     if (idLine) {
@@ -249,9 +251,13 @@ class LineChart extends Component {
     
 
     this.userDataLine = this.userDataLine.map((d) => {
-      if (Math.abs(d.year - year) < 0.5) return { ...d, [type]: Math.round(newVal * 4) / 4, defined: true };
+      // if (Math.abs(d.year - year) < 0.5) return { ...d, [type]: Math.round(newVal * 4) / 4, defined: true };
+      if (Math.abs(d.year - year) < 0.5) return { ...d, [type]: Math.floor(newVal), defined: true };
       return d;
     });
+
+    this.setState({ userDataLine : this.userDataLine});
+
     this.youDrawIt
       .data([this.userDataLine])
       .attr('d', line.defined(d => d.defined));
@@ -261,34 +267,24 @@ class LineChart extends Component {
       console.log(`Year: ${data.year}, Y Value: ${data[type]}`);
     });
 
-    this.youDrawIt
-    .data([this.userDataLine])
-    .attr('d', line.defined(d => d.defined));
+    const definedValues = this.userDataLine.filter(d => d.defined === true);
+    if (definedValues.length === this.userDataLine.length) {
+      const svg = d3.select('svg');
 
-    // if (!this.clipAnimation && d3.mean(this.userDataLine, d => d.defined) === 1) {
-    //   this.clipAnimation = true;
-    //   this.clipElement.transition().duration(1000).attr('width', x(dataXMax));
-    // }
+      const latestData = this.userDataLine[this.userDataLine.length - 1];
+      const text = svg.selectAll('.value-text').data([latestData]);
 
-    const svg = d3.select('svg');
+      text.exit().remove();
 
-    const latestData = this.userDataLine[this.userDataLine.length - 1];
-    const text = svg.selectAll('.value-text').data([latestData]);
-
-    text.exit().remove();
-
-    text.enter().append('text')
-      .merge(text)
-      .attr('class', 'value-text')
-      .attr('x', d => x(d.year))
-      .attr('y', d => y(d[type]))
-      .text(d => `${d[type]}`);
-  
+      text.enter().append('text')
+        .merge(text)
+        .attr('class', 'value-text')
+        .attr('x', d => x(d.year))
+        .attr('y', d => y(d[type]))
+        .text(d => `${d[type]}`);
+    }
 
     
-    if (this.clipAnimation) {
-      this.userDataLine = this.userDataLine.filter(d => d.year <= year);
-    }
   });
 
   clampFunc = (a, b, c) => Math.max(a, Math.min(b, c));
@@ -304,9 +300,14 @@ class LineChart extends Component {
       })
       .filter(d => d.year >= startYear);
   }
+
   handleClick = () => {
-    this.setState({ showText: true });
-    this.renderAnimation();
+    const definedValues = this.userDataLine.filter(d => d.defined === true);
+    if (definedValues.length === this.userDataLine.length) {
+      this.setState({ showText: true });
+      this.renderAnimation();
+    }
+    console.log(this.userDataLine)
   };
   
 
@@ -319,12 +320,14 @@ class LineChart extends Component {
           </div>
           <div style={{marginTop: '20px'}}>
             <Button
-              variant="contained"
-              color="primary"
-              onClick={this.handleClick}
-              style={{marginTop: '120px',marginLeft: '500px', marginRight: '20px'}}
-            >
-              Complete
+                variant="contained"
+                color="primary"
+                // disabled={this.userDataLine.filter(d => d.defined === true).length === this.userDataLine.length?true:false}
+                disabled={this.state.userDataLine.every((d)=>d.defined===true)?false:true}
+                onClick={this.handleClick}
+                style={{marginTop: '120px',marginLeft: '300px', marginRight: '20px'}}
+              >
+                Complete
             </Button>
           </div>
           { this.state.showText && (
