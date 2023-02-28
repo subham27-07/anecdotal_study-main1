@@ -125,9 +125,10 @@ const VisualElicitation_drugOverdose = () => {
   ];
 
 
-  // const quizResponses = useRef([]);
+  const quizResponses = useRef([]);
   const history = useHistory();
   const location = useLocation();
+  
   const [clipAnimation, setClipAnimation] = useState(false);
 
 
@@ -218,7 +219,7 @@ const VisualElicitation_drugOverdose = () => {
       {/*/>*/}
 
       <div className="viz" style={{ display: "flex", flexDirection: "column" }}>
-        <div style={{ width: "100%",margin:"0 auto"}}>
+        <div style={{ width: "110%",margin:"0 auto"}}>
           <Suspense fallback={<div>loading...</div>}>
             <LineChart type="value" data={lineData} idLine={1} startYear={2002} />
           </Suspense>
@@ -234,7 +235,7 @@ const VisualElicitation_drugOverdose = () => {
                 let nextPage = pageHandler(location.pathname);
                 history.push(nextPage);
               }}
-              style={{marginTop: '5%',marginLeft: '500px', marginRight: '20px'}}
+              style={{marginTop: '5%',marginLeft: '180px', marginRight: '20px'}}
             >
               Continue
         </Button>

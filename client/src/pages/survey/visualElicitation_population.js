@@ -226,7 +226,7 @@ const VisualElicitation_population = () => {
               let nextPage = pageHandler(location.pathname);
               history.push(nextPage);
             }}
-            style={{marginTop: '300px',marginLeft: '500px', marginRight: '20px'}}
+            style={{marginTop: '5%',marginLeft: '180px', marginRight: '20px'}}
           >
             Continue
           </Button>
