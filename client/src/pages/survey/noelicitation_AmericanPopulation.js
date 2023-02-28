@@ -55,7 +55,7 @@ const Noelicitation_AmericanPopulation = (props) => {
 
         console.log("Survey results: " + JSON.stringify(quizResponses.current));
         axios.post("/api/noelicitation_AmericanPopulation", quizResponses.current).then((response) => {
-            let nextPage = pageHandler(location.pathname);
+            let nextPage = pageHandler(props.pages, location.pathname);
             history.push(nextPage);
         });
     };

@@ -91,7 +91,7 @@ const Textelicitation_AmericanPopulation = (props) => {
 
         console.log("Survey results: " + JSON.stringify(quizResponses.current));
         axios.post("/api/quiz_Textelicitation1", quizResponses.current).then((response) => {
-            let nextPage = pageHandler(location.pathname);
+            let nextPage = pageHandler(props.pages, location.pathname);
             //   history.push(nextPage);
         });
     };
@@ -202,7 +202,7 @@ const Textelicitation_AmericanPopulation = (props) => {
                 variant="contained"
                 color="primary"
                 onClick={() => {
-                    let nextPage = pageHandler(location.pathname);
+                    let nextPage = pageHandler(props.pages, location.pathname);
                     history.push(nextPage);
                 }}
             >

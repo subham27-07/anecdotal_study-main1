@@ -14,7 +14,7 @@ import "survey-react/survey.css";
 const LineChart = lazy(() => import('./visualizations/LineChart2'));
 import styles from './articles.module.css'
 
-const Viz1 = () => {
+const Viz1 = (props) => {
   const lineData = [
     {
       id: 1,
@@ -200,7 +200,7 @@ const Viz1 = () => {
 
   var defaultThemeColors = Survey.StylesManager.ThemeColors["default"];
   defaultThemeColors["$main-color"] = "black";
-  defaultThemeColors["$main-hover-color"] = "lightgrey";
+  defaultThemeColors["$main-hover-color"] = "darkorange";
   defaultThemeColors["$text-color"] = "#4a4a4a";
   defaultThemeColors["$header-color"] = "#7ff07f";
 
@@ -236,7 +236,7 @@ const Viz1 = () => {
 
     console.log("Survey results: " + JSON.stringify(quizResponses.current));
     axios.post("/api/viz1", quizResponses.current).then((response) => {
-      let nextPage = pageHandler(location.pathname);
+      let nextPage = pageHandler(props.pages, location.pathname);
       history.push(nextPage);
     });
   };

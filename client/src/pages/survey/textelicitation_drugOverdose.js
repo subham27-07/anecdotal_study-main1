@@ -94,7 +94,7 @@ const completedSurvey = ()=>{
             variant="contained"
             color="primary"
             onClick={() => {
-                let nextPage = pageHandler(location.pathname);
+                let nextPage = pageHandler(props.pages, location.pathname);
                 history.push(nextPage);
             }}
             className={styles.actions}
@@ -119,7 +119,7 @@ const completedSurvey = ()=>{
         setMessage("");
         console.log("Survey results: " + JSON.stringify(quizResponses.current));
         axios.post("/api/textelicitation_drugOverdose", quizResponses.current).then((response) => {
-            let nextPage = pageHandler(location.pathname);
+            let nextPage = pageHandler(props.pages, location.pathname);
         });
     };
 

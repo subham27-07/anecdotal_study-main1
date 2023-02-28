@@ -82,7 +82,7 @@ const PreSurveyPage = (props) => {
     console.log("Survey results: " + JSON.stringify(survey.data));
     axios.post("/api/preq", survey.data).then((response) => {
       // history.push("/instructions1");
-      let nextPage = pageHandler(location.pathname);
+      let nextPage = pageHandler(props.pages, location.pathname);
       history.push(nextPage);
     });
   };

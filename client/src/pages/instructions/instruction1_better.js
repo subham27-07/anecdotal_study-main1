@@ -117,7 +117,7 @@ const Instructions1 = (props) => {
     if (stage === -1) {
       incrementStage();
     } else if (stage === maxStage) {
-      let nextPage = pageHandler(location.pathname);
+      let nextPage = pageHandler(props.pages, location.pathname);
       history.push(nextPage);
     }
   }, [stage]);

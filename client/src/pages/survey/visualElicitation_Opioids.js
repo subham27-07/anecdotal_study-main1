@@ -15,7 +15,7 @@ import styles from "./articles.module.css";
 const LineChart = lazy(() => import('./visualizations/LineChartVisual_Opioids'));
 
 
-const VisualElicitation_Opioids = () => {
+const VisualElicitation_Opioids = (props) => {
   const lineData = [
     {
       id: 1,
@@ -237,7 +237,7 @@ const VisualElicitation_Opioids = () => {
               variant="contained"
               color="primary"
               onClick={() => {
-                let nextPage = pageHandler(location.pathname);
+                let nextPage = pageHandler(props.pages, location.pathname);
                 history.push(nextPage);
               }}
               style={{marginTop: '5%',marginLeft: '180px', marginRight: '20px'}}

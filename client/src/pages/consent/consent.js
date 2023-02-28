@@ -44,7 +44,7 @@ const Consent = (props) => {
       )
       .then((result) => {
         console.log(result);
-        let nextPage = pageHandler(location.pathname);
+        let nextPage = pageHandler(props.pages, location.pathname);
         history.push(nextPage);
       });
   };

@@ -46,7 +46,7 @@ const PreSurveyPage = (props) => {
   };
   var defaultThemeColors = Survey.StylesManager.ThemeColors["default"];
   defaultThemeColors["$main-color"] = "black";
-  defaultThemeColors["$main-hover-color"] = "lightgrey";
+  defaultThemeColors["$main-hover-color"] = "darkorange";
   defaultThemeColors["$text-color"] = "#4a4a4a";
   defaultThemeColors["$header-color"] = "#7ff07f";
 
@@ -60,7 +60,7 @@ const PreSurveyPage = (props) => {
     console.log("Survey results: " + JSON.stringify(survey.data));
     axios.post("/api/cogref", survey.data).then((response) => {
       console.log(response);
-      let nextPage = pageHandler(location.pathname);
+      let nextPage = pageHandler(props.pages, location.pathname);
       history.push(nextPage);
     });
   };

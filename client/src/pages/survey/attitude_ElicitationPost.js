@@ -119,7 +119,7 @@ const Attitude_ElicitationPost = (props) => {
 
     console.log("Survey results: " + JSON.stringify(quizResponses.current));
     axios.post("/api/attitude_ElicitationPost", quizResponses.current).then((response) => {
-      let nextPage = pageHandler(location.pathname);
+      let nextPage = pageHandler(props.pages, location.pathname);
       history.push(nextPage);
     });
   };

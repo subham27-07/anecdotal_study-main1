@@ -14,7 +14,7 @@ import "survey-react/survey.css";
 import styles from "./articles.module.css";
 const LineChart = lazy(() => import('./visualizations/LineChartVisual_Population'));
 
-const VisualElicitation_population = () => {
+const VisualElicitation_population = (props) => {
     
   const lineData = [
     {
@@ -223,7 +223,7 @@ const VisualElicitation_population = () => {
             variant="contained"
             color="primary"
             onClick={() => {
-              let nextPage = pageHandler(location.pathname);
+              let nextPage = pageHandler(props.pages, location.pathname);
               history.push(nextPage);
             }}
             style={{marginTop: '5%',marginLeft: '180px', marginRight: '20px'}}

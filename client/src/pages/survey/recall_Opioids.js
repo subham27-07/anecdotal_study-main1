@@ -15,7 +15,7 @@ import styles from "./articles.module.css";
 const LineChart = lazy(() => import('./visualizations/LineChartVisual_Opioids'));
 
 
-const Recall_Opioids = () => {
+const Recall_Opioids = (props) => {
   const lineData = [
     {
       id: 1,
@@ -173,7 +173,7 @@ const Recall_Opioids = () => {
 
   var defaultThemeColors = Survey.StylesManager.ThemeColors["default"];
   defaultThemeColors["$main-color"] = "black";
-  defaultThemeColors["$main-hover-color"] = "lightgrey";
+  defaultThemeColors["$main-hover-color"] = "darkorange";
   defaultThemeColors["$text-color"] = "#4a4a4a";
   defaultThemeColors["$header-color"] = "#7ff07f";
 
@@ -237,7 +237,7 @@ const Recall_Opioids = () => {
               variant="contained"
               color="primary"
               onClick={() => {
-                let nextPage = pageHandler(location.pathname);
+                let nextPage = pageHandler(props.pages, location.pathname);
                 history.push(nextPage);
               }}
               style={{marginTop: '300px',marginLeft: '500px', marginRight: '20px'}}
