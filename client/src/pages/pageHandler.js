@@ -17,6 +17,7 @@ const pages = [
   "cogref",
   "cogref1",
   "instructionPost_Elicitation",
+  "instructionPost_Recall",
   "viz1",
   "recall_drugOverdose",
   "recall_Opioids",
