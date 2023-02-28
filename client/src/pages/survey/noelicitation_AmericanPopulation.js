@@ -91,7 +91,7 @@ const Noelicitation_AmericanPopulation = (props) => {
         style={{fontWeight: "bold"}}> Drug Overdose </span> epidemic?</span>
                 </Typography>
                 <Typography variant={'body1'}>
-                    <span className={styles.txtImportantUnique}>Article 2</span><p>Since 2002, <span
+                    <span className={`${styles.txtImportantUnique} ${styles.articleTwo}`}>Article 2</span><p>Since 2002, <span
                     className={styles.txtImportant}>percentage</span> of Americans population with <span
                     className={styles.txtImportant}>drug use disorders...</span></p>
                 </Typography>

@@ -93,7 +93,7 @@ const Noelicitation_Opioids = (props) => {
                 </Typography>
                 <Typography variant={'body1'}>
                    <span
-                       className={styles.txtImportantUnique}>Article 3</span><p>Since 2002, the <span
+                       className={`${styles.txtImportantUnique} ${styles.articleThree}`}>Article 3</span><p>Since 2002, the <span
                     className={styles.txtImportant}>number</span> of Americans who have died every year from overdoses
                     of <span
                         className={styles.txtImportant}>synthetic opioids...</span></p>

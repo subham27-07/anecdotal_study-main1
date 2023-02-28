@@ -38,12 +38,14 @@ const Consent = (props) => {
   const query = queryString.parse(location.search);
 
   const handleConsent = () => {
+      // push to db
+      const survey_start_time = Date.now()
     axios
       .get(
-        `/api/consent?PROLIFIC_PID=${PROLIFIC_PID}&STUDY_ID=${STUDY_ID}&SESSION_ID=${SESSION_ID}`
+        `/api/consent?PROLIFIC_PID=${PROLIFIC_PID}&STUDY_ID=${STUDY_ID}&SESSION_ID=${SESSION_ID}&survey_start=${survey_start_time}`
       )
       .then((result) => {
-        console.log(result);
+        // console.log(result);
         let nextPage = pageHandler(props.pages, location.pathname);
         history.push(nextPage);
       });
