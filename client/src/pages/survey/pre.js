@@ -4,7 +4,7 @@ import axios from "axios";
 import * as Survey from "survey-react";
 import pageHandler from "../pageHandler";
 import "survey-react/survey.css";
-
+import styles from './articles.module.css'
 const PreSurveyPage = (props) => {
   const location = useLocation();
   const history = useHistory();
@@ -63,6 +63,12 @@ const PreSurveyPage = (props) => {
         inputType: "number",
         title: "What is your age?",
         isRequired: true,
+        validators: [
+          { "type": "numeric", "text": "Value must be a number between 18 and 99.", "minValue": 18 , "maxValue": 99 },
+          // {"minValue": "18", 'text': "You must be at least 18 years old."},
+          // {"maxValue": "99", 'text': "Please enter a valid number."}
+
+        ]
       },
     ],
   };
@@ -100,6 +106,7 @@ const PreSurveyPage = (props) => {
         paddingBottm: "30px",
       }}
     >
+      <h3 className={styles.txtImportant} > Please answer the questions below.  </h3>
       <Survey.Survey model={model} onComplete={onComplete} />
     </div>
   );

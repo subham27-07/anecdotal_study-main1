@@ -86,7 +86,7 @@ const Attitude_Elicitation = (props) => {
 
   var defaultThemeColors = Survey.StylesManager.ThemeColors["default"];
   defaultThemeColors["$main-color"] = "black";
-  defaultThemeColors["$main-hover-color"] = "lightgrey";
+  defaultThemeColors["$main-hover-color"] = "darkorange";
   defaultThemeColors["$text-color"] = "#4a4a4a";
   defaultThemeColors["$header-color"] = "#7ff07f";
 

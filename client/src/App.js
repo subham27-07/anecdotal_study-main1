@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { useRecoilState } from "recoil";
-import { dataState } from "./atoms/data";
-import { responseState } from "./atoms/response";
-import { answerIndexState } from "./atoms/answerIndex";
-import { qualResponseState } from "./atoms/qualResponseIndex";
-import { questionState } from "./atoms/questionSelector";
-import { instructionResponseState } from "./atoms/instructionResponse";
+import React, {useState, useEffect, useRef} from "react";
+import {useRecoilState} from "recoil";
+import {dataState} from "./atoms/data";
+import {responseState} from "./atoms/response";
+import {answerIndexState} from "./atoms/answerIndex";
+import {qualResponseState} from "./atoms/qualResponseIndex";
+import {questionState} from "./atoms/questionSelector";
+import {instructionResponseState} from "./atoms/instructionResponse";
 import NavBar from "./components/nav/nav";
 import Container from "@mui/material/Container";
 import BottomNav from "./components/bottomNav/bottomNav";
@@ -47,297 +47,365 @@ import Topic_Involvement from "./pages/survey/topic_Involvement";
 import LoadingCircle from "./components/loading/loading";
 import axios from "axios";
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-  useLocation,
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Redirect,
+    useLocation,
 } from "react-router-dom";
-import { choose } from "./functions/functions";
+import {choose} from "./functions/functions";
 
 import "./App.css";
 
 function useQuery() {
-  const { search } = useLocation();
+    const {search} = useLocation();
 
-  return React.useMemo(() => new URLSearchParams(search), [search]);
+    return React.useMemo(() => new URLSearchParams(search), [search]);
 }
 
 const App = () => {
-  let query = useQuery();
-  const questions = ["strength", "share"];
-  const conditions =["text","viz","control"];
-  const condition=choose(conditions)
-  // const questions = ["strength"];
-  // const questions = ["share"];
-  const DEV = false;
-  const [data, setData] = useRecoilState(dataState);
-  const [response, setResponse] = useRecoilState(responseState);
-  const [answerIndex, setAnswerIndex] = useRecoilState(answerIndexState);
-  const [question, setQuestion] = useRecoilState(questionState);
-  const [qualResponseIndex, setQualResponseIndex] =
-    useRecoilState(qualResponseState);
-  const [instructionResponse, setInstructionResponse] = useRecoilState(
-    instructionResponseState
-  );
+    let query = useQuery();
+    const questions = ["strength", "share"];
+    const conditions = ["text", "viz", "control"];
+    const condition = choose(conditions)
+    // const questions = ["strength"];
+    // const questions = ["share"];
+    const DEV = false;
+    const [data, setData] = useRecoilState(dataState);
+    const [response, setResponse] = useRecoilState(responseState);
+    const [answerIndex, setAnswerIndex] = useRecoilState(answerIndexState);
+    const [question, setQuestion] = useRecoilState(questionState);
+    const [qualResponseIndex, setQualResponseIndex] =
+        useRecoilState(qualResponseState);
+    const [instructionResponse, setInstructionResponse] = useRecoilState(
+        instructionResponseState
+    );
 
-  const [loadingOpacity, setLoadingOpacity] = useState(0);
+    const [loadingOpacity, setLoadingOpacity] = useState(0);
 
-  useEffect(() => {
-    const localStorage = window.localStorage;
-    /// FOR DEV
-    if (DEV) {
-      localStorage.clear();
-    }
-    if (!DEV) {
-      const sessionResponse = localStorage.getItem("response");
-      const sessionAnswerIndex = localStorage.getItem("answerIndex");
-      const sessionQualResponseIndex =
-        localStorage.getItem("qualResponseIndex");
-      const sessionQuestion = localStorage.getItem("question");
-      const sessionInstructionResponse = localStorage.getItem(
-        "instructionResponse"
-      );
-      // console.log(sessionInstructionResponse);
-      // console.log(sessionResponse);
-      if (sessionResponse !== null) {
-        setResponse(JSON.parse(sessionResponse));
-        // console.log(sessionResponse);
-      }
-      if (sessionInstructionResponse !== null) {
-        // console.log(sessionInstructionResponse);
-        setInstructionResponse(+sessionInstructionResponse);
-      }
-      if (sessionAnswerIndex !== null) {
-        setAnswerIndex(+sessionAnswerIndex);
-        // console.log("session answer index", sessionAnswerIndex);
-      }
-      if (sessionQualResponseIndex !== null) {
-        setQualResponseIndex(+sessionQualResponseIndex);
-        // console.log("qual response index", sessionQualResponseIndex);
-      }
-      if (sessionQuestion !== null) {
-        setQuestion(sessionQuestion);
-        // console.log("session question", sessionQuestion);
-      }
-    }
-  }, []);
+    //Randomize study flow
+    const pre_pages = [
+        "consent",
+        "pre",
+        "instructions1",
+        "quiz",
+        "attitude_Elicitation",
+        "topic_Involvement",
+    ]
+    const txt_pages = [
+        "textelicitation_drugOverdose",
+        "textelicitation_AmericanPopulation",
+        "textelicitation_Opioids",
+    ]
+    const visual_pages = [
+        "visualElicitation_drugOverdose",
+        "visualElicitation_population",
+        "visualElicitation_Opioids",
+    ]
+    const control = [
+        "noelicitation_drugOverdose",
+        "noelicitation_AmericanPopulation",
+        "noelicitation_Opioids",
+    ]
+    const post_pages = [
+        "cogref",
+        "cogref1",
+        "recall_drugOverdose",
+        "recall_Opioids",
+        "attitude_ElicitationPost",
+        "debrief",
+    ]
 
-  useEffect(() => {
-    if (response && Object.keys(response).length > 0) {
-      window.localStorage.setItem("response", JSON.stringify(response));
-    }
-  }, [response]);
+    // Store design flow
+    const study_pages = useRef([pre_pages])
 
-  useEffect(() => {
-    if (response && Object.keys(response).length > 0) {
-      window.localStorage.setItem("answerIndex", answerIndex);
-    }
-  }, [answerIndex]);
-
-  useEffect(() => {
-    // console.log(question);
-    if (response && Object.keys(response).length > 0) {
-      window.localStorage.setItem("qualResponseIndex", qualResponseIndex);
-    }
-  }, [qualResponseIndex]);
-
-  useEffect(() => {
-    // console.log(instructionResponse);
-    if (instructionResponse !== null) {
-      window.localStorage.setItem("instructionResponse", instructionResponse);
-    }
-  }, [instructionResponse]);
-
-  useEffect(() => {
-    console.log(question);
-    if (question) {
-      window.localStorage.setItem("question", question);
-    }
-  }, [question]);
-
-  useEffect(() => {
-    // console.log(data);
-    if (data) {
-      window.localStorage.setItem("data", JSON.stringify(data));
-    }
-  }, [data]);
-
-  useEffect(() => {
-    async function fetchData() {
-      const result = await axios.get("/api/data");
-      setTimeout(() => {
-        // console.log(result.data);
-        // let shuffledData = [shuffle(result.data[0]), shuffle(result.data[1])];
-        let shuffledData;
-        if (DEV) {
-          shuffledData = [
-            result.data[0].slice(0, 8),
-            result.data[1].slice(0, 8),
-          ];
-        } else {
-          shuffledData = [result.data[0], result.data[1]];
-          // shuffledData = [
-          //   result.data[0].slice(0, 4),
-          //   result.data[1].slice(0, 4),
-          // ];
+    const treatmentSelector = () => {
+        const treatment = choose(['txt', 'visual', 'control'])
+        console.log(treatment)
+        switch (treatment) {
+            case 'txt':
+                return [...pre_pages, ...txt_pages, ...post_pages];
+            case 'visual':
+                return [...pre_pages, ...visual_pages, ...post_pages];
+            case 'control':
+                return [...pre_pages, ...control, ...post_pages];
+            default:
+                console.log(`Treatment is : ${treatment}`)
+                console.log('Error with TreatmentSelector! No such treatment found!')
+                break;
         }
-
-        let q = choose(questions);
-        setQuestion(q);
-        setData(shuffledData);
-      }, 1000);
     }
+        // Set
+        useEffect(() => {
+            study_pages.current = treatmentSelector();
+        }, [])
 
-    const sessionData = window.localStorage.getItem("data");
-    // console.log("session data", sessionData);
-    if (sessionData !== null) {
-      setData(JSON.parse(sessionData));
-    } else {
-      fetchData();
-    }
-  }, []);
+        useEffect(() => {
+            const localStorage = window.localStorage;
+            /// FOR DEV
+            if (DEV) {
+                localStorage.clear();
+            }
+            if (!DEV) {
+                const sessionResponse = localStorage.getItem("response");
+                const sessionAnswerIndex = localStorage.getItem("answerIndex");
+                const sessionQualResponseIndex =
+                    localStorage.getItem("qualResponseIndex");
+                const sessionQuestion = localStorage.getItem("question");
+                const sessionInstructionResponse = localStorage.getItem(
+                    "instructionResponse"
+                );
+                // console.log(sessionInstructionResponse);
+                // console.log(sessionResponse);
+                if (sessionResponse !== null) {
+                    setResponse(JSON.parse(sessionResponse));
+                    // console.log(sessionResponse);
+                }
+                if (sessionInstructionResponse !== null) {
+                    // console.log(sessionInstructionResponse);
+                    setInstructionResponse(+sessionInstructionResponse);
+                }
+                if (sessionAnswerIndex !== null) {
+                    setAnswerIndex(+sessionAnswerIndex);
+                    // console.log("session answer index", sessionAnswerIndex);
+                }
+                if (sessionQualResponseIndex !== null) {
+                    setQualResponseIndex(+sessionQualResponseIndex);
+                    // console.log("qual response index", sessionQualResponseIndex);
+                }
+                if (sessionQuestion !== null) {
+                    setQuestion(sessionQuestion);
+                    // console.log("session question", sessionQuestion);
+                }
+            }
+        }, []);
 
-  return (
-    <div className="app" style={{ height: "100%", lineHeight: "150%" }}>
-      <Router>
-        {/*<NavBar height={"7%"} className="navBar"></NavBar>*/}
-        <div
-          style={{ width: "100%", height: "86%", overflow: "auto" }}
-          id="scrollWrapper"
-        >
-          <Container
-            // style={{ height: "86%", margin: "0 auto",  }}
-            // style={{ height: "93%" }}
-            id="root-container"
-            maxWidth="lg"
-          >
-            <Switch>
-              <Route
-                exact
-                path="/"
-                render={() => {
-                  return <Redirect to="/consent" />;
-                }}
-              />
-              {/* https://vtl-study.herokuapp.com/consent?PROLIFIC_PID={{%PROLIFIC_PID%}}&STUDY_ID={{%STUDY_ID%}}&SESSION_ID={{%SESSION_ID%}} */}
-              <Route path="/consent">
-                <ConsentPage
-                  PROLIFIC_PID={query.get("PROLIFIC_PID")}
-                  STUDY_ID={query.get("STUDY_ID")}
-                  SESSION_ID={query.get("SESSION_ID")}
-                ></ConsentPage>
-              </Route>
-              <Route path="/pre" component={PreSurveyPage}></Route>
-              <Route path="/instructions1">
-                <Instructions1></Instructions1>
-              </Route>
-              <Route
-                path="/instructions2"
-                render={() => {
-                  if (question === "strength") {
-                    return <InstructionsStrength></InstructionsStrength>;
-                  } else {
-                    // return <Redirect to="/instructions3"></Redirect>;
-                    return <InstructionsShare></InstructionsShare>;
-                  }
-                }}
-              ></Route>
-              <Route path="/Instructions3">
-                <Instructions3></Instructions3>
-              </Route>
-              <Route path="/quiz">
-                <Quiz></Quiz>
-              </Route>
-              <Route path="/textelicitation_drugOverdose">
-                <Textelicitation_drugOverdose></Textelicitation_drugOverdose>
-              </Route>
-              <Route path="/attitude_Elicitation">
-                <Attitude_Elicitation></Attitude_Elicitation>
-              </Route>
-              <Route path="/topic_Involvement">
-                <Topic_Involvement></Topic_Involvement>
-              </Route>
-              <Route path="/textelicitation_AmericanPopulation">
-                <Textelicitation_AmericanPopulation></Textelicitation_AmericanPopulation>
-              </Route>
-              <Route path="/textelicitation_Opioids">
-                <Textelicitation_Opioids></Textelicitation_Opioids>
-              </Route>
-              <Route path="/noelicitation_drugOverdose">
-                <Noelicitation_drugOverdose></Noelicitation_drugOverdose>
-              </Route>
-              <Route path="/noelicitation_AmericanPopulation">
-                <Noelicitation_AmericanPopulation></Noelicitation_AmericanPopulation>
-              </Route>
-              <Route path="/noelicitation_Opioids">
-                <Noelicitation_Opioids></Noelicitation_Opioids>
-              </Route>
-              <Route path="/recall_drugOverdose">
-                <Recall_drugOverdose></Recall_drugOverdose>
-              </Route>
-              <Route path="/viz1">
-                <Viz1></Viz1>
-              </Route>
-              <Route path="/visualElicitation_drugOverdose">
-                <VisualElicitation_drugOverdose></VisualElicitation_drugOverdose>
-              </Route>
-              <Route path="/visualElicitation_population">
-                <VisualElicitation_population></VisualElicitation_population>
-              </Route>
-              <Route path="/visualElicitation_Opioids">
-                <VisualElicitation_Opioids></VisualElicitation_Opioids>
-              </Route>
-              <Route path="/instructionPost_Elicitation">
-                <InstructionPost_Elicitation></InstructionPost_Elicitation>
-              </Route>
-              <Route path="/instructionPost_Recall">
-                <InstructionPost_Recall></InstructionPost_Recall>
-              </Route>
-              <Route path="/recall_Opioids">
-                <Recall_Opioids></Recall_Opioids>
-              </Route>
-              <Route path="/attitude_ElicitationPost">
-                <Attitude_ElicitationPost></Attitude_ElicitationPost>
-              </Route>
-              <Route path="/task1">
-                <Task
-                  phase={0}
-                  opacity={loadingOpacity}
-                  setLoadingOpacity={setLoadingOpacity}
-                ></Task>
-              </Route>
-              <Route path="/cogref" component={CogRefSurveyPage}></Route>
-              <Route path="/cogref1" component={CogRefSurveyPage1}></Route>
-              <Route path="/task2">
-                <Task
-                  phase={1}
-                  opacity={loadingOpacity}
-                  setLoadingOpacity={setLoadingOpacity}
-                ></Task>
-              </Route>
-              <Route path="/Instructions4">
-                <Instructions4></Instructions4>
-              </Route>
-              <Route path="/task3">
-                <QualTask
-                  opacity={loadingOpacity}
-                  setLoadingOpacity={setLoadingOpacity}
-                ></QualTask>
-              </Route>
+        useEffect(() => {
+            if (response && Object.keys(response).length > 0) {
+                window.localStorage.setItem("response", JSON.stringify(response));
+            }
+        }, [response]);
 
-              <Route path="/post" component={PostSurveyPage}></Route>
-              <Route path="/debrief">
-                <DebriefPage></DebriefPage>
-              </Route>
-            </Switch>
-          </Container>
-        </div>
-        {/*<BottomNav height="7%"></BottomNav>*/}
-      </Router>
-      <LoadingCircle opacity={loadingOpacity}></LoadingCircle>
-    </div>
-  );
-};
+        useEffect(() => {
+            if (response && Object.keys(response).length > 0) {
+                window.localStorage.setItem("answerIndex", answerIndex);
+            }
+        }, [answerIndex]);
 
-export default App;
+        useEffect(() => {
+            // console.log(question);
+            if (response && Object.keys(response).length > 0) {
+                window.localStorage.setItem("qualResponseIndex", qualResponseIndex);
+            }
+        }, [qualResponseIndex]);
+
+        useEffect(() => {
+            // console.log(instructionResponse);
+            if (instructionResponse !== null) {
+                window.localStorage.setItem("instructionResponse", instructionResponse);
+            }
+        }, [instructionResponse]);
+
+        useEffect(() => {
+            console.log(question);
+            if (question) {
+                window.localStorage.setItem("question", question);
+            }
+        }, [question]);
+
+        useEffect(() => {
+            // console.log(data);
+            if (data) {
+                window.localStorage.setItem("data", JSON.stringify(data));
+            }
+        }, [data]);
+
+        useEffect(() => {
+            async function fetchData() {
+                const result = await axios.get("/api/data");
+                setTimeout(() => {
+                    // console.log(result.data);
+                    // let shuffledData = [shuffle(result.data[0]), shuffle(result.data[1])];
+                    let shuffledData;
+                    if (DEV) {
+                        shuffledData = [
+                            result.data[0].slice(0, 8),
+                            result.data[1].slice(0, 8),
+                        ];
+                    } else {
+                        shuffledData = [result.data[0], result.data[1]];
+                        // shuffledData = [
+                        //   result.data[0].slice(0, 4),
+                        //   result.data[1].slice(0, 4),
+                        // ];
+                    }
+
+                    let q = choose(questions);
+                    setQuestion(q);
+                    setData(shuffledData);
+                }, 1000);
+            }
+
+            const sessionData = window.localStorage.getItem("data");
+            // console.log("session data", sessionData);
+            if (sessionData !== null) {
+                setData(JSON.parse(sessionData));
+            } else {
+                fetchData();
+            }
+        }, []);
+
+        return (
+            <div className="app" style={{height: "100%", lineHeight: "150%"}}>
+                <Router>
+                    {/*<NavBar height={"7%"} className="navBar"></NavBar>*/}
+                    <div
+                        style={{width: "100%", height: "86%", overflow: "auto"}}
+                        id="scrollWrapper"
+                    >
+                        <Container
+                            // style={{ height: "86%", margin: "0 auto",  }}
+                            // style={{ height: "93%" }}
+                            id="root-container"
+                            maxWidth="lg"
+                        >
+                            <Switch>
+                                <Route
+                                    exact
+                                    path="/"
+                                    render={() => {
+                                        return <Redirect to="/consent"/>;
+                                    }}
+                                />
+                                {/* https://vtl-study.herokuapp.com/consent?PROLIFIC_PID={{%PROLIFIC_PID%}}&STUDY_ID={{%STUDY_ID%}}&SESSION_ID={{%SESSION_ID%}} */}
+                                <Route path="/consent">
+                                    <ConsentPage
+                                        PROLIFIC_PID={query.get("PROLIFIC_PID")}
+                                        STUDY_ID={query.get("STUDY_ID")}
+                                        SESSION_ID={query.get("SESSION_ID")}
+                                        pages={study_pages}
+                                    ></ConsentPage>
+                                </Route>
+                                <Route path="/pre">
+                                    <PreSurveyPage pages={study_pages}/>
+                                </Route>
+                                <Route path="/instructions1">
+                                    <Instructions1 pages={study_pages}></Instructions1>
+                                </Route>
+                                <Route
+                                    path="/instructions2"
+                                    render={() => {
+                                        if (question === "strength") {
+                                            return <InstructionsStrength pages={study_pages}/>;
+                                        } else {
+                                            // return <Redirect to="/instructions3"></Redirect>;
+                                            return <InstructionsShare pages={study_pages}/>;
+                                        }
+                                    }}
+                                ></Route>
+                                <Route path="/Instructions3">
+                                    <Instructions3 pages={study_pages}/>
+                                </Route>
+                                <Route path="/quiz">
+                                    <Quiz pages={study_pages}/>
+                                </Route>
+                                <Route path="/textelicitation_drugOverdose">
+                                    <Textelicitation_drugOverdose pages={study_pages}/>
+                                </Route>
+                                <Route path="/attitude_Elicitation">
+                                    <Attitude_Elicitation pages={study_pages}/>
+                                </Route>
+                                <Route path="/topic_Involvement">
+                                    <Topic_Involvement pages={study_pages}/>
+                                </Route>
+                                <Route path="/textelicitation_AmericanPopulation">
+                                    <Textelicitation_AmericanPopulation pages={study_pages}/>
+                                </Route>
+                                <Route path="/textelicitation_Opioids">
+                                    <Textelicitation_Opioids pages={study_pages}/>
+                                </Route>
+                                <Route path="/noelicitation_drugOverdose">
+                                    <Noelicitation_drugOverdose pages={study_pages}/>
+                                </Route>
+                                <Route path="/noelicitation_AmericanPopulation">
+                                    <Noelicitation_AmericanPopulation pages={study_pages}/>
+                                </Route>
+                                <Route path="/noelicitation_Opioids">
+                                    <Noelicitation_Opioids pages={study_pages}/>
+                                </Route>
+                                <Route path="/recall_drugOverdose">
+                                    <Recall_drugOverdose pages={study_pages}/>
+                                </Route>
+                                <Route path="/viz1">
+                                    <Viz1 pages={study_pages}/>
+                                </Route>
+                                <Route path="/visualElicitation_drugOverdose">
+                                    <VisualElicitation_drugOverdose pages={study_pages}/>
+                                </Route>
+                                <Route path="/visualElicitation_population">
+                                    <VisualElicitation_population pages={study_pages}/>
+                                </Route>
+                                <Route path="/visualElicitation_Opioids">
+                                    <VisualElicitation_Opioids pages={study_pages}/>
+                                </Route>
+                                <Route path="/instructionPost_Elicitation">
+                                    <InstructionPost_Elicitation pages={study_pages}/>
+                                </Route>
+                                <Route path="/instructionPost_Recall">
+                                    <InstructionPost_Recall pages={study_pages}/>
+                                </Route>
+                                <Route path="/recall_Opioids">
+                                    <Recall_Opioids pages={study_pages}/>
+                                </Route>
+                                <Route path="/attitude_ElicitationPost">
+                                    <Attitude_ElicitationPost pages={study_pages}/>
+                                </Route>
+                                <Route path="/task1">
+                                    <Task
+                                        phase={0}
+                                        opacity={loadingOpacity}
+                                        setLoadingOpacity={setLoadingOpacity}
+                                        pages={study_pages}
+                                    />
+                                </Route>
+                                <Route path="/cogref">
+                                    <CogRefSurveyPage pages={study_pages}/>
+                                </Route>
+                                <Route path="/cogref1">
+                                    <CogRefSurveyPage1 pages={study_pages}/>
+                                </Route>
+                                <Route path="/task2">
+                                    <Task
+                                        phase={1}
+                                        opacity={loadingOpacity}
+                                        setLoadingOpacity={setLoadingOpacity}
+                                        pages={study_pages}
+                                    />
+                                </Route>
+                                <Route path="/Instructions4">
+                                    <Instructions4 pages={study_pages}/>
+                                </Route>
+                                <Route path="/task3">
+                                    <QualTask
+                                        opacity={loadingOpacity}
+                                        setLoadingOpacity={setLoadingOpacity}
+                                        pages={study_pages}
+                                    />
+                                </Route>
+                                <Route path="/post">
+                                    <PostSurveyPage pages={study_pages}/>
+                                </Route>
+                                <Route path="/debrief">
+                                    <DebriefPage pages={study_pages}/>
+                                </Route>
+                            </Switch>
+                        </Container>
+                    </div>
+                    {/*<BottomNav height="7%"></BottomNav>*/}
+                </Router>
+                <LoadingCircle opacity={loadingOpacity} pages={study_pages}/>
+            </div>
+        );
+    };
+
+    export default App;

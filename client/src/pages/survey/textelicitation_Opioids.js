@@ -91,7 +91,7 @@ const Textelicitation_Opioids = (props) => {
 
         console.log("Survey results: " + JSON.stringify(quizResponses.current));
         axios.post("/api/textelicitation_Opioids", quizResponses.current).then((response) => {
-            let nextPage = pageHandler(location.pathname);
+            let nextPage = pageHandler(props.pages, location.pathname);
             //   history.push(nextPage);
         });
     };
