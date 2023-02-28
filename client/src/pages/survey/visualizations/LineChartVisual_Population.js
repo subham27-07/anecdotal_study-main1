@@ -329,7 +329,7 @@ class LineChart extends Component {
                 // disabled={this.userDataLine.filter(d => d.defined === true).length === this.userDataLine.length?true:false}
                 disabled={this.state.userDataLine.every((d)=>d.defined===true)?false:true}
                 onClick={this.handleClick}
-                style={{marginTop: '120px',marginLeft: '300px', marginRight: '20px'}}
+                style={{marginTop: '120px',marginLeft: '180px', marginRight: '20px'}}
               >
                 Complete
             </Button>

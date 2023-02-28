@@ -165,7 +165,7 @@ class LineChart extends Component {
       .style('opacity', 0.7); 
     
 
-      const availableYears = [1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021];
+      const availableYears = [2014,2015,2016,2017,2018,2019,2020,2021];
 
     // Add the X Axis
     svg.append('g')
@@ -177,9 +177,9 @@ class LineChart extends Component {
         
     // 
     // Rotate x-axis labels
-    svg.selectAll(".axis-x-line text")
-    .attr("transform", "rotate(-45)")
-    .style("text-anchor", "end");
+    // svg.selectAll(".axis-x-line text")
+    // .attr("transform", "rotate(-45)")
+    // .style("text-anchor", "end");
     // 
     svg.append('g')
       .attr('class', 'grid')
@@ -307,10 +307,11 @@ class LineChart extends Component {
   handleClick = () => {
     const definedValues = this.userDataLine.filter(d => d.defined === true);
     if (definedValues.length === this.userDataLine.length) {
-      this.setState({ showText: true });
-      this.renderAnimation();
+      if (this.userDataLine[this.userDataLine.length - 1][this.props.type] === 20000) {
+        this.setState({ showText: true });
+        this.renderAnimation();
+      }
     }
-    console.log(this.userDataLine)
   };
 
   render() {

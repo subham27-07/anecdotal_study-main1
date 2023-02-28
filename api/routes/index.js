@@ -93,6 +93,19 @@ router.post("/cogref1", (req, res) => {
   );
 });
 
+router.post("/instructionPost_Elicitation", (req, res) => {
+  console.log(req.body);
+  let usertoken = req.session.usertoken;
+  Response.findOneAndUpdate(
+    { usertoken: usertoken },
+    { instructionPost_Elicitation: req.body },
+    (err, doc) => {
+      if (err) req.status(404).send(err);
+      else res.json(req.body);
+    }
+  );
+});
+
 router.post("/instruction", (req, res) => {
   console.log(req.body);
   let usertoken = req.session.usertoken;

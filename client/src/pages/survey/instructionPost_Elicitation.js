@@ -12,86 +12,11 @@ import { useRecoilValue } from "recoil";
 import { questionState } from "../../atoms/questionSelector";
 import "survey-react/survey.css";
 import styles from "./articles.module.css";
-const LineChart = lazy(() => import('./visualizations/LineChartVisual_Opioids'));
+const LineChart = lazy(() => import('./visualizations/LineChartVisual_bitcoin'));
 
 
-const Recall_Opioids = () => {
+const InstructionPost_Elicitation = () => {
   const lineData = [
-    {
-      id: 1,
-      value: 730,
-      year: 1999,
-    },
-    {
-      id: 1,
-      value: 782,
-      year: 2000,
-    },
-    {
-      id: 1,
-      value: 957,
-      year: 2001,
-    },
-    {
-      id: 1,
-      value: 1295,
-      year: 2002,
-    },
-    {
-      id: 1,
-      value: 1400,
-      year: 2003,
-    },
-    {
-      id: 1,
-      value: 1664,
-      year: 2004,
-    },
-    {
-      id: 1,
-      value: 1742,
-      year: 2005,
-    },
-    {
-      id: 1,
-      value: 2707,
-      year: 2006,
-    },
-    {
-      id: 1,
-      value: 2213,
-      year: 2007,
-    },
-    {
-      id: 1,
-      value: 2306,
-      year: 2008,
-    },
-    {
-      id: 1,
-      value: 2946,
-      year: 2009,
-    },
-    {
-      id: 1,
-      value: 3007,
-      year: 2010,
-    },
-    {
-      id: 1,
-      value: 2666,
-      year: 2011,
-    },
-    {
-      id: 1,
-      value: 2628,
-      year: 2012,
-    },
-    {
-      id: 1,
-      value: 3105,
-      year: 2013,
-    },
     {
       id: 1,
       value: 5544,
@@ -209,15 +134,19 @@ const Recall_Opioids = () => {
           justifyContent: "center",
         }}
       >
-        <Typography variant="h3">
-              <span className={`${styles.textBody} ${styles.title}`}>How Bad Is the <span
-                  style={{fontWeight: "bold"}}> Drug Overdose </span> epidemic?</span>
+        <Typography variant="h4">
+              <span className={`${styles.textBody} ${styles.title}`}>How has the bitcoin price <span
+                  style={{fontWeight: "bold"}}> changed </span> </span>
         </Typography>
         <Typography variant={"body1"}>
-                   <span
-                       className={styles.txtImportantUnique}>Article 3</span><p> Since 2002, the <span
-                className={styles.txtImportant}>number</span> of Americans who have died every year from overdoses of <span
-                className={styles.txtImportant}>synthetic opioids _______.</span></p>
+                   <p> Now we will show you  <span
+                className={styles.txtImportant}>some articles</span> please try to replicate what you saw from the article <span
+                className={styles.txtImportant}></span></p>
+        </Typography>
+        <Typography variant={"body1"}>
+                   <p> You can practice here   <span
+                className={styles.txtImportant}>before we move ahead</span> you need to draw the line for the missing year <span
+                className={styles.txtImportant}></span></p>
         </Typography>
         
       </div>
@@ -226,7 +155,7 @@ const Recall_Opioids = () => {
       /> */}
 
       <div className="viz" style={{ display: "flex", flexDirection: "column" }}>
-      <div style={{ width: "100%",margin:"0 auto"}}>
+        <div style={{ width: "100%",margin:"0 auto"}}>
           <Suspense fallback={<div>loading...</div>}>
             <LineChart type="value" data={lineData} idLine={1} startYear={2002} />
           </Suspense>
@@ -240,7 +169,7 @@ const Recall_Opioids = () => {
                 let nextPage = pageHandler(location.pathname);
                 history.push(nextPage);
               }}
-              style={{marginTop: '300px',marginLeft: '500px', marginRight: '20px'}}
+              style={{marginTop: '5%',marginLeft: '180px', marginRight: '20px'}}
             >
               Continue
         </Button>
@@ -250,4 +179,4 @@ const Recall_Opioids = () => {
   );
 }
 
-export default Recall_Opioids;
+export default InstructionPost_Elicitation;

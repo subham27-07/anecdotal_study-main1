@@ -16,6 +16,7 @@ const pages = [
   "visualElicitation_Opioids",
   "cogref",
   "cogref1",
+  "instructionPost_Elicitation",
   "viz1",
   "recall_drugOverdose",
   "recall_Opioids",
