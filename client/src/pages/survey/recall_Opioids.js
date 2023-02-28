@@ -215,7 +215,7 @@ const Recall_Opioids = (props) => {
         </Typography>
         <Typography variant={"body1"}>
                    <span
-                       className={styles.txtImportantUnique}>Article 3</span><p> Since 2002, the <span
+                       className={`${styles.txtImportantUnique} ${styles.articleThree}`}>Article 3</span><p> Since 2002, the <span
                 className={styles.txtImportant}>number</span> of Americans who have died every year from overdoses of <span
                 className={styles.txtImportant}>synthetic opioids _______.</span></p>
         </Typography>
@@ -232,7 +232,6 @@ const Recall_Opioids = (props) => {
           </Suspense>
         </div>
       </div>
-      <div>
         <Button
               variant="contained"
               color="primary"
@@ -240,12 +239,11 @@ const Recall_Opioids = (props) => {
                 let nextPage = pageHandler(props.pages, location.pathname);
                 history.push(nextPage);
               }}
-              style={{marginTop: '300px',marginLeft: '500px', marginRight: '20px'}}
+              style={{display: 'block', margin: 'auto', marginTop: '3%'}}
             >
               Continue
         </Button>
-      
-      </div>
+
     </Container>
   );
 }

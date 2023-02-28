@@ -14,7 +14,7 @@ import "survey-react/survey.css";
 import styles from "./articles.module.css";
 const LineChart = lazy(() => import('./visualizations/LineChartVisual_DrugOverdose'));
 
-const VisualElicitation_drugOverdose = () => {
+const VisualElicitation_drugOverdose = (props) => {
   const lineData = [
     {
       id: 1,
@@ -232,7 +232,7 @@ const VisualElicitation_drugOverdose = () => {
               variant="contained"
               color="primary"
               onClick={() => {
-                let nextPage = pageHandler(location.pathname);
+                let nextPage = pageHandler(props.pages, location.pathname);
                 history.push(nextPage);
               }}
               style={{marginTop: '5%',marginLeft: '180px', marginRight: '20px'}}

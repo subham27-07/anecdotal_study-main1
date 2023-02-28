@@ -34,6 +34,18 @@
     border-radius: 10pt;
 }
 
+.articleOne{
+    margin-left: 0;
+}
+.articleTwo{
+    margin-left: 10%;
+
+}
+.articleThree{
+    margin-left: 20%;
+}
+
+
 
 .actions{
     margin: 3% auto;

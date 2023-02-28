@@ -207,7 +207,7 @@ const App = () => {
         }, [instructionResponse]);
 
         useEffect(() => {
-            console.log(question);
+            // console.log(question);
             if (question) {
                 window.localStorage.setItem("question", question);
             }

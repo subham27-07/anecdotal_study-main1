@@ -267,7 +267,7 @@ class LineChart extends Component {
 
     
     this.userDataLine.forEach((data) => {
-      console.log(`Year: ${data.year}, Y Value: ${data[type]}`);
+      // console.log(`Year: ${data.year}, Y Value: ${data[type]}`);
     });
 
     const definedValues = this.userDataLine.filter(d => d.defined === true);

@@ -17,7 +17,7 @@ const Attitude_ElicitationPost = (props) => {
   const questionCondition = useRecoilValue(questionState);
   // console.log(questionCondition);
   const extraQuestions =
-    questionCondition == "strength"
+    questionCondition === "strength"
       ? [
        
         ]
@@ -216,10 +216,7 @@ const Attitude_ElicitationPost = (props) => {
         <Typography variant="h5">
         Please Answer the questions below👇.
         </Typography>
-        <Divider></Divider>
-        
       </div>
-      <Divider></Divider>
       <Survey.Survey
         model={model}
         onComplete={onComplete}

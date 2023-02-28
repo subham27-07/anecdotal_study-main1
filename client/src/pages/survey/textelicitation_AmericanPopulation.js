@@ -88,11 +88,11 @@ const Textelicitation_AmericanPopulation = (props) => {
 
         setCompleted(true);
         setMessage("");
-
-        console.log("Survey results: " + JSON.stringify(quizResponses.current));
-        axios.post("/api/quiz_Textelicitation1", quizResponses.current).then((response) => {
+        console.log('pages:',props.pages)
+        // console.log("Survey results: " + JSON.stringify(quizResponses.current));
+        axios.post("/api/textelicitation_AmericanPopulation", quizResponses.current).then((response) => {
             let nextPage = pageHandler(props.pages, location.pathname);
-            //   history.push(nextPage);
+              // history.push(nextPage);
         });
     };
 
@@ -238,7 +238,7 @@ const Textelicitation_AmericanPopulation = (props) => {
                     </Typography>
 
                     <Typography variant={"body1"}>
-                        <span className={styles.txtImportantUnique}>Article 2</span><p> Since 2002, <span
+                        <span className={`${styles.txtImportantUnique} ${styles.articleTwo}`}>Article 2</span><p> Since 2002, <span
                         className={styles.txtImportant}>percentage</span> of American population with <span
                         className={styles.txtImportant}>drug use disorders _______.</span></p>
                     </Typography>

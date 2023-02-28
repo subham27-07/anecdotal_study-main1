@@ -188,7 +188,8 @@ const completedSurvey = ()=>{
                     </Typography>
 
                     <Typography variant={"body1"}>
-                        <span className={styles.txtImportantUnique}> Article 1</span> <p>Since 2002, the <span
+                        <span className={`${styles.txtImportantUnique} ${styles.articleOne}`}> Article 1</span>
+                        <p>Since 2002, the <span
                         className={styles.txtImportant}>number</span> of Americans who have died every year from
                             <span className={styles.txtImportant}> Drug Overdose _______.</span> </p>
                     </Typography>
