@@ -17,6 +17,7 @@ import PostSurveyPage from "./pages/survey/post";
 import CogRefSurveyPage from "./pages/survey/cogRef";
 import CogRefSurveyPage1 from "./pages/survey/cogRef1";
 import InstructionPost_Elicitation from "./pages/survey/instructionPost_Elicitation";
+import InstructionPost_Recall from "./pages/survey/instructionPost_Recall";
 import ConsentPage from "./pages/consent/consent";
 import DebriefPage from "./pages/debrief/debrief";
 import Instructions1 from "./pages/instructions/instruction1_better";
@@ -289,6 +290,9 @@ const App = () => {
               </Route>
               <Route path="/instructionPost_Elicitation">
                 <InstructionPost_Elicitation></InstructionPost_Elicitation>
+              </Route>
+              <Route path="/instructionPost_Recall">
+                <InstructionPost_Recall></InstructionPost_Recall>
               </Route>
               <Route path="/recall_Opioids">
                 <Recall_Opioids></Recall_Opioids>
