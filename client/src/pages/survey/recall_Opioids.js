@@ -241,7 +241,7 @@ const Recall_Opioids = (props) => {
                 let nextPage = pageHandler(props.pages, location.pathname);
                 history.push(nextPage);
               }}
-              style={{display: 'block', margin: 'auto', marginTop: '3%'}}
+              style={{marginTop: '5%',marginLeft: '230px', marginRight: '20px'}}
             >
               Continue
         </Button>

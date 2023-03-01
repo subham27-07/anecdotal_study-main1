@@ -15,6 +15,7 @@ const textual_instructions = {
 }
 
 
+
 const messageFontSize = "min(1.3vw, 20px)";
 
 const useStyles = makeStyles((theme) => ({
@@ -160,9 +161,9 @@ const Instructions1 = (props) => {
               accName={""}
               screen_name={""}
               showImage={true}
-              src={
-                "https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/new.gif"
-              }
+              // src={
+              //   "https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/new.gif"
+              // }
             ></TweetQuote>
           </Tweet>
         </div>

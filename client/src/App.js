@@ -115,6 +115,8 @@ const App = () => {
     const post_pages = [
         "cogref",
         "cogref1",
+        "instructionPost_Elicitation",
+        "instructionPost_Recall",
         "recall_drugOverdose",
         "attitude_recallDrug",
         "recall_population",
