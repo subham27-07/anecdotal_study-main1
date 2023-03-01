@@ -118,11 +118,13 @@ const App = () => {
 
     // Store design flow
     const study_pages = useRef([pre_pages])
+    const treatment = useRef()
 
     const treatmentSelector = () => {
-        const treatment = choose(['txt', 'visual', 'control'])
+        const tr = choose(['txt', 'visual', 'control'])
         console.log(treatment)
-        switch (treatment) {
+        treatment.current = tr
+        switch (tr) {
             case 'txt':
                 return [...pre_pages, ...txt_pages, ...post_pages];
             case 'visual':
@@ -290,7 +292,9 @@ const App = () => {
                                     <PreSurveyPage pages={study_pages}/>
                                 </Route>
                                 <Route path="/instructions1">
-                                    <Instructions1 pages={study_pages}></Instructions1>
+                                    <Instructions1
+                                        treatment = {treatment.current}
+                                        pages={study_pages}></Instructions1>
                                 </Route>
                                 <Route
                                     path="/instructions2"

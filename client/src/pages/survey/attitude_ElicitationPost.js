@@ -116,7 +116,7 @@ const Attitude_ElicitationPost = (props) => {
   };
 
   const onComplete = (survey, options) => {
-
+    const survey_end = Date.now()   // Make sure to add this to DB!
     console.log("Survey results: " + JSON.stringify(quizResponses.current));
     axios.post("/api/attitude_ElicitationPost", quizResponses.current).then((response) => {
       let nextPage = pageHandler(props.pages, location.pathname);

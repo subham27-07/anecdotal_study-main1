@@ -6,6 +6,14 @@ import { makeStyles } from "@mui/styles";
 import Tweet from "../../components/tweet/tweet";
 import TweetQuote from "../../components/tweet/tweetQuote";
 import pageHandler from "../pageHandler";
+import styles from '../survey/articles.module.css';
+
+const textual_instructions = {
+  'txt':" This is the text for txt condition.",
+  'visual':"This is the text for control condition.",
+  'control':"This is the text for control condition."
+}
+
 
 const messageFontSize = "min(1.3vw, 20px)";
 
@@ -77,7 +85,17 @@ const Instructions1 = (props) => {
   const handleClick = () => {
     incrementStage();
   };
-
+  const textCreator = ()=>{
+    console.log(props.treatment)
+    switch(props.treatment){
+      case 'txt':
+        return (textual_instructions.txt);
+      case 'visual':
+        return textual_instructions.visual;
+      case 'control':
+        return textual_instructions.control;
+    }
+  };
   const incrementStage = () => {
     setStage((prev) => prev + 1);
   };
@@ -152,35 +170,15 @@ const Instructions1 = (props) => {
           className={classes.pointToTweetRight}
           style={stage == 0 ? easinStyle : hiddenStyle}
         >
+          <h2 className={`${styles.textBody} ${styles.title}`}>
+            {props.treatment? textCreator(): 'None'} !
+          </h2>
           <span>
             {" "}
             Hi!! In this study we ask you to read a few news articles that contain data visualizations. Click continue to proceed.
           </span>
         </div>
-        {/* <div
-          className={classes.pointToTweetRight}
-          style={stage >= 1 ? easinStyle : hiddenStyle}
-        >
-          <span>
-            {" "}
-            You may be asked to complete a timeline visualization. The animation on the right shows how you can use your mouse to draw a curve and <span className={classes.emph}>adjust individual data points.</span>
 
-          
-          </span>
-          <span>👉👉👉👉</span>
-        </div> */}
-
-        {/* <div
-          className={classes.pointToQuoteLeft}
-          style={stage == 2 ? easinStyle : hiddenStyle}
-        >
-          <p>👈👈👈👈</p>
-          <p>
-            {" "}
-            Here is a <span className={classes.emph}>headline</span> from a news
-            story that Johnathan quotes
-          </p>
-        </div> */}
         <div
           style={{
             textAlign: "center",

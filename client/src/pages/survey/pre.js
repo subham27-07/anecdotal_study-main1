@@ -8,7 +8,13 @@ import styles from './articles.module.css'
 const PreSurveyPage = (props) => {
   const location = useLocation();
   const history = useHistory();
-
+  function createAgeList(start, end){
+    let age_list = []
+    for(let i = start; i<= end;i++){
+      age_list.push(i)
+    }
+    return age_list
+  }
   // const history = useHistory();
   const json = {
     elements: [
@@ -17,7 +23,7 @@ const PreSurveyPage = (props) => {
         name: "gender",
         title: "What is your gender?",
         isRequired: true,
-        colCount: 1,
+        colCount: 5,
         choices: ["Woman", "Man", "Prefer not to say"],
         hasOther: true,
       },
@@ -28,7 +34,7 @@ const PreSurveyPage = (props) => {
         isRequired: true,
         hasNone: true,
         hasOther: true,
-        colCount: 2,
+        colCount:2,
         choices: [
           "White/Caucasian/European",
           "African American/Black",
@@ -48,7 +54,7 @@ const PreSurveyPage = (props) => {
         title: "What is your highest level of educational attainment?",
         isRequired: true,
         hasOther: true,
-        colCount: 1,
+        colCount: 3,
         choices: [
           "High School",
           "Undergraduate",
@@ -59,14 +65,13 @@ const PreSurveyPage = (props) => {
       },
       {
         name: "age",
-        type: "text",
+        type: "dropdown",
+        choices: createAgeList(18,99),
         inputType: "number",
         title: "What is your age?",
         isRequired: true,
         validators: [
           { "type": "numeric", "text": "Value must be a number between 18 and 99.", "minValue": 18 , "maxValue": 99 },
-          // {"minValue": "18", 'text': "You must be at least 18 years old."},
-          // {"maxValue": "99", 'text': "Please enter a valid number."}
 
         ]
       },
