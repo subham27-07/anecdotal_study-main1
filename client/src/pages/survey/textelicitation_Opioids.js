@@ -27,9 +27,14 @@ const Textelicitation_Opioids = (props) => {
             {
                 elements: [
                     {
+                        type: "html",
+                        html: "<span style='font-family: serif; font-size: 1.25rem;'><span style= 'background-color: darkred; font-weight: bold; font-style: italic; color: white; padding: 0 10px; border-radius: 10pt;'> Article 3.</span> Between 2002 and 2019, the  <span style='font-weight: bold'>number</span> of Americans who have died every year from overdoses of <span style='font-weight: bold;'>synthetic opioids _______.</span> </span> <br><p style= 'font-style: italic;'>'Synthetic opioids is a type of opioids that are synthesized in a laboratory. Other opioids include illegal drug heroin, cocaine, prescription opioid such as oxycodone.'</p>",
+
+                    },
+                    {
                         name: "claim",
-                        type: "radiogroup",
-                        title: `"How would you categorize this trend"`,
+                        type: "dropdown",
+                        title: `Select an option to fill the blank space from drop down menu`,
                         isRequired: true,
                         choices: [
                             "Significant Decrease",
@@ -236,12 +241,12 @@ const surveyCompleted = ()=>{
                             <span className={`${styles.textBody} ${styles.title}`}>How Bad Is the <span
                                 style={{fontWeight: "bold"}}> Drug Overdose </span> epidemic?</span>
             </Typography>
-            <Typography variant={"body1"}>
+            {/* <Typography variant={"body1"}>
                    <span
                        className={`${styles.txtImportantUnique} ${styles.articleThree}`}>Article 3</span><p> Since 2002, the <span
                 className={styles.txtImportant}>number</span> of Americans who have died every year from overdoses of <span
                 className={styles.txtImportant}>synthetic opioids _______.</span></p>
-            </Typography>
+            </Typography> */}
 
         </div>
 

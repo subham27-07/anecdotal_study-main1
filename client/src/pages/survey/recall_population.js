@@ -1,4 +1,4 @@
-import React, { useRef, lazy, Suspense, useState } from 'react';
+import React, { useRef, lazy, Suspense,useState} from 'react';
 
 
 import { useHistory, useLocation } from "react-router-dom";
@@ -12,125 +12,123 @@ import { useRecoilValue } from "recoil";
 import { questionState } from "../../atoms/questionSelector";
 import "survey-react/survey.css";
 import styles from "./articles.module.css";
-const LineChart = lazy(() => import('./visualizations/LineChartVisual_DrugOverdose'));
+const LineChart = lazy(() => import('./visualizations/LineChartVisual_Population'));
 
-const VisualElicitation_drugOverdose = (props) => {
+const Recall_population = (props) => {
+    
   const lineData = [
     {
       id: 1,
-      value: 16849,
+      value: 2.51,
       year: 1999,
     },
     {
       id: 1,
-      value: 17415,
+      value: 2.55,
       year: 2000,
     },
     {
       id: 1,
-      value: 19394,
+      value: 2.60,
       year: 2001,
     },
     {
       id: 1,
-      value: 23518,
+      value: 2.67,
       year: 2002,
     },
     {
       id: 1,
-      value: 25785,
+      value: 2.75,
       year: 2003,
     },
     {
       id: 1,
-      value: 27424,
+      value: 2.81,
       year: 2004,
     },
     {
       id: 1,
-      value: 29813,
+      value: 2.87,
       year: 2005,
     },
     {
       id: 1,
-      value: 34425,
+      value: 2.91,
       year: 2006,
     },
     {
       id: 1,
-      value: 36010,
+      value: 2.94,
       year: 2007,
     },
     {
       id: 1,
-      value: 36450,
+      value: 2.98,
       year: 2008,
     },
     {
       id: 1,
-      value: 37004,
+      value: 3.01,
       year: 2009,
     },
     {
       id: 1,
-      value: 38329,
+      value: 1,
       year: 2010,
     },
     {
       id: 1,
-      value: 41340,
+      value: 1,
       year: 2011,
     },
     {
       id: 1,
-      value: 41502,
+      value: 1,
       year: 2012,
     },
     {
       id: 1,
-      value: 43982,
+      value: 1,
       year: 2013,
     },
     {
       id: 1,
-      value: 47055,
+      value: 1,
       year: 2014,
     },
     {
       id: 1,
-      value: 52404,
+      value: 1,
       year: 2015,
     },
     {
       id: 1,
-      value: 63632,
+      value: 5,
       year: 2016,
     },
     {
       id: 1,
-      value: 70237,
+      value: 6,
       year: 2017,
     },
     {
       id: 1,
-      value: 67367,
+      value: 6,
       year: 2018,
     },
     {
       id: 1,
-      value: 70630,
+      value: 8,
       year: 2019,
     },
-    
   ];
-
 
   const quizResponses = useRef([]);
   const history = useHistory();
   const location = useLocation();
-  
-  const [clipAnimation, setClipAnimation] = useState(false);
 
+  const [clipAnimation, setClipAnimation] = useState(false);
 
   const handleShowAnimation = () => {
     setClipAnimation(true);
@@ -151,9 +149,8 @@ const VisualElicitation_drugOverdose = (props) => {
         elements: [
           {
             type: "html",
-            html: "<span style='font-family: serif; font-size: 1.25rem;'> 👉👉👉 <span style='font-weight: bold; color:gray;'> Article 1.</span> Since 2002, the <span style='font-weight: bold'>number</span> of Americans who have died every year from" +
-                "<span style='font-weight: bold'> Drug Overdose</span> ...</span>",
- 
+            html: "",
+           
           },
            
 
@@ -162,8 +159,6 @@ const VisualElicitation_drugOverdose = (props) => {
 
     ],
   };
-
-  
 
   var defaultThemeColors = Survey.StylesManager.ThemeColors["default"];
   defaultThemeColors["$main-color"] = "black";
@@ -181,9 +176,6 @@ const VisualElicitation_drugOverdose = (props) => {
   model.questionTitleTemplate = "";
   model.showQuestionNumbers = "none";
   
-
-
-  
   
   return (
     <Container
@@ -192,8 +184,8 @@ const VisualElicitation_drugOverdose = (props) => {
         width: "100%",
         overflow: "auto",
         minHeight: "600px",
-        paddingTop: "2%",
-        // paddingBottm: "5%",
+        paddingTop: "30px",
+        paddingBottm: "30px",
       }}
     >
       <div
@@ -205,16 +197,15 @@ const VisualElicitation_drugOverdose = (props) => {
         }}
       >
         <Typography variant="h3">
-              <span>How Bad Is the <span
+              <span className={`${styles.textBody} ${styles.title}`}>How Bad Is the <span
                   style={{fontWeight: "bold"}}> Drug Overdose </span> epidemic?</span>
         </Typography>
-
         <Typography variant={"body1"}>
-                        <span className={styles.txtImportantUnique}> Article 1</span> <p>Since 2002, the <span
-                        className={styles.txtImportant}>number</span> of Americans who have died every year from
-                            <span className={styles.txtImportant}> Drug Overdose _______.</span> </p>
-         </Typography>
-
+                        <span className={`${styles.txtImportantUnique} ${styles.articleTwo}`}>Article 2</span><p> Since 2002, <span
+                        className={styles.txtImportant}>percentage</span> of American population with <span
+                        className={styles.txtImportant}>drug use disorders _______.</span></p>
+        </Typography>
+        
       </div>
       {/*<Survey.Survey*/}
       {/*  model={model}*/}
@@ -226,30 +217,24 @@ const VisualElicitation_drugOverdose = (props) => {
             <LineChart type="value" data={lineData} idLine={1} startYear={2002} />
           </Suspense>
         </div>
-
       </div>
-
       <div>
-        <Button
-              variant="contained"
-              color="primary"
-              onClick={() => {
-                let nextPage = pageHandler(props.pages, location.pathname);
-                history.push(nextPage);
-              }}
-              style={{marginTop: '5%',marginLeft: '230px', marginRight: '20px'}}
-              
-            >
-              Continue
-        </Button>
-
-      </div>
+      <Button
+            variant="contained"
+            color="primary"
+            onClick={() => {
+              let nextPage = pageHandler(props.pages, location.pathname);
+              history.push(nextPage);
+            }}
+            style={{marginTop: '5%',marginLeft: '180px', marginRight: '20px'}}
+          >
+            Continue
+          </Button>
+      
+    </div>
     </Container>
-
+    
   );
 }
 
-export default VisualElicitation_drugOverdose;
-
-
-
+export default Recall_population;

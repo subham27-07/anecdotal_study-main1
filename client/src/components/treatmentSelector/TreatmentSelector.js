@@ -31,7 +31,11 @@ export default function TreatmentSelector(){
         "cogref1",
         "viz1",
         "recall_drugOverdose",
+        "attitude_recallDrug",
+        "recall_population",
+        "attitude_recallPopulation",
         "recall_Opioids",
+        "attitude_recallOpioids",
         "attitude_ElicitationPost",
         "debrief",
     ]

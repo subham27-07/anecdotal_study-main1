@@ -6,12 +6,12 @@ import pageHandler from "../pageHandler";
 import axios from "axios";
 import * as Survey from "survey-react";
 import { Divider, Typography, Container, Button } from "@mui/material";
-import Tweet from "../../components/tweet/tweet";
-import TweetQuote from "../../components/tweet/tweetQuote";
+
 import { useRecoilValue } from "recoil";
 import { questionState } from "../../atoms/questionSelector";
 import "survey-react/survey.css";
 import styles from "./articles.module.css";
+
 const LineChart = lazy(() => import('./visualizations/recallLinechart_DrugOverdose'));
 
 const Recall_drugOverdose = (props) => {
@@ -133,53 +133,6 @@ const Recall_drugOverdose = (props) => {
   const handleShowAnimation = () => {
     setClipAnimation(true);
   };
-
-  const questionCondition = useRecoilValue(questionState);
-
-  const extraQuestions =
-    questionCondition == "strength"
-      ? [
-
-        ]
-      : [];
-
-  const json = {
-    pages: [
-      {
-        elements: [
-          {
-            type: "html",
-            html: "<span style='font-family: serif; font-size: 1.25rem;'> 👉👉👉 <span style='font-weight: bold; color:gray;'> Article 1.</span> Since 2002, the <span style='font-weight: bold'>number</span> of Americans who have died every year from" +
-                "<span style='font-weight: bold'> Drug Overdose</span> ...</span>",
- 
-          },
-           
-
-        ],
-      },
-
-    ],
-  };
-
-  var defaultThemeColors = Survey.StylesManager.ThemeColors["default"];
-  defaultThemeColors["$main-color"] = "black";
-  defaultThemeColors["$main-hover-color"] = "darkorange";
-  defaultThemeColors["$text-color"] = "#4a4a4a";
-  defaultThemeColors["$header-color"] = "#7ff07f";
-
-  defaultThemeColors["$header-background-color"] = "#4a4a4a";
-  defaultThemeColors["$body-container-background-color"] = "#f8f8f8";
-
-  Survey.StylesManager.applyTheme();
-
-  const model = new Survey.Model(json);
-  model.showCompletedPage = false;
-  model.questionTitleTemplate = "";
-  model.showQuestionNumbers = "none";
-  
-
-
-  
   
   return (
     <Container
@@ -210,6 +163,7 @@ const Recall_drugOverdose = (props) => {
                         className={styles.txtImportant}>number</span> of Americans who have died every year from
                             <span className={styles.txtImportant}> Drug Overdose _______.</span> </p>
          </Typography>
+         
 
       </div>
       {/*<Survey.Survey*/}

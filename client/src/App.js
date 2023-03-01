@@ -17,6 +17,7 @@ import PostSurveyPage from "./pages/survey/post";
 import CogRefSurveyPage from "./pages/survey/cogRef";
 import CogRefSurveyPage1 from "./pages/survey/cogRef1";
 import InstructionPost_Elicitation from "./pages/survey/instructionPost_Elicitation";
+
 import InstructionPost_Recall from "./pages/survey/instructionPost_Recall";
 import ConsentPage from "./pages/consent/consent";
 import DebriefPage from "./pages/debrief/debrief";
@@ -34,11 +35,15 @@ import Noelicitation_drugOverdose from "./pages/survey/noelicitation_drugOverdos
 import Noelicitation_AmericanPopulation from "./pages/survey/noelicitation_AmericanPopulation";
 import Noelicitation_Opioids from "./pages/survey/noelicitation_Opioids";
 import Recall_drugOverdose from "./pages/survey/recall_drugOverdose";
+import Attitude_recallDrug from "./pages/survey/attitude_recallDrug";
+import Attitude_recallPopulation from "./pages/survey/attitude_recallPopulation";
+import Attitude_recallOpioids from "./pages/survey/attitude_recallOpioids";
 import Viz1 from "./pages/survey/viz1";
 import VisualElicitation_drugOverdose from "./pages/survey/visualElicitation_drugOverdose";
 import VisualElicitation_population from "./pages/survey/visualElicitation_population";
 import VisualElicitation_Opioids from "./pages/survey/visualElicitation_Opioids";
 import Recall_Opioids from "./pages/survey/recall_Opioids";
+import Recall_population from "./pages/survey/recall_population";
 import Attitude_Elicitation from "./pages/survey/attitude_Elicitation";
 import Attitude_ElicitationPost from "./pages/survey/attitude_ElicitationPost";
 import Topic_Involvement from "./pages/survey/topic_Involvement";
@@ -111,7 +116,11 @@ const App = () => {
         "cogref",
         "cogref1",
         "recall_drugOverdose",
+        "attitude_recallDrug",
+        "recall_population",
+        "attitude_recallPopulation",
         "recall_Opioids",
+        "attitude_recallOpioids",
         "attitude_ElicitationPost",
         "debrief",
     ]
@@ -358,8 +367,21 @@ const App = () => {
                                 <Route path="/instructionPost_Recall">
                                     <InstructionPost_Recall pages={study_pages}/>
                                 </Route>
+
                                 <Route path="/recall_Opioids">
                                     <Recall_Opioids pages={study_pages}/>
+                                </Route>
+                                <Route path="/recall_population">
+                                    <Recall_population pages={study_pages}/>
+                                </Route>
+                                <Route path="/attitude_recallDrug">
+                                    <Attitude_recallDrug pages={study_pages}/>
+                                </Route>
+                                <Route path="/attitude_recallPopulation">
+                                    <Attitude_recallPopulation pages={study_pages}/>
+                                </Route>
+                                <Route path="/attitude_recallOpioids">
+                                    <Attitude_recallOpioids pages={study_pages}/>
                                 </Route>
                                 <Route path="/attitude_ElicitationPost">
                                     <Attitude_ElicitationPost pages={study_pages}/>

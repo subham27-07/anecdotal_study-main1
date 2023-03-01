@@ -27,9 +27,14 @@ const Textelicitation_drugOverdose = (props) => {
             {
                 elements: [
                     {
+                        type: "html",
+                        html: "<span style='font-family: serif; font-size: 1.25rem;'><span style= 'background-color: darkred; font-weight: bold; font-style: italic; color: white; padding: 0 10px; border-radius: 10pt;'> Article 1.</span> Between 2002 and 2019, the  <span style='font-weight: bold'>number</span> of Americans who have died every year from <span style='font-weight: bold;'> drug overdose _______.</span> </span>",
+
+                    },
+                    {
                         name: "claim",
-                        type: "radiogroup",
-                        title: `"How would you categorize this trend"`,
+                        type: "dropdown",
+                        title: `Select an option to fill the blank space from drop down menu`,
                         isRequired: true,
                         choices: [
                             "Significant Decrease",
@@ -187,12 +192,12 @@ const completedSurvey = ()=>{
 
                     </Typography>
 
-                    <Typography variant={"body1"}>
+                    {/* <Typography variant={"body1"}>
                         <span className={`${styles.txtImportantUnique} ${styles.articleOne}`}> Article 1</span>
                         <p>Since 2002, the <span
                         className={styles.txtImportant}>number</span> of Americans who have died every year from
                             <span className={styles.txtImportant}> Drug Overdose _______.</span> </p>
-                    </Typography>
+                    </Typography> */}
                 </div>
 
                 <Survey.Survey

@@ -25,10 +25,16 @@ const Textelicitation_AmericanPopulation = (props) => {
             {
                 elements: [
                     {
+                        type: "html",
+                        html: "<span style='font-family: serif; font-size: 1.25rem;'><span style= 'background-color: darkred; font-weight: bold; font-style: italic; color: white; padding: 0 10px; border-radius: 10pt;'> Article 2.</span> Between 2002 and 2019,  <span style='font-weight: bold'>percentage</span> of American population with <span style='font-weight: bold;'></span> drug dependency _______.</span> <br><p style= 'font-style: italic;'>'Drug dependence is defined as the presence of three or more indicators of dependence for at least a month within the previous year. Drug dependency includes all illicit drugs'</p>",
+            
+                      },
+                    {
                         name: "claim",
-                        type: "radiogroup",
-                        title: `"How would you categorize this trend"`,
+                        type: "dropdown",
+                        title: `Select an option to fill the blank space from drop down menu`,
                         isRequired: true,
+
                         choices: [
                             "Significant Decrease",
                             "Slight Decrease",
@@ -237,11 +243,11 @@ const Textelicitation_AmericanPopulation = (props) => {
                         style={{fontWeight: "bold"}}> Drug Overdose </span> epidemic?</span>
                     </Typography>
 
-                    <Typography variant={"body1"}>
-                        <span className={`${styles.txtImportantUnique} ${styles.articleTwo}`}>Article 2</span><p> Since 2002, <span
+                    {/* <Typography variant={"body1"}>
+                        <span className={styles.txtImportantUnique}>Article 2</span><p> Since 2002, <span
                         className={styles.txtImportant}>percentage</span> of American population with <span
                         className={styles.txtImportant}>drug use disorders _______.</span></p>
-                    </Typography>
+                    </Typography> */}
 
 
                 </div>
@@ -252,6 +258,8 @@ const Textelicitation_AmericanPopulation = (props) => {
                     onComplete={onComplete}
                     onCompleting={onCompleting}
                     onCurrentPageChanging={onCurrentPageChanging}
+            
+
                 />
             </Container>
             {completed ? (

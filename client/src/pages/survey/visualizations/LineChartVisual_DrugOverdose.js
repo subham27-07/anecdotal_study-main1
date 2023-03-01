@@ -46,8 +46,8 @@ class LineChart extends Component {
     this.setState({userDataLine:this.userDataLine})
     const userDrawnValue = this.userDataLine.filter(d => d.defined === true);
 
-    const width = 500;
-    const height = 425;
+    const width = 1000;
+    const height = 325;
     const margin = {
       top: 50,
       right: 30,
@@ -135,15 +135,15 @@ class LineChart extends Component {
     svg.append('text')
       .attr('class', 'text-2015')
       .attr('x', x(1999))
-      .attr('y', y(18849))
-      .attr('font-size','20px')
+      .attr('y', y(20849))
+      .attr('font-size','15px')
       .text('16849');
 
     svg.append('text')
       .attr('class', 'text-2016')
       .attr('x', x(2002))
-      .attr('y', y(25849))
-      .attr('font-size','20px')
+      .attr('y', y(27849))
+      .attr('font-size','15px')
       .text('23518');
 
     svg.append('circle')
@@ -165,6 +165,8 @@ class LineChart extends Component {
 
     const availableYears = [1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015, 2016, 2017, 2018, 2019];
 
+    const format = d3.format('.2f');
+
     // Add the X Axis
     svg.append('g')
       .attr('class', 'axis-x-line')
@@ -172,13 +174,16 @@ class LineChart extends Component {
       
       .call(d3.axisBottom(x)
         .tickValues(availableYears)
-        .tickFormat(d3.format('.4')));
+        
+        // .tickFormat(d3.format('.4')));
+        .tickFormat(d => (d % 100 < 10 ? `0${d % 100}` : `${d % 100}`)));
+        
         
     // 
     // Rotate x-axis labels
-    svg.selectAll(".axis-x-line text")
-    .attr("transform", "rotate(-45)")
-    .style("text-anchor", "end");
+    // svg.selectAll(".axis-x-line text")
+    // .attr("transform", "rotate(-45)")
+    // .style("text-anchor", "end");
     // 
     svg.append('g')
       .attr('class', 'grid')
@@ -314,32 +319,47 @@ class LineChart extends Component {
 
 
   render() {
+    const { showText } = this.state;
+    const definedValues = this.userDataLine.filter(d => d.defined === true);
+    const isComplete = definedValues.length === this.userDataLine.length;
     return (
-        <div>
-          <div id="line-chart">
-            <svg ref={this.svgReal} />
-          </div>
-          <div style={{marginTop: '20px'}}>
-            <Button
-              variant="contained"
-              color="primary"
-              // disabled={this.userDataLine.filter(d => d.defined === true).length === this.userDataLine.length?true:false}
-              disabled={this.state.userDataLine.every((d)=>d.defined===true)?false:true}
-              onClick={this.handleClick}
-              style={{marginTop: '120px',marginLeft: '180px', marginRight: '20px'}}
-            >
-              Complete
-            </Button>
-          </div>
-          { this.state.showText && (
-            <p className={`${styles.textBody} ${styles.paragraph} ${styles.txtNormal}`}> ...has increased by more than <span style={{ fontWeight: "bold" }}>222.16 percent</span>.  In 2015, more Americans died from drug overdoses than from car accidents
-            and gun homicides combined. It’s the worst drug overdose epidemic in American history, spurred by rising drug abuse, 
-            increased availability of prescription opioids and an influx of Data Sharing potent synthetics like fentanyl and carfentanil.
-            Drug overdoses are now the leading cause of death for Americans under 50.
-            </p>
-          ) }
+      <div>
+        <div id="line-chart">
+          <svg ref={this.svgReal} />
         </div>
-      );
+        { !isComplete && (
+          <Typography 
+          // variant="subtitle1"
+          // gutterBottom
+          style={{ marginTop: '-100px', marginLeft: "200px",color: "#7f0000" }}
+          >
+            Draw the line for missing year on this chart.
+          </Typography>
+        ) }
+        <div style={{marginTop: '20px'}}>
+          <Button
+            variant="contained"
+            color="primary"
+            disabled={!isComplete}
+            onClick={this.handleClick}
+            style={{marginTop: '80px',marginLeft: '230px', marginRight: '20px'}}
+            
+          >
+            Complete
+          </Button>
+        </div>
+        { showText && (
+          <Typography variant="subtitle1"
+          gutterBottom
+          style={{ marginTop: '30px' }}>
+            ...has increased by more than <strong>222.16 percent</strong>.  In 2015, more Americans died from drug overdoses than from car accidents
+            and gun homicides combined. It’s the worst drug overdose epidemic in American history, spurred by rising drug abuse, 
+            increased availability of prescription opioids and an influx of potent synthetics like fentanyl and carfentanil.
+            Drug overdoses are now the leading cause of death for Americans under 50.
+          </Typography>
+        ) }
+      </div>
+    );
   }
 }
 export default LineChart;

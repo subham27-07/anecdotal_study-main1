@@ -106,6 +106,8 @@ router.post("/instructionPost_Elicitation", (req, res) => {
   );
 });
 
+
+
 router.post("/instructionPost_Recall", (req, res) => {
   console.log(req.body);
   let usertoken = req.session.usertoken;
@@ -301,6 +303,19 @@ router.post("/recall_Opioids", (req, res) => {
   );
 });
 
+router.post("/recall_population", (req, res) => {
+  console.log(req.body);
+  let usertoken = req.session.usertoken;
+  Response.findOneAndUpdate(
+    { usertoken: usertoken },
+    { recall_population: req.body },
+    (err, doc) => {
+      if (err) req.status(404).send(err);
+      else res.json(req.body);
+    }
+  );
+});
+
 
 
 router.post("/attitude_Elicitation", (req, res) => {
@@ -335,6 +350,45 @@ router.post("/viz", (req, res) => {
   Response.findOneAndUpdate(
     { usertoken: usertoken },
     { viz: req.body },
+    (err, doc) => {
+      if (err) req.status(404).send(err);
+      else res.json(req.body);
+    }
+  );
+});
+
+router.post("/attitude_recallDrug", (req, res) => {
+  console.log(req.body);
+  let usertoken = req.session.usertoken;
+  Response.findOneAndUpdate(
+    { usertoken: usertoken },
+    { attitude_recallDrug: req.body },
+    (err, doc) => {
+      if (err) req.status(404).send(err);
+      else res.json(req.body);
+    }
+  );
+});
+
+router.post("/attitude_recallPopulation", (req, res) => {
+  console.log(req.body);
+  let usertoken = req.session.usertoken;
+  Response.findOneAndUpdate(
+    { usertoken: usertoken },
+    { attitude_recallPopulation: req.body },
+    (err, doc) => {
+      if (err) req.status(404).send(err);
+      else res.json(req.body);
+    }
+  );
+});
+
+router.post("/attitude_recallOpioids", (req, res) => {
+  console.log(req.body);
+  let usertoken = req.session.usertoken;
+  Response.findOneAndUpdate(
+    { usertoken: usertoken },
+    { attitude_recallOpioids: req.body },
     (err, doc) => {
       if (err) req.status(404).send(err);
       else res.json(req.body);

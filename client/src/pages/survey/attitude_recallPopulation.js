@@ -1,31 +1,34 @@
 import React, { useRef } from "react";
+
 import { useHistory, useLocation } from "react-router-dom";
 import pageHandler from "../pageHandler";
 import axios from "axios";
 import * as Survey from "survey-react";
 import { Divider, Typography, Container } from "@mui/material";
-import Tweet from "../../components/tweet/tweet";
-import TweetQuote from "../../components/tweet/tweetQuote";
+
 import { useRecoilValue } from "recoil";
 import { questionState } from "../../atoms/questionSelector";
 import "survey-react/survey.css";
 
-const Topic_Involvement = (props) => {
+const Attitude_recallPopulation = (props) => {
   const quizResponses = useRef([]);
   const history = useHistory();
   const location = useLocation();
   const questionCondition = useRecoilValue(questionState);
   // console.log(questionCondition);
   const extraQuestions =
-    questionCondition == "strength"
+    questionCondition === "strength"
       ? [
-        
+       
         ]
       : [];
 
+
+      
+
   const json = {
     pages: [
-    
+   
       {
         elements: [
           {
@@ -35,7 +38,7 @@ const Topic_Involvement = (props) => {
           {
             name: "claim",
             type: "radiogroup",
-            title: ` "To what extent is the topic of drug overdose related to your core values?"`,
+            title: ` "I would recommend this article to my family and friends"`,
             isRequired: true,
             choices: [
                 "Not at All",
@@ -49,7 +52,7 @@ const Topic_Involvement = (props) => {
           {
             name: "new",
             type: "radiogroup",
-            title: ` "To what extent is it important for you to defend your point of view on the topic of drug overdose?" `,
+            title: ` "The content of this article is surprising to me" `,
             isRequired: true,
             choices: [
                 "Not at All",
@@ -63,21 +66,7 @@ const Topic_Involvement = (props) => {
           {
             name: "headline",
             type: "radiogroup",
-            title: ` "How interested are you in learning about drug overdose?" `,
-            isRequired: true,
-            choices: [
-                "Not at All",
-                "A little",
-                "Moderately",
-                "A lot",
-                "Extremely",
-            ],
-            // correctAnswer: "a news headline",
-          },
-          {
-            name: "suport",
-            type: "radiogroup",
-            title: ` "To what extent are you motivated to know the truth about drug overdose ?" `,
+            title: ` "I felt interested in reading this article" `,
             isRequired: true,
             choices: [
                 "Not at All",
@@ -127,11 +116,9 @@ const Topic_Involvement = (props) => {
   };
 
   const onComplete = (survey, options) => {
-    //Write survey results into database
-    // console.log(options);
-
+    const survey_end = Date.now()   // Make sure to add this to DB!
     console.log("Survey results: " + JSON.stringify(quizResponses.current));
-    axios.post("/api/topic_Involvement", quizResponses.current).then((response) => {
+    axios.post("/api/attitude_recallPopulation", quizResponses.current).then((response) => {
       let nextPage = pageHandler(props.pages, location.pathname);
       history.push(nextPage);
     });
@@ -227,12 +214,9 @@ const Topic_Involvement = (props) => {
         }}
       >
         <Typography variant="h5">
-         Please Answer the questions below👇.
+        Please Answer the questions below👇.
         </Typography>
-        <Divider></Divider>
-        
       </div>
-      <Divider></Divider>
       <Survey.Survey
         model={model}
         onComplete={onComplete}
@@ -243,4 +227,4 @@ const Topic_Involvement = (props) => {
   );
 };
 
-export default Topic_Involvement;
+export default Attitude_recallPopulation;
