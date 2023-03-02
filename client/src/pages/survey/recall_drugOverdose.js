@@ -126,13 +126,159 @@ const Recall_drugOverdose = (props) => {
 
 
   // const quizResponses = useRef([]);
+ 
+  // const [clipAnimation, setClipAnimation] = useState(false);
+
+  // const handleShowAnimation = () => {
+  //   setClipAnimation(true);
+  // };
+  const quizResponses = useRef([]);
   const history = useHistory();
   const location = useLocation();
-  const [clipAnimation, setClipAnimation] = useState(false);
+  const questionCondition = useRecoilValue(questionState);
+  // console.log(questionCondition);
+  const extraQuestions =
+    questionCondition == "strength"
+      ? [
+        
+        ]
+      : [];
 
-  const handleShowAnimation = () => {
-    setClipAnimation(true);
+  const json = {
+    pages: [
+    
+      {
+        elements: [
+          // {
+          //   type: "html",
+          //   html: "<p style='font-size: 22px;'>Since 2002, share of Americans  population with <span style='font-weight: bold;'>drug use disorders...</span>  </p>",
+           
+          // },
+          
+          {
+            name: "claim",
+            type: "radiogroup",
+            title: ` "I would recommend this article to my family and friends"`,
+            isRequired: true,
+            choices: [
+                "Not at All",
+                "A little",
+                "Moderately",
+                "A lot",
+                "Extremely",
+            ],
+            // correctAnswer: "a conclusion about a topic",
+          },
+          
+          {
+            name: "suport",
+            type: "radiogroup",
+            title: ` "The content of this article is surprising to me" `,
+            isRequired: true,
+            choices: [
+                "Not at All",
+                "A little",
+                "Moderately",
+                "A lot",
+                "Extremely",
+            ],
+            // correctAnswer: "a news headline",
+          },
+          {
+            name: "viewOpinion",
+            type: "radiogroup",
+            title: ` "I felt interested in reading this article" `,
+            isRequired: true,
+            choices: [
+                "Not at All",
+                "A little",
+                "Moderately",
+                "A lot",
+                "Extremely",
+            ],
+            // correctAnswer: "a news headline",
+          },
+          ...extraQuestions,
+        ],
+      },
+    ],
   };
+
+  var defaultThemeColors = Survey.StylesManager.ThemeColors["default"];
+  defaultThemeColors["$main-color"] = "black";
+  defaultThemeColors["$main-hover-color"] = "lightgrey";
+  defaultThemeColors["$text-color"] = "#4a4a4a";
+  defaultThemeColors["$header-color"] = "#7ff07f";
+
+  defaultThemeColors["$header-background-color"] = "#4a4a4a";
+  defaultThemeColors["$body-container-background-color"] = "#f8f8f8";
+
+  const correctStr = "Correct";
+  const inCorrectStr = "Incorrect";
+
+  Survey.StylesManager.applyTheme();
+
+  const onCompleting = (survey, options) => {
+    // console.log(options);
+    let allTrue = true;
+    survey.getAllQuestions().forEach((q) => {
+    
+    });
+    quizResponses.current.push(survey.data);
+    if (allTrue) {
+      options.allowComplete = true;
+    } else {
+      options.allowComplete = false;
+    }
+  };
+
+  const onComplete = (survey, options) => {
+    
+    console.log("Survey results: " + JSON.stringify(quizResponses.current));
+    axios.post("/api/recall_drugOverdose", quizResponses.current).then((response) => {
+      let nextPage = pageHandler(location.pathname);
+      history.push(nextPage);
+    });
+  };
+
+  const onCurrentPageChanging = (survey, option) => {
+    if (!option.isNextPage) return;
+    let allTrue = true;
+    survey.getAllQuestions().forEach((q) => {
+      if (survey.currentPage == q.page) {
+        
+      }
+    });
+    console.log(allTrue);
+    if (allTrue) {
+      option.allowChanging = true;
+    } else {
+      option.allowChanging = false;
+    }
+  };
+
+  function getTextHtml(text, str, isCorrect) {
+    if (text.indexOf(str) < 0) return undefined;
+    return (
+      text.substring(0, text.indexOf(str)) +
+      "<span style='color:" +
+      (isCorrect ? "green" : "red") +
+      "'>" +
+      str +
+      "</span>"
+    );
+  }
+  
+
+  
+
+  const model = new Survey.Model(json);
+  model.showCompletedPage = false;
+  model.onTextMarkdown.add((sender, options) => {
+    var text = options.text;
+    var html = getTextHtml(text, correctStr, true);
+    
+  });
   
   return (
     <Container
@@ -176,8 +322,19 @@ const Recall_drugOverdose = (props) => {
             <LineChart type="value" data={lineData} idLine={1} startYear={2002} />
           </Suspense>
         </div>
+        <Survey.Survey
+          model={model}
+          onClick={() => {
+            let nextPage = pageHandler(props.pages, location.pathname);
+            history.push(nextPage);
+          }}
+          onCompleting={onCompleting}
+          onCurrentPageChanging={onCurrentPageChanging}
+          
+        />
 
       </div>
+      
 
       <div>
         <Button

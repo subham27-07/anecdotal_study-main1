@@ -6,7 +6,7 @@ import * as Survey from "survey-react";
 import "survey-react/survey.css";
 import {Divider, Typography, Container, Button} from "@mui/material";
 
-const InstructionPost_Recall = (props) => {
+const InstructionPre = (props) => {
   const history = useHistory();
   const location = useLocation();
   const json = {
@@ -64,7 +64,7 @@ const InstructionPost_Recall = (props) => {
         }}
       >
         
-         <h3> In previous pages you saw data about the drug overdose epidemic, now we ask you to recreate those trends as accurately as possible. Please recreate the trend you saw about death from drug overdose as accurately as possible</h3>
+         <h3> Next we are going to show you some News Articles with Visualizations</h3>
       </div>
       
 
@@ -90,4 +90,4 @@ const InstructionPost_Recall = (props) => {
   );
 };
 
-export default InstructionPost_Recall
+export default InstructionPre

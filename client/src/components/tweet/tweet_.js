@@ -16,7 +16,7 @@ function parseString(encodedString) {
 }
 const useStyles = makeStyles({
   tweetCard: {
-    width: "40%",
+    width: "100%",
     backgroundColor: "white",
     borderRadius: 0,
     margin: "0 auto",

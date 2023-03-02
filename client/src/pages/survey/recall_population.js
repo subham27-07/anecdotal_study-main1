@@ -74,89 +74,135 @@ const Recall_population = (props) => {
     },
     {
       id: 1,
-      value: 1,
+      value: 3.05,
       year: 2010,
     },
     {
       id: 1,
-      value: 1,
+      value: 3.11,
       year: 2011,
     },
     {
       id: 1,
-      value: 1,
+      value: 3.19,
       year: 2012,
     },
     {
       id: 1,
-      value: 1,
+      value: 3.28,
       year: 2013,
     },
     {
       id: 1,
-      value: 1,
+      value: 3.37,
       year: 2014,
     },
     {
       id: 1,
-      value: 1,
+      value: 3.46,
       year: 2015,
     },
     {
       id: 1,
-      value: 5,
+      value: 3.56,
       year: 2016,
     },
     {
       id: 1,
-      value: 6,
+      value: 3.64,
       year: 2017,
     },
     {
       id: 1,
-      value: 6,
+      value: 3.67,
       year: 2018,
     },
     {
       id: 1,
-      value: 8,
+      value: 3.70,
       year: 2019,
     },
   ];
 
+  // const quizResponses = useRef([]);
+  // const history = useHistory();
+  // const location = useLocation();
+
+  // const [clipAnimation, setClipAnimation] = useState(false);
+
+  // const handleShowAnimation = () => {
+  //   setClipAnimation(true);
+  // };
+
   const quizResponses = useRef([]);
   const history = useHistory();
   const location = useLocation();
-
-  const [clipAnimation, setClipAnimation] = useState(false);
-
-  const handleShowAnimation = () => {
-    setClipAnimation(true);
-  };
-
   const questionCondition = useRecoilValue(questionState);
-
+  // console.log(questionCondition);
   const extraQuestions =
     questionCondition == "strength"
       ? [
-
+        
         ]
       : [];
 
   const json = {
     pages: [
+    
       {
         elements: [
+          // {
+          //   type: "html",
+          //   html: "<p style='font-size: 22px;'>Since 2002, share of Americans  population with <span style='font-weight: bold;'>drug use disorders...</span>  </p>",
+           
+          // },
+          
           {
-            type: "html",
-            html: "",
-           
+            name: "claim",
+            type: "radiogroup",
+            title: ` "I would recommend this article to my family and friends"`,
+            isRequired: true,
+            choices: [
+                "Not at All",
+                "A little",
+                "Moderately",
+                "A lot",
+                "Extremely",
+            ],
+            // correctAnswer: "a conclusion about a topic",
           },
-           
-
+          
+          {
+            name: "suport",
+            type: "radiogroup",
+            title: ` "The content of this article is surprising to me" `,
+            isRequired: true,
+            choices: [
+                "Not at All",
+                "A little",
+                "Moderately",
+                "A lot",
+                "Extremely",
+            ],
+            // correctAnswer: "a news headline",
+          },
+          {
+            name: "viewOpinion",
+            type: "radiogroup",
+            title: ` "I felt interested in reading this article" `,
+            isRequired: true,
+            choices: [
+                "Not at All",
+                "A little",
+                "Moderately",
+                "A lot",
+                "Extremely",
+            ],
+            // correctAnswer: "a news headline",
+          },
+          ...extraQuestions,
         ],
       },
-
     ],
   };
 
@@ -169,12 +215,74 @@ const Recall_population = (props) => {
   defaultThemeColors["$header-background-color"] = "#4a4a4a";
   defaultThemeColors["$body-container-background-color"] = "#f8f8f8";
 
+  const correctStr = "Correct";
+  const inCorrectStr = "Incorrect";
+
   Survey.StylesManager.applyTheme();
+
+  const onCompleting = (survey, options) => {
+    // console.log(options);
+    let allTrue = true;
+    survey.getAllQuestions().forEach((q) => {
+    
+    });
+    quizResponses.current.push(survey.data);
+    if (allTrue) {
+      options.allowComplete = true;
+    } else {
+      options.allowComplete = false;
+    }
+  };
+
+  const onComplete = (survey, options) => {
+    
+    console.log("Survey results: " + JSON.stringify(quizResponses.current));
+    axios.post("/api/recall_drugOverdose", quizResponses.current).then((response) => {
+      let nextPage = pageHandler(location.pathname);
+      history.push(nextPage);
+    });
+  };
+
+  const onCurrentPageChanging = (survey, option) => {
+    if (!option.isNextPage) return;
+    let allTrue = true;
+    survey.getAllQuestions().forEach((q) => {
+      if (survey.currentPage == q.page) {
+        
+      }
+    });
+    console.log(allTrue);
+    if (allTrue) {
+      option.allowChanging = true;
+    } else {
+      option.allowChanging = false;
+    }
+  };
+
+  function getTextHtml(text, str, isCorrect) {
+    if (text.indexOf(str) < 0) return undefined;
+    return (
+      text.substring(0, text.indexOf(str)) +
+      "<span style='color:" +
+      (isCorrect ? "green" : "red") +
+      "'>" +
+      str +
+      "</span>"
+    );
+  }
+  
+
+  
 
   const model = new Survey.Model(json);
   model.showCompletedPage = false;
-  model.questionTitleTemplate = "";
-  model.showQuestionNumbers = "none";
+  model.onTextMarkdown.add((sender, options) => {
+    var text = options.text;
+    var html = getTextHtml(text, correctStr, true);
+    
+  });
+
+  
   
   
   return (
@@ -217,6 +325,16 @@ const Recall_population = (props) => {
             <LineChart type="value" data={lineData} idLine={1} startYear={2002} />
           </Suspense>
         </div>
+        <Survey.Survey
+          model={model}
+          onClick={() => {
+            let nextPage = pageHandler(props.pages, location.pathname);
+            history.push(nextPage);
+          }}
+          // onCompleting={onCompleting}
+          // onCurrentPageChanging={onCurrentPageChanging}
+          
+        />
       </div>
       <div>
       <Button
