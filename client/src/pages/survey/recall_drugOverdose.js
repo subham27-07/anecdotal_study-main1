@@ -206,7 +206,7 @@ const Recall_drugOverdose = (props) => {
 
   var defaultThemeColors = Survey.StylesManager.ThemeColors["default"];
   defaultThemeColors["$main-color"] = "black";
-  defaultThemeColors["$main-hover-color"] = "lightgrey";
+  defaultThemeColors["$main-hover-color"] = "darkorange";
   defaultThemeColors["$text-color"] = "#4a4a4a";
   defaultThemeColors["$header-color"] = "#7ff07f";
 
@@ -232,9 +232,39 @@ const Recall_drugOverdose = (props) => {
     }
   };
 
+
+  const [visCompleted, setVisCompleted] = useState(false);
+
+  function visStateHandler(){
+      setVisCompleted((prevState)=>!prevState);
+    console.log('VisStateHandler triggered',visCompleted);
+    }
+
+
+  function PageContentHandler(){
+    console.log('PageContentHandler triggered!', visCompleted)
+    if(visCompleted){
+      return(
+          <div className={styles.surveyContainer}><Survey.Survey
+          model={model}
+          onComplete={() => {
+            let nextPage = pageHandler(props.pages, location.pathname);
+            history.push(nextPage);
+          }}
+          onCompleting={onCompleting}
+          onCurrentPageChanging={onCurrentPageChanging}
+
+      />
+      </div>)
+    }
+    else{
+      return("")
+    }
+
+  }
+
   const onComplete = (survey, options) => {
-    
-    console.log("Survey results: " + JSON.stringify(quizResponses.current));
+    // console.log("Survey results: " + JSON.stringify(quizResponses.current));
     axios.post("/api/recall_drugOverdose", quizResponses.current).then((response) => {
       let nextPage = pageHandler(location.pathname);
       history.push(nextPage);
@@ -244,12 +274,12 @@ const Recall_drugOverdose = (props) => {
   const onCurrentPageChanging = (survey, option) => {
     if (!option.isNextPage) return;
     let allTrue = true;
-    survey.getAllQuestions().forEach((q) => {
-      if (survey.currentPage == q.page) {
-        
-      }
-    });
-    console.log(allTrue);
+    // survey.getAllQuestions().forEach((q) => {
+    //   // if (survey.currentPage == q.page) {
+    //   //
+    //   // }
+    // });
+    // console.log(allTrue);
     if (allTrue) {
       option.allowChanging = true;
     } else {
@@ -279,7 +309,7 @@ const Recall_drugOverdose = (props) => {
     var html = getTextHtml(text, correctStr, true);
     
   });
-  
+
   return (
     <Container
       maxWidth={false}
@@ -319,37 +349,27 @@ const Recall_drugOverdose = (props) => {
       <div className="viz" style={{ display: "flex", flexDirection: "column" }}>
       <div style={{ width: "100%",margin:"0 auto"}}>
           <Suspense fallback={<div>loading...</div>}>
-            <LineChart type="value" data={lineData} idLine={1} startYear={2002} />
+            <LineChart type="value" data={lineData} idLine={1} startYear={2002} visState={visCompleted} stateHandler={visStateHandler}/>
           </Suspense>
         </div>
-        <Survey.Survey
-          model={model}
-          onClick={() => {
-            let nextPage = pageHandler(props.pages, location.pathname);
-            history.push(nextPage);
-          }}
-          onCompleting={onCompleting}
-          onCurrentPageChanging={onCurrentPageChanging}
-          
-        />
 
+        {PageContentHandler()}
       </div>
-      
 
-      <div>
-        <Button
-              variant="contained"
-              color="primary"
-              onClick={() => {
-                let nextPage = pageHandler(props.pages, location.pathname);
-                history.push(nextPage);
-              }}
-              style={{marginTop: '5%',marginLeft: '230px', marginRight: '20px'}}
-            >
-              Continue
-        </Button>
+      {/*<div>*/}
+      {/*  <Button*/}
+      {/*        variant="contained"*/}
+      {/*        color="primary"*/}
+      {/*        onClick={() => {*/}
+      {/*          let nextPage = pageHandler(props.pages, location.pathname);*/}
+      {/*          history.push(nextPage);*/}
+      {/*        }}*/}
+      {/*        style={{marginTop: '5%',marginLeft: '230px', marginRight: '20px'}}*/}
+      {/*      >*/}
+      {/*        Continue*/}
+      {/*  </Button>*/}
 
-      </div>
+      {/*</div>*/}
     </Container>
 
   );
