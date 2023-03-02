@@ -219,9 +219,9 @@ const Instructions1 = (props) => {
               accName={""}
               screen_name={""}
               showImage={true}
-              // src={
-              //   "https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/new.gif"
-              // }
+              src={
+                "https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/new.gif"
+              }
             ></TweetQuote>
           </Tweet>
         </div>

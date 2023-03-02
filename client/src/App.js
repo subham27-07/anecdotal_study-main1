@@ -62,6 +62,7 @@ import {
 import {choose} from "./functions/functions";
 
 import "./App.css";
+import InstructionsGeneral from "./pages/instructions/instructions_general";
 
 function useQuery() {
     const {search} = useLocation();
@@ -93,7 +94,7 @@ const App = () => {
     const pre_pages = [
         "consent",
         "pre",
-        "instructions1",
+        "instructionsGeneral",
         "quiz",
         "attitude_Elicitation",
         "topic_Involvement",
@@ -135,8 +136,8 @@ const App = () => {
 
     const treatmentSelector = () => {
         const tr = choose(['txt', 'visual', 'control'])
-        console.log(treatment)
         treatment.current = tr
+        console.log(treatment.current)
         switch (tr) {
             case 'txt':
                 return [...pre_pages, ...txt_pages, ...post_pages];
@@ -320,6 +321,9 @@ const App = () => {
                                         }
                                     }}
                                 ></Route>
+                                <Route path={'/instructionsGeneral'} >
+                                    <InstructionsGeneral treatment={treatment.current} pages={study_pages}/>
+                                    </Route>
                                 <Route path="/Instructions3">
                                     <Instructions3 pages={study_pages}/>
                                 </Route>
