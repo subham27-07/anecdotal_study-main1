@@ -17,11 +17,6 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "bold",
     color: "red",
   },
-  tweetImage: {
-    width: "400%",
-    maxWidth: "none",
-    height: "400px",
-  },
   instructContainer: {
     height: "100%",
   },
@@ -46,7 +41,6 @@ const useStyles = makeStyles((theme) => ({
     right: ({ positions }) =>
       positions ? `${positions.tweet.right + 50}px` : "none",
     top: ({ positions }) => (positions ? `${positions.tweet.top}px` : "none"),
-
   },
   pointToTweetLeft: {
     margin: 0,
@@ -89,11 +83,9 @@ const Instructions1 = (props) => {
   const maxStage = 6;
   const history = useHistory();
   const classes = useStyles({ positions: positions });
-  const [currentImage, setCurrentImage] = useState(0);
 
   const handleClick = () => {
     incrementStage();
-  }
   };
 
   const incrementStage = () => {
@@ -114,12 +106,6 @@ const Instructions1 = (props) => {
     setPositions(p);
   };
 
-  
-
-  
-
-
-
   useEffect(() => {
     window.addEventListener("resize", setTweetPositions);
   }, []);
@@ -136,12 +122,8 @@ const Instructions1 = (props) => {
 
   useEffect(() => {
     console.log("stage", stage);
-    if (stage === 1) {
-      setCurrentImage(1);
-    } else if (stage === 2) {
-      setCurrentImage(2);
-    } else if (stage === 3) {
-      setCurrentImage(3);
+    if (stage === -1) {
+      incrementStage();
     } else if (stage === maxStage) {
       let nextPage = pageHandler(location.pathname);
       history.push(nextPage);
@@ -165,18 +147,11 @@ const Instructions1 = (props) => {
               text={
                 ""
               }
-              className={classes.tweetImage}
               accName={""}
               screen_name={"SunnyHollywood"}
               showImage={true}
               src={
-                currentImage === 0
-                ? "https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/Instruction%20pages%20(1).pptx.jpg"
-                : currentImage === 1
-                ? "https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/Instruction%20pages%20(1).pptx%20(1).jpg"
-                : currentImage === 2
-                ? "https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/Instruction%20pages%20(1).pptx%20(2).jpg"
-                : "https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/Instruction%20pages%20(1).pptx%20(3).jpg"
+                "https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/new.gif"
               }
             ></TweetQuote>
           </Tweet>
@@ -196,6 +171,7 @@ const Instructions1 = (props) => {
             <span>
             Here is the title of the article <span>👉👉</span>
             </span>
+            
           </div>
           <br />
           <div style={stage >= 2 ? easinStyle : hiddenStyle}>

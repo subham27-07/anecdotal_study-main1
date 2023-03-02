@@ -17,19 +17,19 @@ import styles from '../survey/articles.module.css';
 const textual_instructions = {
   'txt': [
     "This is the text for stage 1 of the txt condition.",
-    <img style={{ width: "50%" ,marginRight: "10%"}} src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/a1.png" alt="stage 1 txt condition image" />,
+    <img style={{ width: "50%"}} src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/a1.png" alt="stage 1 txt condition image" />,
     "This is the text for stage 2 of the txt condition.",
-    <img style={{ width: "50%",marginRight: "10%" }} src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/a2.png" alt="stage 2 txt condition image" />,
+    <img style={{ width: "50%" }} src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/a2.png" alt="stage 2 txt condition image" />,
     "This is the text for stage 3 of the txt condition.",
-    <img style={{ width: "50%",marginRight: "10%" }} src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/a3.png" alt="stage 3 txt condition image" />
+    <img style={{ width: "50%"}} src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/a3.png" alt="stage 3 txt condition image" />
   ],
   'visual': [
     "This is the text for stage 1 of the visual condition.",
-    <img style={{ width: "50%",marginRight: "10%" }} src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/a1.png" alt="stage 1 visual condition image" />,
+    <img style={{ width: "50%",marginLeft: "10%" }} src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/a1.png" alt="stage 1 visual condition image" />,
     "This is the text for stage 2 of the visual condition.",
-    <img style={{ width: "50%",marginRight: "10%" }} src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/a2.png" alt="stage 2 visual condition image" />,
+    <img style={{ width: "50%",marginLeft: "10%" }} src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/a2.png" alt="stage 2 visual condition image" />,
     "This is the text for stage 3 of the visual condition.",
-    <img style={{ width: "50%",marginRight: "10%" }} src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/a3.png" alt="stage 3 visual condition image" />
+    <img style={{ width: "50%",marginLeft: "0%" }} src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/a3.png" alt="stage 3 visual condition image" />
   ],
   'control': [
     "This is the text for stage 1 of the control condition.",
@@ -114,43 +114,43 @@ const Instructions1 = (props) => {
   const handleClick = () => {
     incrementStage();
   };
-  // const textCreator = ()=>{
-  //   console.log(props.treatment)
-  //   switch(props.treatment){
-  //     case 'txt':
-  //       return (textual_instructions.txt);
-  //     case 'visual':
-  //       return textual_instructions.visual;
-  //     case 'control':
-  //       return textual_instructions.control;
-  //   }
-  // };
-
-  const textCreator = () => {
-    switch (props.treatment) {
-      case "txt":
-        return (
-          <>
-            {textual_instructions.txt[2 * stage]}
-            {textual_instructions.txt[2 * stage + 1]}
-          </>
-        );
-      case "visual":
-        return (
-          <>
-            {textual_instructions.visual[2 * stage]}
-            {textual_instructions.visual[2 * stage + 1]}
-          </>
-        );
-      case "control":
-        return (
-          <>
-            {textual_instructions.control[2 * stage]}
-            {textual_instructions.control[2 * stage + 1]}
-          </>
-        );
+  const textCreator = ()=>{
+    console.log(props.treatment)
+    switch(props.treatment){
+      case 'txt':
+        return (textual_instructions.txt);
+      case 'visual':
+        return textual_instructions.visual;
+      case 'control':
+        return textual_instructions.control;
     }
   };
+
+  // const textCreator = () => {
+  //   switch (props.treatment) {
+  //     case "txt":
+  //       return (
+  //         <>
+  //           {textual_instructions.txt[2 * stage]}
+  //           {textual_instructions.txt[2 * stage + 1]}
+  //         </>
+  //       );
+  //     case "visual":
+  //       return (
+  //         <>
+  //           {textual_instructions.visual[2 * stage]}
+  //           {textual_instructions.visual[2 * stage + 1]}
+  //         </>
+  //       );
+  //     case "control":
+  //       return (
+  //         <>
+  //           {textual_instructions.control[2 * stage]}
+  //           {textual_instructions.control[2 * stage + 1]}
+  //         </>
+  //       );
+  //   }
+  // };
   
 
 
