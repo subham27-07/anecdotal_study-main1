@@ -1,4 +1,4 @@
-import React, { useRef, lazy, Suspense, useState} from 'react';
+import React, { useRef, lazy, Suspense, useState } from 'react';
 
 
 import { useHistory, useLocation } from "react-router-dom";
@@ -6,124 +6,216 @@ import pageHandler from "../pageHandler";
 import axios from "axios";
 import * as Survey from "survey-react";
 import { Divider, Typography, Container, Button } from "@mui/material";
-import Tweet from "../../components/tweet/tweet";
-import TweetQuote from "../../components/tweet/tweetQuote";
+
 import { useRecoilValue } from "recoil";
 import { questionState } from "../../atoms/questionSelector";
 import "survey-react/survey.css";
 import styles from "./articles.module.css";
+
 const LineChart = lazy(() => import('./visualizations/LineChartVisual_bitcoin'));
 
-
-const InstructionPost_Elicitation = () => {
+const Recall_drugOverdose = (props) => {
   const lineData = [
     {
       id: 1,
-      value: 5544,
+      value: 47055,
       year: 2014,
     },
     {
       id: 1,
-      value: 9580,
+      value: 52404,
       year: 2015,
     },
     {
       id: 1,
-      value: 19413,
+      value: 63632,
       year: 2016,
     },
     {
       id: 1,
-      value: 28466,
+      value: 70237,
       year: 2017,
     },
     {
       id: 1,
-      value: 31335,
+      value: 67367,
       year: 2018,
     },
     {
       id: 1,
-      value: 36359,
+      value: 70630,
       year: 2019,
     },
     {
-        id: 1,
-        value: 56516,
-        year: 2020,
+      id: 1,
+      value: 72630,
+      year: 2020,
     },
     {
-        id: 1,
-        value: 70601,
-        year: 2021,
+      id: 1,
+      value: 73630,
+      year: 2021,
     },
+    {
+      id: 1,
+      value: 74630,
+      year: 2022,
+    },
+    
   ];
 
 
+  // const quizResponses = useRef([]);
+ 
+  // const [clipAnimation, setClipAnimation] = useState(false);
+
+  // const handleShowAnimation = () => {
+  //   setClipAnimation(true);
+  // };
   const quizResponses = useRef([]);
   const history = useHistory();
   const location = useLocation();
-
-  const [clipAnimation, setClipAnimation] = useState(false);
-
-  const handleShowAnimation = () => {
-    setClipAnimation(true);
-  };
-
   const questionCondition = useRecoilValue(questionState);
-
+  // console.log(questionCondition);
   const extraQuestions =
     questionCondition == "strength"
       ? [
-
+        
         ]
       : [];
 
   const json = {
     pages: [
+    
       {
         elements: [
           {
             type: "html",
-            html: "<span style='font-family: serif; font-size: 1.25rem;'>👉👉👉 <span style='font-weight: bold; color:gray;'> Article 3.</span> Since 2002, the <span style='font-weight: bold'>number</span> of Americans who have died every year from overdoses of <span style='font-weight: bold;'>synthetic opioids...</span>  </span>",
-
-          },
+            html: "<p style='font-size: 22px;'><span style='font-weight: bold;'>Congratulation</span> you succeeded in completing the this line chart training please go ahead an complete </p>",
            
-
+          },
+          
+          
         ],
       },
-
     ],
   };
 
   var defaultThemeColors = Survey.StylesManager.ThemeColors["default"];
   defaultThemeColors["$main-color"] = "black";
-  defaultThemeColors["$main-hover-color"] = "lightgrey";
+  defaultThemeColors["$main-hover-color"] = "darkorange";
   defaultThemeColors["$text-color"] = "#4a4a4a";
   defaultThemeColors["$header-color"] = "#7ff07f";
 
   defaultThemeColors["$header-background-color"] = "#4a4a4a";
   defaultThemeColors["$body-container-background-color"] = "#f8f8f8";
 
+  const correctStr = "Correct";
+  const inCorrectStr = "Incorrect";
+
   Survey.StylesManager.applyTheme();
 
-  const model = new Survey.Model(json);
-  model.showCompletedPage = false;
-  model.questionTitleTemplate = "";
-  model.showQuestionNumbers = "none";
+  const onCompleting = (survey, options) => {
+    // console.log(options);
+    let allTrue = true;
+    survey.getAllQuestions().forEach((q) => {
+    
+    });
+    quizResponses.current.push(survey.data);
+    if (allTrue) {
+      options.allowComplete = true;
+    } else {
+      options.allowComplete = false;
+    }
+  };
+
+
+  const [visCompleted, setVisCompleted] = useState(false);
+
+  function visStateHandler(){
+      setVisCompleted((prevState)=>!prevState);
+    console.log('VisStateHandler triggered',visCompleted);
+    }
+
+
+  function PageContentHandler(){
+    console.log('PageContentHandler triggered!', visCompleted)
+    if(visCompleted){
+      return(
+          <div className={styles.surveyContainer}><Survey.Survey
+          model={model}
+          onComplete={() => {
+            let nextPage = pageHandler(props.pages, location.pathname);
+            history.push(nextPage);
+          }}
+          onCompleting={onCompleting}
+          onCurrentPageChanging={onCurrentPageChanging}
+
+      />
+      </div>)
+    }
+    else{
+      return("")
+    }
+
+  }
+
+  const onComplete = (survey, options) => {
+    // console.log("Survey results: " + JSON.stringify(quizResponses.current));
+    axios.post("/api/recall_drugOverdose", quizResponses.current).then((response) => {
+      let nextPage = pageHandler(location.pathname);
+      history.push(nextPage);
+    });
+  };
+
+  const onCurrentPageChanging = (survey, option) => {
+    if (!option.isNextPage) return;
+    let allTrue = true;
+    // survey.getAllQuestions().forEach((q) => {
+    //   // if (survey.currentPage == q.page) {
+    //   //
+    //   // }
+    // });
+    // console.log(allTrue);
+    if (allTrue) {
+      option.allowChanging = true;
+    } else {
+      option.allowChanging = false;
+    }
+  };
+
+  function getTextHtml(text, str, isCorrect) {
+    if (text.indexOf(str) < 0) return undefined;
+    return (
+      text.substring(0, text.indexOf(str)) +
+      "<span style='color:" +
+      (isCorrect ? "green" : "red") +
+      "'>" +
+      str +
+      "</span>"
+    );
+  }
+  
 
   
 
-  return (
+  const model = new Survey.Model(json);
+  model.showCompletedPage = false;
+  model.onTextMarkdown.add((sender, options) => {
+    var text = options.text;
+    var html = getTextHtml(text, correctStr, true);
     
+  });
+
+  return (
     <Container
       maxWidth={false}
       style={{
         width: "100%",
         overflow: "auto",
         minHeight: "600px",
-        paddingTop: "30px",
-        paddingBottm: "30px",
+        paddingTop: "2%",
+        // paddingBottm: "5%",
       }}
     >
       <div
@@ -134,49 +226,53 @@ const InstructionPost_Elicitation = () => {
           justifyContent: "center",
         }}
       >
-        <Typography variant="h4">
-              <span className={`${styles.textBody} ${styles.title}`}>How has the bitcoin price <span
-                  style={{fontWeight: "bold"}}> changed </span> </span>
+        <Typography variant="h3">
+              <span>Now we ask you to   <span
+                  style={{fontWeight: "bold"}}> practice drawing </span> a timeline in the chart below</span>
         </Typography>
+
         <Typography variant={"body1"}>
-                   <p> Now we will show you  <span
-                className={styles.txtImportant}>some articles</span> please try to replicate what you saw from the article <span
-                className={styles.txtImportant}></span></p>
-        </Typography>
-        <Typography variant={"body1"}>
-                   <p> You can practice here   <span
-                className={styles.txtImportant}>before we move ahead</span> you need to draw the line for the missing year <span
-                className={styles.txtImportant}></span></p>
-        </Typography>
-        
+                         <p>Please draw an <span
+                        className={styles.txtImportant}>Increasing trend</span> You can adjust individual data point after drawing the line as needed by dragging the data points.
+                            <span className={styles.txtImportant}> </span> </p>
+         </Typography>
+         
+
       </div>
-      {/* <Survey.Survey
-        model={model}
-      /> */}
+      {/*<Survey.Survey*/}
+      {/*  model={model}*/}
+      {/*/>*/}
 
       <div className="viz" style={{ display: "flex", flexDirection: "column" }}>
-        <div style={{ width: "100%",margin:"0 auto"}}>
+      <div style={{ width: "100%",margin:"0 auto"}}>
           <Suspense fallback={<div>loading...</div>}>
-            <LineChart type="value" data={lineData} idLine={1} startYear={2002} />
+            <LineChart type="value" data={lineData} idLine={1} startYear={2002} visState={visCompleted} stateHandler={visStateHandler}/>
           </Suspense>
         </div>
+
+        {PageContentHandler()}
       </div>
-      <div>
-        <Button
-              variant="contained"
-              color="primary"
-              onClick={() => {
-                let nextPage = pageHandler(location.pathname);
-                history.push(nextPage);
-              }}
-              style={{marginTop: '5%',marginLeft: '180px', marginRight: '20px'}}
-            >
-              Continue
-        </Button>
-      
-      </div>
+
+      {/*<div>*/}
+      {/*  <Button*/}
+      {/*        variant="contained"*/}
+      {/*        color="primary"*/}
+      {/*        onClick={() => {*/}
+      {/*          let nextPage = pageHandler(props.pages, location.pathname);*/}
+      {/*          history.push(nextPage);*/}
+      {/*        }}*/}
+      {/*        style={{marginTop: '5%',marginLeft: '230px', marginRight: '20px'}}*/}
+      {/*      >*/}
+      {/*        Continue*/}
+      {/*  </Button>*/}
+
+      {/*</div>*/}
     </Container>
+
   );
 }
 
-export default InstructionPost_Elicitation;
+export default Recall_drugOverdose;
+
+
+

@@ -22,7 +22,7 @@ const useStyles = makeStyles({
   //   border: "0.1px",
   // },
   card: {
-    maxWidth: "500px",
+    maxWidth: "none",
     width: "max(100%,400px)",
     backgroundColor: "#white",
     color: "black",
@@ -79,7 +79,7 @@ const Tweet = (props) => {
             flexBasis: 0,
             flexGrow: 1,
             marginLeft: "20px",
-            width: "100%",
+            width: "200%",
           }}
         >
           <div>

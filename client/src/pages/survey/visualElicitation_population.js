@@ -74,52 +74,52 @@ const VisualElicitation_population = (props) => {
     },
     {
       id: 1,
-      value: 1,
+      value: 3.05,
       year: 2010,
     },
     {
       id: 1,
-      value: 1,
+      value: 3.11,
       year: 2011,
     },
     {
       id: 1,
-      value: 1,
+      value: 3.19,
       year: 2012,
     },
     {
       id: 1,
-      value: 1,
+      value: 3.28,
       year: 2013,
     },
     {
       id: 1,
-      value: 1,
+      value: 3.37,
       year: 2014,
     },
     {
       id: 1,
-      value: 1,
+      value: 3.46,
       year: 2015,
     },
     {
       id: 1,
-      value: 5,
+      value: 3.56,
       year: 2016,
     },
     {
       id: 1,
-      value: 6,
+      value: 3.64,
       year: 2017,
     },
     {
       id: 1,
-      value: 6,
+      value: 3.67,
       year: 2018,
     },
     {
       id: 1,
-      value: 8,
+      value: 3.70,
       year: 2019,
     },
   ];

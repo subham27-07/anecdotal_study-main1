@@ -19,6 +19,7 @@ import CogRefSurveyPage1 from "./pages/survey/cogRef1";
 import InstructionPost_Elicitation from "./pages/survey/instructionPost_Elicitation";
 
 import InstructionPost_Recall from "./pages/survey/instructionPost_Recall";
+import InstructionPre from "./pages/survey/instructionPre";
 import ConsentPage from "./pages/consent/consent";
 import DebriefPage from "./pages/debrief/debrief";
 import Instructions1 from "./pages/instructions/instruction1_better";
@@ -61,6 +62,7 @@ import {
 import {choose} from "./functions/functions";
 
 import "./App.css";
+import InstructionsGeneral from "./pages/instructions/instructions_general";
 
 function useQuery() {
     const {search} = useLocation();
@@ -92,10 +94,11 @@ const App = () => {
     const pre_pages = [
         "consent",
         "pre",
-        "instructions1",
+        "instructionsGeneral",
         "quiz",
         "attitude_Elicitation",
         "topic_Involvement",
+        "instructionPre",
     ]
     const txt_pages = [
         "textelicitation_drugOverdose",
@@ -118,11 +121,11 @@ const App = () => {
         "instructionPost_Elicitation",
         "instructionPost_Recall",
         "recall_drugOverdose",
-        "attitude_recallDrug",
+        // "attitude_recallDrug",
         "recall_population",
-        "attitude_recallPopulation",
+        // "attitude_recallPopulation",
         "recall_Opioids",
-        "attitude_recallOpioids",
+        // "attitude_recallOpioids",
         "attitude_ElicitationPost",
         "debrief",
     ]
@@ -133,8 +136,8 @@ const App = () => {
 
     const treatmentSelector = () => {
         const tr = choose(['txt', 'visual', 'control'])
-        console.log(treatment)
         treatment.current = tr
+        console.log(treatment.current)
         switch (tr) {
             case 'txt':
                 return [...pre_pages, ...txt_pages, ...post_pages];
@@ -318,6 +321,9 @@ const App = () => {
                                         }
                                     }}
                                 ></Route>
+                                <Route path={'/instructionsGeneral'} >
+                                    <InstructionsGeneral treatment={treatment.current} pages={study_pages}/>
+                                    </Route>
                                 <Route path="/Instructions3">
                                     <Instructions3 pages={study_pages}/>
                                 </Route>
@@ -368,6 +374,10 @@ const App = () => {
                                 </Route>
                                 <Route path="/instructionPost_Recall">
                                     <InstructionPost_Recall pages={study_pages}/>
+                                </Route>
+
+                                <Route path="/instructionPre">
+                                    <InstructionPre pages={study_pages}/>
                                 </Route>
 
                                 <Route path="/recall_Opioids">

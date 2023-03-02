@@ -1,0 +1,19 @@
+.container{
+    width: 100%;
+}
+
+.imageContainer{
+    display:block;
+    align-self: center;
+    justify-self: center;
+    margin: auto;
+    width: 120%;
+}
+
+.textContainer{
+    text-align: center;
+}
+
+.actions{
+
+}

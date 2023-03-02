@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import * as d3 from 'd3';
 import { Divider, Typography, Container, Button } from "@mui/material";
-import styles from '../articles.module.css'
+import styles from "../articles.module.css";
+
+
 
 
 const marginConvention = (selection, props) => {
@@ -66,19 +68,21 @@ class LineChart extends Component {
       className: 'lineChart',
     });
 
+   
     const x = d3.scaleLinear().range([0, innerWidth]);
     this.setState({ x });
     const y = d3.scaleLinear().range([innerHeight, 0]);
-    y.domain([0, 80000]);
+    y.domain([0, d3.max(data, d => d[type])]);
     
   
-    // const yFormat = d3.scaleLinear()
-    //   .domain([0, d3.max(data, d => d[type])])
-    //   .range([0, 80000]);
+    const yFormat = d3.scaleLinear()
+      .domain([0, d3.max(data, d => d[type])])
+      .range([0, 10]);
 
     svg.append('g')
-        .attr('class', 'axis-y-line')
-        .call(d3.axisLeft(y));
+      .attr('class', 'axis-y-line')
+      .call(d3.axisLeft(y)
+        .tickFormat(d => `${yFormat(d)}%`));
 
     const valueline = d3.line()
       .x(d => x(d.year))
@@ -97,7 +101,7 @@ class LineChart extends Component {
     const dataXMax = d3.max(data, d => d.year);
 
     x.domain(d3.extent(data, d => d.year));
-    y.domain([0, 80000]);
+    y.domain([0, 10]);
 
     let mainLine;
     if (idLine) {
@@ -134,21 +138,21 @@ class LineChart extends Component {
     svg.append('text')
       .attr('class', 'text-2015')
       .attr('x', x(1999))
-      .attr('y', y(20849))
+      .attr('y', y(3.00))
       .attr('font-size','15px')
-      .text('16849');
+      .text('2.75');
 
     svg.append('text')
       .attr('class', 'text-2016')
       .attr('x', x(2002))
-      .attr('y', y(27849))
+      .attr('y', y(3.25))
       .attr('font-size','15px')
-      .text('23518');
+      .text('3.25');
 
     svg.append('circle')
       .attr('class', 'bubble-2015')
       .attr('cx', x(2002))
-      .attr('cy', y(23518))
+      .attr('cy', y(2.75))
       .attr('r', 7)
       .style('fill', '#54EAEA')
       .style('opacity', 0.7);
@@ -156,15 +160,13 @@ class LineChart extends Component {
     svg.append('circle')
       .attr('class', 'bubble-2016')
       .attr('cx', x(1999))
-      .attr('cy', y(16849))
+      .attr('cy', y(2.5))
       .attr('r', 7)
       .style('fill', '#54EAEA')
       .style('opacity', 0.7); 
     
 
     const availableYears = [1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015, 2016, 2017, 2018, 2019];
-
-    const format = d3.format('.2f');
 
     // Add the X Axis
     svg.append('g')
@@ -173,13 +175,11 @@ class LineChart extends Component {
       
       .call(d3.axisBottom(x)
         .tickValues(availableYears)
-        
         // .tickFormat(d3.format('.4')));
         .tickFormat(d => (d % 100 < 10 ? `0${d % 100}` : `${d % 100}`)));
         
-        
     // 
-    // Rotate x-axis labels
+    // // Rotate x-axis labels
     // svg.selectAll(".axis-x-line text")
     // .attr("transform", "rotate(-45)")
     // .style("text-anchor", "end");
@@ -204,8 +204,6 @@ class LineChart extends Component {
       )
       .style('stroke-dasharray', ('3, 3'))
       .style('opacity', 0.1);
-    // 
-    
     // 
     svg.append('g')
       .attr('class', 'grid')
@@ -236,7 +234,6 @@ class LineChart extends Component {
       .attr('height', innerHeight)
       .call(this.mouseDragLine(x, y, dataXMax, valueline));
   };
-
   renderAnimation = () => {
     if (d3.mean(this.userDataLine, d => d.defined) === 1) {
       const { data, type, startYear } = this.props;
@@ -256,12 +253,14 @@ class LineChart extends Component {
     const year = this.clampFunc(startYear + 1, dataXMax, x.invert(mousePos[0]));
     const newVal = this.clampFunc(0, y.domain()[1], y.invert(mousePos[1]));
 
+    
+
     this.userDataLine = this.userDataLine.map((d) => {
       // if (Math.abs(d.year - year) < 0.5) return { ...d, [type]: Math.round(newVal * 4) / 4, defined: true };
       if (Math.abs(d.year - year) < 0.5) return { ...d, [type]: Math.floor(newVal), defined: true };
       return d;
     });
-    
+
     this.setState({ userDataLine : this.userDataLine});
 
     this.youDrawIt
@@ -270,7 +269,7 @@ class LineChart extends Component {
 
     
     this.userDataLine.forEach((data) => {
-      // console.log(`Year: ${data.year}, Y Value: ${data[type]}`);
+      console.log(`Year: ${data.year}, Y Value: ${data[type]}`);
     });
 
     const definedValues = this.userDataLine.filter(d => d.defined === true);
@@ -285,11 +284,12 @@ class LineChart extends Component {
       text.enter().append('text')
         .merge(text)
         .attr('class', 'value-text')
-        .attr('x', d => x(d.year)+ 30)
+        .attr('x', d => x(d.year)+ 60)
         .attr('y', d => y(d[type]))
         .text(d => `${d[type]}`);
     }
 
+    
   });
 
   clampFunc = (a, b, c) => Math.max(a, Math.min(b, c));
@@ -311,11 +311,11 @@ class LineChart extends Component {
     if (definedValues.length === this.userDataLine.length) {
       this.setState({ showText: true });
       this.renderAnimation();
-
+      this.props.stateHandler();
     }
-    // console.log(this.userDataLine)
+    console.log(this.userDataLine)
   };
-
+  
 
 
   render() {
@@ -349,17 +349,25 @@ class LineChart extends Component {
           </Button>
         </div>
         { showText && (
-          <Typography variant="subtitle1"
-          gutterBottom
-          style={{ marginTop: '30px' }}>
-            ...has increased by more than <strong>222.16 percent</strong>.  In 2015, more Americans died from drug overdoses than from car accidents
-            and gun homicides combined. It’s the worst drug overdose epidemic in American history, spurred by rising drug abuse, 
-            increased availability of prescription opioids and an influx of potent synthetics like fentanyl and carfentanil.
-            Drug overdoses are now the leading cause of death for Americans under 50.
+          <Typography variant="body1" gutterBottom className={`${styles.textBody} ${styles.paragraph} ${styles.txtNormal}`}>
+           ...has increased by more than <span style={{ fontWeight: "bold" }}>137 percent</span>.  The United States is currently in the grips of a powerful drug epidemic,
+  with the share of population with drug use disorders steadily climbing every year. A drug use disorder is a mental disorder that affects a person’s brain and behavior, leading to a person’s 
+  inability to control their use of drugs including legal or illegal drugs. Drug use disorders occur when an individual 
+  compulsively misuses drugs or alcohol and continues abusing the substance despite knowing the negative impact it has on their life.
           </Typography>
         ) }
       </div>
-    );
+      );
   }
 }
 export default LineChart;
+
+
+// { this.state.showText && (
+//   <p className={`${styles.textBody} ${styles.paragraph} ${styles.txtNormal}`}>...has increased by more than <span style={{ fontWeight: "bold" }}>137 percent</span>.  The United States is currently in the grips of a powerful drug epidemic,
+//   with the share of population with drug use disorders steadily climbing every year. A drug use disorder is a mental disorder that affects a person’s brain and behavior, leading to a person’s 
+//   inability to control their use of drugs including legal or illegal drugs. Drug use disorders occur when an individual 
+//   compulsively misuses drugs or alcohol and continues abusing the substance despite knowing the negative impact it has on their life.
+  
+//   </p>
+// ) }
