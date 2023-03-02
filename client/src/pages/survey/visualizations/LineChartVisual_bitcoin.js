@@ -307,9 +307,10 @@ class LineChart extends Component {
   handleClick = () => {
     const definedValues = this.userDataLine.filter(d => d.defined === true);
     if (definedValues.length === this.userDataLine.length) {
-      if (this.userDataLine[this.userDataLine.length - 1][this.props.type] === 20000) {
+      const valuesInRange = this.userDataLine.filter(d => d.year >= 2017 && d.year <= 2021 && d[this.props.type] >= 60000 && d[this.props.type] <= 70000);
+      if (valuesInRange.length === 5) {
         this.setState({ showText: true });
-        this.renderAnimation();
+        // this.renderAnimation();
       }
     }
   };
@@ -333,8 +334,8 @@ class LineChart extends Component {
             </Button>
           </div>
           { this.state.showText && (
-            <p className={`${styles.textBody} ${styles.paragraph} ${styles.txtNormal}`}>...has increased by more than <span style={{ fontWeight: "bold" }}>5451 percent</span>.  Substance use disorders refers to direct deaths from
-            overdoses of <span style={{ fontWeight: "bold" }}>illicit drugs synthetic opioids (mostly fentanyl)</span> .  “We know that substance use is more dangerous than it has ever been, as fentanyl has continued to permeate the illicit drug supply, increasing the risk for overdoses among both people with substance use disorders as well as those who use drugs occasionally,” said Dr. Nora Volkow, director of the National Institute on Drug Abuse. Deaths involving synthetic opioids such as fentanyl increased by a marked 18% in 2021, according to the CDC data. Deaths involving cocaine and psychostimulants such as methamphetamine were also significantly more frequent, while those involving heroin decreased.
+            <p className={`${styles.textBody} ${styles.paragraph} ${styles.txtNormal}`}>congratulation you have successfully  <span style={{ fontWeight: "bold" }}> drawn the line</span>. 
+             <span style={{ fontWeight: "bold" }}></span>
         </p>
           ) }
         </div>

@@ -8,11 +8,39 @@ import TweetQuote from "../../components/tweet/tweetQuote";
 import pageHandler from "../pageHandler";
 import styles from '../survey/articles.module.css';
 
+// const textual_instructions = {
+//   'txt':" This is the text for txt condition.",
+//   'visual':"This is the text for control condition.",
+//   'control':"This is the text for control condition."
+// }
+
 const textual_instructions = {
-  'txt':" This is the text for txt condition.",
-  'visual':"This is the text for control condition.",
-  'control':"This is the text for control condition."
+  'txt': [
+    "This is the text for stage 1 of the txt condition.",
+    <img style={{ width: "50%" ,marginRight: "10%"}} src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/a1.png" alt="stage 1 txt condition image" />,
+    "This is the text for stage 2 of the txt condition.",
+    <img style={{ width: "50%",marginRight: "10%" }} src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/a2.png" alt="stage 2 txt condition image" />,
+    "This is the text for stage 3 of the txt condition.",
+    <img style={{ width: "50%",marginRight: "10%" }} src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/a3.png" alt="stage 3 txt condition image" />
+  ],
+  'visual': [
+    "This is the text for stage 1 of the visual condition.",
+    <img style={{ width: "50%",marginRight: "10%" }} src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/a1.png" alt="stage 1 visual condition image" />,
+    "This is the text for stage 2 of the visual condition.",
+    <img style={{ width: "50%",marginRight: "10%" }} src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/a2.png" alt="stage 2 visual condition image" />,
+    "This is the text for stage 3 of the visual condition.",
+    <img style={{ width: "50%",marginRight: "10%" }} src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/a3.png" alt="stage 3 visual condition image" />
+  ],
+  'control': [
+    "This is the text for stage 1 of the control condition.",
+    <img src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/a1.png" alt="stage 1 control condition image" />,
+    "This is the text for stage 2 of the control condition.",
+    <img src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/a2.png" alt="stage 2 control condition image" />,
+    "This is the text for stage 3 of the control condition.",
+    <img src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/a3.png" alt="stage 3 control condition image" />
+  ]
 }
+
 
 
 
@@ -86,17 +114,47 @@ const Instructions1 = (props) => {
   const handleClick = () => {
     incrementStage();
   };
-  const textCreator = ()=>{
-    console.log(props.treatment)
-    switch(props.treatment){
-      case 'txt':
-        return (textual_instructions.txt);
-      case 'visual':
-        return textual_instructions.visual;
-      case 'control':
-        return textual_instructions.control;
+  // const textCreator = ()=>{
+  //   console.log(props.treatment)
+  //   switch(props.treatment){
+  //     case 'txt':
+  //       return (textual_instructions.txt);
+  //     case 'visual':
+  //       return textual_instructions.visual;
+  //     case 'control':
+  //       return textual_instructions.control;
+  //   }
+  // };
+
+  const textCreator = () => {
+    switch (props.treatment) {
+      case "txt":
+        return (
+          <>
+            {textual_instructions.txt[2 * stage]}
+            {textual_instructions.txt[2 * stage + 1]}
+          </>
+        );
+      case "visual":
+        return (
+          <>
+            {textual_instructions.visual[2 * stage]}
+            {textual_instructions.visual[2 * stage + 1]}
+          </>
+        );
+      case "control":
+        return (
+          <>
+            {textual_instructions.control[2 * stage]}
+            {textual_instructions.control[2 * stage + 1]}
+          </>
+        );
     }
   };
+  
+
+
+
   const incrementStage = () => {
     setStage((prev) => prev + 1);
   };
@@ -171,13 +229,22 @@ const Instructions1 = (props) => {
           className={classes.pointToTweetRight}
           style={stage == 0 ? easinStyle : hiddenStyle}
         >
-          <h2 className={`${styles.textBody} ${styles.title}`}>
+          {/* <h2 className={`${styles.textBody} ${styles.title}`}>
             {props.treatment? textCreator(): 'None'} !
-          </h2>
-          <span>
+          </h2> */}
+
+          <div
+            className={classes.pointToTweetRight}
+            style={stage >= 0 ? easinStyle : hiddenStyle}
+          >
+            <h2 className={`${styles.textBody} ${styles.title}`}>{props.treatment ? textCreator() : "None"} !</h2>
+          </div>
+
+
+          {/* <span>
             {" "}
             Hi!! In this study we ask you to read a few news articles that contain data visualizations. Click continue to proceed.
-          </span>
+          </span> */}
         </div>
 
         <div

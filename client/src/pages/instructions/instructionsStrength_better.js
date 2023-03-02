@@ -92,10 +92,7 @@ const Instructions1 = (props) => {
   const [currentImage, setCurrentImage] = useState(0);
 
   const handleClick = () => {
-    setStage((prev) => prev + 1);
-    if (stage >= 3) {
-      let nextPage = pageHandler(location.pathname);
-      history.push(nextPage);
+    incrementStage();
   }
   };
 

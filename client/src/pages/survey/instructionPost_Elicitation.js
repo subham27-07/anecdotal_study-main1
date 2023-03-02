@@ -135,17 +135,17 @@ const InstructionPost_Elicitation = () => {
         }}
       >
         <Typography variant="h4">
-              <span className={`${styles.textBody} ${styles.title}`}>How has the bitcoin price <span
-                  style={{fontWeight: "bold"}}> changed </span> </span>
+              <span className={`${styles.textBody} ${styles.title}`}>Now Please follow the instructions below  <span
+                  style={{fontWeight: "bold"}}> instructions below </span> to draw a line chart</span>
         </Typography>
-        <Typography variant={"body1"}>
+        {/* <Typography variant={"body1"}>
                    <p> Now we will show you  <span
                 className={styles.txtImportant}>some articles</span> please try to replicate what you saw from the article <span
                 className={styles.txtImportant}></span></p>
-        </Typography>
+        </Typography> */}
         <Typography variant={"body1"}>
                    <p> You can practice here   <span
-                className={styles.txtImportant}>before we move ahead</span> you need to draw the line for the missing year <span
+                className={styles.txtImportant}>before we move ahead</span> you need to draw the line for the missing year, draw a line that ranges between 60-70 thousands for years 2017-2021 <span
                 className={styles.txtImportant}></span></p>
         </Typography>
         
