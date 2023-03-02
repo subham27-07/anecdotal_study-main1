@@ -12,7 +12,7 @@ import { useRecoilValue } from "recoil";
 import { questionState } from "../../atoms/questionSelector";
 import "survey-react/survey.css";
 import styles from "./articles.module.css";
-const LineChart = lazy(() => import('./visualizations/LineChartVisual_Population'));
+const LineChart = lazy(() => import('./visualizations/recallLinechart_Population'));
 
 const Recall_population = (props) => {
     
@@ -234,9 +234,41 @@ const Recall_population = (props) => {
     }
   };
 
+  // 
+  const [visCompleted, setVisCompleted] = useState(false);
+
+  function visStateHandler(){
+      setVisCompleted((prevState)=>!prevState);
+    console.log('VisStateHandler triggered',visCompleted);
+    }
+  // 
+  function PageContentHandler(){
+    console.log('PageContentHandler triggered!', visCompleted)
+    if(visCompleted){
+      return(
+          <div className={styles.surveyContainer}><Survey.Survey
+          model={model}
+          onComplete={() => {
+            let nextPage = pageHandler(props.pages, location.pathname);
+            history.push(nextPage);
+          }}
+          onCompleting={onCompleting}
+          onCurrentPageChanging={onCurrentPageChanging}
+
+      />
+      </div>)
+    }
+    else{
+      return("")
+    }
+
+  }
+  // 
+
+
   const onComplete = (survey, options) => {
     
-    console.log("Survey results: " + JSON.stringify(quizResponses.current));
+    // console.log("Survey results: " + JSON.stringify(quizResponses.current));
     axios.post("/api/recall_drugOverdose", quizResponses.current).then((response) => {
       let nextPage = pageHandler(location.pathname);
       history.push(nextPage);
@@ -246,12 +278,12 @@ const Recall_population = (props) => {
   const onCurrentPageChanging = (survey, option) => {
     if (!option.isNextPage) return;
     let allTrue = true;
-    survey.getAllQuestions().forEach((q) => {
-      if (survey.currentPage == q.page) {
+    // survey.getAllQuestions().forEach((q) => {
+    //   if (survey.currentPage == q.page) {
         
-      }
-    });
-    console.log(allTrue);
+    //   }
+    // });
+    // console.log(allTrue);
     if (allTrue) {
       option.allowChanging = true;
     } else {
@@ -322,10 +354,11 @@ const Recall_population = (props) => {
       <div className="viz" style={{ display: "flex", flexDirection: "column" }}>
         <div style={{ width: "100%",margin:"0 auto"}}>
           <Suspense fallback={<div>loading...</div>}>
-            <LineChart type="value" data={lineData} idLine={1} startYear={2002} />
+          <LineChart type="value" data={lineData} idLine={1} startYear={2002} visState={visCompleted} stateHandler={visStateHandler}/>
           </Suspense>
+          {PageContentHandler()}
         </div>
-        <Survey.Survey
+        {/* <Survey.Survey
           model={model}
           onClick={() => {
             let nextPage = pageHandler(props.pages, location.pathname);
@@ -334,10 +367,10 @@ const Recall_population = (props) => {
           // onCompleting={onCompleting}
           // onCurrentPageChanging={onCurrentPageChanging}
           
-        />
+        /> */}
       </div>
       <div>
-      <Button
+      {/* <Button
             variant="contained"
             color="primary"
             onClick={() => {
@@ -347,7 +380,7 @@ const Recall_population = (props) => {
             style={{marginTop: '5%',marginLeft: '230px', marginRight: '20px'}}
           >
             Continue
-          </Button>
+          </Button> */}
       
     </div>
     </Container>

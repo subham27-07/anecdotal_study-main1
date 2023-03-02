@@ -12,60 +12,98 @@ const textual_instructions = {
             text: "This is the text for stage 1 of the txt condition.",
             image:
                 <img className={styles.imageContainer}
-                     src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/a1.png"
+                     src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/b1.png"
                      alt="stage 1 txt condition image"/>
         },
         {
             text: "This is the text for stage 2 of the txt condition.",
             image: <img className={styles.imageContainer}
-                        src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/a2.png"
+                        src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/b2.png"
                         alt="stage 2 txt condition image"/>
         },
         {
             text: "This is the text for stage 3 of the txt condition.",
             image: <img className={styles.imageContainer}
-                        src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/a3.png"
+                        src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/b3.png"
+                        alt="stage 3 txt condition image"/>
+        },
+        {
+            text: "This is the text for stage 3 of the txt condition.",
+            image: <img className={styles.imageContainer}
+                        src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/b4.png"
+                        alt="stage 3 txt condition image"/>
+        },
+        {
+            text: "This is the text for stage 3 of the txt condition.",
+            image: <img className={styles.imageContainer}
+                        src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/b5.png"
                         alt="stage 3 txt condition image"/>
         }
     ],
     'visual': [
         {
-            text: "This is the text for stage 1 of the visual condition.",
-            image: <img className={styles.imageContainer}
-                        src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/a1.png"
-                        alt="stage 1 visual condition image"/>
+            text: "This is the text for stage 1 of the txt condition.",
+            image:
+                <img className={styles.imageContainer}
+                     src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/b1.png"
+                     alt="stage 1 txt condition image"/>
         },
         {
-            text: "This is the text for stage 2 of the visual condition.",
+            text: "This is the text for stage 2 of the txt condition.",
             image: <img className={styles.imageContainer}
-                        src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/a2.png"
-                        alt="stage 2 visual condition image"/>
+                        src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/b2.png"
+                        alt="stage 2 txt condition image"/>
         },
         {
-            text: "This is the text for stage 3 of the visual condition.",
+            text: "This is the text for stage 3 of the txt condition.",
             image: <img className={styles.imageContainer}
-                        src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/a3.png"
-                        alt="stage 3 visual condition image"/>
+                        src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/b3.png"
+                        alt="stage 3 txt condition image"/>
+        },
+        {
+            text: "This is the text for stage 3 of the txt condition.",
+            image: <img className={styles.imageContainer}
+                        src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/b4.png"
+                        alt="stage 3 txt condition image"/>
+        },
+        {
+            text: "This is the text for stage 3 of the txt condition.",
+            image: <img className={styles.imageContainer}
+                        src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/b5.png"
+                        alt="stage 3 txt condition image"/>
         }
     ],
     'control': [
         {
-            text: "This is the text for stage 1 of the control condition.",
-            image: <img className={styles.imageContainer}
-                        src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/a1.png"
-                        alt="stage 1 control condition image"/>
+            text: "This is the text for stage 1 of the txt condition.",
+            image:
+                <img className={styles.imageContainer}
+                     src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/b1.png"
+                     alt="stage 1 txt condition image"/>
         },
         {
-            text: "This is the text for stage 2 of the control condition.",
+            text: "This is the text for stage 2 of the txt condition.",
             image: <img className={styles.imageContainer}
-                        src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/a2.png"
-                        alt="stage 2 control condition image"/>
+                        src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/b2.png"
+                        alt="stage 2 txt condition image"/>
         },
         {
-            text: "This is the text for stage 3 of the control condition.",
+            text: "This is the text for stage 3 of the txt condition.",
             image: <img className={styles.imageContainer}
-                        src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/a3.png"
-                        alt="stage 3 control condition image"/>
+                        src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/b3.png"
+                        alt="stage 3 txt condition image"/>
+        },
+        {
+            text: "This is the text for stage 3 of the txt condition.",
+            image: <img className={styles.imageContainer}
+                        src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/b4.png"
+                        alt="stage 3 txt condition image"/>
+        },
+        {
+            text: "This is the text for stage 3 of the txt condition.",
+            image: <img className={styles.imageContainer}
+                        src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/b5.png"
+                        alt="stage 3 txt condition image"/>
         }
     ]
 }

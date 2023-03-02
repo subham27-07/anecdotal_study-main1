@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import * as d3 from 'd3';
 import { Divider, Typography, Container, Button } from "@mui/material";
-import styles from '../articles.module.css'
+import styles from "../articles.module.css";
+
+
 
 
 const marginConvention = (selection, props) => {
@@ -33,8 +35,6 @@ class LineChart extends Component {
         userDataLine:[]
       };
   }
-
-  
 
   componentDidMount() {
     this.createLineChart();
@@ -77,11 +77,11 @@ class LineChart extends Component {
   
     // const yFormat = d3.scaleLinear()
     //   .domain([0, d3.max(data, d => d[type])])
-    //   .range([0, 80000]);
+    //   .range([0, 90000]);
 
     svg.append('g')
-        .attr('class', 'axis-y-line')
-        .call(d3.axisLeft(y));
+      .attr('class', 'axis-y-line')
+      .call(d3.axisLeft(y));
 
     const valueline = d3.line()
       .x(d => x(d.year))
@@ -137,21 +137,21 @@ class LineChart extends Component {
     svg.append('text')
       .attr('class', 'text-2015')
       .attr('x', x(1999))
-      .attr('y', y(20849))
+      .attr('y', y(3000))
       .attr('font-size','15px')
-      .text('16849');
+      .text('730');
 
     svg.append('text')
       .attr('class', 'text-2016')
       .attr('x', x(2002))
-      .attr('y', y(27849))
+      .attr('y', y(3000))
       .attr('font-size','15px')
-      .text('23518');
+      .text('1295');
 
     svg.append('circle')
       .attr('class', 'bubble-2015')
       .attr('cx', x(2002))
-      .attr('cy', y(23518))
+      .attr('cy', y(3))
       .attr('r', 7)
       .style('fill', '#54EAEA')
       .style('opacity', 0.7);
@@ -159,30 +159,26 @@ class LineChart extends Component {
     svg.append('circle')
       .attr('class', 'bubble-2016')
       .attr('cx', x(1999))
-      .attr('cy', y(16849))
+      .attr('cy', y(3))
       .attr('r', 7)
       .style('fill', '#54EAEA')
       .style('opacity', 0.7); 
     
 
-    const availableYears = [1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015, 2016, 2017, 2018, 2019];
-
-    const format = d3.format('.2f');
+      const availableYears = [1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021];
 
     // Add the X Axis
     svg.append('g')
       .attr('class', 'axis-x-line')
       .attr('transform', `translate(0,${innerHeight})`)
-      
       .call(d3.axisBottom(x)
         .tickValues(availableYears)
-        
         // .tickFormat(d3.format('.4')));
         .tickFormat(d => (d % 100 < 10 ? `0${d % 100}` : `${d % 100}`)));
         
         
     // 
-    // Rotate x-axis labels
+    // // Rotate x-axis labels
     // svg.selectAll(".axis-x-line text")
     // .attr("transform", "rotate(-45)")
     // .style("text-anchor", "end");
@@ -207,8 +203,6 @@ class LineChart extends Component {
       )
       .style('stroke-dasharray', ('3, 3'))
       .style('opacity', 0.1);
-    // 
-    
     // 
     svg.append('g')
       .attr('class', 'grid')
@@ -259,12 +253,14 @@ class LineChart extends Component {
     const year = this.clampFunc(startYear + 1, dataXMax, x.invert(mousePos[0]));
     const newVal = this.clampFunc(0, y.domain()[1], y.invert(mousePos[1]));
 
+    
+
     this.userDataLine = this.userDataLine.map((d) => {
       // if (Math.abs(d.year - year) < 0.5) return { ...d, [type]: Math.round(newVal * 4) / 4, defined: true };
       if (Math.abs(d.year - year) < 0.5) return { ...d, [type]: Math.floor(newVal), defined: true };
       return d;
     });
-    
+
     this.setState({ userDataLine : this.userDataLine});
 
     this.youDrawIt
@@ -288,10 +284,11 @@ class LineChart extends Component {
       text.enter().append('text')
         .merge(text)
         .attr('class', 'value-text')
-        .attr('x', d => x(d.year)+ 30)
+        .attr('x', d => x(d.year)+ 10)
         .attr('y', d => y(d[type]))
         .text(d => `${d[type]}`);
     }
+
 
   });
 
@@ -318,10 +315,6 @@ class LineChart extends Component {
     }
     console.log(this.userDataLine)
   };
-
-  
-
-
 
   render() {
     const { showText } = this.state;
@@ -364,7 +357,14 @@ class LineChart extends Component {
           </Typography>
         ) }
       </div>
-    );
+      );
   }
 }
 export default LineChart;
+
+
+// { this.state.showText && (
+//   <p className={`${styles.textBody} ${styles.paragraph} ${styles.txtNormal}`}>...has increased by more than <span style={{ fontWeight: "bold" }}>5451 percent</span>.  Substance use disorders refers to direct deaths from
+//   overdoses of <span style={{ fontWeight: "bold" }}>illicit drugs synthetic opioids (mostly fentanyl)</span> .  “We know that substance use is more dangerous than it has ever been, as fentanyl has continued to permeate the illicit drug supply, increasing the risk for overdoses among both people with substance use disorders as well as those who use drugs occasionally,” said Dr. Nora Volkow, director of the National Institute on Drug Abuse. Deaths involving synthetic opioids such as fentanyl increased by a marked 18% in 2021, according to the CDC data. Deaths involving cocaine and psychostimulants such as methamphetamine were also significantly more frequent, while those involving heroin decreased.
+// </p>
+// ) }
