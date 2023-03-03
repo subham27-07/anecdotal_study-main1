@@ -347,10 +347,10 @@ class LineChart extends Component {
             color="primary"
             disabled={!isComplete}
             onClick={this.handleClick}
-            style={{marginTop: '80px',marginLeft: '230px', marginRight: '20px'}}
+            style={{marginTop: '80px',marginLeft: '140px', marginRight: '20px'}}
             
           >
-            Complete
+            I'm done, Show me the article again!!!
           </Button>
         </div>
         { showText && (

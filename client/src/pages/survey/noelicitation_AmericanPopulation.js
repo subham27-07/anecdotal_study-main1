@@ -107,7 +107,7 @@ const Noelicitation_AmericanPopulation = (props) => {
                     grips of a powerful drug epidemic, with drug use disorders steadily climbing every year. A drug use
                     disorder is a mental disorder that affects a person’s brain and behavior, leading to a person’s
                     inability to control their use of drugs including legal or illegal drugs. Drug use disorders occur
-                    when an individual compulsively misuses drugs or alcohol and continues abusing the substance despite
+                    when an individual compulsively misuses drugs and continues abusing the substance despite
                     knowing the negative impact it has on their life.</p></div>
             <Survey.Survey
                 model={model}

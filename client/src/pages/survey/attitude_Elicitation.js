@@ -39,7 +39,7 @@ const Attitude_Elicitation = (props) => {
           {
             name: "claim",
             type: "radiogroup",
-            title: ` "What is your opinion on drug overdose in US ?"`,
+            title: ` What is your opinion on drug overdose in US ?`,
             isRequired: true,
             choices: [
                 "Extremely serious problem",
@@ -53,7 +53,7 @@ const Attitude_Elicitation = (props) => {
           {
             name: "new",
             type: "radiogroup",
-            title: ` "Should the US make combating drug abuse and overdose a priority, i:e allocating tax dollars to treatment and prevention programs?" `,
+            title: ` Should the US make combating drug abuse and overdose a priority, i:e allocating tax dollars to treatment and prevention programs? `,
             isRequired: true,
             choices: [
                 "High Priority",
@@ -67,7 +67,7 @@ const Attitude_Elicitation = (props) => {
           {
             name: "headline",
             type: "radiogroup",
-            title: ` "What is your opinion on drug legalization and decrimination in the US?" `,
+            title: ` What is your opinion on drug legalization and decrimination in the US? `,
             isRequired: true,
             choices: [
                 "Strongly Oppose",

@@ -340,17 +340,17 @@ class LineChart extends Component {
             color="primary"
             disabled={!isComplete}
             onClick={this.handleClick}
-            style={{marginTop: '80px',marginLeft: '230px', marginRight: '20px'}}
+            style={{marginTop: '80px',marginLeft: '140px', marginRight: '20px'}}
             
           >
-            Complete
+            I'm done, Show me the article again!!!
           </Button>
         </div>
         { showText && (
           <Typography variant="subtitle1"
           gutterBottom
           style={{ marginTop: '30px' }}>
-            ...has increased by more than <strong>222.16 percent</strong>.  In 2015, more Americans died from drug overdoses than from car accidents
+            Since 2002, the number  <strong>222.16 percent</strong>.  In 2015, more Americans died from drug overdoses than from car accidents
             and gun homicides combined. It’s the worst drug overdose epidemic in American history, spurred by rising drug abuse, 
             increased availability of prescription opioids and an influx of potent synthetics like fentanyl and carfentanil.
             Drug overdoses are now the leading cause of death for Americans under 50.

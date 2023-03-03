@@ -265,6 +265,7 @@ const Recall_drugOverdose = (props) => {
 
   const onComplete = (survey, options) => {
     // console.log("Survey results: " + JSON.stringify(quizResponses.current));
+    // window.scrollTo(0, 0);
     axios.post("/api/recall_drugOverdose", quizResponses.current).then((response) => {
       let nextPage = pageHandler(location.pathname);
       history.push(nextPage);
@@ -334,11 +335,22 @@ const Recall_drugOverdose = (props) => {
                   style={{fontWeight: "bold"}}> Drug Overdose </span> epidemic?</span>
         </Typography>
 
+       
+
         <Typography variant={"body1"}>
                         <span className={styles.txtImportantUnique}> Article 1</span> <p>Since 2002, the <span
                         className={styles.txtImportant}>number</span> of Americans who have died every year from
-                            <span className={styles.txtImportant}> Drug Overdose _______.</span> </p>
+                            <span className={styles.txtImportant}> Drug Overdose _______. </span> 
+                             Please recreate the trend you saw about death from<span
+                        className={styles.txtImportant}> drug overdose</span> as accurately as possible
+                            <span className={styles.txtImportant}></span></p>
+                           
          </Typography>
+
+         {/* <h3>   Please recreate the trend you saw about death from drug overdose as accurately as possible</h3> */}
+
+         
+        
          
 
       </div>

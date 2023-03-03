@@ -72,11 +72,11 @@ class LineChart extends Component {
     const x = d3.scaleLinear().range([0, innerWidth]);
     this.setState({ x });
     const y = d3.scaleLinear().range([innerHeight, 0]);
-    y.domain([0, d3.max(data, d => d[type])]);
+    y.domain([0, 10]);
     
   
     const yFormat = d3.scaleLinear()
-      .domain([0, d3.max(data, d => d[type])])
+      .domain([0, 10])
       .range([0, 10]);
 
     svg.append('g')
@@ -342,10 +342,10 @@ class LineChart extends Component {
             color="primary"
             disabled={!isComplete}
             onClick={this.handleClick}
-            style={{marginTop: '80px',marginLeft: '230px', marginRight: '20px'}}
+            style={{marginTop: '80px',marginLeft: '140px', marginRight: '20px'}}
             
           >
-            Complete
+            I'm done, Show me the article again!!!
           </Button>
         </div>
         { showText && (

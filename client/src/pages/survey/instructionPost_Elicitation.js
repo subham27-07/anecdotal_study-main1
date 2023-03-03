@@ -91,7 +91,7 @@ const Recall_drugOverdose = (props) => {
         elements: [
           {
             type: "html",
-            html: "<p style='font-size: 22px;'><span style='font-weight: bold;'>Congratulation</span> you succeeded in completing the this line chart training please go ahead an complete </p>",
+            html: "<p style='font-size: 18px;'><span style='font-weight: bold;'>Congratulations! You succeeded...</span> Please click on Complete</p>",
            
           },
           
