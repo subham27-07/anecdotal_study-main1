@@ -459,6 +459,24 @@ router.post("/postq", (req, res) => {
   );
 });
 
+router.post("/articles", (req, res) => {
+    console.log(req.body);
+    let usertoken = req.session.usertoken;
+    req.session.completed = true;
+    Response.findOneAndUpdate(
+        { usertoken: usertoken },
+        { postq: req.body },
+        (err, doc) => {
+            if (err) req.status(404).send(err);
+            else res.status(200).json(req.body);
+        }
+    );
+});
+
+
+
+
+
 router.post("/response", (req, res) => {
   console.log(req.body);
   let usertoken = req.session.usertoken;

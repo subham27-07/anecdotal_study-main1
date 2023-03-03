@@ -1,0 +1,118 @@
+.mainContainer{
+    display:flex;
+    flex-direction: column;
+    width: 80%;
+    min-width: 450px;
+    min-height: 500px;
+    margin: 10% auto;
+    border: 1px solid gray;
+    align-self: center;
+
+}
+
+.articleContainer{
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    /*top: 20%;*/
+    /*left: 15%;*/
+    justify-content: center;
+    align-items: center;
+}
+
+.navigationContainer{
+    /*display: flex;*/
+    margin: auto;
+    /*width: 70%;*/
+    /*height: 10%;*/
+    position: relative;
+    /*top: 80%;*/
+    /*left: 15%;*/
+    justify-content: center;
+    align-items: center;
+    border: 1px solid gray;
+}
+
+.articleStructure{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    overflow: auto;
+    grid-template-rows: repeat(auto-fit, 1fr);
+    padding: 2%;
+    border: 1px solid red;
+}
+
+.progressBar{
+    display: grid;
+    width: 100%;
+    height: fit-content;
+    grid-template-columns: repeat(3, 1fr);
+    border: 1px solid lightgray;
+    border-radius: 10pt;
+}
+.title{
+    width: 80%;
+    height: min-content;
+    line-height: normal;
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.subtitle{
+    width: 100%;
+    font-weight: bold;
+}
+
+.paragraph{
+    margin-top: 3%;
+    text-align: justify;
+}
+
+.txtNormal{
+
+    font-size: 1rem;
+    font-style: normal;
+}
+
+.txtUnique{
+    font-style:italic;
+}
+
+.articleId{
+    background-color: darkred;
+    font-weight: bold;
+    font-style: italic;
+    color: white;
+    padding: 1%;
+    text-align: center;
+    border-radius: 10pt;
+
+}
+
+.articleOne{
+    margin-left: 0;
+}
+.articleTwo{
+    margin-left: 10%;
+
+}
+.articleThree{
+    margin-left: 20%;
+}
+
+
+
+.actions{
+    margin: 3% auto;
+    align-self: center;
+}
+
+.actions:hover{
+    background-color: mediumseagreen;
+}
+
+.surveyContainer{
+    margin-top: 5%;
+}

@@ -63,6 +63,7 @@ import {choose} from "./functions/functions";
 
 import "./App.css";
 import InstructionsGeneral from "./pages/instructions/instructions_general";
+import Articles from "./pages/articles/Article";
 
 function useQuery() {
     const {search} = useLocation();
@@ -75,8 +76,6 @@ const App = () => {
     const questions = ["strength", "share"];
     const conditions = ["text", "viz", "control"];
     const condition = choose(conditions)
-    // const questions = ["strength"];
-    // const questions = ["share"];
     const DEV = false;
     const [data, setData] = useRecoilState(dataState);
     const [response, setResponse] = useRecoilState(responseState);
@@ -121,11 +120,8 @@ const App = () => {
         "instructionPost_Elicitation",
         "instructionPost_Recall",
         "recall_drugOverdose",
-        // "attitude_recallDrug",
         "recall_population",
-        // "attitude_recallPopulation",
         "recall_Opioids",
-        // "attitude_recallOpioids",
         "attitude_ElicitationPost",
         "debrief",
     ]
@@ -276,8 +272,8 @@ const App = () => {
                 <Router>
                     {/*<NavBar height={"7%"} className="navBar"></NavBar>*/}
                     <div
-                        style={{width: "100%", height: "86%", overflow: "auto"}}
-                        id="scrollWrapper"
+                        // style={{width: "100%", height: "86%", overflow: "auto"}}
+                        // id="scrollWrapper"
                     >
                         <Container
                             // style={{ height: "86%", margin: "0 auto",  }}
@@ -435,6 +431,9 @@ const App = () => {
                                 </Route>
                                 <Route path="/debrief">
                                     <DebriefPage pages={study_pages}/>
+                                </Route>
+                                <Route path="/articles">
+                                    <Articles pages={study_pages}/>
                                 </Route>
                             </Switch>
                         </Container>
