@@ -20,6 +20,9 @@ const marginConvention = (selection, props) => {
 };
 
 
+
+
+
 class LineChart extends Component {
   constructor(props) {
     super(props);
@@ -30,7 +33,8 @@ class LineChart extends Component {
     this.clipAnimation = false;
     this.state = {
         showText: false,
-        userDataLine:[]
+        userDataLine:[],
+        isComplete: false
       };
   }
 
@@ -74,6 +78,9 @@ class LineChart extends Component {
     const y = d3.scaleLinear().range([innerHeight, 0]);
     y.domain([0, 80000]);
     
+
+    // 
+   
   
     // const yFormat = d3.scaleLinear()
     //   .domain([0, d3.max(data, d => d[type])])
@@ -246,6 +253,19 @@ class LineChart extends Component {
   
       const dataXMax = d3.max(data, d => d.year);
       this.clipElement.transition().duration(1000).attr('width', this.state.x(dataXMax));
+      const svg = d3.select('svg');
+
+    // const latestData = this.userDataLine[this.userDataLine.length - 1];
+    // const text = svg.selectAll('.value-text').data([latestData]);
+
+    // text.exit().remove();
+
+    // text.enter().append('text')
+    //   .merge(text)
+    //   .attr('class', 'value-text')
+    //   .attr('x', d => this.state.x(d.year))
+    //   .attr('y', d => this.state.y(d[type]))
+    //   .text(d => `${d[type]}`);
     }
   };
 
@@ -309,8 +329,11 @@ class LineChart extends Component {
       .filter(d => d.year >= startYear);
   }
 
+  
+
   handleClick = () => {
     const definedValues = this.userDataLine.filter(d => d.defined === true);
+    
     if (definedValues.length === this.userDataLine.length) {
       this.setState({ showText: true });
       this.renderAnimation();
@@ -345,12 +368,14 @@ class LineChart extends Component {
           <Button
             variant="contained"
             color="primary"
-            disabled={!isComplete}
+            // disabled={!isComplete}
+            disabled={!isComplete || showText}
             onClick={this.handleClick}
             style={{marginTop: '80px',marginLeft: '140px', marginRight: '20px'}}
             
+            
           >
-            I'm done, Show me the article again!!!
+            Show me how I did.
           </Button>
         </div>
         { showText && (

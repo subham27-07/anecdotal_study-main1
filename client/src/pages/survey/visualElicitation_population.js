@@ -127,54 +127,142 @@ const VisualElicitation_population = (props) => {
   const quizResponses = useRef([]);
   const history = useHistory();
   const location = useLocation();
-
-  const [clipAnimation, setClipAnimation] = useState(false);
-
-  const handleShowAnimation = () => {
-    setClipAnimation(true);
-  };
-
   const questionCondition = useRecoilValue(questionState);
-
+  // console.log(questionCondition);
   const extraQuestions =
     questionCondition == "strength"
       ? [
-
+        
         ]
       : [];
 
   const json = {
     pages: [
+    
       {
         elements: [
           {
             type: "html",
-            html: "",
+            html: "<p style='font-size: 22px;'> <span style='font-weight: bold;'></span>  </p>",
            
           },
-           
-
+          
+          
+          
+          
+          ...extraQuestions,
         ],
       },
-
     ],
   };
 
   var defaultThemeColors = Survey.StylesManager.ThemeColors["default"];
   defaultThemeColors["$main-color"] = "black";
-  defaultThemeColors["$main-hover-color"] = "lightgrey";
+  defaultThemeColors["$main-hover-color"] = "darkorange";
   defaultThemeColors["$text-color"] = "#4a4a4a";
   defaultThemeColors["$header-color"] = "#7ff07f";
 
   defaultThemeColors["$header-background-color"] = "#4a4a4a";
   defaultThemeColors["$body-container-background-color"] = "#f8f8f8";
 
+  const correctStr = "Correct";
+  const inCorrectStr = "Incorrect";
+
   Survey.StylesManager.applyTheme();
+
+  const onCompleting = (survey, options) => {
+    // console.log(options);
+    let allTrue = true;
+    survey.getAllQuestions().forEach((q) => {
+    
+    });
+    quizResponses.current.push(survey.data);
+    if (allTrue) {
+      options.allowComplete = true;
+    } else {
+      options.allowComplete = false;
+    }
+  };
+
+
+  const [visCompleted, setVisCompleted] = useState(false);
+
+  function visStateHandler(){
+      setVisCompleted((prevState)=>!prevState);
+    console.log('VisStateHandler triggered',visCompleted);
+    }
+
+
+  function PageContentHandler(){
+    console.log('PageContentHandler triggered!', visCompleted)
+    if(visCompleted){
+      return(
+          <div className={styles.surveyContainer}><Survey.Survey
+          model={model}
+          onComplete={() => {
+            let nextPage = pageHandler(props.pages, location.pathname);
+            history.push(nextPage);
+          }}
+          onCompleting={onCompleting}
+          onCurrentPageChanging={onCurrentPageChanging}
+
+      />
+      </div>)
+    }
+    else{
+      return("")
+    }
+
+  }
+
+  const onComplete = (survey, options) => {
+    // console.log("Survey results: " + JSON.stringify(quizResponses.current));
+    // window.scrollTo(0, 0);
+    axios.post("/api/recall_drugOverdose", quizResponses.current).then((response) => {
+      let nextPage = pageHandler(location.pathname);
+      history.push(nextPage);
+    });
+  };
+
+  const onCurrentPageChanging = (survey, option) => {
+    if (!option.isNextPage) return;
+    let allTrue = true;
+    // survey.getAllQuestions().forEach((q) => {
+    //   // if (survey.currentPage == q.page) {
+    //   //
+    //   // }
+    // });
+    // console.log(allTrue);
+    if (allTrue) {
+      option.allowChanging = true;
+    } else {
+      option.allowChanging = false;
+    }
+  };
+
+  function getTextHtml(text, str, isCorrect) {
+    if (text.indexOf(str) < 0) return undefined;
+    return (
+      text.substring(0, text.indexOf(str)) +
+      "<span style='color:" +
+      (isCorrect ? "green" : "red") +
+      "'>" +
+      str +
+      "</span>"
+    );
+  }
+  
+
+  
 
   const model = new Survey.Model(json);
   model.showCompletedPage = false;
-  model.questionTitleTemplate = "";
-  model.showQuestionNumbers = "none";
+  model.onTextMarkdown.add((sender, options) => {
+    var text = options.text;
+    var html = getTextHtml(text, correctStr, true);
+    
+  });
+
   
   
   return (
@@ -214,24 +302,25 @@ const VisualElicitation_population = (props) => {
       <div className="viz" style={{ display: "flex", flexDirection: "column" }}>
         <div style={{ width: "100%",margin:"0 auto"}}>
           <Suspense fallback={<div>loading...</div>}>
-            <LineChart type="value" data={lineData} idLine={1} startYear={2002} />
+          <LineChart type="value" data={lineData} idLine={1} startYear={2002} visState={visCompleted} stateHandler={visStateHandler}/>
           </Suspense>
+          {PageContentHandler()}
         </div>
       </div>
-      <div>
-      <Button
-            variant="contained"
-            color="primary"
-            onClick={() => {
-              let nextPage = pageHandler(props.pages, location.pathname);
-              history.push(nextPage);
-            }}
-            style={{marginTop: '5%',marginLeft: '230px', marginRight: '20px'}}
-          >
-            Continue
-          </Button>
-      
-    </div>
+        {/* <div>
+          <Button
+                variant="contained"
+                color="primary"
+                onClick={() => {
+                  let nextPage = pageHandler(props.pages, location.pathname);
+                  history.push(nextPage);
+                }}
+                style={{marginTop: '5%',marginLeft: '230px', marginRight: '20px'}}
+              >
+                Continue
+              </Button>
+        
+        </div> */}
     </Container>
     
   );

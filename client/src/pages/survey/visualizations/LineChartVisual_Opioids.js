@@ -32,7 +32,8 @@ class LineChart extends Component {
     this.clipAnimation = false;
     this.state = {
         showText: false,
-        userDataLine:[]
+        userDataLine:[],
+        isComplete: false
       };
   }
 
@@ -311,6 +312,7 @@ class LineChart extends Component {
     if (definedValues.length === this.userDataLine.length) {
       this.setState({ showText: true });
       this.renderAnimation();
+      this.props.stateHandler();
     }
     console.log(this.userDataLine)
   };
@@ -337,22 +339,30 @@ class LineChart extends Component {
           <Button
             variant="contained"
             color="primary"
-            disabled={!isComplete}
+            // disabled={!isComplete}
+            disabled={!isComplete || showText}
             onClick={this.handleClick}
-            style={{marginTop: '80px',marginLeft: '230px', marginRight: '20px'}}
+            style={{marginTop: '80px',marginLeft: '200px', marginRight: '20px'}}
             
           >
-            Complete
+            Show me how I did.
           </Button>
         </div>
         { showText && (
-          <Typography variant="subtitle1"
-          gutterBottom
-          style={{ marginTop: '30px' }}>
-            ...has increased by more than <strong>222.16 percent</strong>.  In 2015, more Americans died from drug overdoses than from car accidents
-            and gun homicides combined. It’s the worst drug overdose epidemic in American history, spurred by rising drug abuse, 
-            increased availability of prescription opioids and an influx of potent synthetics like fentanyl and carfentanil.
-            Drug overdoses are now the leading cause of death for Americans under 50.
+          // <Typography variant="subtitle1"
+          // gutterBottom
+          // style={{ marginTop: '30px' }}>
+          <Typography variant="body1" gutterBottom className={`${styles.textBody} ${styles.paragraph} ${styles.txtNormal}`} style={{ marginTop: '30px' }}>
+            Since 2002, the <strong>number</strong>.  of Americans who have died every year from overdoses of
+            <strong> synthetic opioids </strong>has increased by more than <strong>5451 percent.</strong> Substance use disorders refer to direct
+            deaths from overdoses of <span style={{fontWeight: "bold"}}>illicit drugs synthetic opioids (mostly Fentanyl)</span> .“We
+                know that substance use is more dangerous than it has ever been, as fentanyl has continued to
+                permeate the illicit drug supply, increasing the risk for overdoses among both people with
+                substance use disorders as well as those who use drugs occasionally,” said Dr. Nora Volkow,
+                director of the National Institute on Drug Abuse. Deaths involving synthetic opioids such as
+                fentanyl increased by a marked 18% in 2021, according to the CDC data. Deaths involving cocaine
+                and psychostimulants such as methamphetamine were also significantly more frequent, while those
+                involving heroin decreased.
           </Typography>
         ) }
       </div>

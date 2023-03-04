@@ -343,7 +343,9 @@ const Recall_population = (props) => {
         <Typography variant={"body1"}>
                         <span className={`${styles.txtImportantUnique} ${styles.articleTwo}`}>Article 2</span><p> Since 2002, <span
                         className={styles.txtImportant}>percentage</span> of American population with <span
-                        className={styles.txtImportant}>drug use disorders _______.</span></p>
+                        className={styles.txtImportant}>drug use disorders _______.</span>Please recreate the trend you saw about death from<span
+                        className={styles.txtImportant}> drug use disorders</span> as accurately as possible
+                            <span className={styles.txtImportant}></span></p>
         </Typography>
         
       </div>

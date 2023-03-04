@@ -352,7 +352,9 @@ const Recall_Opioids = (props) => {
                    <span
                        className={`${styles.txtImportantUnique} ${styles.articleThree}`}>Article 3</span><p> Since 2002, the <span
                 className={styles.txtImportant}>number</span> of Americans who have died every year from overdoses of <span
-                className={styles.txtImportant}>synthetic opioids _______.</span></p>
+                className={styles.txtImportant}>synthetic opioids _______.</span>Please recreate the trend you saw about death from<span
+                className={styles.txtImportant}> synthetic opioids</span> as accurately as possible.
+                    <span className={styles.txtImportant}></span></p>
         </Typography>
         
       </div>
