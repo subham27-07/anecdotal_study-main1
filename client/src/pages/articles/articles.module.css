@@ -22,16 +22,25 @@
 }
 
 .navigationContainer{
-    /*display: flex;*/
+
     margin: auto;
-    /*width: 70%;*/
-    /*height: 10%;*/
+    width: 70%;
     position: relative;
-    /*top: 80%;*/
-    /*left: 15%;*/
-    justify-content: center;
     align-items: center;
-    border: 1px solid gray;
+    border-top: 1px solid lightgray;
+    justify-items: center;
+    justify-content: center;
+}
+
+.progressBar{
+    display: grid;
+    width: 96%;
+    height: fit-content;
+    grid-template-columns: repeat(3, 1fr);
+    /*border: 1px solid lightgray;*/
+    gap: 2%;
+    border-radius: 10pt;
+    margin: 2%;
 }
 
 .articleStructure{
@@ -41,17 +50,9 @@
     overflow: auto;
     grid-template-rows: repeat(auto-fit, 1fr);
     padding: 2%;
-    border: 1px solid red;
 }
 
-.progressBar{
-    display: grid;
-    width: 100%;
-    height: fit-content;
-    grid-template-columns: repeat(3, 1fr);
-    border: 1px solid lightgray;
-    border-radius: 10pt;
-}
+
 .title{
     width: 80%;
     height: min-content;
@@ -80,7 +81,7 @@
     font-style:italic;
 }
 
-.articleId{
+.articleIdActive{
     background-color: darkred;
     font-weight: bold;
     font-style: italic;
@@ -91,28 +92,59 @@
 
 }
 
-.articleOne{
-    margin-left: 0;
-}
-.articleTwo{
-    margin-left: 10%;
+.articleIdDeactive{
+    background-color: lightgray;
+    font-weight: bold;
+    font-style: italic;
+    color: white;
+    padding: 1%;
+    text-align: center;
+    border-radius: 10pt;
 
 }
-.articleThree{
-    margin-left: 20%;
+
+.articleImageContainer{
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    justify-content: center;
+
 }
 
-
+.articleImage{
+    width: 90%;
+    margin: auto;
+}
 
 .actions{
+    display: inherit;
+    width: 200px;
+    padding: 2%;
+    height: fit-content;
+    background-color: black;
+    color: white;
+    font-family: inherit;
+    border: 0;
+    border-radius: 5px;
+    text-align: center;
     margin: 3% auto;
-    align-self: center;
 }
 
 .actions:hover{
-    background-color: mediumseagreen;
+    cursor: pointer;
+    color: black;
+    font-weight: bold;
+    background-color: darkorange;
 }
 
 .surveyContainer{
     margin-top: 5%;
+}
+
+
+
+.dropdown{
+    position: relative;
+    display: inline-block;
+    width: 100px;
 }

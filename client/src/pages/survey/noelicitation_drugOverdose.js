@@ -16,7 +16,6 @@ const Noelicitation_drugOverdose = (props) => {
     const history = useHistory();
     const location = useLocation();
     const questionCondition = useRecoilValue(questionState);
-    // console.log(questionCondition);
     const extraQuestions =
         questionCondition == "strength"
             ? []

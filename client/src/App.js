@@ -74,8 +74,6 @@ function useQuery() {
 const App = () => {
     let query = useQuery();
     const questions = ["strength", "share"];
-    const conditions = ["text", "viz", "control"];
-    const condition = choose(conditions)
     const DEV = false;
     const [data, setData] = useRecoilState(dataState);
     const [response, setResponse] = useRecoilState(responseState);
@@ -131,7 +129,8 @@ const App = () => {
     const treatment = useRef()
 
     const treatmentSelector = () => {
-        const tr = choose(['txt', 'visual', 'control'])
+        // const tr = choose(['txt', 'visual', 'control'])
+        const tr = 'txt';
         treatment.current = tr
         console.log(treatment.current)
         switch (tr) {
@@ -433,7 +432,7 @@ const App = () => {
                                     <DebriefPage pages={study_pages}/>
                                 </Route>
                                 <Route path="/articles">
-                                    <Articles pages={study_pages}/>
+                                    <Articles treatment={treatment} pages={study_pages}/>
                                 </Route>
                             </Switch>
                         </Container>
