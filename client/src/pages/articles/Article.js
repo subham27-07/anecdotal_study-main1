@@ -1,4 +1,4 @@
-import React, {useState, useRef} from "react";
+import React, {useState, useRef, useEffect} from "react";
 import styles from './articles.module.css'
 import Button from "@mui/material/Button";
 import pageHandler from "../pageHandler";
@@ -9,6 +9,7 @@ import {FormControl, InputLabel, MenuItem, Select} from "@mui/material";
 const articleContent = {
     title: 'How Bad Is the Drug Overdose Epidemic?',
     articles: [{
+        name: "drug overdose",
         id: "One",
         text: {
             subTitle: "Since 2002, the number of Americans who have died every year from Drug Overdose...",
@@ -23,10 +24,11 @@ const articleContent = {
         image: 'https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/b.JPG',
     },
         {
+            name: "American population",
             id: "Two",
             text: {
-                subTitle: `Article 2 of Americans population with drug use disorders...`,
-                body: `Since 2002, percentage of American population with drug use disorders has increased by more than 137 percent.
+                subTitle: `The percentage of American population with drug use disorders has`,
+                body: `Since 2002, the percentage of American population with drug use disorders has increased by more than 137 percent.
             The United States is currently in the grips of a powerful drug epidemic, with drug use disorders steadily climbing every year.
             A drug use disorder is a mental disorder that affects a person’s brain and behavior, leading to a person’s
             inability to control their use of drugs including legal or illegal drugs. Drug use disorders occur
@@ -38,6 +40,7 @@ const articleContent = {
             image: "https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/c.JPG",
         },
         {
+            name: "opioids",
             id: "Three",
             text: {
                 subTitle: "Since 2002, the of Americans who have died every year from overdoses of synthetic opioids...",
@@ -65,29 +68,54 @@ export default function Articles(props) {
     const [completed, setCompleted] = useState(false);
     const location = useLocation();
     const [trend, setTrend] = React.useState("");
+    let articleResponses = {
+        treatment: props.treatment.current,
+        responses:{
 
-    function articleChanger() {
-        if (article < 3) {
-            console.log('article:', article)
-            setArticle((prev) => prev + 1);
-        } else {
-            setCompleted((prev) => true);
         }
     }
 
+    useEffect(() => {
+        if (trend !== "") {
+            console.log(trend);
+            setCompleted(() => true);
+        }else{
+            setCompleted(()=>false);
+        }
+    }, [trend])
+
+    // This function controls the behavior of Next button
+    function articleChanger() {
+        if (article <= 2) {
+            console.log('article:', article)
+            articleResponses.responses[`${articleContent.articles[article].name}`] = {
+                time: Date.now(),
+                choice: trend,
+            }
+
+            setArticle((prev) => prev + 1);
+            setTrend(()=>"")
+        } else {
+            console.log('res:',articleResponses);
+            pageHandler(props.pages, location.pathname);
+        }
+    }
+
+    // This function controls the change in the input value for dropdown
     const handleChange = (event) => {
         setTrend(event.target.value);
     };
 
-    function articleHandler() {
-        if (completed) {
-            pageHandler(props.pages, location.pathname);
-        } else {
-            articleChanger();
-        }
-    }
+    // This function controls the behavior of Next button
+    // function articleHandler() {
+    //     if (completed) {
+    //         pageHandler(props.pages, location.pathname);
+    //     } else {
+    //         articleChanger();
+    //     }
+    // }
 
-
+    // This function goes over the three articles based on the treatment type
     function ArticleTypeSelector() {
         switch (props.treatment.current) {
             case 'control':
@@ -137,18 +165,17 @@ export default function Articles(props) {
                                     style={{
                                         display: 'inline-flex',
                                         position: "relative",
-                                        // width: '150px',
-                                        height: '20pt',
+                                        border: '1px solid white',
+                                        height: '18pt',
+                                        fontSize: '12pt',
                                         backgroundColor: 'lightgray'
                                     }}
                                 >
-                                    <MenuItem value="">
-                                        <em>None</em>
-                                    </MenuItem>
-                                    <MenuItem value={-5}>Significantly Decreased</MenuItem>
-                                    <MenuItem value={-2.5}>Slightly Decreased</MenuItem>
-                                    <MenuItem value={0}>Not Much Changed</MenuItem>
-                                    <MenuItem value={2.5}>Slightly Increased</MenuItem>
+
+                                    <MenuItem value={1}>Significantly Decreased</MenuItem>
+                                    <MenuItem value={2}>Slightly Decreased</MenuItem>
+                                    <MenuItem value={3}>Not Much Changed</MenuItem>
+                                    <MenuItem value={4}>Slightly Increased</MenuItem>
                                     <MenuItem value={5}>Significantly Increased</MenuItem>
 
 
@@ -201,7 +228,7 @@ export default function Articles(props) {
                 {ArticleTypeSelector()}
             </div>
             <div className={styles.navigationContainer}>
-                <button className={styles.actions} type={"button"} onClick={articleHandler} disabled={completed}>
+                <button className={styles.actions} type={"button"} onClick={articleChanger} disabled={!completed}>
                     Next
                 </button>
             </div>

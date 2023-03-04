@@ -119,7 +119,7 @@
 .actions{
     display: inherit;
     width: 200px;
-    padding: 2%;
+    padding: 1%;
     height: fit-content;
     background-color: black;
     color: white;
@@ -135,6 +135,13 @@
     color: black;
     font-weight: bold;
     background-color: darkorange;
+}
+
+.actions:disabled{
+    background-color: lightgray;
+    color: darkgray;
+    cursor: not-allowed;
+    pointer-events: all !important;
 }
 
 .surveyContainer{

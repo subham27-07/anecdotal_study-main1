@@ -97,21 +97,21 @@ const App = () => {
         "topic_Involvement",
         "instructionPre",
     ]
-    const txt_pages = [
-        "textelicitation_drugOverdose",
-        "textelicitation_AmericanPopulation",
-        "textelicitation_Opioids",
-    ]
-    const visual_pages = [
-        "visualElicitation_drugOverdose",
-        "visualElicitation_population",
-        "visualElicitation_Opioids",
-    ]
-    const control = [
-        "noelicitation_drugOverdose",
-        "noelicitation_AmericanPopulation",
-        "noelicitation_Opioids",
-    ]
+    // const txt_pages = [
+    //     "textelicitation_drugOverdose",
+    //     "textelicitation_AmericanPopulation",
+    //     "textelicitation_Opioids",
+    // ]
+    // const visual_pages = [
+    //     "visualElicitation_drugOverdose",
+    //     "visualElicitation_population",
+    //     "visualElicitation_Opioids",
+    // ]
+    // const control = [
+    //     "noelicitation_drugOverdose",
+    //     "noelicitation_AmericanPopulation",
+    //     "noelicitation_Opioids",
+    // ]
     const post_pages = [
         "cogref",
         "cogref1",
@@ -133,18 +133,19 @@ const App = () => {
         const tr = 'txt';
         treatment.current = tr
         console.log(treatment.current)
-        switch (tr) {
-            case 'txt':
-                return [...pre_pages, ...txt_pages, ...post_pages];
-            case 'visual':
-                return [...pre_pages, ...visual_pages, ...post_pages];
-            case 'control':
-                return [...pre_pages, ...control, ...post_pages];
-            default:
-                console.log(`Treatment is : ${treatment}`)
-                console.log('Error with TreatmentSelector! No such treatment found!')
-                break;
-        }
+        // switch (tr) {
+        //     case 'txt':
+        //         return [...pre_pages, ...txt_pages, ...post_pages];
+        //     case 'visual':
+        //         return [...pre_pages, ...visual_pages, ...post_pages];
+        //     case 'control':
+        //         return [...pre_pages, ...control, ...post_pages];
+        //     default:
+        //         console.log(`Treatment is : ${treatment}`)
+        //         console.log('Error with TreatmentSelector! No such treatment found!')
+        //         break;
+        // }
+        return [...pre_pages, 'articles', ...post_pages]
     }
         // Set
         useEffect(() => {
