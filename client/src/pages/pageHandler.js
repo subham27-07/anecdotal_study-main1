@@ -32,6 +32,7 @@ const pageHandler = (pages, donePage) => {
   let pageIndex = pages.current.indexOf(donePage.replace("/", ""));
   console.log(pageIndex);
   if (pageIndex !== -1) {
+    console.log(`/${pages.current[pageIndex + 1]}`);
     return `/${pages.current[pageIndex + 1]}`;
   }
 };

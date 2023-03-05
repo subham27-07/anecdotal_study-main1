@@ -2,8 +2,9 @@ import React, {useState, useRef, useEffect} from "react";
 import styles from './articles.module.css'
 import Button from "@mui/material/Button";
 import pageHandler from "../pageHandler";
-import {useLocation} from "react-router-dom";
+import {useHistory, useLocation} from "react-router-dom";
 import {FormControl, InputLabel, MenuItem, Select} from "@mui/material";
+import axios from "axios";
 
 
 const articleContent = {
@@ -68,17 +69,19 @@ export default function Articles(props) {
     const [completed, setCompleted] = useState(false);
     const location = useLocation();
     const [trend, setTrend] = React.useState("");
-    let articleResponses = {
+    const articleResponses = useRef({
         treatment: props.treatment.current,
-        responses:{
-
-        }
-    }
-
+        responses:{}
+    })
+    const history = useHistory();
+    // console.log('location',location)
+    // console.log('pages',props.pages)
     useEffect(() => {
         if (trend !== "") {
-            console.log(trend);
+            // console.log(trend);
             setCompleted(() => true);
+        }else if(props.treatment.current === 'control'){
+            setCompleted(()=>true);
         }else{
             setCompleted(()=>false);
         }
@@ -86,19 +89,21 @@ export default function Articles(props) {
 
     // This function controls the behavior of Next button
     function articleChanger() {
-        if (article <= 2) {
-            console.log('article:', article)
-            articleResponses.responses[`${articleContent.articles[article].name}`] = {
+            articleResponses.current.responses[`${articleContent.articles[article].name}`] = {
                 time: Date.now(),
                 choice: trend,
             }
-
-            setArticle((prev) => prev + 1);
-            setTrend(()=>"")
-        } else {
-            console.log('res:',articleResponses);
-            pageHandler(props.pages, location.pathname);
-        }
+            if (article=== 2){
+                axios.post("/api/articles", articleResponses.current).then((response) => {
+                    let nextPage = pageHandler(props.pages, location.pathname);
+                    history.push(nextPage);
+                });
+                // pageHandler(props.pages, location.pathname);
+            }else{
+                setArticle((prev) => prev + 1);
+                setTrend(()=>"");
+                // console.log('res:',articleResponses.current);
+            }
     }
 
     // This function controls the change in the input value for dropdown
@@ -142,60 +147,90 @@ export default function Articles(props) {
                         <div className={styles.title}>
                             {`${articleContent.title}`}
                         </div>
-                        <div className={styles.subtitle}>
+                        {(()=> {if(!completed){
+                            return(<div className={styles.subtitle}>
 
-                            <>Since 2002 percentage of Americans population with drug use disorders</>
-                            <FormControl sx={{
-                                position: 'relative',
-                                mx: 2,
-                                my: 0,
-                                minWidth: 200,
-                                top: -15,
-                                py: 2
-                            }}>
-                                <InputLabel id="trend-selector">Select Here</InputLabel>
-                                <Select
-                                    labelId="trend-selector-label"
-                                    id="trend-selector-dropdown"
-                                    value={trend}
-                                    onChange={handleChange}
-                                    autoWidth
-                                    required={true}
-                                    label="Select here..."
-                                    style={{
-                                        display: 'inline-flex',
-                                        position: "relative",
-                                        border: '1px solid white',
-                                        height: '18pt',
-                                        fontSize: '12pt',
-                                        backgroundColor: 'lightgray'
-                                    }}
-                                >
+                                <>Since 2002 percentage of Americans population with drug use disorders</>
+                                <FormControl sx={{
+                                    position: 'relative',
+                                    mx: 2,
+                                    my: 0,
+                                    minWidth: 200,
+                                    top: -15,
+                                    py: 2
+                                }}>
+                                    <InputLabel id="trend-selector">Select Here</InputLabel>
+                                    <Select
+                                        labelId="trend-selector-label"
+                                        id="trend-selector-dropdown"
+                                        value={trend}
+                                        onChange={handleChange}
+                                        autoWidth
+                                        required={true}
+                                        label="Select here..."
+                                        style={{
+                                            display: 'inline-flex',
+                                            position: "relative",
+                                            border: '1px solid white',
+                                            height: '18pt',
+                                            fontSize: '12pt',
+                                            backgroundColor: 'lightgray'
+                                        }}
+                                    >
 
-                                    <MenuItem value={1}>Significantly Decreased</MenuItem>
-                                    <MenuItem value={2}>Slightly Decreased</MenuItem>
-                                    <MenuItem value={3}>Not Much Changed</MenuItem>
-                                    <MenuItem value={4}>Slightly Increased</MenuItem>
-                                    <MenuItem value={5}>Significantly Increased</MenuItem>
+                                        <MenuItem value={1}>Significantly Decreased</MenuItem>
+                                        <MenuItem value={2}>Slightly Decreased</MenuItem>
+                                        <MenuItem value={3}>Not Much Changed</MenuItem>
+                                        <MenuItem value={4}>Slightly Increased</MenuItem>
+                                        <MenuItem value={5}>Significantly Increased</MenuItem>
 
 
-                                </Select>
-                            </FormControl>
+                                    </Select>
+                                </FormControl>
 
-                        </div>
-                        <div className={styles.articleImageContainer}>
-                            <img src={`${articleContent.articles[article].image}`} className={styles.articleImage}
-                                 alt='Since 2002 percentage of Americans population with drug use disorders'/>
-                        </div>
-                        <div className={styles.paragraph}>
-                            {`${articleContent.articles[article].text.body}`}
-                        </div>
+                            </div>)}else{
+                            return("");
+                        }
+                        })()}
+                        {(()=> {
+                            if(completed){
+                            return (<div><div className={styles.articleImageContainer}>
+                                <img src={`${articleContent.articles[article].image}`} className={styles.articleImage}
+                                     alt='Since 2002 percentage of Americans population with drug use disorders'/>
+                            </div>
+                            <div className={styles.paragraph}>
+                                {`${articleContent.articles[article].text.body}`}
+                            </div></div>)}else{
+                                return("");
+                            }
+                        })()}
                     </div>
                 );
             case 'visual':
-                return (<div>
-                    Visual
-                </div>);
+                if(completed){
+                    return (
+                        <div className={styles.articleStructure}>
+                            <div className={styles.title}>
+                                {`${articleContent.title}`}
+                            </div>
+                            <div className={styles.subtitle}>
+                                <p>Since 2002 percentage of Americans population with drug use disorders...</p>
+                            </div>
+                            <div className={styles.articleImageContainer}>
+                                <img src={`${articleContent.articles[article].image}`} className={styles.articleImage}
+                                     alt='Since 2002 percentage of Americans population with drug use disorders'/>
+                            </div>
+                            <div className={styles.paragraph}>
+                                {`${articleContent.articles[article].text.body}`}
+                            </div>
+                        </div>
+                    );
+                }else{
+                    return(<div className={styles.paragraph}>
+                        "Visualization goes here!"
+                    </div>);
+                }
+
             default:
                 break;
         }

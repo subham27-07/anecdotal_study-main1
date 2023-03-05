@@ -70,6 +70,7 @@ const PreSurveyPage = (props) => {
         inputType: "number",
         title: "What is your age?",
         isRequired: true,
+        width: '100px',
         validators: [
           { "type": "numeric", "text": "Value must be a number between 18 and 99.", "minValue": 18 , "maxValue": 99 },
 
