@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import * as d3 from 'd3';
-import { Divider, Typography, Container, Button } from "@mui/material";
-import styles from '../articles.module.css'
+import {Button } from "@mui/material";
+
 
 
 const marginConvention = (selection, props) => {
@@ -53,7 +53,7 @@ class LineChart extends Component {
     const height = 325;
     const margin = {
       top: 50,
-      right: 30,
+      right: 50,
       bottom: 30,
       left: 50,
     };
@@ -327,6 +327,7 @@ class LineChart extends Component {
       text.enter().append('text')
         .merge(text)
         .attr('class', 'value-text')
+        .attr('text-anchor','middle')
         .attr('x', d => x(d.year))
         .attr('y', d => y(d[type])-10)
         .text(d => `${d[type].toFixed(2)}`);
