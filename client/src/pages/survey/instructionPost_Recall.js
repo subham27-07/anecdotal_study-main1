@@ -5,6 +5,7 @@ import axios from "axios";
 import * as Survey from "survey-react";
 import "survey-react/survey.css";
 import {Divider, Typography, Container, Button} from "@mui/material";
+import styles from "./articles.module.css";
 
 const InstructionPost_Recall = (props) => {
   const history = useHistory();
@@ -64,7 +65,11 @@ const InstructionPost_Recall = (props) => {
         }}
       >
         
-         <h3> In previous pages you saw data about the drug overdose epidemic, now we ask you to recreate those trends as accurately as possible. Please recreate the trend you saw about death from drug overdose as accurately as possible</h3>
+         {/* <h3>   Please recreate the trend you saw about death from drug overdose as accurately as possible</h3> */}
+         <Typography variant="h5">
+            <span className={`${styles.textBody1} ${styles.title1}`}>In previous pages you saw data about the<span
+                style={{fontWeight: "bold"}}> drug overdose epidemic, </span> now we ask you to recreate those trends as accurately as possible.</span>
+        </Typography>
       </div>
       
 

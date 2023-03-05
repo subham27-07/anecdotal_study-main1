@@ -30,7 +30,8 @@ class LineChart extends Component {
     this.clipAnimation = false;
     this.state = {
         showText: false,
-        userDataLine:[]
+        userDataLine:[],
+        isComplete: false
       };
   }
 
@@ -136,21 +137,21 @@ class LineChart extends Component {
 
     svg.append('text')
       .attr('class', 'text-2015')
-      .attr('x', x(1999))
+      .attr('x', x(2014))
       .attr('y', y(20849))
       .attr('font-size','15px')
       .text('16849');
 
     svg.append('text')
       .attr('class', 'text-2016')
-      .attr('x', x(2002))
+      .attr('x', x(2015.7))
       .attr('y', y(27849))
       .attr('font-size','15px')
       .text('23518');
 
     svg.append('circle')
       .attr('class', 'bubble-2015')
-      .attr('cx', x(2002))
+      .attr('cx', x(2016))
       .attr('cy', y(23518))
       .attr('r', 7)
       .style('fill', '#54EAEA')
@@ -158,7 +159,7 @@ class LineChart extends Component {
   
     svg.append('circle')
       .attr('class', 'bubble-2016')
-      .attr('cx', x(1999))
+      .attr('cx', x(2014))
       .attr('cy', y(16849))
       .attr('r', 7)
       .style('fill', '#54EAEA')
@@ -353,7 +354,7 @@ class LineChart extends Component {
           <Typography 
           // variant="subtitle1"
           // gutterBottom
-          style={{ marginTop: '-100px', marginLeft: "120px",color: "#7f0000" }}
+          style={{ marginTop: '-100px', marginLeft: "200px",color: "#7f0000" }}
           >
             Draw the line with an increasing trend after 2017.
           </Typography>
@@ -362,7 +363,8 @@ class LineChart extends Component {
           <Button
             variant="contained"
             color="primary"
-            disabled={!isComplete}
+            // disabled={!isComplete}
+            disabled={!isComplete || showText}
             onClick={this.handleClick}
             style={{marginTop: '80px',marginLeft: '230px', marginRight: '20px'}}
             

@@ -18,47 +18,47 @@ const Recall_drugOverdose = (props) => {
   const lineData = [
     {
       id: 1,
-      value: 47055,
+      value: 16819,
       year: 2014,
     },
     {
       id: 1,
-      value: 52404,
+      value: 18819,
       year: 2015,
     },
     {
       id: 1,
-      value: 63632,
+      value: 23518,
       year: 2016,
     },
     {
       id: 1,
-      value: 70237,
+      value: 25518,
       year: 2017,
     },
     {
       id: 1,
-      value: 67367,
+      value: 28518,
       year: 2018,
     },
     {
       id: 1,
-      value: 70630,
+      value: 30518,
       year: 2019,
     },
     {
       id: 1,
-      value: 72630,
+      value: 32518,
       year: 2020,
     },
     {
       id: 1,
-      value: 73630,
+      value: 35518,
       year: 2021,
     },
     {
       id: 1,
-      value: 74630,
+      value: 40518,
       year: 2022,
     },
     
@@ -91,7 +91,7 @@ const Recall_drugOverdose = (props) => {
         elements: [
           {
             type: "html",
-            html: "<p style='font-size: 22px;'><span style='font-weight: bold;'>Congratulation</span> you succeeded in completing the this line chart training please go ahead an complete </p>",
+            html: "<p style='font-size: 18px;'><span style='font-weight: bold;'>Congratulations! You succeeded...</span> Please click on Complete</p>",
            
           },
           
@@ -233,7 +233,7 @@ const Recall_drugOverdose = (props) => {
 
         <Typography variant={"body1"}>
                          <p>Please draw an <span
-                        className={styles.txtImportant}>Increasing trend</span> You can adjust individual data point after drawing the line as needed by dragging the data points.
+                        className={styles.txtImportant}>Increasing trend after year 2017</span> You can adjust individual data point after drawing the line as needed by dragging the data points.
                             <span className={styles.txtImportant}> </span> </p>
          </Typography>
          
@@ -246,7 +246,7 @@ const Recall_drugOverdose = (props) => {
       <div className="viz" style={{ display: "flex", flexDirection: "column" }}>
       <div style={{ width: "100%",margin:"0 auto"}}>
           <Suspense fallback={<div>loading...</div>}>
-            <LineChart type="value" data={lineData} idLine={1} startYear={2002} visState={visCompleted} stateHandler={visStateHandler}/>
+            <LineChart type="value" data={lineData} idLine={1} startYear={2016} visState={visCompleted} stateHandler={visStateHandler}/>
           </Suspense>
         </div>
 
@@ -254,17 +254,17 @@ const Recall_drugOverdose = (props) => {
       </div>
 
       {/*<div>*/}
-      {/*  <Button*/}
+       {/* <Button*/}
       {/*        variant="contained"*/}
       {/*        color="primary"*/}
-      {/*        onClick={() => {*/}
+      {/*        onComplete={() => {*/}
       {/*          let nextPage = pageHandler(props.pages, location.pathname);*/}
       {/*          history.push(nextPage);*/}
       {/*        }}*/}
       {/*        style={{marginTop: '5%',marginLeft: '230px', marginRight: '20px'}}*/}
       {/*      >*/}
       {/*        Continue*/}
-      {/*  </Button>*/}
+      {/*  </Button> */}
 
       {/*</div>*/}
     </Container>

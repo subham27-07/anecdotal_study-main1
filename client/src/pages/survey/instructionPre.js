@@ -5,6 +5,7 @@ import axios from "axios";
 import * as Survey from "survey-react";
 import "survey-react/survey.css";
 import {Divider, Typography, Container, Button} from "@mui/material";
+import styles from "./articles.module.css";
 
 const InstructionPre = (props) => {
   const history = useHistory();
@@ -63,9 +64,14 @@ const InstructionPre = (props) => {
           justifyContent: "center",
         }}
       >
-        
-         <h3> Next we are going to show you some News Articles with Visualizations</h3>
+        <Typography variant="h5">
+            <span className={`${styles.textBody1} ${styles.title1}`}>Next we are going to show you<span
+                style={{fontWeight: "bold"}}> three </span> News Articles with Visualizations</span>
+        </Typography>
+
+         
       </div>
+      
       
 
       

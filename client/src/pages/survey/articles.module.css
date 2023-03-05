@@ -3,12 +3,23 @@
     /*font-family: 'Roboto', sans-serif;*/
 }
 
+.textBody1{
+    /*font-family: Times, "Times New Roman", Georgia, Serif, serif;*/
+    /*font-family: 'Roboto', sans-serif;*/
+    padding-top: 200px;
+}
+
 .paragraph{
     margin-top: 3%;
     text-align: justify;
 }
 .title{
     /*font-style: italic;*/
+}
+
+.title1{
+    /*font-style: italic;*/
+    padding-top: 200px;
 }
 
 .txtNormal{

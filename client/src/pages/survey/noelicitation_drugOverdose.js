@@ -93,7 +93,7 @@ const Noelicitation_drugOverdose = (props) => {
                                          style={{fontWeight: "bold"}}> Drug Overdose </span> epidemic?</span>
                     </Typography>
                     <Typography variant={"body1"}>
-                        <span className={styles.txtImportantUnique}>Article 1</span><p>Since 2002, the<span
+                        <span className={styles.txtImportantUnique}>Article 1</span><p>Since 2002, the <span
                         className={styles.txtImportant}>number</span> of Americans who have died every year from
                         <span className={styles.txtImportant}> Drug Overdose...</span></p>
                     </Typography>
@@ -105,7 +105,7 @@ const Noelicitation_drugOverdose = (props) => {
                          height='100%' alt=''/>
                     <p className={`${styles.paragraph} ${styles.textBody}`}>Since 2002, the <span
                         className={styles.txtImportant}>number</span> of Americans who have died every year from
-                        <span className={styles.txtImportant}> Drug Overdose</span>has increased by more than <span
+                        <span className={styles.txtImportant}> Drug Overdose </span>has increased by more than <span
                         className={styles.txtImportant}> 222.82 percent </span>. In 2015, more Americans died from drug overdoses than from
                         car accidents and gun homicides combined. It’s the worst drug overdose epidemic in American
                         history, spurred by rising drug abuse, increased availability of prescription opioids and an

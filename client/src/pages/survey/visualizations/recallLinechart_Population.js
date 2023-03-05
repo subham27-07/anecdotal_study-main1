@@ -32,7 +32,8 @@ class LineChart extends Component {
     this.clipAnimation = false;
     this.state = {
         showText: false,
-        userDataLine:[]
+        userDataLine:[],
+        isComplete: false
       };
   }
 
@@ -72,11 +73,11 @@ class LineChart extends Component {
     const x = d3.scaleLinear().range([0, innerWidth]);
     this.setState({ x });
     const y = d3.scaleLinear().range([innerHeight, 0]);
-    y.domain([0, d3.max(data, d => d[type])]);
+    y.domain([0, 10]);
     
   
     const yFormat = d3.scaleLinear()
-      .domain([0, d3.max(data, d => d[type])])
+      .domain([0, 10])
       .range([0, 10]);
 
     svg.append('g')
@@ -331,30 +332,37 @@ class LineChart extends Component {
           <Typography 
           // variant="subtitle1"
           // gutterBottom
-          style={{ marginTop: '-100px', marginLeft: "200px",color: "#7f0000" }}
+          style={{ marginTop: '-100px', marginLeft: "170px",color: "#7f0000" }}
           >
-            Draw the line for missing year on this chart.
+            Please recreate the trend 
+about death from drug use disorders as accurately as possible
           </Typography>
         ) }
         <div style={{marginTop: '20px'}}>
           <Button
             variant="contained"
             color="primary"
-            disabled={!isComplete}
+            // disabled={!isComplete}
+            disabled={!isComplete || showText}
             onClick={this.handleClick}
-            style={{marginTop: '80px',marginLeft: '230px', marginRight: '20px'}}
+            style={{marginTop: '80px',marginLeft: '140px', marginRight: '20px'}}
             
           >
-            Complete
+            Show me how I did.
           </Button>
         </div>
         { showText && (
           <Typography variant="body1" gutterBottom className={`${styles.textBody} ${styles.paragraph} ${styles.txtNormal}`}>
-           ...has increased by more than <span style={{ fontWeight: "bold" }}>137 percent</span>.  The United States is currently in the grips of a powerful drug epidemic,
-  with the share of population with drug use disorders steadily climbing every year. A drug use disorder is a mental disorder that affects a person’s brain and behavior, leading to a person’s 
-  inability to control their use of drugs including legal or illegal drugs. Drug use disorders occur when an individual 
-  compulsively misuses drugs or alcohol and continues abusing the substance despite knowing the negative impact it has on their life.
-          </Typography>
+          Since 2002, <span style={{ fontWeight: "bold" }}> percentage </span> of American population with drug use disorders
+          has increased by more than <span style={{ fontWeight: "bold" }}> 137 percent </span> The United States is currently in the
+               grips of a powerful drug epidemic,
+               with the share of population with drug use disorders steadily climbing every year. A drug use disorder
+               is a mental disorder that affects a person’s brain and behavior, leading to a person’s
+               inability to control their use of drugs including legal or illegal drugs. Drug use disorders occur when
+               an individual
+               compulsively misuses drugs or alcohol and continues abusing the substance despite knowing the negative
+               impact it has on their life.
+         </Typography>
         ) }
       </div>
       );
