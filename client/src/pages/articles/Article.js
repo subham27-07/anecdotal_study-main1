@@ -5,12 +5,13 @@ import pageHandler from "../pageHandler";
 import {useHistory, useLocation} from "react-router-dom";
 import {FormControl, InputLabel, MenuItem, Select} from "@mui/material";
 import axios from "axios";
+import LineChartDrawHandler from "../survey/visualizations/LineChartDrawHandler";
 
 
 const articleContent = {
     title: 'How Bad Is the Drug Overdose Epidemic?',
     articles: [{
-        name: "drug overdose",
+        name: "drugOverdose",
         id: "One",
         text: {
             subTitle: "Since 2002, the number of Americans who have died every year from Drug Overdose...",
@@ -25,7 +26,7 @@ const articleContent = {
         image: 'https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/b.JPG',
     },
         {
-            name: "American population",
+            name: "population",
             id: "Two",
             text: {
                 subTitle: `The percentage of American population with drug use disorders has`,
@@ -89,23 +90,31 @@ export default function Articles(props) {
 
     // This function controls the behavior of Next button
     function articleChanger() {
-            articleResponses.current.responses[`${articleContent.articles[article].name}`] = {
-                time: Date.now(),
-                choice: trend,
-            }
-            if (article=== 2){
-                axios.post("/api/articles", articleResponses.current).then((response) => {
-                    let nextPage = pageHandler(props.pages, location.pathname);
-                    history.push(nextPage);
-                });
-                // pageHandler(props.pages, location.pathname);
-            }else{
+        switch (props.treatment.current){
+            case 'txt':
+                articleResponses.current.responses[`${articleContent.articles[article].name}`] = {
+                    time: Date.now(),
+                    choice: trend,
+                }
+                if (article=== 2){
+                    axios.post("/api/articles", articleResponses.current).then((response) => {
+                        let nextPage = pageHandler(props.pages, location.pathname);
+                        history.push(nextPage);
+                    });
+                    // pageHandler(props.pages, location.pathname);
+                }else{
+                    setArticle((prev) => prev + 1);
+                    setTrend(()=>"");
+                    // console.log('res:',articleResponses.current);
+                }
+                break;
+            case 'visual':
+                setCompleted((prev)=> false);
                 setArticle((prev) => prev + 1);
-                setTrend(()=>"");
-                // console.log('res:',articleResponses.current);
-            }
-    }
+                break;
+        }
 
+    }
     // This function controls the change in the input value for dropdown
     const handleChange = (event) => {
         setTrend(event.target.value);
@@ -120,6 +129,10 @@ export default function Articles(props) {
     //     }
     // }
 
+    //This function controls show text inside the LineChart component
+    function handleShowText(){
+        setCompleted(()=> true);
+    }
     // This function goes over the three articles based on the treatment type
     function ArticleTypeSelector() {
         switch (props.treatment.current) {
@@ -130,7 +143,7 @@ export default function Articles(props) {
                             {`${articleContent.title}`}
                         </div>
                         <div className={styles.subtitle}>
-                            <p>Since 2002 percentage of Americans population with drug use disorders...</p>
+                            <p>{`${articleContent.articles[article].text.subTitle}`}</p>
                         </div>
                         <div className={styles.articleImageContainer}>
                             <img src={`${articleContent.articles[article].image}`} className={styles.articleImage}
@@ -150,7 +163,7 @@ export default function Articles(props) {
                         {(()=> {if(!completed){
                             return(<div className={styles.subtitle}>
 
-                                <>Since 2002 percentage of Americans population with drug use disorders</>
+                                <p>{`${articleContent.articles[article].text.subTitle}`}</p>
                                 <FormControl sx={{
                                     position: 'relative',
                                     mx: 2,
@@ -207,29 +220,39 @@ export default function Articles(props) {
                     </div>
                 );
             case 'visual':
-                if(completed){
-                    return (
-                        <div className={styles.articleStructure}>
-                            <div className={styles.title}>
-                                {`${articleContent.title}`}
-                            </div>
-                            <div className={styles.subtitle}>
-                                <p>Since 2002 percentage of Americans population with drug use disorders...</p>
-                            </div>
-                            <div className={styles.articleImageContainer}>
-                                <img src={`${articleContent.articles[article].image}`} className={styles.articleImage}
-                                     alt='Since 2002 percentage of Americans population with drug use disorders'/>
-                            </div>
-                            <div className={styles.paragraph}>
-                                {`${articleContent.articles[article].text.body}`}
-                            </div>
-                        </div>
-                    );
-                }else{
-                    return(<div className={styles.paragraph}>
-                        "Visualization goes here!"
-                    </div>);
-                }
+
+                return(
+                    <div>
+                    <LineChartDrawHandler
+                        articleName = {articleContent.articles[article].name}
+                        showText = {handleShowText}
+                    />
+                        {(()=>{
+                            if(completed){
+                                return (
+                                    <div className={styles.articleStructure}>
+                                        <div className={styles.title}>
+                                            {`${articleContent.title}`}
+                                        </div>
+                                        <div className={styles.subtitle}>
+                                            <p>{`${articleContent.articles[article].text.subTitle}`}</p>
+                                        </div>
+                                        <div className={styles.articleImageContainer}>
+                                            <img src={`${articleContent.articles[article].image}`} className={styles.articleImage}
+                                                 alt='Since 2002 percentage of Americans population with drug use disorders'/>
+                                        </div>
+                                        <div className={styles.paragraph}>
+                                            {`${articleContent.articles[article].text.body}`}
+                                        </div>
+                                    </div>
+                                );
+                            } else{
+                                return("")
+                            }
+                        })()}
+                    </div>
+                );
+
 
             default:
                 break;
