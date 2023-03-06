@@ -6,7 +6,11 @@
 .textBody1{
     /*font-family: Times, "Times New Roman", Georgia, Serif, serif;*/
     /*font-family: 'Roboto', sans-serif;*/
-    padding-top: 200px;
+ 
+
+  justify-content: center;
+  align-items: center;
+
 }
 
 .paragraph{

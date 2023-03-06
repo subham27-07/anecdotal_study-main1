@@ -65,8 +65,8 @@ const InstructionPre = (props) => {
         }}
       >
         <Typography variant="h5">
-            <span className={`${styles.textBody1} ${styles.title1}`}>Next we are going to show you<span
-                style={{fontWeight: "bold"}}> three </span> News Articles with Visualizations</span>
+            <span className={`${styles.textBody1} ${styles.title1}`}>In the next section you will see a series of news articles related to the <span
+                style={{fontWeight: "bold"}}> drug overdose epidemic. </span>  Each article includes a data visualization and accompanying text. Please review the visualization and read the text carefully to ensure you understand the message of each article.</span>
         </Typography>
 
          
@@ -84,7 +84,7 @@ const InstructionPre = (props) => {
                 let nextPage = pageHandler(props.pages, location.pathname);
                 history.push(nextPage);
               }}
-              style={{marginTop: '5%',marginLeft: '230px', marginRight: '20px'}}
+              style={{marginTop: '50%',marginLeft: '450px', marginRight: '20px'}}
               
             >
               Continue

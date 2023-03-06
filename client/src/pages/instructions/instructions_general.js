@@ -12,31 +12,37 @@ const textual_instructions = {
             text: "This is the text for stage 1 of the txt condition.",
             image:
                 <img className={styles.imageContainer}
-                     src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/c1.png"
+                     src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/i0.png"
                      alt="stage 1 txt condition image"/>
         },
         {
             text: "This is the text for stage 2 of the txt condition.",
             image: <img className={styles.imageContainer}
-                        src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/c2.png"
+                        src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/i1.png"
                         alt="stage 2 txt condition image"/>
         },
         {
             text: "This is the text for stage 3 of the txt condition.",
             image: <img className={styles.imageContainer}
-                        src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/c3.png"
+                        src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/i2.png"
                         alt="stage 3 txt condition image"/>
         },
         {
             text: "This is the text for stage 3 of the txt condition.",
             image: <img className={styles.imageContainer}
-                        src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/c4.png"
+                        src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/i3.png"
                         alt="stage 3 txt condition image"/>
         },
         {
             text: "This is the text for stage 3 of the txt condition.",
             image: <img className={styles.imageContainer}
-                        src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/c5.png"
+                        src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/i4.png"
+                        alt="stage 3 txt condition image"/>
+        },
+        {
+            text: "This is the text for stage 3 of the txt condition.",
+            image: <img className={styles.imageContainer}
+                        src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/i5.png"
                         alt="stage 3 txt condition image"/>
         }
     ],
@@ -45,31 +51,37 @@ const textual_instructions = {
             text: "This is the text for stage 1 of the txt condition.",
             image:
                 <img className={styles.imageContainer}
-                     src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/c1.png"
+                     src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/i0.png"
                      alt="stage 1 txt condition image"/>
         },
         {
             text: "This is the text for stage 2 of the txt condition.",
             image: <img className={styles.imageContainer}
-                        src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/c2.png"
+                        src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/i1.png"
                         alt="stage 2 txt condition image"/>
         },
         {
             text: "This is the text for stage 3 of the txt condition.",
             image: <img className={styles.imageContainer}
-                        src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/c3.png"
+                        src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/i2.png"
                         alt="stage 3 txt condition image"/>
         },
         {
             text: "This is the text for stage 3 of the txt condition.",
             image: <img className={styles.imageContainer}
-                        src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/c4.png"
+                        src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/i3.png"
                         alt="stage 3 txt condition image"/>
         },
         {
             text: "This is the text for stage 3 of the txt condition.",
             image: <img className={styles.imageContainer}
-                        src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/c5.png"
+                        src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/i4.png"
+                        alt="stage 3 txt condition image"/>
+        },
+        {
+            text: "This is the text for stage 3 of the txt condition.",
+            image: <img className={styles.imageContainer}
+                        src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/i5.png"
                         alt="stage 3 txt condition image"/>
         }
     ],
@@ -78,31 +90,37 @@ const textual_instructions = {
             text: "This is the text for stage 1 of the txt condition.",
             image:
                 <img className={styles.imageContainer}
-                     src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/c1.png"
+                     src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/i0.png"
                      alt="stage 1 txt condition image"/>
         },
         {
             text: "This is the text for stage 2 of the txt condition.",
             image: <img className={styles.imageContainer}
-                        src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/c2.png"
+                        src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/i1.png"
                         alt="stage 2 txt condition image"/>
         },
         {
             text: "This is the text for stage 3 of the txt condition.",
             image: <img className={styles.imageContainer}
-                        src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/c3.png"
+                        src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/i2.png"
                         alt="stage 3 txt condition image"/>
         },
         {
             text: "This is the text for stage 3 of the txt condition.",
             image: <img className={styles.imageContainer}
-                        src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/c4.png"
+                        src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/i3.png"
                         alt="stage 3 txt condition image"/>
         },
         {
             text: "This is the text for stage 3 of the txt condition.",
             image: <img className={styles.imageContainer}
-                        src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/c5.png"
+                        src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/i4.png"
+                        alt="stage 3 txt condition image"/>
+        },
+        {
+            text: "This is the text for stage 3 of the txt condition.",
+            image: <img className={styles.imageContainer}
+                        src="https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/i5.png"
                         alt="stage 3 txt condition image"/>
         }
     ]
@@ -120,7 +138,9 @@ export default function InstructionsGeneral(props) {
             case "txt":
                 return (
                     <div>
-                        {textual_instructions.txt[step].image}
+                        <div className={styles.imageContainer}>
+                            {textual_instructions.txt[step].image}
+                        </div>
                         <div className={styles.textContainer}>
                             {textual_instructions.txt[step].txt}
                         </div>
@@ -131,7 +151,9 @@ export default function InstructionsGeneral(props) {
             case "visual":
                 return (
                     <div>
-                        {textual_instructions.visual[step].image}
+                        <div className={styles.imageContainer}>
+                            {textual_instructions.txt[step].image}
+                        </div>
                         <div className={styles.textContainer}>
                             {textual_instructions.visual[step].txt}
                         </div>
@@ -140,7 +162,9 @@ export default function InstructionsGeneral(props) {
             case "control":
                 return (
                     <div>
-                        {textual_instructions.control[step].image}
+                        <div className={styles.imageContainer}>
+                            {textual_instructions.txt[step].image}
+                        </div>
                         <div className={styles.textContainer}>
                             {textual_instructions.control[step].txt}
                         </div>
@@ -165,12 +189,13 @@ export default function InstructionsGeneral(props) {
             <Button
                 variant={"contained"}
                 color='primary'
-                onClick={clickHandler}>
+                onClick={clickHandler}
+                style={{marginTop:"5%", marginLeft: '400px'}}>
                 {buttonLabel}
+                
             </Button>
 
         </Container>
     )
 }
-
 
