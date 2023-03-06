@@ -154,8 +154,7 @@ const surveyCompleted = ()=>{
                 className={styles.txtImportant}>synthetic opioids</span> has increased by more
                 than <span
                     style={{fontWeight: "bold"}}>5451 percent</span>. Substance use disorders refer to direct
-                deaths from
-                overdoses of <span style={{fontWeight: "bold"}}>illicit drugs synthetic opioids (mostly Fentanyl)</span> .“We
+                deaths from overdoses of <span style={{fontWeight: "bold"}}>illicit drugs synthetic opioids (mostly Fentanyl)</span> .“We
                 know that substance use is more dangerous than it has ever been, as fentanyl has continued to
                 permeate the illicit drug supply, increasing the risk for overdoses among both people with
                 substance use disorders as well as those who use drugs occasionally,” said Dr. Nora Volkow,

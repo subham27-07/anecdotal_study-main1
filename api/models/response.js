@@ -44,6 +44,7 @@ const responseSchema = new Schema({
   cogref1: Schema.Types.Mixed,
   attitude_recallDrug: Schema.Types.Mixed,
   recall_population: Schema.Types.Mixed,
+  recall_drugOverdose: Schema.Types.Mixed,
   attitude_recallPopulation: Schema.Types.Mixed,
   attitude_recallOpioids: Schema.Types.Mixed,
   instructions: Schema.Types.Mixed,

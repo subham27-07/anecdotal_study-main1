@@ -86,7 +86,7 @@ const completedSurvey = ()=>{
              height="100%" alt="Completion image"/>
         <p className={`${styles.paragraph} ${styles.textBody} ${styles.txtNormal}`}>Since 2002, the <span
             className={styles.txtImportant}>number</span> of Americans who have died every year from <span
-            className={styles.txtImportant}> Drug Overdose</span> ... has increased by more than <span
+            className={styles.txtImportant}> Drug Overdose</span> has increased by more than <span
             className={styles.txtImportant}>222.16 percent</span>. In 2015, more Americans died from drug
             overdoses than from car accidents
             and gun homicides combined. It’s the worst drug overdose epidemic in American history, spurred

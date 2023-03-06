@@ -32,7 +32,8 @@ class LineChart extends Component {
     this.clipAnimation = false;
     this.state = {
         showText: false,
-        userDataLine:[]
+        userDataLine:[],
+        isComplete: false
       };
   }
 
@@ -338,12 +339,13 @@ class LineChart extends Component {
           <Button
             variant="contained"
             color="primary"
-            disabled={!isComplete}
+            // disabled={!isComplete}
+            disabled={!isComplete || showText}
             onClick={this.handleClick}
             style={{marginTop: '80px',marginLeft: '140px', marginRight: '20px'}}
             
           >
-            I'm done, Show me the article again!!!
+            Show me how I did.
           </Button>
         </div>
         { showText && (
