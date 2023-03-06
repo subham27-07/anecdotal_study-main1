@@ -29,7 +29,6 @@ export default function TreatmentSelector(){
     const post_pages = [
         "cogref",
         "cogref1",
-        "viz1",
         "recall_drugOverdose",
         "attitude_recallDrug",
         "recall_population",

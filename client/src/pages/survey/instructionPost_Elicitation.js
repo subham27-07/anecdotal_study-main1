@@ -19,7 +19,7 @@ const Recall_drugOverdose = (props) => {
   const lineData = bitcoinData;
 
 
-  
+
   const quizResponses = useRef([]);
   const history = useHistory();
   const location = useLocation();
@@ -110,7 +110,7 @@ const Recall_drugOverdose = (props) => {
 
   const onComplete = (survey, options) => {
     // console.log("Survey results: " + JSON.stringify(quizResponses.current));
-    axios.post("/api/recall_drugOverdose", quizResponses.current).then((response) => {
+    axios.post("/api/recall_drugOverdose", lineData.current).then((response) => {
       let nextPage = pageHandler(location.pathname);
       history.push(nextPage);
     });

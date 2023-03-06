@@ -5,6 +5,12 @@ import * as Survey from "survey-react";
 import pageHandler from "../pageHandler";
 import "survey-react/survey.css";
 import styles from './articles.module.css'
+// import styles from './survey.css'
+
+// import 'bootstrap/dist/css/bootstrap.min.css';
+
+
+
 const PreSurveyPage = (props) => {
   const location = useLocation();
   const history = useHistory();

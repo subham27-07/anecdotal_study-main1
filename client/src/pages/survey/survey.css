@@ -1,0 +1,66 @@
+
+/* Survey specific */
+.sv_main {
+    font-family: "Ubuntu", sans-serif;
+}
+
+/* Disabling page number */
+.sv_main .sv_container .sv_body .sv_progress div.sv_progress_bar > span {
+    display: none;
+}
+
+.sv_main .sv_container {
+    background-color: var(--main-bg-color-dark);
+}
+
+.sv_main .sv_p_root > .sv_row:nth-child(2n) {
+    background-color: var(--main-bg-color-dark);
+}
+
+.sv_main .sv_p_root > .sv_row:nth-child(2n+1) {
+    background-color: var(--main-bg-color-dark);
+}
+
+.sv_main .sv_body {
+    background-color: #911a1a;
+    border-color: rgb(0, 255, 157);
+}
+
+
+/* Survey specific */
+.sv_main {
+    font-family: "Ubuntu", sans-serif;
+}
+
+/* Disabling page number */
+.sv_main .sv_container .sv_body .sv_progress div.sv_progress_bar > span {
+    display: none;
+}
+
+.sv_main .sv_container {
+    background-color: var(--main-bg-color-dark);
+}
+
+.sv_main .sv_p_root > .sv_row:nth-child(2n) {
+    background-color: var(--main-bg-color-dark);
+}
+
+.sv_main .sv_p_root > .sv_row:nth-child(2n+1) {
+    background-color: var(--main-bg-color-dark);
+}
+
+.sv_main .sv_body {
+    background-color: #4c4c4c;
+    border-color: rgb(0, 255, 157);
+}
+
+.question_content_custom {
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    border-left: 4px solid #18a689;
+    padding: 10px;
+    margin: 10px 0;
+}
+.question-title-answered {
+    background-color: lightblue;
+}

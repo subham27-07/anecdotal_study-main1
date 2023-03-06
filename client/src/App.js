@@ -39,7 +39,7 @@ import Recall_drugOverdose from "./pages/survey/recall_drugOverdose";
 import Attitude_recallDrug from "./pages/survey/attitude_recallDrug";
 import Attitude_recallPopulation from "./pages/survey/attitude_recallPopulation";
 import Attitude_recallOpioids from "./pages/survey/attitude_recallOpioids";
-import Viz1 from "./pages/survey/viz1";
+
 import VisualElicitation_drugOverdose from "./pages/survey/visualElicitation_drugOverdose";
 import VisualElicitation_population from "./pages/survey/visualElicitation_population";
 import VisualElicitation_Opioids from "./pages/survey/visualElicitation_Opioids";
@@ -357,9 +357,7 @@ const App = () => {
                                 <Route path="/recall_drugOverdose">
                                     <Recall_drugOverdose pages={study_pages}/>
                                 </Route>
-                                <Route path="/viz1">
-                                    <Viz1 pages={study_pages}/>
-                                </Route>
+                               
                                 <Route path="/visualElicitation_drugOverdose">
                                     <VisualElicitation_drugOverdose pages={study_pages}/>
                                 </Route>

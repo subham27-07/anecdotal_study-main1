@@ -35,7 +35,6 @@ const responseSchema = new Schema({
   noelicitation_AmericanPopulation: Schema.Types.Mixed,
   noelicitation_Opioids: Schema.Types.Mixed,
   recall_drugOverdose: Schema.Types.Mixed,
-  viz1: Schema.Types.Mixed,
   visualElicitation_drugOverdose:Schema.Types.Mixed,
   visualElicitation_Opioids:Schema.Types.Mixed,
   visualElicitation_population:Schema.Types.Mixed,
