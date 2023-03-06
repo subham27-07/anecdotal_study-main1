@@ -159,7 +159,7 @@ class LineChart extends Component {
       .attr('x', x(fourthDate.year))
       .attr('y', y(fourthDate.value)-10)
       .attr('font-size','15px')
-      .text(firstDate.value);
+      .text(fourthDate.value);
 
     svg.append('circle')
       .attr('class', 'bubble-2015')
