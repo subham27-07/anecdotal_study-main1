@@ -6,7 +6,7 @@ import { populationData, drugOverdoseData, opioidsData } from './datasets';
 const LineChart = lazy(() => import('./LineChartDraw'));
 
 
-const LineChartDrawHandler = (props) => {
+export default function LineChartDrawHandler(props){
     
   let lineData ;
   const articleName=props.articleName;
@@ -41,5 +41,3 @@ const LineChartDrawHandler = (props) => {
 
   );
 }
-
-export default LineChartDrawHandler;

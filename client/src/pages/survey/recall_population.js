@@ -5,7 +5,7 @@ import { Divider, Typography, Container, Button } from "@mui/material";
 import "survey-react/survey.css";
 import styles from "./articles.module.css";
 
-import LineChartDrawHandler from './visualizations/lineChartDrawHandler';
+import LineChartDrawHandler from './visualizations/LineChartDrawHandler';
 
 const Recall_population = (props) => {
     
