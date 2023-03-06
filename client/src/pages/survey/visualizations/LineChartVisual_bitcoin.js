@@ -172,7 +172,7 @@ class LineChart extends Component {
     svg.append('circle')
       .attr('class', 'bubble-2016')
       .attr('cx', x(fourthDate.year))
-      .attr('cy', x(fourthDate.year)+20)
+      .attr('cy', x(fourthDate.year)+37)
       .attr('r', 7)
       .style('fill', '#54EAEA')
       .style('opacity', 0.7); 
