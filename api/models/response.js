@@ -51,6 +51,7 @@ const responseSchema = new Schema({
   postq: Schema.Types.Mixed,
   responses: Schema.Types.Mixed,
   attitude_ElicitationPost: Schema.Types.Mixed,
+  article_responses: Schema.Types.Mixed
 });
 
 // const Response = mongoose.model("tresponse", responseSchema);

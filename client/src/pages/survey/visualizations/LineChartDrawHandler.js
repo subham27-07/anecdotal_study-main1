@@ -4,40 +4,50 @@ import React, {lazy,Suspense} from 'react';
 import { populationData, drugOverdoseData, opioidsData } from './datasets';
 
 const LineChart = lazy(() => import('./LineChartDraw'));
+// import LineChartDraw from "./LineChartDraw";
 
 
-export default function LineChartDrawHandler(props){
-    
-  let lineData ;
+const chartTypes ={
+    drugOverdose:
+        {
+            lineData: drugOverdoseData,
+            scaleType: 'number'
+        },
+    population:
+        {
+            lineData: populationData,
+            scaleType: 'percentage'
+        },
+        opioids:
+            {
+                lineData: opioidsData,
+                scaleType: 'number'
+            }
+}
+
+export default function LineChartDrawHandler (props) {
+
   const articleName=props.articleName;
-  let scaleType;
-  switch (articleName){
 
-    case "drugOverdose":
-        lineData = drugOverdoseData;
-        scaleType='number';
-        break;
+  function dataHandler(){
+        return chartTypes[`${props.articleName}`].lineData;
+    }
 
-    case "population":
-        lineData = populationData;
-        scaleType='percentage';
-        break;
-    
-    case "opioids":
-        lineData = opioidsData;
-        scaleType='number';
-    
-  }
+    function scaleTypeHandler(){
+        return chartTypes[`${props.articleName}`].scaleType;
+    }
 
+  console.log(props.articleName)
   return (
   
         <div style={{ width: "100%"}}>
        
        <Suspense fallback={<div>loading...</div>}>
-            <LineChart type="value" scaleType={scaleType} data={lineData} idLine={1} startYear={2002}/>
+            <LineChart type="value" scaleType={scaleTypeHandler()} data={dataHandler()} idLine={1} startYear={2002} showText={props.showText}/>
           </Suspense>
 
         </div>
 
   );
 }
+

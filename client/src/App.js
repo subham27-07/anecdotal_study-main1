@@ -63,6 +63,7 @@ import {choose} from "./functions/functions";
 
 import "./App.css";
 import InstructionsGeneral from "./pages/instructions/instructions_general";
+import Articles from "./pages/articles/Article";
 
 function useQuery() {
     const {search} = useLocation();
@@ -73,10 +74,6 @@ function useQuery() {
 const App = () => {
     let query = useQuery();
     const questions = ["strength", "share"];
-    const conditions = ["text", "viz", "control"];
-    const condition = choose(conditions)
-    // const questions = ["strength"];
-    // const questions = ["share"];
     const DEV = false;
     const [data, setData] = useRecoilState(dataState);
     const [response, setResponse] = useRecoilState(responseState);
@@ -100,32 +97,29 @@ const App = () => {
         "topic_Involvement",
         "instructionPre",
     ]
-    const txt_pages = [
-        "textelicitation_drugOverdose",
-        "textelicitation_AmericanPopulation",
-        "textelicitation_Opioids",
-    ]
-    const visual_pages = [
-        "visualElicitation_drugOverdose",
-        "visualElicitation_population",
-        "visualElicitation_Opioids",
-    ]
-    const control = [
-        "noelicitation_drugOverdose",
-        "noelicitation_AmericanPopulation",
-        "noelicitation_Opioids",
-    ]
+    // const txt_pages = [
+    //     "textelicitation_drugOverdose",
+    //     "textelicitation_AmericanPopulation",
+    //     "textelicitation_Opioids",
+    // ]
+    // const visual_pages = [
+    //     "visualElicitation_drugOverdose",
+    //     "visualElicitation_population",
+    //     "visualElicitation_Opioids",
+    // ]
+    // const control = [
+    //     "noelicitation_drugOverdose",
+    //     "noelicitation_AmericanPopulation",
+    //     "noelicitation_Opioids",
+    // ]
     const post_pages = [
         "cogref",
         "cogref1",
         "instructionPost_Elicitation",
         "instructionPost_Recall",
         "recall_drugOverdose",
-        // "attitude_recallDrug",
         "recall_population",
-        // "attitude_recallPopulation",
         "recall_Opioids",
-        // "attitude_recallOpioids",
         "attitude_ElicitationPost",
         "debrief",
     ]
@@ -135,21 +129,24 @@ const App = () => {
     const treatment = useRef()
 
     const treatmentSelector = () => {
-        const tr = choose(['txt', 'visual', 'control'])
+        // const tr = choose(['txt', 'visual', 'control'])
+        // const tr = choose(['txt', 'control'])
+        const tr = 'visual';   // ONLY FOR TESTING. SHOULD KEEP COMMENTED
         treatment.current = tr
         console.log(treatment.current)
-        switch (tr) {
-            case 'txt':
-                return [...pre_pages, ...txt_pages, ...post_pages];
-            case 'visual':
-                return [...pre_pages, ...visual_pages, ...post_pages];
-            case 'control':
-                return [...pre_pages, ...control, ...post_pages];
-            default:
-                console.log(`Treatment is : ${treatment}`)
-                console.log('Error with TreatmentSelector! No such treatment found!')
-                break;
-        }
+        // switch (tr) {
+        //     case 'txt':
+        //         return [...pre_pages, ...txt_pages, ...post_pages];
+        //     case 'visual':
+        //         return [...pre_pages, ...visual_pages, ...post_pages];
+        //     case 'control':
+        //         return [...pre_pages, ...control, ...post_pages];
+        //     default:
+        //         console.log(`Treatment is : ${treatment}`)
+        //         console.log('Error with TreatmentSelector! No such treatment found!')
+        //         break;
+        // }
+        return [...pre_pages, 'articles', ...post_pages]
     }
         // Set
         useEffect(() => {
@@ -276,8 +273,8 @@ const App = () => {
                 <Router>
                     {/*<NavBar height={"7%"} className="navBar"></NavBar>*/}
                     <div
-                        style={{width: "100%", height: "86%", overflow: "auto"}}
-                        id="scrollWrapper"
+                        // style={{width: "100%", height: "86%", overflow: "auto"}}
+                        // id="scrollWrapper"
                     >
                         <Container
                             // style={{ height: "86%", margin: "0 auto",  }}
@@ -433,6 +430,9 @@ const App = () => {
                                 </Route>
                                 <Route path="/debrief">
                                     <DebriefPage pages={study_pages}/>
+                                </Route>
+                                <Route path="/articles">
+                                    <Articles treatment={treatment} pages={study_pages}/>
                                 </Route>
                             </Switch>
                         </Container>

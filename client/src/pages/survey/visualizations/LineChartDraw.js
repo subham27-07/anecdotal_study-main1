@@ -356,7 +356,7 @@ class LineChart extends Component {
       // milad uncomment
       this.renderAnimation();
       // this.props.showText()
-   
+      this.props.showText();
 
     }
     // console.log(this.userDataLine)
