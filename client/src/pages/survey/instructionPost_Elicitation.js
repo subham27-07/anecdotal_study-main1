@@ -11,67 +11,15 @@ import { useRecoilValue } from "recoil";
 import { questionState } from "../../atoms/questionSelector";
 import "survey-react/survey.css";
 import styles from "./articles.module.css";
+import { bitcoinData } from './visualizations/datasets';
 
 const LineChart = lazy(() => import('./visualizations/LineChartVisual_bitcoin'));
 
 const Recall_drugOverdose = (props) => {
-  const lineData = [
-    {
-      id: 1,
-      value: 16819,
-      year: 2014,
-    },
-    {
-      id: 1,
-      value: 18819,
-      year: 2015,
-    },
-    {
-      id: 1,
-      value: 23518,
-      year: 2016,
-    },
-    {
-      id: 1,
-      value: 25518,
-      year: 2017,
-    },
-    {
-      id: 1,
-      value: 28518,
-      year: 2018,
-    },
-    {
-      id: 1,
-      value: 30518,
-      year: 2019,
-    },
-    {
-      id: 1,
-      value: 32518,
-      year: 2020,
-    },
-    {
-      id: 1,
-      value: 35518,
-      year: 2021,
-    },
-    {
-      id: 1,
-      value: 40518,
-      year: 2022,
-    },
-    
-  ];
+  const lineData = bitcoinData;
 
 
-  // const quizResponses = useRef([]);
- 
-  // const [clipAnimation, setClipAnimation] = useState(false);
 
-  // const handleShowAnimation = () => {
-  //   setClipAnimation(true);
-  // };
   const quizResponses = useRef([]);
   const history = useHistory();
   const location = useLocation();
@@ -162,7 +110,7 @@ const Recall_drugOverdose = (props) => {
 
   const onComplete = (survey, options) => {
     // console.log("Survey results: " + JSON.stringify(quizResponses.current));
-    axios.post("/api/recall_drugOverdose", quizResponses.current).then((response) => {
+    axios.post("/api/recall_drugOverdose", lineData.current).then((response) => {
       let nextPage = pageHandler(location.pathname);
       history.push(nextPage);
     });
@@ -252,21 +200,6 @@ const Recall_drugOverdose = (props) => {
 
         {PageContentHandler()}
       </div>
-
-      {/*<div>*/}
-       {/* <Button*/}
-      {/*        variant="contained"*/}
-      {/*        color="primary"*/}
-      {/*        onComplete={() => {*/}
-      {/*          let nextPage = pageHandler(props.pages, location.pathname);*/}
-      {/*          history.push(nextPage);*/}
-      {/*        }}*/}
-      {/*        style={{marginTop: '5%',marginLeft: '230px', marginRight: '20px'}}*/}
-      {/*      >*/}
-      {/*        Continue*/}
-      {/*  </Button> */}
-
-      {/*</div>*/}
     </Container>
 
   );

@@ -332,3 +332,52 @@ export const populationData = [
       year: 2019,
     },
   ];
+
+export const bitcoinData = [
+  {
+    id: 1,
+    value: 16819,
+    year: 2014,
+  },
+  {
+    id: 1,
+    value: 18819,
+    year: 2015,
+  },
+  {
+    id: 1,
+    value: 23518,
+    year: 2016,
+  },
+  {
+    id: 1,
+    value: 25518,
+    year: 2017,
+  },
+  {
+    id: 1,
+    value: 28518,
+    year: 2018,
+  },
+  {
+    id: 1,
+    value: 30518,
+    year: 2019,
+  },
+  {
+    id: 1,
+    value: 32518,
+    year: 2020,
+  },
+  {
+    id: 1,
+    value: 35518,
+    year: 2021,
+  },
+  {
+    id: 1,
+    value: 40518,
+    year: 2022,
+  },
+  
+];

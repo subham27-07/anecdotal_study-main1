@@ -71,3 +71,31 @@
 .surveyContainer{
     margin-top: 5%;
 }
+
+
+/* Survey specific */
+.sv_main {
+    font-family: "Ubuntu", sans-serif;
+}
+
+/* Disabling page number */
+.sv_main .sv_container .sv_body .sv_progress div.sv_progress_bar > span {
+    display: none;
+}
+
+.sv_main .sv_container {
+    background-color: var(--main-bg-color-dark);
+}
+
+.sv_main .sv_p_root > .sv_row:nth-child(2n) {
+    background-color: var(--main-bg-color-dark);
+}
+
+.sv_main .sv_p_root > .sv_row:nth-child(2n+1) {
+    background-color: var(--main-bg-color-dark);
+}
+
+.sv_main .sv_body {
+    background-color: #ededed;
+    border-color: rgb(0, 255, 157);
+}

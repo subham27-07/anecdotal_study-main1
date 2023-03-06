@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import * as d3 from 'd3';
 import { Divider, Typography, Container, Button } from "@mui/material";
-import styles from '../articles.module.css'
+
 
 
 const marginConvention = (selection, props) => {
@@ -45,6 +45,7 @@ class LineChart extends Component {
     const {
       data, type, idLine, startYear,
     } = this.props;
+    const availableYears = data.map((d)=>d.year)
     this.userDataLine = this.transformData();
     this.setState({userDataLine:this.userDataLine})
     const userDrawnValue = this.userDataLine.filter(d => d.defined === true);
@@ -68,6 +69,7 @@ class LineChart extends Component {
       margin,
       className: 'lineChart',
     });
+    this.svg=svg;
 
    
     const x = d3.scaleLinear().range([0, innerWidth]);
@@ -75,10 +77,7 @@ class LineChart extends Component {
     const y = d3.scaleLinear().range([innerHeight, 0]);
     y.domain([0, 80000]);
     
-  
-    // const yFormat = d3.scaleLinear()
-    //   .domain([0, d3.max(data, d => d[type])])
-    //   .range([0, 80000]);
+ 
 
     svg.append('g')
         .attr('class', 'axis-y-line')
@@ -135,40 +134,51 @@ class LineChart extends Component {
     // USER LINE
     this.youDrawIt = svg.append('path').attr('class', 'your-line');
 
+    const firstDate = data[0]
+    const fourthDate = data[2]
+
+    let instructionText = svg.append('text')
+      .attr('x',innerWidth/2)
+      .attr('y',innerHeight/2)
+      .attr('text-anchor',"middle")
+      .attr('font-size','18px')
+      .attr('class','instructionText')
+      .style('fill','rgb(133, 3, 18)')
+      .style('pointer-events','none')
+      .text('Draw the line with an increasing trend after 2017.')
+
     svg.append('text')
       .attr('class', 'text-2015')
-      .attr('x', x(2014))
-      .attr('y', y(20849))
+      .attr('x', x(firstDate.year))
+      .attr('y',  y(firstDate.value)-10)
       .attr('font-size','15px')
-      .text('16849');
+      .text(firstDate.value);
 
     svg.append('text')
       .attr('class', 'text-2016')
-      .attr('x', x(2015.7))
-      .attr('y', y(27849))
+      .attr('x', x(fourthDate.year))
+      .attr('y', y(fourthDate.value)-10)
       .attr('font-size','15px')
-      .text('23518');
+      .text(firstDate.value);
 
     svg.append('circle')
       .attr('class', 'bubble-2015')
-      .attr('cx', x(2016))
-      .attr('cy', y(23518))
+      .attr('cx', x(firstDate.year))
+      .attr('cy', y(firstDate.value))
       .attr('r', 7)
       .style('fill', '#54EAEA')
       .style('opacity', 0.7);
   
     svg.append('circle')
       .attr('class', 'bubble-2016')
-      .attr('cx', x(2014))
-      .attr('cy', y(16849))
+      .attr('cx', x(fourthDate.year))
+      .attr('cy', x(fourthDate.year)+20)
       .attr('r', 7)
       .style('fill', '#54EAEA')
       .style('opacity', 0.7); 
     
 
-    const availableYears = [2014,2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022];
 
-    const format = d3.format('.2f');
 
     // Add the X Axis
     svg.append('g')
@@ -182,12 +192,7 @@ class LineChart extends Component {
         .tickFormat(d => (d % 100 < 10 ? `0${d % 100}` : `${d % 100}`)));
         
         
-    // 
-    // Rotate x-axis labels
-    // svg.selectAll(".axis-x-line text")
-    // .attr("transform", "rotate(-45)")
-    // .style("text-anchor", "end");
-    // 
+   
     svg.append('g')
       .attr('class', 'grid')
       .call(d3.axisLeft(y)
@@ -277,6 +282,8 @@ class LineChart extends Component {
       // console.log(`Year: ${data.year}, Y Value: ${data[type]}`);
     });
 
+    d3.select('.instructionText').style('display','none');
+
     const definedValues = this.userDataLine.filter(d => d.defined === true);
     if (definedValues.length === this.userDataLine.length) {
       const svg = d3.select('svg');
@@ -289,9 +296,17 @@ class LineChart extends Component {
       text.enter().append('text')
         .merge(text)
         .attr('class', 'value-text')
-        .attr('x', d => x(d.year)+ 30)
-        .attr('y', d => y(d[type]))
-        .text(d => `${d[type]}`);
+        .attr('x', d => x(d.year)+ 10)
+        .attr('y', d => y(d[type])+30)
+        .text(d => `${d[type].toFixed(0)}`);
+      // 
+      // text.enter().append('text')
+      //   .merge(text)
+      //   .attr('class', 'value-text')
+      //   .attr('text-anchor','middle')
+      //   .attr('x', d => x(d.year)+ 30)
+      //   .attr('y', d => y(d[type])-10)
+      //   .text(d => `${d[type].toFixed(2)}`);
     }
 
   });
@@ -350,15 +365,7 @@ class LineChart extends Component {
         <div id="line-chart">
           <svg ref={this.svgReal} />
         </div>
-        { !isComplete && (
-          <Typography 
-          // variant="subtitle1"
-          // gutterBottom
-          style={{ marginTop: '-100px', marginLeft: "200px",color: "#7f0000" }}
-          >
-            Draw the line with an increasing trend after 2017.
-          </Typography>
-        ) }
+        
         <div style={{marginTop: '20px'}}>
           <Button
             variant="contained"

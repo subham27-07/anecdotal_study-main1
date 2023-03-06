@@ -8,8 +8,7 @@ import styles from "./articles.module.css";
 import LineChartDrawHandler from './visualizations/lineChartDrawHandler';
 
 const VisualElicitation_drugOverdose = (props) => {
-  
-  
+
   return (
     <Container
       maxWidth={false}
