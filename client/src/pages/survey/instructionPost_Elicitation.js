@@ -1,14 +1,7 @@
 import React, { useRef, lazy, Suspense, useState } from 'react';
 
-
-import { useHistory, useLocation } from "react-router-dom";
-import pageHandler from "../pageHandler";
-import axios from "axios";
-import * as Survey from "survey-react";
 import { Divider, Typography, Container, Button } from "@mui/material";
 
-import { useRecoilValue } from "recoil";
-import { questionState } from "../../atoms/questionSelector";
 import "survey-react/survey.css";
 import styles from "./articles.module.css";
 import { bitcoinData } from './visualizations/datasets';
@@ -18,142 +11,6 @@ const LineChart = lazy(() => import('./visualizations/LineChartVisual_bitcoin'))
 const Recall_drugOverdose = (props) => {
   const lineData = bitcoinData;
 
-
-
-  const quizResponses = useRef([]);
-  const history = useHistory();
-  const location = useLocation();
-  const questionCondition = useRecoilValue(questionState);
-  // console.log(questionCondition);
-  const extraQuestions =
-    questionCondition == "strength"
-      ? [
-        
-        ]
-      : [];
-
-  const json = {
-    pages: [
-    
-      {
-        elements: [
-          {
-            type: "html",
-            html: "<p style='font-size: 18px;'><span style='font-weight: bold;'>Congratulations! You succeeded...</span> Please click on Complete</p>",
-           
-          },
-          
-          
-        ],
-      },
-    ],
-  };
-
-  var defaultThemeColors = Survey.StylesManager.ThemeColors["default"];
-  defaultThemeColors["$main-color"] = "black";
-  defaultThemeColors["$main-hover-color"] = "darkorange";
-  defaultThemeColors["$text-color"] = "#4a4a4a";
-  defaultThemeColors["$header-color"] = "#7ff07f";
-
-  defaultThemeColors["$header-background-color"] = "#4a4a4a";
-  defaultThemeColors["$body-container-background-color"] = "#f8f8f8";
-
-  const correctStr = "Correct";
-  const inCorrectStr = "Incorrect";
-
-  Survey.StylesManager.applyTheme();
-
-  const onCompleting = (survey, options) => {
-    // console.log(options);
-    let allTrue = true;
-    survey.getAllQuestions().forEach((q) => {
-    
-    });
-    quizResponses.current.push(survey.data);
-    if (allTrue) {
-      options.allowComplete = true;
-    } else {
-      options.allowComplete = false;
-    }
-  };
-
-
-  const [visCompleted, setVisCompleted] = useState(false);
-
-  function visStateHandler(){
-      setVisCompleted((prevState)=>!prevState);
-    console.log('VisStateHandler triggered',visCompleted);
-    }
-
-
-  function PageContentHandler(){
-    console.log('PageContentHandler triggered!', visCompleted)
-    if(visCompleted){
-      return(
-          <div className={styles.surveyContainer}><Survey.Survey
-          model={model}
-          onComplete={() => {
-            let nextPage = pageHandler(props.pages, location.pathname);
-            history.push(nextPage);
-          }}
-          onCompleting={onCompleting}
-          onCurrentPageChanging={onCurrentPageChanging}
-
-      />
-      </div>)
-    }
-    else{
-      return("")
-    }
-
-  }
-
-  const onComplete = (survey, options) => {
-    // console.log("Survey results: " + JSON.stringify(quizResponses.current));
-    axios.post("/api/recall_drugOverdose", lineData.current).then((response) => {
-      let nextPage = pageHandler(location.pathname);
-      history.push(nextPage);
-    });
-  };
-
-  const onCurrentPageChanging = (survey, option) => {
-    if (!option.isNextPage) return;
-    let allTrue = true;
-    // survey.getAllQuestions().forEach((q) => {
-    //   // if (survey.currentPage == q.page) {
-    //   //
-    //   // }
-    // });
-    // console.log(allTrue);
-    if (allTrue) {
-      option.allowChanging = true;
-    } else {
-      option.allowChanging = false;
-    }
-  };
-
-  function getTextHtml(text, str, isCorrect) {
-    if (text.indexOf(str) < 0) return undefined;
-    return (
-      text.substring(0, text.indexOf(str)) +
-      "<span style='color:" +
-      (isCorrect ? "green" : "red") +
-      "'>" +
-      str +
-      "</span>"
-    );
-  }
-  
-
-  
-
-  const model = new Survey.Model(json);
-  model.showCompletedPage = false;
-  model.onTextMarkdown.add((sender, options) => {
-    var text = options.text;
-    var html = getTextHtml(text, correctStr, true);
-    
-  });
 
   return (
     <Container
@@ -187,18 +44,16 @@ const Recall_drugOverdose = (props) => {
          
 
       </div>
-      {/*<Survey.Survey*/}
-      {/*  model={model}*/}
-      {/*/>*/}
+     
 
       <div className="viz" style={{ display: "flex", flexDirection: "column" }}>
       <div style={{ width: "100%",margin:"0 auto"}}>
           <Suspense fallback={<div>loading...</div>}>
-            <LineChart type="value" data={lineData} idLine={1} startYear={2016} visState={visCompleted} stateHandler={visStateHandler}/>
+            <LineChart type="value" data={lineData} idLine={1} startYear={2016} />
           </Suspense>
         </div>
 
-        {PageContentHandler()}
+    
       </div>
     </Container>
 

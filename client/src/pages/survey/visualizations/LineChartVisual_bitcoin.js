@@ -172,7 +172,7 @@ class LineChart extends Component {
     svg.append('circle')
       .attr('class', 'bubble-2016')
       .attr('cx', x(fourthDate.year))
-      .attr('cy', x(fourthDate.year)+37)
+      .attr('cy', x(fourthDate.year)-37)
       .attr('r', 7)
       .style('fill', '#54EAEA')
       .style('opacity', 0.7); 
@@ -342,7 +342,7 @@ class LineChart extends Component {
   
       if (increasingTrend) {
         this.setState({ showText: true });
-        this.props.stateHandler();
+        // this.props.stateHandler();
       } else {
         alert('The trend must be increasing after year 2017');
       }
@@ -370,8 +370,8 @@ class LineChart extends Component {
           <Button
             variant="contained"
             color="primary"
-            // disabled={!isComplete}
-            disabled={!isComplete || showText}
+            disabled={!isComplete}
+            // disabled={!isComplete || showText}
             onClick={this.handleClick}
             style={{marginTop: '80px',marginLeft: '230px', marginRight: '20px'}}
             
