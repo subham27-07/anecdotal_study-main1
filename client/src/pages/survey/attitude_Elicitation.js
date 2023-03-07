@@ -10,7 +10,7 @@ import TweetQuote from "../../components/tweet/tweetQuote";
 import { useRecoilValue } from "recoil";
 import { questionState } from "../../atoms/questionSelector";
 import "survey-react/survey.css";
-
+import styles from '../articles/articles.module.css'
 const Attitude_Elicitation = (props) => {
   const quizResponses = useRef([]);
   const history = useHistory();
@@ -18,7 +18,7 @@ const Attitude_Elicitation = (props) => {
   const questionCondition = useRecoilValue(questionState);
   // console.log(questionCondition);
   const extraQuestions =
-    questionCondition == "strength"
+    questionCondition === "strength"
       ? [
        
         ]
@@ -198,29 +198,28 @@ const Attitude_Elicitation = (props) => {
   return (
     <Container
       maxWidth={false}
-      style={{
-        width: "100%",
-        overflow: "auto",
-        height: "100%",
-        paddingTop: "30px",
-        paddingBottm: "30px",
-      }}
+      // style={{
+      //   width: "100%",
+      //   overflow: "auto",
+      //   height: "100%",
+      //   paddingTop: "30px",
+      //   paddingBottm: "30px",
+      // }}
+    className={styles.mainContainer}
     >
       <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
+        // style={{
+        //   display: "flex",
+        //   flexDirection: "column",
+        //   alignItems: "center",
+        //   justifyContent: "center",
+        // }}
+          className={styles.articleContainer}
       >
-        <Typography variant="h5">
-        Please Answer the questions below👇.
-        </Typography>
-        <Divider></Divider>
-        
+        <p className={styles.surveyTitle}>
+        Please Answer the questions below.
+        </p>
       </div>
-      <Divider></Divider>
       <Survey.Survey
         model={model}
         onComplete={onComplete}

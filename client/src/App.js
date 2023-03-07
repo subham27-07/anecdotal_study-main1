@@ -129,11 +129,11 @@ const App = () => {
     const treatment = useRef()
 
     const treatmentSelector = () => {
-        // const tr = choose(['txt', 'visual', 'control'])
+        const tr = choose(['txt', 'visual', 'control'])
         // const tr = choose(['txt', 'control'])
-        const tr = 'txt';   // ONLY FOR TESTING. SHOULD KEEP COMMENTED
+        // const tr = 'txt';   // ONLY FOR TESTING. SHOULD KEEP COMMENTED
         treatment.current = tr
-        console.log(treatment.current)
+        // console.log(treatment.current)
         // switch (tr) {
         //     case 'txt':
         //         return [...pre_pages, ...txt_pages, ...post_pages];

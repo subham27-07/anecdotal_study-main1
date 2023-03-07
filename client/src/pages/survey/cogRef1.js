@@ -4,7 +4,8 @@ import pageHandler from "../pageHandler";
 import axios from "axios";
 import * as Survey from "survey-react";
 import "survey-react/survey.css";
-import styles from './articles.module.css'
+import styles from '../articles/articles.module.css'
+import {Container} from "@mui/material/";
 const PreSurveyPage = (props) => {
     const history = useHistory();
     const location = useLocation();
@@ -33,9 +34,9 @@ const PreSurveyPage = (props) => {
 
     const onComplete = (survey, options) => {
         //Write survey results into database
-        console.log("Survey results: " + JSON.stringify(survey.data));
+        // console.log("Survey results: " + JSON.stringify(survey.data));
         axios.post("/api/cogref1", survey.data).then((response) => {
-            console.log(response);
+            // console.log(response);
             let nextPage = pageHandler(props.pages, location.pathname);
             history.push(nextPage);
         });
@@ -54,19 +55,21 @@ const PreSurveyPage = (props) => {
     const model = new Survey.Model(json);
     model.showCompletedPage = false;
     return (
-        <div
-            style={{
-                width: "100%",
-                height: "100%",
-                margin: "0 auto",
-                overflow: "auto",
-                paddingTop: "30px",
-                paddingBottm: "30px",
-            }}
+        <Container
+            // style={{
+            //     width: "100%",
+            //     height: "100%",
+            //     margin: "0 auto",
+            //     overflow: "auto",
+            //     paddingTop: "30px",
+            //     paddingBottm: "30px",
+            // }}
+            className={styles.mainContainer}
         >
-            <div>
-                <h4 className={styles.txtImportant}>Please read through the article below👇</h4>
-                <p className={`${styles.paragraph} ${styles.textBody}`}> The Eagles made sure to mention that
+            <div className={styles.articleContainer}>
+                <p className={styles.surveyTitle}>Please read through the article below.</p>
+
+                <p className={`${styles.paragraph}`}> The Eagles made sure to mention that
                     field conditions didn't decide the game. (It's not like we were playing on ice and they were playing on
                     grass; we all had to play on it, Eagles head coach Nick Sirianni said.) But it affected both teams. The
                     Eagles had 70 sacks in the regular season and none Sunday. There were factors that went into that, such
@@ -81,7 +84,7 @@ const PreSurveyPage = (props) => {
             <Survey.Survey model={model} onComplete={onComplete}/>
 
 
-        </div>
+        </Container>
         );
 };
 

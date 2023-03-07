@@ -85,6 +85,9 @@
 
 .txtUnique{
     font-style:italic;
+    width: 100%;
+    font-size: 14px;
+    font-weight: lighter;
 }
 
 .articleIdActive{
@@ -160,4 +163,13 @@
     position: relative;
     display: inline-block;
     width: 100px;
+}
+
+/*THese are for survey pages*/
+.surveyTitle{
+    width: 80%;
+    height: min-content;
+    line-height: normal;
+    font-size: 1.5rem;
+    font-weight: bold;
 }

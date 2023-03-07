@@ -55,7 +55,6 @@ const articleContent = {
                 said Dr. Nora Volkow, director of the National Institute on Drug Abuse. Deaths involving synthetic opioids such as fentanyl increased by a marked 18% in 2021, according to the CDC data.
                 Deaths involving cocaine and psychostimulants such as methamphetamine were also significantly more frequent, while those involving heroin decreased.`,
                 instructions: 'Please answer the questions below',
-                instructions: "",
                 definitions: "",
             },
             image: "https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/003.png",
@@ -111,10 +110,10 @@ export default function Articles(props) {
                 }
                 break;
             case 'visual':
-                if(article === 2){
+                if (article === 2) {
                     let nextPage = pageHandler(props.pages, location.pathname);
                     history.push(nextPage);
-                }else{
+                } else {
                     setCompleted((prev) => false);
                     setInteractionStep(0);
                     setArticle((prev) => prev + 1);
@@ -129,9 +128,9 @@ export default function Articles(props) {
     };
 
     const interactionStepHandler = () => {
-        if(interactionStep < 2){
+        if (interactionStep < 2) {
             setInteractionStep((prev) => prev + 1);
-        } else{
+        } else {
             setInteractionStep((prev) => 0);
 
         }
@@ -172,51 +171,51 @@ export default function Articles(props) {
                         </div>
                         {(() => {
                             if (!completed) {
-                                return <div className={styles.subtitle}>
+                                return (<div className={styles.subtitle}>
 
-                                    <p>{`${articleContent.articles[article].text.subTitle}`}</p>
-                                    <p className={styles.subtitle2}>{`${articleContent.articles[article].text.subTitle2}`}</p>
-                                    <FormControl sx={{
-                                        position: 'relative',
-                                        mx: 2,
-                                        my: 0,
-                                        minWidth: 200,
-                                        top: -15,
-                                        py: 2
-                                    }}>
-                                        <InputLabel id="trend-selector">Select Here</InputLabel>
-                                        <Select
-                                            labelId="trend-selector-label"
-                                            id="trend-selector-dropdown"
-                                            value={trend}
-                                            onChange={handleChange}
-                                            autoWidth
-                                            required={true}
-                                            label="Select here..."
-                                            style={{
-                                                display: 'inline-flex',
-                                                position: "relative",
-                                                border: '1px solid white',
-                                                height: '18pt',
-                                                fontSize: '12pt',
-                                                backgroundColor: 'lightgray'
-                                            }}
-                                        >
+                                    <p>{`${articleContent.articles[article].text.subTitle}`}
 
-                                            <MenuItem value={1}>Significantly Decreased</MenuItem>
-                                            <MenuItem value={2}>Slightly Decreased</MenuItem>
-                                            <MenuItem value={3}>Not Much Changed</MenuItem>
-                                            <MenuItem value={4}>Slightly Increased</MenuItem>
-                                            <MenuItem value={5}>Significantly Increased</MenuItem>
+                                        <FormControl sx={{
+                                            position: 'relative',
+                                            mx: 2,
+                                            my: 0,
+                                            minWidth: 200,
+                                            top: -15,
+                                            py: 2
+                                        }}>
+                                            <InputLabel id="trend-selector">Select Here</InputLabel>
+                                            <Select
+                                                labelId="trend-selector-label"
+                                                id="trend-selector-dropdown"
+                                                value={trend}
+                                                onChange={handleChange}
+                                                autoWidth
+                                                required={true}
+                                                label="Select here..."
+                                                style={{
+                                                    display: 'inline-flex',
+                                                    position: "relative",
+                                                    border: '1px solid white',
+                                                    height: '18pt',
+                                                    fontSize: '12pt',
+                                                    backgroundColor: 'lightgray'
+                                                }}
+                                            >
+                                                <MenuItem value={1}>Significantly Decreased</MenuItem>
+                                                <MenuItem value={2}>Slightly Decreased</MenuItem>
+                                                <MenuItem value={3}>Not Much Changed</MenuItem>
+                                                <MenuItem value={4}>Slightly Increased</MenuItem>
+                                                <MenuItem value={5}>Significantly Increased</MenuItem>
 
 
-                                        </Select>
-                                    </FormControl>
-
-                                </div>
+                                            </Select>
+                                        </FormControl>
+                                    </p>
+                                    <p className={styles.txtUnique}>{`${articleContent.articles[article].text.subTitle2}`}</p>
+                                </div>)
                             } else {
-                                return ("");
-                            }
+                        return ("");
+                    }
                         })()}
                         {(() => {
                             if (completed) {
@@ -237,7 +236,7 @@ export default function Articles(props) {
                     </div>
                 );
             case 'visual':
-                return (  <div className={styles.articleStructure}>
+                return (<div className={styles.articleStructure}>
                     <div className={styles.title}>
                         {`${articleContent.title}`}
                     </div>
@@ -247,21 +246,21 @@ export default function Articles(props) {
                     <LineChartDrawHandler
                         articleName={articleContent.articles[article].name}
                         visStep={interactionStep}
-                        handleVisState = {interactionStepHandler}
-                        article = {article}
-                        completed = {completed}
+                        handleVisState={interactionStepHandler}
+                        article={article}
+                        completed={completed}
                     />
-                    {(()=>{
-                        if(interactionStep === 2){
-                            return(
+                    {(() => {
+                            if (interactionStep === 2) {
+                                return (
                                     <div className={styles.paragraph}>
                                         {`${articleContent.articles[article].text.body}`}
                                     </div>
-                            )
-                        }else{
-                            return("")
+                                )
+                            } else {
+                                return ("")
+                            }
                         }
-                    }
                     )()}
                 </div>);
             default:
@@ -274,9 +273,9 @@ export default function Articles(props) {
             interactionStep: interactionStep
         })
 
-        useEffect(()=>{
+        useEffect(() => {
             visualBehaviorHandler();
-        },[interactionStep])
+        }, [interactionStep])
 
         return (
             <div className={styles.mainContainer}>

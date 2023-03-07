@@ -1,6 +1,36 @@
-.container{
+.mainContainer{
+    display:flex;
+    flex-direction: column;
+    width: 80%;
+    height: 80%;
+    min-width: 450px;
+    min-height: 500px;
+    margin: 10% auto;
+    border: 1px solid gray;
+    align-self: center;
+
+}
+
+.articleContainer{
+    margin: auto;
     width: 100%;
-    display: grid| inline-grid;
+    height: 100%;
+    position: relative;
+    /*top: 20%;*/
+    /*left: 15%;*/
+    justify-content: center;
+    align-items: center;
+}
+
+.navigationContainer{
+    margin: auto;
+    width: 100%;
+    position: relative;
+    align-items: center;
+    border-top: 1px solid lightgray;
+    justify-items: center;
+    justify-content: center;
+    margin-top: -8%;
 }
 
 .imageContainer{
@@ -9,13 +39,51 @@
     justify-self: center;
     margin: auto;
     width: 100%;
-    margin-top: 3%;
+    /*margin-top: 5%;*/
 }
 
 .textContainer{
     text-align: center;
 }
 
-.actions{
+.title{
+    width: 80%;
+    height: min-content;
+    line-height: normal;
+    font-size: 3rem;
+    font-weight: bold;
+}
 
+.subtitle{
+    width: 100%;
+    font-weight: bold;
+}
+
+
+.actions{
+    display: inherit;
+    width: 200px;
+    padding: 1%;
+    height: fit-content;
+    background-color: black;
+    color: white;
+    font-family: inherit;
+    border: 0;
+    border-radius: 5px;
+    text-align: center;
+    margin: 3% auto;
+}
+
+.actions:hover{
+    cursor: pointer;
+    color: black;
+    font-weight: bold;
+    background-color: darkorange;
+}
+
+.actions:disabled{
+    background-color: lightgray;
+    color: darkgray;
+    cursor: not-allowed;
+    pointer-events: all !important;
 }
