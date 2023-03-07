@@ -4,39 +4,36 @@ import pageHandler from "../pageHandler";
 import axios from "axios";
 import * as Survey from "survey-react";
 import "survey-react/survey.css";
-
+import styles from '../articles/articles.module.css'
+import {Container} from "@mui/material/";
 const PreSurveyPage = (props) => {
   const history = useHistory();
   const location = useLocation();
   const json = {
     elements: [
       {
-        type: "html",
-        html: "<h4>Please respond to these questions below👇 <h4/>",
-      },
-      {
-        name: "batBall",
+        name: "race",
         type: "text",
         title:
           "If you’re running a race and you pass the person in second place, what place are you in?? _____ place",
         isRequired: true,
       },
       {
-        name: "5Machines",
+        name: "sheep",
         type: "text",
         title:
           "A farmer had 15 sheep and all but 8 died. How many are left? _____ sheeps.",
         isRequired: true,
       },
       {
-        name: "Name",
+        name: "name",
         type: "text",
         title:
           "Emily’s father has three daughters. The first two are named April and May. What is the third daughter’s name? _____ name. ",
         isRequired: true,
       },
       {
-        name: "Volume",
+        name: "volume",
         type: "text",
         title:
           "How many cubic feet of dirt are there in a hole that is 3’ deep x 3’ wide x 3’ long?? _____ volume. ",
@@ -57,9 +54,9 @@ const PreSurveyPage = (props) => {
 
   const onComplete = (survey, options) => {
     //Write survey results into database
-    console.log("Survey results: " + JSON.stringify(survey.data));
+    // console.log("Survey results: " + JSON.stringify(survey.data));
     axios.post("/api/cogref", survey.data).then((response) => {
-      console.log(response);
+      // console.log(response);
       let nextPage = pageHandler(props.pages, location.pathname);
       history.push(nextPage);
     });
@@ -79,18 +76,23 @@ const PreSurveyPage = (props) => {
   model.showCompletedPage = false;
   return (
     
-    <div
-      style={{
-        width: "100%",
-        height: "100%",
-        margin: "0 auto",
-        overflow: "auto",
-        paddingTop: "30px",
-        paddingBottm: "30px",
-      }}
+    <Container
+        className={styles.mainContainer}
+      // style={{
+      //   width: "100%",
+      //   height: "100%",
+      //   margin: "0 auto",
+      //   overflow: "auto",
+      //   paddingTop: "30px",
+      //   paddingBottm: "30px",
+      // }}
     >
+      <div className={styles.articleContainer}>
+        <p className={styles.surveyTitle}>Please respond to these questions below.</p>
+
+      </div>
       <Survey.Survey model={model} onComplete={onComplete} />
-    </div>
+    </Container>
   );
 };
 

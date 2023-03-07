@@ -8,20 +8,20 @@ import Tweet from "../../components/tweet/tweet";
 import TweetQuote from "../../components/tweet/tweetQuote";
 import { useRecoilValue } from "recoil";
 import { questionState } from "../../atoms/questionSelector";
-import "survey-react/survey.css";
-
+// import "survey-react/survey.css";
+import styles from '../articles/articles.module.css'
 const PreSurveyPage = (props) => {
   const quizResponses = useRef([]);
   const history = useHistory();
   const location = useLocation();
   const questionCondition = useRecoilValue(questionState);
   // console.log(questionCondition);
-  const extraQuestions =
-    questionCondition == "strength"
-      ? [
-          
-        ]
-      : [];
+  // const extraQuestions =
+  //   questionCondition === "strength"
+  //     ? [
+  //
+  //       ]
+  //     : [];
 
   const json = {
     pages: [
@@ -66,7 +66,7 @@ const PreSurveyPage = (props) => {
     let allTrue = true;
     survey.getAllQuestions().forEach((q) => {
       let correct = isAnswerCorrect(q);
-      correct = correct == undefined ? true : correct;
+      correct = correct === undefined ? true : correct;
 
       allTrue = allTrue && correct;
       renderCorrectAnswer(q);
@@ -157,32 +157,34 @@ const PreSurveyPage = (props) => {
 
   return (
     <Container
-      maxWidth={false}
-      style={{
-        width: "100%",
-        overflow: "auto",
-        height: "100%",
-        paddingTop: "30px",
-        paddingBottm: "30px",
-      }}
+      // maxWidth={false}
+      // style={{
+      //   width: "100%",
+      //   overflow: "auto",
+      //   height: "100%",
+      //   paddingTop: "30px",
+      //   paddingBottm: "30px",
+      // }}
+        className={styles.mainContainer}
     >
       <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
+        // style={{
+        //   display: "flex",
+        //   flexDirection: "column",
+        //   alignItems: "center",
+        //   justifyContent: "center",
+        // }}
+          className={styles.articleContainer}
       >
-        <Typography variant="h5">
-          It is really important that you understand the task in our study. One
-          last thing before we start, please respond to the following questions
-          about our study.
-        </Typography>
-        <Divider></Divider>
+        <p className={styles.surveyTitle}>
+          It is really important that you understand the tasks in our study. One
+          last thing before we start:</p><p className={styles.subtitle}> Please respond to the following questions
+          about our study.</p>
+
+
         
       </div>
-      <Divider></Divider>
+
       <Survey.Survey
         model={model}
         onComplete={onComplete}

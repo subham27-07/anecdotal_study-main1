@@ -4,7 +4,8 @@ import axios from "axios";
 import * as Survey from "survey-react";
 import pageHandler from "../pageHandler";
 import "survey-react/survey.css";
-import styles from './articles.module.css'
+import styles from '../articles/articles.module.css'
+import {Container} from "@mui/material/";
 // import styles from './survey.css'
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
@@ -97,7 +98,7 @@ const PreSurveyPage = (props) => {
 
   const onComplete = (survey, options) => {
     //Write survey results into database
-    console.log("Survey results: " + JSON.stringify(survey.data));
+    // console.log("Survey results: " + JSON.stringify(survey.data));
     axios.post("/api/preq", survey.data).then((response) => {
       // history.push("/instructions1");
       let nextPage = pageHandler(props.pages, location.pathname);
@@ -108,19 +109,22 @@ const PreSurveyPage = (props) => {
   const model = new Survey.Model(json);
   model.showCompletedPage = false;
   return (
-    <div
-      style={{
-        width: "100%",
-        height: "100%",
-        margin: "0 auto",
-        overflow: "auto",
-        paddingTop: "30px",
-        paddingBottm: "30px",
-      }}
+    <Container
+      // style={{
+      //   width: "100%",
+      //   height: "100%",
+      //   margin: "0 auto",
+      //   overflow: "auto",
+      //   paddingTop: "30px",
+      //   paddingBottm: "30px",
+      // }}
+        className={styles.mainContainer}
     >
-      <h3 className={styles.txtImportant} > Please answer the questions below.  </h3>
+      <div className={styles.articleContainer}>
+        <p className={styles.surveyTitle}> Please answer the questions below.  </p>
+      </div>
       <Survey.Survey model={model} onComplete={onComplete} />
-    </div>
+    </Container>
   );
 };
 
