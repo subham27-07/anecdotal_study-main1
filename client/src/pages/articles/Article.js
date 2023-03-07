@@ -15,7 +15,9 @@ const articleContent = {
         id: "One",
         text: {
             subTitle: "Since 2002, the number of Americans who have died every year from Drug Overdose...",
-            body: 'Since 2002, the number of Americans who have died every year from Drug Overdose has increased by more than 222.82 percent.' +
+            subTitle2: "",
+
+            body: 'Since 2002, the number of Americans who have died every year from Drug Overdoses has increased by more than  222.16 percent.' +
                 'In 2015, more Americans died from drug overdoses than from car accidents and gun homicides combined.It\'s' +
                 ' the worst drug overdose epidemic in American history, spurred by rising drug abuse, ' +
                 'increased availability of prescription opioids and an influx of Drug Overdose potent synthetics like Fentanyl and Carfentanil.' +
@@ -23,42 +25,40 @@ const articleContent = {
             instructions: "",
             definitions: "",
         },
-        image: 'https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/b.JPG',
+        image: 'https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/001.png',
     },
         {
             name: "population",
             id: "Two",
             text: {
-                subTitle: `The percentage of American population with drug use disorders has`,
+                subTitle: `The percentage of American population with drug use disorders has...`,
+                subTitle2: "",
+
                 body: `Since 2002, the percentage of American population with drug use disorders has increased by more than 137 percent.
-            The United States is currently in the grips of a powerful drug epidemic, with drug use disorders steadily climbing every year.
-            A drug use disorder is a mental disorder that affects a person’s brain and behavior, leading to a person’s
-            inability to control their use of drugs including legal or illegal drugs. Drug use disorders occur
-            when an individual compulsively misuses drugs and continues abusing the substance despite
-            knowing the negative impact it has on their life.`,
+                The United States is currently in the grips of a powerful drug epidemic, with the share of population with drug use disorders steadily climbing every year.
+                A drug use disorder is a behavioral condition that affects a person’s brain and behavior, leading to a person’s inability to control their use of drugs including legal or illegal drugs. 
+                Drug use disorders occur when an individual compulsively misuses drugs or alcohol and continues abusing the substance despite knowing the negative impact it has on their life.`,
                 instructions: 'Please answer the questions below',
                 definitions: "",
             },
-            image: "https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/c.JPG",
+            image: "https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/002.png",
         },
         {
             name: "opioids",
             id: "Three",
             text: {
                 subTitle: "Since 2002, the of Americans who have died every year from overdoses of synthetic opioids...",
-                body: "Since 2002, the number of Americans who have died every year from overdoses of synthetic opioids" +
-                    " has increased by more than 5451 percent. Substance use disorders refers to direct deaths from" +
-                    " overdoses of illicit drugs synthetic opioids (mostly fentanyl). “We know than substance use is more" +
-                    " dangerous than it has ever been, as fentanyl has continued to permeate the illicit drug supply," +
-                    " increasing the risk for overdoses among both people with substance use disorders as well as those" +
-                    " who use drugs occasionally,” said Dr. Nora Volkow, director of the National Institute on Drug" +
-                    " Abuse. Deaths involving synthetic opioids such as fentanyl increased by a marked 18% in 2021," +
-                    " according to the CDC data. Deaths involving cocaine and Psychostimulants such as Methamphetamine" +
-                    " were also significantly more frequent, while those involving heroin decreased.",
+                subTitle2: "Synthetic opioids is a type of opioids that are synthesized in a laboratory. Other opioids include illegal drug heroin, cocaine, prescription opioid such as oxycodone.",
+                body: `Since 2002, the number of Americans who have died every year from overdoses of synthetic opioids has increased by more than 5451 percent.
+                Substance use disorders refer to direct deaths from overdoses of illicit drugs synthetic opioids (mostly Fentanyl).
+                “We know that substance use is more dangerous than it has ever been, as fentanyl has continued to permeate the illicit drug supply, increasing the risk for overdoses among both people with substance use disorders as well as those who use drugs occasionally,”
+                said Dr. Nora Volkow, director of the National Institute on Drug Abuse. Deaths involving synthetic opioids such as fentanyl increased by a marked 18% in 2021, according to the CDC data.
+                Deaths involving cocaine and psychostimulants such as methamphetamine were also significantly more frequent, while those involving heroin decreased.`,
+                instructions: 'Please answer the questions below',
                 instructions: "",
                 definitions: "",
             },
-            image: "https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/d.JPG",
+            image: "https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/003.png",
         }]
 
 
@@ -112,10 +112,8 @@ export default function Articles(props) {
                 break;
             case 'visual':
                 if(article === 2){
-                    axios.post("/api/articles", articleResponses.current).then((response) => {
-                        let nextPage = pageHandler(props.pages, location.pathname);
-                        history.push(nextPage);
-                    });
+                    let nextPage = pageHandler(props.pages, location.pathname);
+                    history.push(nextPage);
                 }else{
                     setCompleted((prev) => false);
                     setInteractionStep(0);
@@ -177,6 +175,7 @@ export default function Articles(props) {
                                 return <div className={styles.subtitle}>
 
                                     <p>{`${articleContent.articles[article].text.subTitle}`}</p>
+                                    <p className={styles.subtitle2}>{`${articleContent.articles[article].text.subTitle2}`}</p>
                                     <FormControl sx={{
                                         position: 'relative',
                                         mx: 2,
@@ -251,7 +250,6 @@ export default function Articles(props) {
                         handleVisState = {interactionStepHandler}
                         article = {article}
                         completed = {completed}
-                        responses = {articleResponses}
                     />
                     {(()=>{
                         if(interactionStep === 2){

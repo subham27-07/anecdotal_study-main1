@@ -66,6 +66,12 @@
     font-weight: bold;
 }
 
+.subtitle2{
+    width: 100%;
+    font-size: 14px;
+    font-weight: lighter;
+}
+
 .paragraph{
     margin-top: 3%;
     text-align: justify;
