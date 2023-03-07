@@ -68,7 +68,7 @@ const PreSurveyPage = (props) => {
             className={styles.mainContainer}
         >
             <div className={styles.articleContainer}>
-                <p className={styles.surveyTitle}>Please read through the article below.</p>
+                {/* <p className={styles.surveyTitle}>Please read through the article below.</p> */}
                 <Typography variant="h4">
             <span className={`${styles.textBody} ${styles.title}`}>Super Bowl 2023: Poor turf was issue for players: 'It’s the worst field I ever played on'</span>
         </Typography>
