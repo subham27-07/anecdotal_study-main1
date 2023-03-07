@@ -64,6 +64,7 @@ import {choose} from "./functions/functions";
 import "./App.css";
 import InstructionsGeneral from "./pages/instructions/instructions_general";
 import Articles from "./pages/articles/Article";
+import Articles2 from "./pages/articles/Article2";
 
 function useQuery() {
     const {search} = useLocation();
@@ -117,9 +118,10 @@ const App = () => {
         "cogref1",
         "instructionPost_Elicitation",
         "instructionPost_Recall",
-        "recall_drugOverdose",
-        "recall_population",
-        "recall_Opioids",
+        "articles2",
+        // "recall_drugOverdose",
+        // "recall_population",
+        // "recall_Opioids",
         "attitude_ElicitationPost",
         "debrief",
     ]
@@ -129,9 +131,9 @@ const App = () => {
     const treatment = useRef()
 
     const treatmentSelector = () => {
-        // const tr = choose(['txt', 'visual', 'control'])
+        const tr = choose(['txt', 'visual', 'control'])
         // const tr = choose(['txt', 'control'])
-        const tr = 'visual';   // ONLY FOR TESTING. SHOULD KEEP COMMENTED
+        // const tr = 'visual';   // ONLY FOR TESTING. SHOULD KEEP COMMENTED
         treatment.current = tr
         // console.log(treatment.current)
         // switch (tr) {
@@ -433,6 +435,9 @@ const App = () => {
                                 </Route>
                                 <Route path="/articles">
                                     <Articles treatment={treatment} pages={study_pages}/>
+                                </Route>
+                                <Route path="/articles2">
+                                    <Articles2 treatment={treatment} pages={study_pages}/>
                                 </Route>
                             </Switch>
                         </Container>

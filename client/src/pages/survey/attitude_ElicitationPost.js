@@ -1,15 +1,16 @@
 import React, { useRef } from "react";
-
+import { atom, selector } from "recoil";
 import { useHistory, useLocation } from "react-router-dom";
 import pageHandler from "../pageHandler";
 import axios from "axios";
 import * as Survey from "survey-react";
 import { Divider, Typography, Container } from "@mui/material";
-
+import Tweet from "../../components/tweet/tweet";
+import TweetQuote from "../../components/tweet/tweetQuote";
 import { useRecoilValue } from "recoil";
 import { questionState } from "../../atoms/questionSelector";
 import "survey-react/survey.css";
-
+import styles from '../articles/articles.module.css'
 const Attitude_ElicitationPost = (props) => {
   const quizResponses = useRef([]);
   const history = useHistory();
@@ -38,7 +39,7 @@ const Attitude_ElicitationPost = (props) => {
           {
             name: "claim",
             type: "radiogroup",
-            title: ` "What is your opinion on drug overdose in US ?"`,
+            title: ` What is your opinion on drug overdose in US ?`,
             isRequired: true,
             choices: [
                 "Extremely serious problem",
@@ -52,7 +53,7 @@ const Attitude_ElicitationPost = (props) => {
           {
             name: "new",
             type: "radiogroup",
-            title: ` "Should the US make combating drug abuse and overdose a priority, i:e allocating tax dollars to treatment and prevention programs?" `,
+            title: ` Should the US make combating drug abuse and overdose a priority, i:e allocating tax dollars to treatment and prevention programs? `,
             isRequired: true,
             choices: [
                 "High Priority",
@@ -66,7 +67,7 @@ const Attitude_ElicitationPost = (props) => {
           {
             name: "headline",
             type: "radiogroup",
-            title: ` "What is your opinion on drug legalization and decrimination in the US?" `,
+            title: ` What is your opinion on drug legalization and decrimination in the US? `,
             isRequired: true,
             choices: [
                 "Strongly Oppose",
@@ -116,9 +117,9 @@ const Attitude_ElicitationPost = (props) => {
   };
 
   const onComplete = (survey, options) => {
-    const survey_end = Date.now()   // Make sure to add this to DB!
+
     console.log("Survey results: " + JSON.stringify(quizResponses.current));
-    axios.post("/api/attitude_ElicitationPost", quizResponses.current).then((response) => {
+    axios.post("/api/attitude_Elicitation", quizResponses.current).then((response) => {
       let nextPage = pageHandler(props.pages, location.pathname);
       history.push(nextPage);
     });
@@ -197,25 +198,27 @@ const Attitude_ElicitationPost = (props) => {
   return (
     <Container
       maxWidth={false}
-      style={{
-        width: "100%",
-        overflow: "auto",
-        height: "100%",
-        paddingTop: "30px",
-        paddingBottm: "30px",
-      }}
+      // style={{
+      //   width: "100%",
+      //   overflow: "auto",
+      //   height: "100%",
+      //   paddingTop: "30px",
+      //   paddingBottm: "30px",
+      // }}
+    className={styles.mainContainer}
     >
       <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
+        // style={{
+        //   display: "flex",
+        //   flexDirection: "column",
+        //   alignItems: "center",
+        //   justifyContent: "center",
+        // }}
+          className={styles.articleContainer}
       >
-        <Typography variant="h5">
-        Please Answer the questions below👇.
-        </Typography>
+        <p className={styles.surveyTitle}>
+        Please Answer the questions below.
+        </p>
       </div>
       <Survey.Survey
         model={model}
@@ -227,4 +230,33 @@ const Attitude_ElicitationPost = (props) => {
   );
 };
 
+export const labelSelector = selector({
+    key: "labelQuestionSelector",
+    get: ({ get }) => {
+      let questionCondition = get(questionState);
+      switch (questionCondition) {
+        case "share":
+          return [
+            "Definitely no",
+            "Probably no",
+            "Probably yes",
+            "Definitely yes",
+          ];
+          break;
+        case "strength":
+          return [
+            "Extremely Serious Problem",
+            "Serious Problem",
+            "Moderate Problem",
+            "Minor Problem",
+            "Not a Problem",
+          ];
+  
+          break;
+      }
+    },
+  });
+
 export default Attitude_ElicitationPost;
+
+
