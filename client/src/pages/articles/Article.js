@@ -49,8 +49,8 @@ const articleContent = {
             text: {
                 subTitle: "Since 2002, the of Americans who have died every year from overdoses of synthetic opioids...",
                 subTitle2: "Synthetic opioids is a type of opioids that are synthesized in a laboratory. Other opioids include illegal drug heroin, cocaine, prescription opioid such as oxycodone.",
-                body: `Since 2002, the number of Americans who have died every year from overdoses of synthetic opioids has increased by more than 5451 percent.
-                Substance use disorders refer to direct deaths from overdoses of illicit drugs synthetic opioids (mostly Fentanyl).
+                body: `Since 2002, the number of Americans who have died every year from overdoses of synthetic opioids has increased by more than 5451 percent.
+                Substance use disorders refer to direct deaths from overdoses of illicit drugs synthetic opioids (mostly Fentanyl).
                 “We know that substance use is more dangerous than it has ever been, as fentanyl has continued to permeate the illicit drug supply, increasing the risk for overdoses among both people with substance use disorders as well as those who use drugs occasionally,”
                 said Dr. Nora Volkow, director of the National Institute on Drug Abuse. Deaths involving synthetic opioids such as fentanyl increased by a marked 18% in 2021, according to the CDC data.
                 Deaths involving cocaine and psychostimulants such as methamphetamine were also significantly more frequent, while those involving heroin decreased.`,
