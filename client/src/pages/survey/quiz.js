@@ -11,7 +11,7 @@ import { questionState } from "../../atoms/questionSelector";
 import "survey-react/survey.css";
 
 const PreSurveyPage = (props) => {
-  const quizResponses = useRef([]);
+  const quizResponses = useRef(null);
   const history = useHistory();
   const location = useLocation();
   const questionCondition = useRecoilValue(questionState);
@@ -35,7 +35,7 @@ const PreSurveyPage = (props) => {
             choices: ["yes", "no"],
           },
           {
-            name: "understand-text_before",
+            name: "understand_before_open",
             type: "text",
             title:
               "Please in sentence or two, please describe what this study is asking you to do",
@@ -71,7 +71,7 @@ const PreSurveyPage = (props) => {
       allTrue = allTrue && correct;
       renderCorrectAnswer(q);
     });
-    quizResponses.current.push(survey.data);
+    quizResponses.current=survey.data;
     if (allTrue) {
       options.allowComplete = true;
     } else {
