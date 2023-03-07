@@ -5,6 +5,7 @@ import axios from "axios";
 import * as Survey from "survey-react";
 import "survey-react/survey.css";
 import styles from '../articles/articles.module.css'
+import {Divider, Typography} from "@mui/material";
 import {Container} from "@mui/material/";
 const PreSurveyPage = (props) => {
     const history = useHistory();
@@ -13,10 +14,10 @@ const PreSurveyPage = (props) => {
         elements: [
             {
                 name: "Superbowl",
-                type: "html",
-                html:
-                    "",
-                isRequired: true,
+        type: "text",
+        title:
+          "What did you understood from the article above?",
+        isRequired: true,
             },
 
         ],
@@ -68,6 +69,12 @@ const PreSurveyPage = (props) => {
         >
             <div className={styles.articleContainer}>
                 <p className={styles.surveyTitle}>Please read through the article below.</p>
+                <Typography variant="h4">
+            <span className={`${styles.textBody} ${styles.title}`}>Super Bowl 2023: Poor turf was issue for players: 'It’s the worst field I ever played on'</span>
+        </Typography>
+        <img src={"https://s.yimg.com/ny/api/res/1.2/PKLRmf_KWcR8jwoUu6tFKA--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtjZj13ZWJw/https://s.yimg.com/os/creatr-uploaded-images/2023-01/1ddb2800-ab62-11ed-8bcd-ac6134df2ed5"} width="100%"
+                 height="100%"
+                 alt="Completion image"/>
 
                 <p className={`${styles.paragraph}`}> The Eagles made sure to mention that
                     field conditions didn't decide the game. (It's not like we were playing on ice and they were playing on
