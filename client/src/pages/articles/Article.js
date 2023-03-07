@@ -68,11 +68,12 @@ export default function Articles(props) {
 
     const [article, setArticle] = useState(0);
     const [completed, setCompleted] = useState(false);
+    const [interactionStep, setInteractionStep] = useState(0);
     const location = useLocation();
     const [trend, setTrend] = React.useState("");
     const articleResponses = useRef({
         treatment: props.treatment.current,
-        responses:{}
+        responses: {}
     })
     const history = useHistory();
     // console.log('location',location)
@@ -81,59 +82,58 @@ export default function Articles(props) {
         if (trend !== "") {
             // console.log(trend);
             setCompleted(() => true);
-        }else if(props.treatment.current === 'control'){
-            setCompleted(()=>true);
-        }else{
-            setCompleted(()=>false);
+        } else if (props.treatment.current === 'control') {
+            setCompleted(() => true);
+        } else {
+            setCompleted(() => false);
         }
     }, [trend])
 
+
     // This function controls the behavior of Next button
     function articleChanger() {
-        switch (props.treatment.current){
+        switch (props.treatment.current) {
             case 'txt':
                 articleResponses.current.responses[`${articleContent.articles[article].name}`] = {
                     time: Date.now(),
                     choice: trend,
                 }
-                if (article=== 2){
+                if (article === 2) {
                     axios.post("/api/articles", articleResponses.current).then((response) => {
                         let nextPage = pageHandler(props.pages, location.pathname);
                         history.push(nextPage);
                     });
                     // pageHandler(props.pages, location.pathname);
-                }else{
+                } else {
                     setArticle((prev) => prev + 1);
-                    setTrend(()=>"");
+                    setTrend(() => "");
                     // console.log('res:',articleResponses.current);
                 }
                 break;
             case 'visual':
-                setCompleted((prev)=> false);
+                setCompleted((prev) => false);
+                setInteractionStep(()=>0);
                 setArticle((prev) => prev + 1);
                 break;
         }
-
     }
+
     // This function controls the change in the input value for dropdown
     const handleChange = (event) => {
         setTrend(event.target.value);
     };
 
-    // This function controls the behavior of Next button
-    // function articleHandler() {
-    //     if (completed) {
-    //         pageHandler(props.pages, location.pathname);
-    //     } else {
-    //         articleChanger();
-    //     }
-    // }
+    const interactionStepHandler = () => {
+        setInteractionStep((prev) => prev + 1);
+    };
 
-    //This function controls show text inside the LineChart component
-    function handleShowText(){
-        setCompleted(()=> true);
-    }
-    // This function goes over the three articles based on the treatment type
+    const visualBehaviorHandler = () => {
+        if (interactionStep === 2) {
+            setCompleted(() => true);
+        }
+    };
+
+
     function ArticleTypeSelector() {
         switch (props.treatment.current) {
             case 'control':
@@ -160,135 +160,147 @@ export default function Articles(props) {
                         <div className={styles.title}>
                             {`${articleContent.title}`}
                         </div>
-                        {(()=> {if(!completed){
-                            return(<div className={styles.subtitle}>
+                        {(() => {
+                            if (!completed) {
+                                return <div className={styles.subtitle}>
 
-                                <p>{`${articleContent.articles[article].text.subTitle}`}</p>
-                                <FormControl sx={{
-                                    position: 'relative',
-                                    mx: 2,
-                                    my: 0,
-                                    minWidth: 200,
-                                    top: -15,
-                                    py: 2
-                                }}>
-                                    <InputLabel id="trend-selector">Select Here</InputLabel>
-                                    <Select
-                                        labelId="trend-selector-label"
-                                        id="trend-selector-dropdown"
-                                        value={trend}
-                                        onChange={handleChange}
-                                        autoWidth
-                                        required={true}
-                                        label="Select here..."
-                                        style={{
-                                            display: 'inline-flex',
-                                            position: "relative",
-                                            border: '1px solid white',
-                                            height: '18pt',
-                                            fontSize: '12pt',
-                                            backgroundColor: 'lightgray'
-                                        }}
-                                    >
+                                    <p>{`${articleContent.articles[article].text.subTitle}`}</p>
+                                    <FormControl sx={{
+                                        position: 'relative',
+                                        mx: 2,
+                                        my: 0,
+                                        minWidth: 200,
+                                        top: -15,
+                                        py: 2
+                                    }}>
+                                        <InputLabel id="trend-selector">Select Here</InputLabel>
+                                        <Select
+                                            labelId="trend-selector-label"
+                                            id="trend-selector-dropdown"
+                                            value={trend}
+                                            onChange={handleChange}
+                                            autoWidth
+                                            required={true}
+                                            label="Select here..."
+                                            style={{
+                                                display: 'inline-flex',
+                                                position: "relative",
+                                                border: '1px solid white',
+                                                height: '18pt',
+                                                fontSize: '12pt',
+                                                backgroundColor: 'lightgray'
+                                            }}
+                                        >
 
-                                        <MenuItem value={1}>Significantly Decreased</MenuItem>
-                                        <MenuItem value={2}>Slightly Decreased</MenuItem>
-                                        <MenuItem value={3}>Not Much Changed</MenuItem>
-                                        <MenuItem value={4}>Slightly Increased</MenuItem>
-                                        <MenuItem value={5}>Significantly Increased</MenuItem>
+                                            <MenuItem value={1}>Significantly Decreased</MenuItem>
+                                            <MenuItem value={2}>Slightly Decreased</MenuItem>
+                                            <MenuItem value={3}>Not Much Changed</MenuItem>
+                                            <MenuItem value={4}>Slightly Increased</MenuItem>
+                                            <MenuItem value={5}>Significantly Increased</MenuItem>
 
 
-                                    </Select>
-                                </FormControl>
+                                        </Select>
+                                    </FormControl>
 
-                            </div>)}else{
-                            return("");
-                        }
+                                </div>
+                            } else {
+                                return ("");
+                            }
                         })()}
-                        {(()=> {
-                            if(completed){
-                            return (<div><div className={styles.articleImageContainer}>
-                                <img src={`${articleContent.articles[article].image}`} className={styles.articleImage}
-                                     alt='Since 2002 percentage of Americans population with drug use disorders'/>
-                            </div>
-                            <div className={styles.paragraph}>
-                                {`${articleContent.articles[article].text.body}`}
-                            </div></div>)}else{
-                                return("");
+                        {(() => {
+                            if (completed) {
+                                return (<div>
+                                    <div className={styles.articleImageContainer}>
+                                        <img src={`${articleContent.articles[article].image}`}
+                                             className={styles.articleImage}
+                                             alt='Since 2002 percentage of Americans population with drug use disorders'/>
+                                    </div>
+                                    <div className={styles.paragraph}>
+                                        {`${articleContent.articles[article].text.body}`}
+                                    </div>
+                                </div>)
+                            } else {
+                                return ("");
                             }
                         })()}
                     </div>
                 );
             case 'visual':
-
-                return(
-                    <div>
+                return (<div>
                     <LineChartDrawHandler
-                        articleName = {articleContent.articles[article].name}
-                        showText = {handleShowText}
+                        articleName={articleContent.articles[article].name}
+                        visStep={interactionStep}
+                        handleVisState = {interactionStepHandler}
+                        article = {article}
+                        completed = {completed}
                     />
-                        {(()=>{
-                            if(completed){
-                                return (
-                                    <div className={styles.articleStructure}>
-                                        <div className={styles.title}>
-                                            {`${articleContent.title}`}
-                                        </div>
-                                        <div className={styles.subtitle}>
-                                            <p>{`${articleContent.articles[article].text.subTitle}`}</p>
-                                        </div>
-                                        <div className={styles.articleImageContainer}>
-                                            <img src={`${articleContent.articles[article].image}`} className={styles.articleImage}
-                                                 alt='Since 2002 percentage of Americans population with drug use disorders'/>
-                                        </div>
-                                        <div className={styles.paragraph}>
-                                            {`${articleContent.articles[article].text.body}`}
-                                        </div>
+                    {(()=>{
+                        if(interactionStep === 2){
+                            return(
+                                <div className={styles.articleStructure}>
+                                    <div className={styles.title}>
+                                        {`${articleContent.title}`}
                                     </div>
-                                );
-                            } else{
-                                return("")
-                            }
-                        })()}
-                    </div>
-                );
-
-
+                                    <div className={styles.subtitle}>
+                                        <p>{`${articleContent.articles[article].text.subTitle}`}</p>
+                                    </div>
+                                    {/*<div className={styles.articleImageContainer}>*/}
+                                    {/*    <img src={`${articleContent.articles[article].image}`} className={styles.articleImage}*/}
+                                    {/*         alt='Since 2002 percentage of Americans population with drug use disorders'/>*/}
+                                    {/*</div>*/}
+                                    <div className={styles.paragraph}>
+                                        {`${articleContent.articles[article].text.body}`}
+                                    </div>
+                                </div>
+                            )
+                        }else{
+                            return("")
+                        }
+                    }
+                    )()}
+                </div>);
             default:
                 break;
         }
     }
+        console.log({
+            article: article,
+            completed: completed,
+            interactionStep: interactionStep
+        })
 
-    return (
-        <div className={styles.mainContainer}>
-            <div className={styles.articleContainer}>
-                <div className={styles.progressBar}>
-                    {(() => {
-                        return articleContent.articles.map((d, i) => {
-                            if (i === article) {
-                                return (
-                                    <span
-                                        key={`article${i}`}
-                                        className={styles.articleIdActive}> Article {`${articleContent.articles[i].id}`}</span>)
-                            } else {
-                                return (
-                                    <span
-                                        key={`article-deactive-${i}`}
-                                        className={styles.articleIdDeactive}> Article {`${articleContent.articles[i].id}`}</span>)
-                            }
+        useEffect(()=>{
+            visualBehaviorHandler();
+        },[interactionStep])
 
-                        });
-                    })()
-                    }
+        return (
+            <div className={styles.mainContainer}>
+                <div className={styles.articleContainer}>
+                    <div className={styles.progressBar}>
+                        {(() => {
+                            return articleContent.articles.map((d, i) => {
+                                if (i === article) {
+                                    return (
+                                        <span
+                                            key={`article${i}`}
+                                            className={styles.articleIdActive}> Article {`${articleContent.articles[i].id}`}</span>)
+                                } else {
+                                    return (
+                                        <span
+                                            key={`article-deactive-${i}`}
+                                            className={styles.articleIdDeactive}> Article {`${articleContent.articles[i].id}`}</span>)
+                                }
+
+                            });
+                        })()
+                        }
+                    </div>
+                    {ArticleTypeSelector()}
                 </div>
-
-
-                {ArticleTypeSelector()}
-            </div>
-            <div className={styles.navigationContainer}>
-                <button className={styles.actions} type={"button"} onClick={articleChanger} disabled={!completed}>
-                    Next
-                </button>
-            </div>
-        </div>)
-};
+                <div className={styles.navigationContainer}>
+                    <button className={styles.actions} type={"button"} onClick={articleChanger} disabled={!completed}>
+                        Next
+                    </button>
+                </div>
+            </div>)
+    };
