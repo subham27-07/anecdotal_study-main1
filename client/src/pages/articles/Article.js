@@ -111,8 +111,10 @@ export default function Articles(props) {
                 break;
             case 'visual':
                 if (article === 2) {
-                    let nextPage = pageHandler(props.pages, location.pathname);
-                    history.push(nextPage);
+                    axios.post("/api/articles", articleResponses.current).then((response) => {
+                        let nextPage = pageHandler(props.pages, location.pathname);
+                        history.push(nextPage);
+                    });
                 } else {
                     setCompleted((prev) => false);
                     setInteractionStep(0);
@@ -258,6 +260,7 @@ export default function Articles(props) {
                         handleVisState={interactionStepHandler}
                         article={article}
                         completed={completed}
+                        responses = {articleResponses}
                     />
                     {(() => {
                             if (interactionStep === 2) {

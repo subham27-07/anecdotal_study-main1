@@ -128,11 +128,10 @@ export default function LinChartFunc(props) {
             switch (props.visStep){
                 case 0:
                     renderAnimation();
-                    
-                    // props.responses.current.responses[props.articleName] = {
-                    //     time: Date.now(),
-                    //     choice: userDataLine,
-                    // }
+                    props.responses.current.responses[`${props.articleName}`] = {
+                        time: Date.now(),
+                        choice: userDataLine.current,
+                    }
                     props.handleVisState();
                     break;
                 case 1:

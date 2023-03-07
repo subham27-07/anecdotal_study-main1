@@ -47,7 +47,7 @@ export default function LineChartDrawHandler (props) {
             handleVisState = {props.handleVisState}
             article = {props.article}
             completed = {props.completed}
-            // responses = {props.responses}
+            responses = {props.responses}
         />
        {/*<Suspense fallback={<div>loading...</div>}>*/}
        {/*     <LineChart type="value" scaleType={scaleTypeHandler()} data={dataHandler()} idLine={1} startYear={2002} showText={props.showText}/>*/}
