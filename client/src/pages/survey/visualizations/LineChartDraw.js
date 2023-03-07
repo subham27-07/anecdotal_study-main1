@@ -308,9 +308,9 @@ class LineChart extends Component {
       .data([this.userDataLine])
       .attr('d', line.defined(d => d.defined));
 
-    this.userDataLine.forEach((data) => {
-      // console.log(`Year: ${data.year}, Y Value: ${data[type]}`);
-    });
+    // this.userDataLine.forEach((data) => {
+    //   // console.log(`Year: ${data.year}, Y Value: ${data[type]}`);
+    // });
 
     d3.select('.instructionText').style('display','none');
 
