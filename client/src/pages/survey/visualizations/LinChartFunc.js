@@ -61,10 +61,19 @@ export default function LinChartFunc(props) {
     const youDrawIt = useRef(null);
     const clipElement = useRef(null);
     const [isCompleted, setIsCompleted] = useState(false);
+
+
 //USE EFFECTS
     useEffect(() => {
+        d3.selectAll("svg > *").remove();
+        userDataLine.current = data;
+        xRef.current = null;
+        youDrawIt.current = null;
+        clipElement.current = null;
         createLineChart()
-    }, [])
+    }, [props.article])
+
+
     useEffect(() => {
         console.log('THe last before render', userDataLine)
     }, [])
@@ -89,7 +98,10 @@ export default function LinChartFunc(props) {
             .filter(d => d.year >= startYear);
     }
 
+    function handleIsCompleted(){
 
+        setIsCompleted(true);
+    }
     // const userDataLineHandler = () => {
     //     console.log('tansformed', transformData(props.data, props.startYear))
     //     setUserDataLine(() => transformData(props.data, props.startYear));
@@ -104,7 +116,8 @@ export default function LinChartFunc(props) {
                   } = props;
 
             const dataXMax = d3.max(data, d => d.year);
-            clipElement.current.transition().duration(1000).attr('width', xRef.current.x(dataXMax));
+            console.log(xRef)
+            clipElement.current.transition().duration(1000).attr('width', xRef.current(dataXMax));
         }
     };
     const clampFunc = (a, b, c) => Math.max(a, Math.min(b, c));
@@ -112,7 +125,6 @@ export default function LinChartFunc(props) {
     const handleClick = () => {
         const definedValues = userDataLine.current.filter(d => d.defined === true);
         if (definedValues.length === userDataLine.current.length) {
-            setIsCompleted((prev)=> !prev)
             switch (props.visStep){
                 case 0:
                     renderAnimation();
@@ -283,7 +295,7 @@ export default function LinChartFunc(props) {
            .attr('cx', x(firstDate.year))
            .attr('cy', y(firstDate.value))
            .attr('r', 7)
-           .style('fill', '#54EAEA')
+           .style('fill', 'teal')
            .style('opacity', 0.7);
 
         svg.append('circle')
@@ -291,7 +303,7 @@ export default function LinChartFunc(props) {
            .attr('cx', x(fourthDate.year))
            .attr('cy', y(fourthDate.value))
            .attr('r', 7)
-           .style('fill', '#54EAEA')
+           .style('fill', 'teal')
            .style('opacity', 0.7);
 
         // Add the X Axis
@@ -376,8 +388,6 @@ export default function LinChartFunc(props) {
         const mousePos = d3.mouse(overlay);
         const year = clampFunc(startYear + 1, dataXMax, x.invert(mousePos[0]));
         const newVal = clampFunc(0, y.domain()[1], y.invert(mousePos[1]));
-        // svg.append('circle').attr('r',10).attr(`cx`,x(year)).attr('cy',y(newVal))
-
 
         userDataLine.current = userDataLine.current.map((d) => {
                 // if (Math.abs(d.year - year) < 0.5) return { ...d, [type]: Math.round(newVal * 4) / 4, defined: true
@@ -390,9 +400,6 @@ export default function LinChartFunc(props) {
                 return d;
             });
 
-// console.log('rounded:', userDataLine.currentRounded)
-//         setUserDataLine(userDataLineRounded);
-// console.log(youDrawIt.current)
         youDrawIt.current
                  .data([userDataLine.current])
                  .attr('d', line.defined(d => d.defined));
@@ -403,12 +410,12 @@ export default function LinChartFunc(props) {
         const definedValues = userDataLine.current.filter(d => d.defined === true);
         if (definedValues.length === userDataLine.current.length) {
             // const svg = this.svg;
-            setIsCompleted((prev)=> !prev);
-
+            // setIsCompleted((prev)=> !prev);
+           handleIsCompleted();
             const latestData = userDataLine.current[userDataLine.current.length - 1];
             // console.log(typeof latestData)
             const text = svg.selectAll('.value-text').data([latestData]);
-            console.log('latestData',latestData)
+            // console.log('latestData',latestData)
             text.exit().remove();
             text.enter().append('text')
                 .merge(text)
@@ -440,7 +447,15 @@ export default function LinChartFunc(props) {
 
 
                 >
-                    Show me how I did.
+                    {(()=>{
+                        switch (props.visStep){
+                            case 0:
+                                return ('Show Me How I Did');
+                            case 1:
+                                return('Show Me the Article');
+
+                        }
+                    })()}
                 </Button>
             </div>
         </div>)

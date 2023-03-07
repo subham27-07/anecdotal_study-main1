@@ -26,13 +26,13 @@ body {
 }
 
 .area {
-  fill: #45C1C0;
+  fill: lightseagreen;
   opacity: .4;
 }
 
 .line {
   fill: none;
-  stroke: rgb(38, 15, 208);
+  stroke: teal;
   stroke-width: 4;
 }
 

@@ -111,9 +111,14 @@ export default function Articles(props) {
                 }
                 break;
             case 'visual':
-                setCompleted((prev) => false);
-                setInteractionStep(()=>0);
-                setArticle((prev) => prev + 1);
+                if(article === 2){
+                    let nextPage = pageHandler(props.pages, location.pathname);
+                    history.push(nextPage);
+                }else{
+                    setCompleted((prev) => false);
+                    setInteractionStep(0);
+                    setArticle((prev) => prev + 1);
+                }
                 break;
         }
     }
@@ -124,7 +129,12 @@ export default function Articles(props) {
     };
 
     const interactionStepHandler = () => {
-        setInteractionStep((prev) => prev + 1);
+        if(interactionStep < 2){
+            setInteractionStep((prev) => prev + 1);
+        } else{
+            setInteractionStep((prev) => 0);
+
+        }
     };
 
     const visualBehaviorHandler = () => {
@@ -226,7 +236,13 @@ export default function Articles(props) {
                     </div>
                 );
             case 'visual':
-                return (<div>
+                return (  <div className={styles.articleStructure}>
+                    <div className={styles.title}>
+                        {`${articleContent.title}`}
+                    </div>
+                    <div className={styles.subtitle}>
+                        <p>{`${articleContent.articles[article].text.subTitle}`}</p>
+                    </div>
                     <LineChartDrawHandler
                         articleName={articleContent.articles[article].name}
                         visStep={interactionStep}
@@ -237,21 +253,9 @@ export default function Articles(props) {
                     {(()=>{
                         if(interactionStep === 2){
                             return(
-                                <div className={styles.articleStructure}>
-                                    <div className={styles.title}>
-                                        {`${articleContent.title}`}
-                                    </div>
-                                    <div className={styles.subtitle}>
-                                        <p>{`${articleContent.articles[article].text.subTitle}`}</p>
-                                    </div>
-                                    {/*<div className={styles.articleImageContainer}>*/}
-                                    {/*    <img src={`${articleContent.articles[article].image}`} className={styles.articleImage}*/}
-                                    {/*         alt='Since 2002 percentage of Americans population with drug use disorders'/>*/}
-                                    {/*</div>*/}
                                     <div className={styles.paragraph}>
                                         {`${articleContent.articles[article].text.body}`}
                                     </div>
-                                </div>
                             )
                         }else{
                             return("")
