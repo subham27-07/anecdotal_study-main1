@@ -29,9 +29,10 @@ class LineChart extends Component {
     this.clipElement = null;
     this.clipAnimation = false;
     this.state = {
-        // showText: false,
+        showText: false,
         userDataLine:[],
-        isComplete: false
+        isComplete: false,
+        warning: ''
       };
   }
 
@@ -373,6 +374,7 @@ class LineChart extends Component {
       if (increasingTrend) {
         this.setState({ showText: true });
         this.props.stateHandler();
+        
       } else {
         alert('The end data must be higher than the data for the year 2017');
       }
