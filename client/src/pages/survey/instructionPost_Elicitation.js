@@ -9,8 +9,9 @@ import * as Survey from "survey-react";
 import {Divider, Typography, Container, Button} from "@mui/material";
 import { useRecoilValue } from "recoil";
 import { questionState } from "../../atoms/questionSelector";
+import styles from '../articles/articles.module.css'
 import "survey-react/survey.css";
-import styles from "./articles.module.css";
+// import styles from "./articles.module.css";
 
 const LineChart = lazy(() => import('./visualizations/LineChartVisual_bitcoin'));
 
@@ -226,7 +227,7 @@ const InstructionPost_Elicitation = (props) => {
 
                 <Typography variant={"body1"}>
                                 <p>Please draw an <span
-                                className={styles.txtImportant}>Increasing trend after year 2017</span> You can adjust individual data point after drawing the line as needed by dragging the data points.
+                                className={styles.txtImportant}>Increasing trend after year 2017</span> You can adjust individual data point after drawing the line as needed by dragging the data points. You will be only allowed to proceed further if the end data is higher than the data point of the year 2017.
                                     <span className={styles.txtImportant}> </span> </p>
                 </Typography>
                     
@@ -240,8 +241,11 @@ const InstructionPost_Elicitation = (props) => {
                           <LineChart type="value" data={lineData} idLine={1} startYear={2016} visState={visCompleted} stateHandler={visStateHandler}/>
                       </Suspense>
                   </div>
+                  <div style={{marginLeft: '100px'}}>
+                  {PageContentHandler()}
+                  </div>
 
-                {PageContentHandler()}
+                
               </div>
 
             </div>

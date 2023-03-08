@@ -194,7 +194,7 @@ class LineChart extends Component {
     svg.append('circle')
       .attr('class', 'bubble-2016')
       .attr('cx', x(fourthDate.year))
-      .attr('cy', x(fourthDate.year)-20)
+      .attr('cy', x(fourthDate.year))
       .attr('r', 7)
       .style('fill', '#54EAEA')
       .style('opacity', 0.7); 
@@ -352,11 +352,19 @@ class LineChart extends Component {
     if (definedValues.length === this.userDataLine.length) {
       // Check if line chart is drawn in an increasing trend after year 2017
       let increasingTrend = true;
+      let endDataValue;
+      for (let i = this.userDataLine.length - 1; i >= 0; i--) {
+        if (this.userDataLine[i].year === 2017) {
+          endDataValue = this.userDataLine[i][this.props.type];
+          break;
+        }
+      }
+  
       for (let i = this.userDataLine.length - 1; i >= 0; i--) {
         if (this.userDataLine[i].year < 2017) {
           break;
         }
-        if (i > 0 && this.userDataLine[i][this.props.type] < this.userDataLine[i - 1][this.props.type]) {
+        if (this.userDataLine[i][this.props.type] < endDataValue) {
           increasingTrend = false;
           break;
         }
@@ -366,10 +374,11 @@ class LineChart extends Component {
         this.setState({ showText: true });
         this.props.stateHandler();
       } else {
-        alert('The trend must be increasing after year 2017');
+        alert('The end data must be higher than the data for the year 2017');
       }
     }
   };
+  
   
 
   
@@ -395,7 +404,7 @@ class LineChart extends Component {
             // disabled={!isComplete}
             disabled={!isComplete || showText}
             onClick={this.handleClick}
-            style={{marginTop: '80px',marginLeft: '400px', marginRight: '20px'}}
+            style={{marginBottom: '30px',marginLeft: '350px', marginRight: '20px'}}
             
           >
             Done.
