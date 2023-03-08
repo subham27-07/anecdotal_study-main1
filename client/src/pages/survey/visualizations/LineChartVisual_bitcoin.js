@@ -20,7 +20,7 @@ const marginConvention = (selection, props) => {
 };
 
 
-class LineChart extends Component {
+class LineChartBitcoin extends Component {
   constructor(props) {
     super(props);
     this.svgReal = React.createRef();
@@ -374,9 +374,10 @@ class LineChart extends Component {
       if (increasingTrend) {
         this.setState({ showText: true });
         this.props.stateHandler();
+        this.props.handleIsCorrect();
         
       } else {
-        alert('The end data must be higher than the data for the year 2017');
+        // alert('The end data must be higher than the data for the year 2017');
       }
     }
   };
@@ -423,4 +424,4 @@ class LineChart extends Component {
     );
   }
 }
-export default LineChart;
+export default LineChartBitcoin;
