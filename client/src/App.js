@@ -294,7 +294,7 @@ const App = () => {
                                         return <Redirect to="/consent"/>;
                                     }}
                                 />
-                                {/* https://vtl-study.herokuapp.com/consent?PROLIFIC_PID={{%PROLIFIC_PID%}}&STUDY_ID={{%STUDY_ID%}}&SESSION_ID={{%SESSION_ID%}} */}
+                                 {/*https://vtl-study.herokuapp.com/consent?PROLIFIC_PID={{%PROLIFIC_PID%}}&STUDY_ID={{%STUDY_ID%}}&SESSION_ID={{%SESSION_ID%}} */}
                                 <Route path="/consent">
                                     <ConsentPage
                                         PROLIFIC_PID={query.get("PROLIFIC_PID")}
