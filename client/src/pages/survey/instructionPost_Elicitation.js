@@ -91,7 +91,7 @@ const InstructionPost_Elicitation = (props) => {
                 elements: [
                     {
                         type: "html",
-                        html: "<p style='font-size: 18px;'><span style='font-weight: bold;'>Congratulations! You succeeded...</span> Please click on Complete</p>",
+                        html: "<p style='font-size: 18px;'><span style='font-weight: bold;'></span> </p>",
 
                     },
 
