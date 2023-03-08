@@ -68,6 +68,8 @@
     background-color: black;
     color: white;
     font-family: inherit;
+    font-weight: bold;
+    font-size: 1rem;
     border: 0;
     border-radius: 5px;
     text-align: center;

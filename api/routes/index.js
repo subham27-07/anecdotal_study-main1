@@ -429,10 +429,21 @@ router.get("/debrief", (req, res) => {
     res.status(200).json({ token: req.session.usertoken });
   } else {
     res.status(200).send({
-      token: "you have skiped pages. Please complete the study first.",
+      token: "you have skipped pages. Please complete the study first.",
     });
   }
 });
+
+router.get("/notice", (req, res) => {
+    if (req.session.completed) {
+        res.status(200).json({ token: req.session.usertoken });
+    } else {
+        res.status(200).send({
+            token: "you have skipped pages. Please complete the study first.",
+        });
+    }
+});
+
 
 router.post("/postq", (req, res) => {
   console.log(req.body);
