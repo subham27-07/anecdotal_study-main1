@@ -1,7 +1,7 @@
 import React, {lazy, Suspense, useState} from 'react';
 import LineChartFunc from './LinChartFunc';
 
-import { populationData, drugOverdoseData, opioidsData } from './datasets';
+import {populationData, drugOverdoseData, opioidsData, bitcoinData} from './datasets';
 
 // const LineChart = lazy(() => import('./LineChartDraw'));
 // import LineChartDraw from "./LineChartDraw";
@@ -18,11 +18,16 @@ const chartTypes ={
             lineData: populationData,
             scaleType: 'percentage'
         },
-        opioids:
+    opioids:
             {
                 lineData: opioidsData,
                 scaleType: 'number'
-            }
+            },
+    bitcoin:
+        {
+        lineData: bitcoinData,
+            scaleType: 'number'
+    }
 }
 
 export default function LineChartDrawHandler (props) {
@@ -48,6 +53,7 @@ export default function LineChartDrawHandler (props) {
             article = {props.article}
             completed = {props.completed}
             responses = {props.responses}
+            visType = {props.visType}
         />
        {/*<Suspense fallback={<div>loading...</div>}>*/}
        {/*     <LineChart type="value" scaleType={scaleTypeHandler()} data={dataHandler()} idLine={1} startYear={2002} showText={props.showText}/>*/}

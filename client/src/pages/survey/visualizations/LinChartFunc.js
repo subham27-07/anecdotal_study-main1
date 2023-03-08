@@ -54,7 +54,7 @@ export default function LinChartFunc(props) {
             };
         })
         .filter(d => d.year >= props.startYear);
-
+    console.log(data)
     const svgRef = useRef(null);
     const userDataLine= useRef(data);
     const xRef = useRef(null);
@@ -74,9 +74,9 @@ export default function LinChartFunc(props) {
     }, [props.article])
 
 
-    useEffect(() => {
-        console.log('THe last before render', userDataLine)
-    }, [])
+    // useEffect(() => {
+    //     console.log('THe last before render', userDataLine)
+    // }, [])
 
 
     const transformData = (data, startYear) => {
@@ -108,7 +108,7 @@ export default function LinChartFunc(props) {
     // }
 
     const renderAnimation = () => {
-        if (d3.mean(userDataLine.current, d => d.defined) === 1) {
+        if (props.visType !=='instructions' && d3.mean(userDataLine.current, d => d.defined) === 1) {
             const {
                       data,
                       type,
@@ -127,11 +127,14 @@ export default function LinChartFunc(props) {
         if (definedValues.length === userDataLine.current.length) {
             switch (props.visStep){
                 case 0:
-                    renderAnimation();
-                    props.responses.current.responses[`${props.articleName}`] = {
-                        time: Date.now(),
-                        choice: userDataLine.current,
+                    if(!props.visType || props.visType !== 'instructions'){
+                        renderAnimation();
+                        props.responses.current.responses[`${props.articleName}`] = {
+                            time: Date.now(),
+                            choice: userDataLine.current,
+                        }
                     }
+
                     props.handleVisState();
                     break;
                 case 1:
@@ -250,7 +253,7 @@ export default function LinChartFunc(props) {
                                  .attr('width', x(startYear))
                                  .attr('height', innerHeight + 20)
                                  .attr('transform', 'translate(0, -20)');
-
+        console.log('clipElement',clipElement)
         const clipPath = svg.append('g').attr('clip-path', 'url(#clip)');
         // MAIN AREA
         clipPath.append('path')
@@ -266,8 +269,8 @@ export default function LinChartFunc(props) {
         // USER LINE
         youDrawIt.current = svg.append('path').attr('class', 'your-line');
 
-        const firstDate = data[0]
-        const fourthDate = data[3]
+        const firstDate =  data[0]
+        const fourthDate = props.visType?data[2]:data[3]
 
         let instructionText = svg.append('text')
                                  .attr('x', innerWidth / 2)
