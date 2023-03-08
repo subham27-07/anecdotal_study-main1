@@ -71,7 +71,7 @@ const PreSurveyPage = (props) => {
 
 
             <div className={styles.navigationContainer}>
-                <Survey.Survey model={model} />
+                <Survey.Survey model={model} onComplete={onComplete}/>
             </div>
 
 
