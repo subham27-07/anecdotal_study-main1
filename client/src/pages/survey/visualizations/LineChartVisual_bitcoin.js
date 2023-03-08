@@ -29,7 +29,7 @@ class LineChart extends Component {
     this.clipElement = null;
     this.clipAnimation = false;
     this.state = {
-        showText: false,
+        // showText: false,
         userDataLine:[],
         isComplete: false
       };
@@ -75,13 +75,35 @@ class LineChart extends Component {
     const x = d3.scaleLinear().range([0, innerWidth]);
     this.setState({ x });
     const y = d3.scaleLinear().range([innerHeight, 0]);
-    y.domain([0, 80000]);
+    // y.domain([0, 80000]);
+
+    if (this.props.scaleType==="percentage"){
+
+      y.domain([0, 10]);
+    
+  
+    // const yFormat = d3.scaleLinear()
+    //   .domain([0, 10])
+    //   .range([0, 10]);
+
+    svg.append('g')
+      .attr('class', 'axis-y-line')
+      .call(d3.axisLeft(y)
+        .tickFormat(d => `${d}%`));
+
+    } else {
+      y.domain([0, 80000]);
+      svg.append('g')
+      .attr('class', 'axis-y-line')
+      .call(d3.axisLeft(y));
+
+    }
     
  
 
-    svg.append('g')
-        .attr('class', 'axis-y-line')
-        .call(d3.axisLeft(y));
+    // svg.append('g')
+    //     .attr('class', 'axis-y-line')
+    //     .call(d3.axisLeft(y));
 
     const valueline = d3.line()
       .x(d => x(d.year))
@@ -94,13 +116,13 @@ class LineChart extends Component {
       .y0(d => y(d[type]))
       .y1(innerHeight);
 
-    const dataYMax = d3.max(data, d => d[type]);
-    const dataYMin = d3.min(data, d => d[type]);
+    // const dataYMax = d3.max(data, d => d[type]);
+    // const dataYMin = d3.min(data, d => d[type]);
 
     const dataXMax = d3.max(data, d => d.year);
 
     x.domain(d3.extent(data, d => d.year));
-    y.domain([0, 80000]);
+    // y.domain([0, 80000]);
 
     let mainLine;
     if (idLine) {
@@ -172,7 +194,7 @@ class LineChart extends Component {
     svg.append('circle')
       .attr('class', 'bubble-2016')
       .attr('cx', x(fourthDate.year))
-      .attr('cy', x(fourthDate.year)-37)
+      .attr('cy', x(fourthDate.year)-20)
       .attr('r', 7)
       .style('fill', '#54EAEA')
       .style('opacity', 0.7); 
@@ -342,7 +364,7 @@ class LineChart extends Component {
   
       if (increasingTrend) {
         this.setState({ showText: true });
-        // this.props.stateHandler();
+        this.props.stateHandler();
       } else {
         alert('The trend must be increasing after year 2017');
       }
@@ -370,20 +392,20 @@ class LineChart extends Component {
           <Button
             variant="contained"
             color="primary"
-            disabled={!isComplete}
-            // disabled={!isComplete || showText}
+            // disabled={!isComplete}
+            disabled={!isComplete || showText}
             onClick={this.handleClick}
             style={{marginTop: '80px',marginLeft: '230px', marginRight: '20px'}}
             
           >
-            Done!!!
+            Done.
           </Button>
         </div>
         { showText && (
           <Typography variant="subtitle1"
           gutterBottom
           style={{ marginTop: '30px' }}>
-            <strong></strong>
+            <strong>Congratulation.</strong>
           </Typography>
         ) }
       </div>

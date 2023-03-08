@@ -93,25 +93,38 @@ export default function Articles2(props) {
     function articleChanger() {
         switch (props.treatment.current) {
             case 'txt':
-            if (article === 2) {
-                let nextPage = pageHandler(props.pages, location.pathname);
-                history.push(nextPage);
-            } else {
-                setCompleted((prev) => false);
-                setInteractionStep(0);
-                setArticle((prev) => prev + 1);
-            }
-            break;
-            case 'visual':
                 if (article === 2) {
-                    let nextPage = pageHandler(props.pages, location.pathname);
-                    history.push(nextPage);
+                    axios.post("/api/articles2", articleResponses.current).then((response) => {
+                        let nextPage = pageHandler(props.pages, location.pathname);
+                        history.push(nextPage);
+                    });
                 } else {
                     setCompleted((prev) => false);
                     setInteractionStep(0);
                     setArticle((prev) => prev + 1);
                 }
                 break;
+            case 'visual':
+                if (article === 2) {
+                    axios.post("/api/articles2", articleResponses.current).then((response) => {
+                        let nextPage = pageHandler(props.pages, location.pathname);
+                        history.push(nextPage);
+                    });
+                } else {
+                    setCompleted((prev) => false);
+                    setInteractionStep(0);
+                    setArticle((prev) => prev + 1);
+                }
+                break;
+
+            // case 'control':
+            //         if (article === 2) {
+            //           let nextPage = pageHandler(props.pages, location.pathname);
+            //           history.push(nextPage);
+            //         } else {
+            //           setArticle((prev) => prev + 1);
+            //         }
+            //     break;
         }
     }
 
@@ -138,6 +151,35 @@ export default function Articles2(props) {
 
     function ArticleTypeSelector() {
         switch (props.treatment.current) {
+            case 'control':
+                return (<div className={styles.articleStructure}>
+                    <div className={styles.title}>
+                        {`${articleContent.title}`}
+                    </div>
+                    <div className={styles.subtitle}>
+                        <p>{`${articleContent.articles2[article].text.subTitle}`}</p>
+                    </div>
+                    <LineChartDrawHandler
+                        articleName={articleContent.articles2[article].name}
+                        visStep={interactionStep}
+                        handleVisState={interactionStepHandler}
+                        article={article}
+                        completed={completed}
+                        responses = {articleResponses}
+                    />
+                    {(() => {
+                            if (interactionStep === 2) {
+                                return (
+                                    <div className={styles.paragraph}>
+                                        {`${articleContent.articles2[article].text.body}`}
+                                    </div>
+                                )
+                            } else {
+                                return ("")
+                            }
+                        }
+                    )()}
+                </div>);
             case 'txt':
                 return (<div className={styles.articleStructure}>
                     <div className={styles.title}>
@@ -152,6 +194,7 @@ export default function Articles2(props) {
                         handleVisState={interactionStepHandler}
                         article={article}
                         completed={completed}
+                        responses = {articleResponses}
                     />
                     {(() => {
                             if (interactionStep === 2) {
@@ -180,34 +223,7 @@ export default function Articles2(props) {
                         handleVisState={interactionStepHandler}
                         article={article}
                         completed={completed}
-                    />
-                    {(() => {
-                            if (interactionStep === 2) {
-                                return (
-                                    <div className={styles.paragraph}>
-                                        {`${articleContent.articles2[article].text.body}`}
-                                    </div>
-                                )
-                            } else {
-                                return ("")
-                            }
-                        }
-                    )()}
-                </div>);
-            case 'control':
-                return (<div className={styles.articleStructure}>
-                    <div className={styles.title}>
-                        {`${articleContent.title}`}
-                    </div>
-                    <div className={styles.subtitle}>
-                        <p>{`${articleContent.articles2[article].text.subTitle}`}</p>
-                    </div>
-                    <LineChartDrawHandler
-                        articleName={articleContent.articles2[article].name}
-                        visStep={interactionStep}
-                        handleVisState={interactionStepHandler}
-                        article={article}
-                        completed={completed}
+                        responses = {articleResponses}
                     />
                     {(() => {
                             if (interactionStep === 2) {
@@ -261,7 +277,7 @@ export default function Articles2(props) {
                     {ArticleTypeSelector()}
                 </div>
                 <div className={styles.navigationContainer}>
-                    <button className={styles.actions} type={"button"} onClick={articleChanger} disabled={!completed}>
+                    <button className={styles.actions} type={"button"} onClick={articleChanger} disabled={!completed && props.treatment.current !=='control'}>
                         Next
                     </button>
                 </div>

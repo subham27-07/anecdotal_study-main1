@@ -29,21 +29,9 @@ const responseSchema = new Schema({
   textelicitation_drugOverdose: Schema.Types.Mixed,
   attitude_Elicitation: Schema.Types.Mixed,
   topic_Involvement: Schema.Types.Mixed,
-  textelicitation_AmericanPopulation: Schema.Types.Mixed,
-  textelicitation_Opioids: Schema.Types.Mixed,
-  noelicitation_drugOverdose: Schema.Types.Mixed,
-  noelicitation_AmericanPopulation: Schema.Types.Mixed,
-  noelicitation_Opioids: Schema.Types.Mixed,
-  recall_drugOverdose: Schema.Types.Mixed,
-  visualElicitation_drugOverdose:Schema.Types.Mixed,
-  visualElicitation_Opioids:Schema.Types.Mixed,
-  visualElicitation_population:Schema.Types.Mixed,
-  recall_Opioids: Schema.Types.Mixed,
   cogref: Schema.Types.Mixed,
   cogref1: Schema.Types.Mixed,
   attitude_recallDrug: Schema.Types.Mixed,
-  recall_population: Schema.Types.Mixed,
-  recall_drugOverdose: Schema.Types.Mixed,
   attitude_recallPopulation: Schema.Types.Mixed,
   attitude_recallOpioids: Schema.Types.Mixed,
   instructions: Schema.Types.Mixed,
@@ -51,7 +39,8 @@ const responseSchema = new Schema({
   postq: Schema.Types.Mixed,
   responses: Schema.Types.Mixed,
   attitude_ElicitationPost: Schema.Types.Mixed,
-  article_responses: Schema.Types.Mixed
+  article_responses: Schema.Types.Mixed,
+  recall_responses: Schema.Types.Mixed
 });
 
 // const Response = mongoose.model("tresponse", responseSchema);

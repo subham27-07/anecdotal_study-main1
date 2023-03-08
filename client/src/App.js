@@ -119,9 +119,6 @@ const App = () => {
         "instructionPost_Elicitation",
         "instructionPost_Recall",
         "articles2",
-        // "recall_drugOverdose",
-        // "recall_population",
-        // "recall_Opioids",
         "attitude_ElicitationPost",
         "debrief",
     ]
@@ -131,9 +128,9 @@ const App = () => {
     const treatment = useRef()
 
     const treatmentSelector = () => {
-        // const tr = choose(['txt', 'visual', 'control'])
+        const tr = choose(['txt', 'visual', 'control'])
         // const tr = choose(['txt', 'control'])
-        const tr = 'visual';   // ONLY FOR TESTING. SHOULD KEEP COMMENTED
+        // const tr = 'visual';   // ONLY FOR TESTING. SHOULD KEEP COMMENTED
         treatment.current = tr
         // console.log(treatment.current)
         // switch (tr) {

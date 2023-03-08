@@ -463,6 +463,21 @@ router.post("/articles",
         );
     });
 
+    router.post("/articles2",
+    (req, res) => {
+        console.log(req.body);
+        let usertoken = req.session.usertoken;
+        req.session.completed = true;
+        Response.findOneAndUpdate(
+            {usertoken: usertoken},
+            {recall_responses: req.body},
+            (err, doc) => {
+                if (err) req.status(404).send(err);
+                else res.status(200).json(req.body);
+            }
+        );
+    });
+
 
 
 

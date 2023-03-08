@@ -16,7 +16,7 @@ const PreSurveyPage = (props) => {
                 name: "Superbowl",
         type: "text",
         title:
-          "What did you understood from the article above?",
+          "What did you understand from the article above?",
         isRequired: true,
             },
 
@@ -42,17 +42,6 @@ const PreSurveyPage = (props) => {
             history.push(nextPage);
         });
     };
-    //   console.log(props.setChoice);
-
-    //   useEffect(() => {
-    //     async function fetchData() {
-    //       const result = await axios("/study/getData");
-    //       // console.log(result.data);
-    //       console.log(result.data);
-    //     }
-
-    //     fetchData();
-    //   }, []);
     const model = new Survey.Model(json);
     model.showCompletedPage = false;
     return (
@@ -96,3 +85,5 @@ const PreSurveyPage = (props) => {
 };
 
 export default PreSurveyPage;
+
+
