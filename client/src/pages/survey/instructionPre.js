@@ -47,22 +47,11 @@ const InstructionPre = (props) => {
     return (
         <Container
             maxWidth={false}
-            // style={{
-            //   width: "100%",
-            //   overflow: "auto",
-            //   minHeight: "600px",
-            //   paddingTop: "2%",
-            //   // paddingBottm: "5%",
-            // }}
+            
             className={styles.mainContainer}
         >
             <div
-                // style={{
-                //   display: "flex",
-                //   flexDirection: "column",
-                //   alignItems: "center",
-                //   justifyContent: "center",
-                // }}
+                
                 className={styles.articleContainer}
             >
                 <div className={styles.articleStructure}>
@@ -96,3 +85,6 @@ const InstructionPre = (props) => {
 };
 
 export default InstructionPre
+
+
+

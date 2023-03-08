@@ -395,7 +395,7 @@ class LineChart extends Component {
             // disabled={!isComplete}
             disabled={!isComplete || showText}
             onClick={this.handleClick}
-            style={{marginTop: '80px',marginLeft: '230px', marginRight: '20px'}}
+            style={{marginTop: '80px',marginLeft: '400px', marginRight: '20px'}}
             
           >
             Done.
@@ -405,7 +405,7 @@ class LineChart extends Component {
           <Typography variant="subtitle1"
           gutterBottom
           style={{ marginTop: '30px' }}>
-            <strong>Congratulation.</strong>
+            <strong></strong>
           </Typography>
         ) }
       </div>
