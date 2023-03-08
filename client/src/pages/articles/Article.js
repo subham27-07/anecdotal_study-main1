@@ -77,6 +77,13 @@ export default function Articles(props) {
     const history = useHistory();
     // console.log('location',location)
     // console.log('pages',props.pages)
+    useEffect(()=> {
+        const savedTreatment = sessionStorage.getItem('treatment')
+        if(savedTreatment !== props.treatment.current){
+            history.push('/notice')
+        }
+    },[])
+
     useEffect(() => {
         if (trend !== "") {
             // console.log(trend);

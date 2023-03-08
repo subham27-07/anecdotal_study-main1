@@ -1,9 +1,9 @@
-import React, {useState, useEffect, useRef} from "react";
-import {Button, Divider, Typography, Container} from "@mui/material/";
+import React, {useEffect, useState} from "react";
+import { Container} from "@mui/material/";
 import pageHandler from "../pageHandler";
 import styles from './instructions.module.css';
 import {useHistory, useLocation} from "react-router-dom";
-import {makeStyles} from "@mui/styles";
+
 
 
 const textual_instructions = {
@@ -173,16 +173,26 @@ export default function InstructionsGeneral(props) {
         }
     };
 
+    useEffect(()=>{
+        if(step === textual_instructions[`${props.treatment}`].length-1){
+            handleButtonLabel();
+
+        }
+    },[step])
+
+    function handleButtonLabel(){
+        console.log('I am checking');
+            setButtonLabel('Complete');
+    }
     const clickHandler = () => {
-        if (step < (textual_instructions[`${props.treatment}`].length-1)) {
+        if (step <(textual_instructions[`${props.treatment}`].length)-1) {
             setStep((prev) => prev + 1)
         } else {
-            setButtonLabel(()=>'Complete');
             let nextPage = pageHandler(props.pages, location.pathname);
             history.push(nextPage);
         }
     }
-    console.log(step)
+    console.log(step, textual_instructions[`${props.treatment}`].length)
     return (
         <div >
             <Container className={styles.mainContainer}>

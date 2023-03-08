@@ -65,6 +65,7 @@ import "./App.css";
 import InstructionsGeneral from "./pages/instructions/instructions_general";
 import Articles from "./pages/articles/Article";
 import Articles2 from "./pages/articles/Article2";
+import Notice from "./pages/notice/Notice";
 
 function useQuery() {
     const {search} = useLocation();
@@ -119,6 +120,9 @@ const App = () => {
         "instructionPost_Elicitation",
         "instructionPost_Recall",
         "articles2",
+        // "recall_drugOverdose",
+        // "recall_population",
+        // "recall_Opioids",
         "attitude_ElicitationPost",
         "debrief",
     ]
@@ -129,27 +133,28 @@ const App = () => {
 
     const treatmentSelector = () => {
         const tr = choose(['txt', 'visual', 'control'])
-        // const tr = choose(['txt', 'control'])
         // const tr = 'visual';   // ONLY FOR TESTING. SHOULD KEEP COMMENTED
         treatment.current = tr
         // console.log(treatment.current)
-        // switch (tr) {
-        //     case 'txt':
-        //         return [...pre_pages, ...txt_pages, ...post_pages];
-        //     case 'visual':
-        //         return [...pre_pages, ...visual_pages, ...post_pages];
-        //     case 'control':
-        //         return [...pre_pages, ...control, ...post_pages];
-        //     default:
-        //         console.log(`Treatment is : ${treatment}`)
-        //         console.log('Error with TreatmentSelector! No such treatment found!')
-        //         break;
-        // }
+
         return [...pre_pages, 'articles', ...post_pages]
     }
-        // Set
+
+    useEffect(() => {
+        window.addEventListener("beforeunload", alertUser);
+        return () => {
+            window.removeEventListener("beforeunload", alertUser);
+        };
+    }, []);
+    const alertUser = (e) => {
+        e.preventDefault();
+        e.returnValue = "";
+    };
+
+
         useEffect(() => {
             study_pages.current = treatmentSelector();
+            sessionStorage.setItem('treatment',treatment.current);
         }, [])
 
         useEffect(() => {
@@ -435,6 +440,9 @@ const App = () => {
                                 </Route>
                                 <Route path="/articles2">
                                     <Articles2 treatment={treatment} pages={study_pages}/>
+                                </Route>
+                                <Route path="/notice">
+                                    <Notice treatment={treatment} pages={study_pages}/>
                                 </Route>
                             </Switch>
                         </Container>
