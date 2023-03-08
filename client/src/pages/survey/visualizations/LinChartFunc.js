@@ -81,7 +81,7 @@ export default function LinChartFunc(props) {
 
     const transformData = (data, startYear) => {
         // const { data, startYear } = props;
-        console.log('data', data)
+        // console.log('data', data)
         return data
             .map((d) => {
                 if (d.year === startYear) {
