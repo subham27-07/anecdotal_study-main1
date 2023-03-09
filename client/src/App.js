@@ -67,6 +67,7 @@ import Articles from "./pages/articles/Articles";
 import Notice from "./pages/notice/Notice";
 import ArticlesRecall from "./pages/articles/ArticlesRecall";
 import LineChartBitcoin from "./pages/survey/visualizations/LineChartVisual_bitcoin";
+import Warnings from "./pages/notice/Warnings";
 
 function useQuery() {
     const {search} = useLocation();
@@ -93,6 +94,7 @@ const App = () => {
     //Randomize study flow
     const pre_pages = [
         "consent",
+        'warnings',
         "pre",
         "instructionsGeneral",
         "quiz",
@@ -115,8 +117,8 @@ const App = () => {
     const treatment = useRef()
 
     const treatmentSelector = () => {
-        // const tr = choose(['txt', 'visual', 'control'])
-        const tr = 'visual';   // ONLY FOR TESTING. SHOULD KEEP COMMENTED
+        const tr = choose(['txt', 'visual', 'control'])
+        // const tr = 'visual';   // ONLY FOR TESTING. SHOULD KEEP COMMENTED
         treatment.current = tr
         // console.log(treatment.current)
         if(tr === 'visual'){
@@ -401,6 +403,9 @@ const App = () => {
                                 </Route>
                                 <Route path="/cogref1">
                                     <CogRefSurveyPage1 pages={study_pages}/>
+                                </Route>
+                                <Route path="/warnings">
+                                    <Warnings pages={study_pages}/>
                                 </Route>
                                 {/*<Route path="/task2">*/}
                                 {/*    <Task*/}

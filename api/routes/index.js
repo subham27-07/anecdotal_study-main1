@@ -444,6 +444,16 @@ router.get("/notice", (req, res) => {
     }
 });
 
+router.get("/warnings", (req, res) => {
+    if (req.session.completed) {
+        res.status(200).json({ token: req.session.usertoken });
+    } else {
+        res.status(200).send({
+            token: "you have skipped pages. Please complete the study first.",
+        });
+    }
+});
+
 
 router.get("/training", (req, res) => {
     if (req.session.completed) {
