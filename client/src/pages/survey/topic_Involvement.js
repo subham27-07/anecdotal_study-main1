@@ -34,7 +34,7 @@ const Topic_Involvement = (props) => {
             html: "<h4><h4/>",
           },
           {
-            name: "claim",
+            name: "drug_overdose_vlaue_opinion",
             type: "radiogroup",
             title: ` To what extent is the topic of drug overdose related to your core values?`,
             isRequired: true,
@@ -48,7 +48,7 @@ const Topic_Involvement = (props) => {
             // correctAnswer: "a conclusion about a topic",
           },
           {
-            name: "new",
+            name: "defend_view_point_drugOverdose",
             type: "radiogroup",
             title: ` To what extent is it important for you to defend your point of view on the topic of drug overdose? `,
             isRequired: true,
@@ -62,7 +62,7 @@ const Topic_Involvement = (props) => {
             // correctAnswer: "a news headline",
           },
           {
-            name: "headline",
+            name: "learning_drug_overdose",
             type: "radiogroup",
             title: ` How interested are you in learning about drug overdose? `,
             isRequired: true,
@@ -76,7 +76,7 @@ const Topic_Involvement = (props) => {
             // correctAnswer: "a news headline",
           },
           {
-            name: "suport",
+            name: "motivation_gaining_knowledge",
             type: "radiogroup",
             title: ` To what extent are you motivated to know the truth about drug overdose ? `,
             isRequired: true,
