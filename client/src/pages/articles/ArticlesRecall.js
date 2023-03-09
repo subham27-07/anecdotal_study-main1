@@ -99,7 +99,15 @@ export default function ArticlesRecall(props) {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [])
+    useEffect(()=>{
+        console.log(
+            ['!completed', !completed],
+            ['formCompleted', !formCompleted],
+            ['cond', (props.treatment.current !== 'control')],
+            ['disabled', (!completed && props.treatment.current !== 'control' && !formCompleted)]
 
+        )
+    },[completed,formCompleted])
     useEffect(() => {
         if (trend !== "") {
             // console.log(trend);
@@ -111,11 +119,12 @@ export default function ArticlesRecall(props) {
         }
     }, [trend])
 
-useEffect(()=>{
-    if(props.treatment.current === 'visual' && formCompleted === false){
-        setCompleted(() => false);
-    }
-},[interactionStep])
+// useEffect(()=>{
+//     if(props.treatment.current === 'visual')
+//     {
+//      setCompleted(prev => !prev)
+//     }
+// },[interactionStep])
     function makeImportant(whichText) {
         return articleContent.articles2[article].text[whichText].map((d) => {
             if (['number', 'percentage', 'percent'].some(
@@ -185,7 +194,7 @@ useEffect(()=>{
     };
 
     const visualBehaviorHandler = () => {
-        if (interactionStep === 1) {
+        if (interactionStep === 1 && formCompleted) {
             setCompleted(() => true);
         }
     };
@@ -279,7 +288,7 @@ useEffect(()=>{
                     {(() => {
                         if (interactionStep === 1) {
                             return (
-                                <div>
+                                <div style={{display:"flex", flexDirection:'column'}}>
                                     <div className={styles.paragraph}>
                                         {makeImportant('body')}
                                     </div>
@@ -346,7 +355,7 @@ useEffect(()=>{
             </div>
             <div className={styles.navigationContainer}>
                 <button className={styles.actions} type={"button"} onClick={articleChanger}
-                        disabled={!completed && props.treatment.current !== 'control'}>
+                        disabled={!completed && (props.treatment.current !== 'control') && !formCompleted}>
                     Next
                 </button>
             </div>

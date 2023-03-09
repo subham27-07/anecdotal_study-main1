@@ -177,7 +177,7 @@ export default function RecallSurvey(props){
     });
     return (
         <Container
-            maxWidth={false}
+
             style={{
                 width: "100%",
                 overflow: "auto",
@@ -194,9 +194,10 @@ export default function RecallSurvey(props){
                     justifyContent: "center",
                 }}
             >
-                <Typography variant="h5">
-                    Please Answer the questions below.
-                </Typography>
+               <div className={styles.surveyTitle}>
+                   Please Answer the questions below.
+               </div>
+
             </div>
             <Survey.Survey
                 model={model}
