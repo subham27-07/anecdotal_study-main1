@@ -245,6 +245,7 @@ export default function ArticlesRecall(props) {
                         }</p>
                     </div>
                     <LineChartDrawHandler
+                        alias={articleContent.articles2[article].alias}
                         articleName={articleContent.articles2[article].name}
                         visStep={interactionStep}
                         handleVisState={interactionStepHandler}

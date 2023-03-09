@@ -94,7 +94,7 @@ const Topic_Involvement = (props) => {
       },
     ],
   };
-
+  window.scrollTo(0,0);
   var defaultThemeColors = Survey.StylesManager.ThemeColors["default"];
   defaultThemeColors["$main-color"] = "black";
   defaultThemeColors["$main-hover-color"] = "darkorange";
