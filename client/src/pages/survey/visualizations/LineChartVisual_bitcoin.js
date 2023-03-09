@@ -160,6 +160,7 @@ class LineChartBitcoin extends Component {
     const firstDate = data[0]
     const fourthDate = data[2]
 
+
     let instructionText = svg.append('text')
       .attr('x',innerWidth/2)
       .attr('y',innerHeight/2)
@@ -168,21 +169,24 @@ class LineChartBitcoin extends Component {
       .attr('class','instructionText')
       .style('fill','rgb(133, 3, 18)')
       .style('pointer-events','none')
-      .text('Draw the line with an increasing trend after 2017.')
+      .text('Draw the line with an increasing trend after 2016.')
+                             .style('font-weight','bold');
 
     svg.append('text')
       .attr('class', 'text-2015')
       .attr('x', x(firstDate.year))
       .attr('y',  y(firstDate.value)-10)
       .attr('font-size','15px')
-      .text(firstDate.value);
+      .text(firstDate.value)
+       .style('font-weight','bold');
 
     svg.append('text')
       .attr('class', 'text-2016')
       .attr('x', x(fourthDate.year))
       .attr('y', y(fourthDate.value)-10)
       .attr('font-size','15px')
-      .text(fourthDate.value);
+      .text(fourthDate.value)
+       .style('font-weight','bold');
 
     svg.append('circle')
       .attr('class', 'bubble-2015')
@@ -198,10 +202,7 @@ class LineChartBitcoin extends Component {
       .attr('cy', y(fourthDate.value))
       .attr('r', 7)
       .style('fill', '#54EAEA')
-      .style('opacity', 0.7); 
-    
-
-
+      .style('opacity', 0.7);
 
     // Add the X Axis
     svg.append('g')
@@ -313,17 +314,28 @@ class LineChartBitcoin extends Component {
 
       const latestData = this.userDataLine[this.userDataLine.length - 1];
       const text = svg.selectAll('.value-text').data([latestData]);
-      const svgEndpoint = svg.selectAll('.endpoint').data([latestData])
+      const svgOverlay = svg.selectAll('.endPoint').data([latestData]);
 
       text.exit().remove();
-
       text.enter().append('text')
         .merge(text)
         .attr('class', 'value-text')
         .attr('x', d => x(d.year)+ 10)
         .attr('y', d => y(d[type])+30)
-        .text(d => `${d[type].toFixed(0)}`);
-      // 
+        .text(d => `${d[type].toFixed(0)}`)
+          .style('font-weight','bold');
+
+      svgOverlay.exit().remove();
+      svgOverlay.enter()
+                .append('circle')
+                .merge(svgOverlay)
+                .attr('class', 'endPoint')
+                .attr('cx', d => x(d['year'])+50)
+                .attr('cy',d => y(d[type])+50)
+                .attr('r', 7)
+                .style('fill', 'darkorange')
+                .style('opacity', 0.7);
+      //
       // text.enter().append('text')
       //   .merge(text)
       //   .attr('class', 'value-text')
@@ -356,8 +368,8 @@ class LineChartBitcoin extends Component {
       let increasingTrend = true;
       let endDataValue;
       for (let i = this.userDataLine.length - 1; i >= 0; i--) {
-        if (this.userDataLine[i].year === 2017) {
-          endDataValue = this.userDataLine[i][this.props.type];
+        if (this.props.data[i].year === 2016) {
+          endDataValue = this.props.data[i][this.props.type];
           break;
         }
       }
@@ -401,24 +413,28 @@ class LineChartBitcoin extends Component {
           <svg ref={this.svgReal} />
         </div>
         
-        <div style={{marginTop: '20px'}}>
+        <div style={
+          {
+            marginTop: '5%',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}>
           <Button
             variant="contained"
             color="primary"
             // disabled={!isComplete}
             disabled={!isComplete || showText}
             onClick={this.handleClick}
-            style={{marginBottom: '30px',marginLeft: '350px', marginRight: '20px'}}
-            
+            style={{display:'inline-flex', width: '200px', marginBottom: '3%'}}
           >
-            Done.
+            Done
           </Button>
         </div>
         { showText && (
           <Typography variant="subtitle1"
           gutterBottom
           style={{ marginTop: '30px' }}>
-            <strong></strong>
           </Typography>
         ) }
       </div>

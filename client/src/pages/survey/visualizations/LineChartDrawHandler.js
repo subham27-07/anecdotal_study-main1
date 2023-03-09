@@ -48,6 +48,7 @@ export default function LineChartDrawHandler (props) {
             completed = {props.completed}
             responses = {props.responses}
             elicitationType ={props.elicitationType}
+            alias = {props.alias}
         />
         </div>
 

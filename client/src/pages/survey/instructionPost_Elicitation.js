@@ -3,7 +3,7 @@ import {useHistory, useLocation} from "react-router-dom";
 import pageHandler from "../pageHandler";
 import axios from "axios";
 import * as Survey from "survey-react";
-import {Divider, Typography, Container, Button} from "@mui/material";
+import {Divider, Typography, Container} from "@mui/material";
 import {useRecoilValue} from "recoil";
 import {questionState} from "../../atoms/questionSelector";
 import styles from '../articles/articles.module.css'
@@ -109,7 +109,7 @@ const InstructionPost_Elicitation = (props) => {
 
     const correctStr = "Correct";
     const inCorrectStr = "Incorrect";
-
+    window.scrollTo(0,0);
     Survey.StylesManager.applyTheme();
 
     const onCompleting = (survey, options) => {
@@ -136,6 +136,7 @@ const InstructionPost_Elicitation = (props) => {
 
 
     function PageContentHandler() {
+
         // console.log('PageContentHandler triggered!', visCompleted)
         if (visCompleted) {
             return (
@@ -215,8 +216,8 @@ const InstructionPost_Elicitation = (props) => {
         } else {
             return (<div className={styles.messageContainer}>
                 <div className={styles.messageWrong}>
-                    Please make sure that the data for the last year (2022) is <b>higher</b> than the data for the year
-                    (2017).
+                    Please make sure that the values for all the years after 2016 are <b>higher</b> than the value for the year
+                    (2016).
                 </div>
             </div>)
         }
@@ -240,13 +241,20 @@ const InstructionPost_Elicitation = (props) => {
                     </Typography>
 
                     <Typography variant={"body1"}>
-                        <p className={`${styles.paragraph} ${styles.subtitle}`}>Please draw an <span style={{fontWeight: "bold"}}>increasing trend after year 2017.</span>
-                        </p><p className={styles.paragraph}>You can adjust
-                                                            individual data point after drawing the line as needed by
-                                                            dragging the data points. You will
-                                                            be only allowed to proceed further if the end data is higher
-                                                            than the data point of the year
-                                                            2017.
+                        <p className={`${styles.paragraph} ${styles.subtitle}`}>Please draw an <span
+                            style={{fontWeight: "bold"}}>increasing trend after year 2016.</span>
+                        </p><p
+                        className={styles.paragraph}>You can adjust individual data point after drawing the line as
+                                                     needed by
+                                                     dragging the data points.<strong> You will
+                                                                                       be only allowed to proceed
+                                                                                       further</strong> if all the data
+                                                     points you draw are <strong>higher
+                                                                                 than the data point of the year
+                                                                                 2016.</strong> In other words, your
+                                                     drawn line should never goes lower than the data point for <strong>the
+                                                                                                                        year
+                                                                                                                        2016.</strong>
                     </p>
                     </Typography>
 
@@ -269,10 +277,12 @@ const InstructionPost_Elicitation = (props) => {
                                               handleIsCorrect={handleIsCorrect}/>
                         </Suspense>
                     </div>
+                    {createAlert()}
+
                     <div style={{marginLeft: '100px'}}>
                         {PageContentHandler()}
                     </div>
-                    {createAlert()}
+
 
                 </div>
 

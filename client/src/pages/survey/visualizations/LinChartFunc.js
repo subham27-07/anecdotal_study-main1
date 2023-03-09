@@ -105,9 +105,28 @@ export default function LinChartFunc(props) {
                       startYear
                   } = props;
 
+            // if(isCompleted){
+            //     const svg = d3.selectAll('svg');
+            //     svg.append('text')
+            //        .attr('class', 'text-2022')
+            //        .attr('x', x(lastDate.year))
+            //        .attr('y', y(lastDate.value) - 10)
+            //        .attr('font-size', '15px')
+            //        .text(lastDate.value)
+            //        .style('font-weight','bold');
+            //
+            //     svg.append('circle')
+            //        .attr('class', 'bubble-2022')
+            //        .attr('cx', x(lastDate.year))
+            //        .attr('cy', y(lastDate.value))
+            //        .attr('r', 7)
+            //        .style('fill', 'teal')
+            //        .style('opacity', 0.7);
+            // }
+
+
             const dataXMax = d3.max(data, d => d.year);
             clipElement.current.transition().duration(1000).attr('width', xRef.current(dataXMax));
-            // setIsCompleted(true);
         }
     };
     const clampFunc = (a, b, c) => Math.max(a, Math.min(b, c));
@@ -119,7 +138,8 @@ export default function LinChartFunc(props) {
             switch (props.visStep){
                 case 0:
                     renderAnimation();
-                    props.responses.current.responses[`${props.articleName}`] = {
+
+                    props.responses.current.responses[`${props.alias}`] = {
                         time: Date.now(),
                         choice: userDataLine.current,
                     }
@@ -254,6 +274,7 @@ export default function LinChartFunc(props) {
 
         const firstDate = data[0]
         const fourthDate = data[3]
+        const lastDate = data[data.length-1]
 
         const onChartMessage = {
             recall: `Please recreate the line you saw for ${props.articleName}.`,
@@ -303,6 +324,24 @@ export default function LinChartFunc(props) {
            .attr('r', 7)
            .style('fill', 'teal')
            .style('opacity', 0.7);
+
+        // if(isCompleted){
+        // svg.append('text')
+        //       .attr('class', 'text-2022')
+        //       .attr('x', x(lastDate.year))
+        //       .attr('y', y(lastDate.value) - 10)
+        //       .attr('font-size', '15px')
+        //       .text(lastDate.value)
+        //       .style('font-weight','bold');
+        //
+        // svg.append('circle')
+        //       .attr('class', 'bubble-2022')
+        //       .attr('cx', x(lastDate.year))
+        //       .attr('cy', y(lastDate.value))
+        //       .attr('r', 7)
+        //       .style('fill', 'teal')
+        //       .style('opacity', 0.7);
+        // }
 
         // Add the X Axis
         svg.append('g')
@@ -429,7 +468,7 @@ export default function LinChartFunc(props) {
                .attr('cx', d => x(d['year']))
                .attr('cy',d => y(d[type]))
                .attr('r', 7)
-               .style('fill', 'teal')
+               .style('fill', 'darkorange')
                .style('opacity', 0.7);
 
         }
