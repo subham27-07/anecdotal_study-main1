@@ -195,7 +195,7 @@ class LineChartBitcoin extends Component {
     svg.append('circle')
       .attr('class', 'bubble-2016')
       .attr('cx', x(fourthDate.year))
-      .attr('cy', x(fourthDate.year))
+      .attr('cy', y(fourthDate.value))
       .attr('r', 7)
       .style('fill', '#54EAEA')
       .style('opacity', 0.7); 
@@ -313,6 +313,7 @@ class LineChartBitcoin extends Component {
 
       const latestData = this.userDataLine[this.userDataLine.length - 1];
       const text = svg.selectAll('.value-text').data([latestData]);
+      const svgEndpoint = svg.selectAll('.endpoint').data([latestData])
 
       text.exit().remove();
 

@@ -63,9 +63,10 @@ import {choose} from "./functions/functions";
 
 import "./App.css";
 import InstructionsGeneral from "./pages/instructions/instructions_general";
-import Articles from "./pages/articles/Article";
-import Articles2 from "./pages/articles/Article2";
+import Articles from "./pages/articles/Articles";
 import Notice from "./pages/notice/Notice";
+import ArticlesRecall from "./pages/articles/ArticlesRecall";
+import LineChartBitcoin from "./pages/survey/visualizations/LineChartVisual_bitcoin";
 
 function useQuery() {
     const {search} = useLocation();
@@ -99,30 +100,13 @@ const App = () => {
         "topic_Involvement",
         "instructionPre",
     ]
-    // const txt_pages = [
-    //     "textelicitation_drugOverdose",
-    //     "textelicitation_AmericanPopulation",
-    //     "textelicitation_Opioids",
-    // ]
-    // const visual_pages = [
-    //     "visualElicitation_drugOverdose",
-    //     "visualElicitation_population",
-    //     "visualElicitation_Opioids",
-    // ]
-    // const control = [
-    //     "noelicitation_drugOverdose",
-    //     "noelicitation_AmericanPopulation",
-    //     "noelicitation_Opioids",
-    // ]
+
     const post_pages = [
         "cogref",
         "cogref1",
-        "instructionPost_Elicitation",
+        // "instructionPost_Elicitation",
         "instructionPost_Recall",
-        "articles2",
-        // "recall_drugOverdose",
-        // "recall_population",
-        // "recall_Opioids",
+        "articlesRecall",
         "attitude_ElicitationPost",
         "debrief",
     ]
@@ -132,24 +116,30 @@ const App = () => {
     const treatment = useRef()
 
     const treatmentSelector = () => {
-        const tr = choose(['txt', 'visual', 'control'])
-        // const tr = 'visual';   // ONLY FOR TESTING. SHOULD KEEP COMMENTED
+        // const tr = choose(['txt', 'visual', 'control'])
+        const tr = 'visual';   // ONLY FOR TESTING. SHOULD KEEP COMMENTED
         treatment.current = tr
         // console.log(treatment.current)
-
+        if(tr === 'visual'){
+            return [...pre_pages, 'training', 'articles', ...post_pages]
+        }else{
+            post_pages.splice(2,1,'training')
+        }
         return [...pre_pages, 'articles', ...post_pages]
     }
 
-    useEffect(() => {
-        window.addEventListener("beforeunload", alertUser);
-        return () => {
-            window.removeEventListener("beforeunload", alertUser);
-        };
-    }, []);
-    const alertUser = (e) => {
-        e.preventDefault();
-        e.returnValue = "";
-    };
+    window.scrollTo(0,0);
+
+    // useEffect(() => {
+    //     window.addEventListener("beforeunload", alertUser);
+    //     return () => {
+    //         window.removeEventListener("beforeunload", alertUser);
+    //     };
+    // }, []);
+    // const alertUser = (e) => {
+    //     e.preventDefault();
+    //     e.returnValue = "";
+    // };
 
 
         useEffect(() => {
@@ -358,7 +348,9 @@ const App = () => {
                                 <Route path="/recall_drugOverdose">
                                     <Recall_drugOverdose pages={study_pages}/>
                                 </Route>
-                               
+                                <Route path="/training">
+                                    <InstructionPost_Elicitation pages={study_pages}/>
+                                </Route>
                                 <Route path="/visualElicitation_drugOverdose">
                                     <VisualElicitation_drugOverdose pages={study_pages}/>
                                 </Route>
@@ -438,8 +430,8 @@ const App = () => {
                                 <Route path="/articles">
                                     <Articles treatment={treatment} pages={study_pages}/>
                                 </Route>
-                                <Route path="/articles2">
-                                    <Articles2 treatment={treatment} pages={study_pages}/>
+                                <Route path="/articlesRecall">
+                                    <ArticlesRecall treatment={treatment} pages={study_pages}/>
                                 </Route>
                                 <Route path="/notice">
                                     <Notice treatment={treatment} pages={study_pages}/>

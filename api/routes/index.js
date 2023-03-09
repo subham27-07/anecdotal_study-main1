@@ -445,6 +445,16 @@ router.get("/notice", (req, res) => {
 });
 
 
+router.get("/training", (req, res) => {
+    if (req.session.completed) {
+        res.status(200).json({ token: req.session.usertoken });
+    } else {
+        res.status(200).send({
+            token: "you have skipped pages. Please complete the study first.",
+        });
+    }
+});
+
 router.post("/postq", (req, res) => {
   console.log(req.body);
   let usertoken = req.session.usertoken;
@@ -474,7 +484,7 @@ router.post("/articles",
         );
     });
 
-    router.post("/articles2",
+    router.post("/articlesRecall",
     (req, res) => {
         console.log(req.body);
         let usertoken = req.session.usertoken;

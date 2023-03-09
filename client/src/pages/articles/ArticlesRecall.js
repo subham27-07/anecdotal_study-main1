@@ -10,8 +10,9 @@ import LineChartDrawHandler from "../survey/visualizations/LineChartDrawHandler"
 
 const articleContent = {
     title: 'How Bad Is the Drug Overdose Epidemic?',
-    articles: [{
-        name: "drugOverdose",
+    articles2: [{
+        alias: 'drugOverdose',
+        name: "Deaths from Drug Overdose",
         id: "One",
         text: {
             subTitle: "Since 2002, the number of Americans who have died every year from Drug Overdose...",
@@ -28,7 +29,8 @@ const articleContent = {
         image: 'https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/001.png',
     },
         {
-            name: "population",
+            alias: 'population',
+            name: "% of American Population with Drug Overdose Disorder",
             id: "Two",
             text: {
                 subTitle: `The percentage of American population with drug use disorders has...`,
@@ -44,7 +46,8 @@ const articleContent = {
             image: "https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/002.png",
         },
         {
-            name: "opioids",
+            alias: 'opioids',
+            name: "Deaths from Synthetic Opioids Overdose",
             id: "Three",
             text: {
                 subTitle: "Since 2002, the of Americans who have died every year from overdoses of synthetic opioids...",
@@ -63,7 +66,7 @@ const articleContent = {
 
 }
 
-export default function Articles(props) {
+export default function ArticlesRecall(props) {
 
     const [article, setArticle] = useState(0);
     const [completed, setCompleted] = useState(false);
@@ -77,11 +80,8 @@ export default function Articles(props) {
     const history = useHistory();
     // console.log('location',location)
     // console.log('pages',props.pages)
-    useEffect(()=> {
-        const savedTreatment = sessionStorage.getItem('treatment')
-        if(savedTreatment !== props.treatment.current){
-            history.push('/notice')
-        }
+    useEffect(()=>{
+        window.scrollTo(0,0);
     },[])
 
     useEffect(() => {
@@ -100,25 +100,20 @@ export default function Articles(props) {
     function articleChanger() {
         switch (props.treatment.current) {
             case 'txt':
-                articleResponses.current.responses[`${articleContent.articles[article].name}`] = {
-                    time: Date.now(),
-                    choice: trend,
-                }
                 if (article === 2) {
-                    axios.post("/api/articles", articleResponses.current).then((response) => {
+                    axios.post("/api/articlesRecall", articleResponses.current).then((response) => {
                         let nextPage = pageHandler(props.pages, location.pathname);
                         history.push(nextPage);
                     });
-                    // pageHandler(props.pages, location.pathname);
                 } else {
+                    setCompleted((prev) => false);
+                    setInteractionStep(0);
                     setArticle((prev) => prev + 1);
-                    setTrend(() => "");
-                    // console.log('res:',articleResponses.current);
                 }
                 break;
             case 'visual':
                 if (article === 2) {
-                    axios.post("/api/articles", articleResponses.current).then((response) => {
+                    axios.post("/api/articlesRecall", articleResponses.current).then((response) => {
                         let nextPage = pageHandler(props.pages, location.pathname);
                         history.push(nextPage);
                     });
@@ -129,14 +124,14 @@ export default function Articles(props) {
                 }
                 break;
 
-            case 'control':
-                    if (article === 2) {
-                      let nextPage = pageHandler(props.pages, location.pathname);
-                      history.push(nextPage);
-                    } else {
-                      setArticle((prev) => prev + 1);
-                    }
-                break;
+            // case 'control':
+            //         if (article === 2) {
+            //           let nextPage = pageHandler(props.pages, location.pathname);
+            //           history.push(nextPage);
+            //         } else {
+            //           setArticle((prev) => prev + 1);
+            //         }
+            //     break;
         }
     }
 
@@ -146,7 +141,7 @@ export default function Articles(props) {
     };
 
     const interactionStepHandler = () => {
-        if (interactionStep < 2) {
+        if (interactionStep < 1) {
             setInteractionStep((prev) => prev + 1);
         } else {
             setInteractionStep((prev) => 0);
@@ -155,7 +150,7 @@ export default function Articles(props) {
     };
 
     const visualBehaviorHandler = () => {
-        if (interactionStep === 2) {
+        if (interactionStep === 1) {
             setCompleted(() => true);
         }
     };
@@ -164,105 +159,16 @@ export default function Articles(props) {
     function ArticleTypeSelector() {
         switch (props.treatment.current) {
             case 'control':
-                return (
-                    <div className={styles.articleStructure}>
-                        <div className={styles.title}>
-                            {`${articleContent.title}`}
-                        </div>
-                        <div className={styles.subtitle}>
-                            <p>{`${articleContent.articles[article].text.subTitle}`}</p>
-                        </div>
-                        <div className={styles.articleImageContainer}>
-                            <img src={`${articleContent.articles[article].image}`} className={styles.articleImage}
-                                 alt='Since 2002 percentage of Americans population with drug use disorders'/>
-                        </div>
-                        <div className={styles.paragraph}>
-                            {`${articleContent.articles[article].text.body}`}
-                        </div>
-                    </div>
-                );
-            case 'txt':
-                return (
-                    <div className={styles.articleStructure}>
-                        <div className={styles.title}>
-                            {`${articleContent.title}`}
-                        </div>
-                        {(() => {
-                            if (!completed) {
-                                return (<div className={styles.subtitle}>
-
-                                    <p>{`${articleContent.articles[article].text.subTitle}`}
-
-                                        <FormControl sx={{
-                                            position: 'relative',
-                                            mx: 2,
-                                            my: 0,
-                                            minWidth: 200,
-                                            top: -15,
-                                            py: 2
-                                        }}>
-                                            <InputLabel id="trend-selector">Select Here</InputLabel>
-                                            <Select
-                                                labelId="trend-selector-label"
-                                                id="trend-selector-dropdown"
-                                                value={trend}
-                                                onChange={handleChange}
-                                                autoWidth
-                                                required={true}
-                                                label="Select here..."
-                                                style={{
-                                                    display: 'inline-flex',
-                                                    position: "relative",
-                                                    border: '1px solid white',
-                                                    height: '18pt',
-                                                    fontSize: '12pt',
-                                                    backgroundColor: 'lightgray'
-                                                }}
-                                            >
-                                                <MenuItem value={1}>Significantly Decreased</MenuItem>
-                                                <MenuItem value={2}>Slightly Decreased</MenuItem>
-                                                <MenuItem value={3}>Not Much Changed</MenuItem>
-                                                <MenuItem value={4}>Slightly Increased</MenuItem>
-                                                <MenuItem value={5}>Significantly Increased</MenuItem>
-
-
-                                            </Select>
-                                        </FormControl>
-                                    </p>
-                                    <p className={styles.txtUnique}>{`${articleContent.articles[article].text.subTitle2}`}</p>
-                                </div>)
-                            } else {
-                        return ("");
-                    }
-                        })()}
-                        {(() => {
-                            if (completed) {
-                                return (<div>
-                                    <div className={styles.articleImageContainer}>
-                                        <img src={`${articleContent.articles[article].image}`}
-                                             className={styles.articleImage}
-                                             alt='Since 2002 percentage of Americans population with drug use disorders'/>
-                                    </div>
-                                    <div className={styles.paragraph}>
-                                        {`${articleContent.articles[article].text.body}`}
-                                    </div>
-                                </div>)
-                            } else {
-                                return ("");
-                            }
-                        })()}
-                    </div>
-                );
-            case 'visual':
                 return (<div className={styles.articleStructure}>
                     <div className={styles.title}>
                         {`${articleContent.title}`}
                     </div>
                     <div className={styles.subtitle}>
-                        <p>{`${articleContent.articles[article].text.subTitle}`}</p>
+                        <p>{`${articleContent.articles2[article].text.subTitle}`}</p>
                     </div>
                     <LineChartDrawHandler
-                        articleName={articleContent.articles[article].name}
+                        alias = {articleContent.articles2[article].alias}
+                        articleName={articleContent.articles2[article].name}
                         visStep={interactionStep}
                         handleVisState={interactionStepHandler}
                         article={article}
@@ -270,10 +176,70 @@ export default function Articles(props) {
                         responses = {articleResponses}
                     />
                     {(() => {
-                            if (interactionStep === 2) {
+                            if (interactionStep === 1) {
                                 return (
                                     <div className={styles.paragraph}>
-                                        {`${articleContent.articles[article].text.body}`}
+                                        {`${articleContent.articles2[article].text.body}`}
+                                    </div>
+                                )
+                            } else {
+                                return ("")
+                            }
+                        }
+                    )()}
+                </div>);
+            case 'txt':
+                return (<div className={styles.articleStructure}>
+                    <div className={styles.title}>
+                        {`${articleContent.title}`}
+                    </div>
+                    <div className={styles.subtitle}>
+                        <p>{`${articleContent.articles2[article].text.subTitle}`}</p>
+                    </div>
+                    <LineChartDrawHandler
+                        articleName={articleContent.articles2[article].name}
+                        visStep={interactionStep}
+                        handleVisState={interactionStepHandler}
+                        article={article}
+                        completed={completed}
+                        responses = {articleResponses}
+                    />
+                    {(() => {
+                            if (interactionStep === 1) {
+                                return (
+                                    <div className={styles.paragraph}>
+                                        {`${articleContent.articles2[article].text.body}`}
+                                    </div>
+                                )
+                            } else {
+                                return ("")
+                            }
+                        }
+                    )()}
+                </div>);
+            case 'visual':
+                return (<div className={styles.articleStructure}>
+                    <div className={styles.title}>
+                        {`${articleContent.title}`}
+                    </div>
+                    <div className={styles.subtitle}>
+                        <p>{`${articleContent.articles2[article].text.subTitle}`}</p>
+                    </div>
+                    <LineChartDrawHandler
+                        alias = {articleContent.articles2[article].alias}
+                        articleName={articleContent.articles2[article].name}
+                        visStep={interactionStep}
+                        handleVisState={interactionStepHandler}
+                        article={article}
+                        completed={completed}
+                        responses = {articleResponses}
+                        elicitationType = 'recall'
+                    />
+                    {(() => {
+                            if (interactionStep === 1) {
+                                return (
+                                    <div className={styles.paragraph}>
+                                        {`${articleContent.articles2[article].text.body}`}
                                     </div>
                                 )
                             } else {
@@ -286,11 +252,11 @@ export default function Articles(props) {
                 break;
         }
     }
-        console.log({
-            article: article,
-            completed: completed,
-            interactionStep: interactionStep
-        })
+        // console.log({
+        //     article: article,
+        //     completed: completed,
+        //     interactionStep: interactionStep
+        // })
 
         useEffect(() => {
             visualBehaviorHandler();
@@ -301,17 +267,17 @@ export default function Articles(props) {
                 <div className={styles.articleContainer}>
                     <div className={styles.progressBar}>
                         {(() => {
-                            return articleContent.articles.map((d, i) => {
+                            return articleContent.articles2.map((d, i) => {
                                 if (i === article) {
                                     return (
                                         <span
                                             key={`article${i}`}
-                                            className={styles.articleIdActive}> Article {`${articleContent.articles[i].id}`}</span>)
+                                            className={styles.articleIdActive}> Article {`${articleContent.articles2[i].id}`}</span>)
                                 } else {
                                     return (
                                         <span
                                             key={`article-deactive-${i}`}
-                                            className={styles.articleIdDeactive}> Article {`${articleContent.articles[i].id}`}</span>)
+                                            className={styles.articleIdDeactive}> Article {`${articleContent.articles2[i].id}`}</span>)
                                 }
 
                             });

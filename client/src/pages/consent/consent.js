@@ -128,7 +128,7 @@ desktop computer with a physical keyboard. You will be asked to complete questio
 
       <h2>Will I receive an incentive for taking part in this study? </h2>
       <p>
-      You will receive a XX extra credit points toward your grade in DSBA 5122 upon completion of the study. Although you can choose to end your participation at any time, you must finish the entire task in order to receive the extra credits. Low-quality submissions (due to low-effort responses or rapid completion time) will not be eligible for extra credit. More details on rejection criteria can be found at Prolific guidelines for rejection. If you choose not to participate, you will have the opportunity to complete an alternative extra credit assignment for an equivalent amount of extra credit. 
+          You will receive a <b>5 extra credit</b> points toward your grade in DSBA 5122 upon completion of the study. Although you can choose to end your participation at any time, you must finish the entire task in order to receive the extra credits. Low-quality submissions (due to low-effort responses or rapid completion time) will not be eligible for extra credit. More details on rejection criteria can be found at Prolific guidelines for rejection. If you choose not to participate, you will have the opportunity to complete an alternative extra credit assignment for an equivalent amount of extra credit.
       </p>
 
       <h2>What are my rights if I take part in this study? </h2>

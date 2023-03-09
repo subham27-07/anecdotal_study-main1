@@ -29,14 +29,13 @@ export default function LineChartDrawHandler (props) {
 
   const articleName=props.articleName;
   function dataHandler(){
-        return chartTypes[`${props.articleName}`].lineData;
+        return chartTypes[`${props.alias}`].lineData;
     }
 
     function scaleTypeHandler(){
-        return chartTypes[`${props.articleName}`].scaleType;
+        return chartTypes[`${props.alias}`].scaleType;
     }
 
-  console.log(props.articleName)
   return (
   
         <div style={{ width: "100%"}}>
@@ -48,11 +47,8 @@ export default function LineChartDrawHandler (props) {
             article = {props.article}
             completed = {props.completed}
             responses = {props.responses}
+            elicitationType ={props.elicitationType}
         />
-       {/*<Suspense fallback={<div>loading...</div>}>*/}
-       {/*     <LineChart type="value" scaleType={scaleTypeHandler()} data={dataHandler()} idLine={1} startYear={2002} showText={props.showText}/>*/}
-       {/*   </Suspense>*/}
-
         </div>
 
   );

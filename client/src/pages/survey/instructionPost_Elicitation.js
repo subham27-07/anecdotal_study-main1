@@ -1,11 +1,8 @@
 import React, {useRef, lazy, Suspense, useState} from 'react';
-
-
 import {useHistory, useLocation} from "react-router-dom";
 import pageHandler from "../pageHandler";
 import axios from "axios";
 import * as Survey from "survey-react";
-// import { Divider, Typography, Container, Button } from "@mui/material";
 import {Divider, Typography, Container, Button} from "@mui/material";
 import {useRecoilValue} from "recoil";
 import {questionState} from "../../atoms/questionSelector";
@@ -80,7 +77,7 @@ const InstructionPost_Elicitation = (props) => {
     const questionCondition = useRecoilValue(questionState);
     // console.log(questionCondition);
     const extraQuestions =
-              questionCondition == "strength"
+              questionCondition === "strength"
                   ? []
                   : [];
 
@@ -134,7 +131,7 @@ const InstructionPost_Elicitation = (props) => {
 
     function visStateHandler() {
         setVisCompleted((prevState) => !prevState);
-        console.log('VisStateHandler triggered', visCompleted);
+        // console.log('VisStateHandler triggered', visCompleted);
     }
 
 
@@ -203,26 +200,28 @@ const InstructionPost_Elicitation = (props) => {
         var html = getTextHtml(text, correctStr, true);
 
     });
-function handleIsCorrect(){
-    setIsCorrect(prev=>!prev);
-}
 
-function createAlert(){
-    if(isCorrect){
-        return (<div className={styles.messageContainer}>
-            <div className={styles.messageCorrect}>
-                Success! Your answer is correct. You may now proceed to the next page.
-            </div>
-        </div> )
+    function handleIsCorrect() {
+        setIsCorrect(prev => !prev);
     }
-    else{
-        return(<div className={styles.messageContainer}>
-            <div className={styles.messageWrong}>
-                Please make sure that the data for the last year (2022) is <b>higher</b> than the data for the year (2017).
-            </div>
-        </div> )
+
+    function createAlert() {
+        if (isCorrect) {
+            return (<div className={styles.messageContainer}>
+                <div className={styles.messageCorrect}>
+                    Success! Your answer is correct. You may now proceed to the next page.
+                </div>
+            </div>)
+        } else {
+            return (<div className={styles.messageContainer}>
+                <div className={styles.messageWrong}>
+                    Please make sure that the data for the last year (2022) is <b>higher</b> than the data for the year
+                    (2017).
+                </div>
+            </div>)
+        }
     }
-}
+
     return (
         <Container
             maxWidth={false}
@@ -241,12 +240,14 @@ function createAlert(){
                     </Typography>
 
                     <Typography variant={"body1"}>
-                        <p>Please draw an <span
-                            className={styles.txtImportant}>Increasing trend after year 2017</span> You can adjust
-                           individual data point after drawing the line as needed by dragging the data points. You will
-                           be only allowed to proceed further if the end data is higher than the data point of the year
-                           2017.
-                            <span className={styles.txtImportant}> </span></p>
+                        <p className={`${styles.paragraph} ${styles.subtitle}`}>Please draw an <span style={{fontWeight: "bold"}}>increasing trend after year 2017.</span>
+                        </p><p className={styles.paragraph}>You can adjust
+                                                            individual data point after drawing the line as needed by
+                                                            dragging the data points. You will
+                                                            be only allowed to proceed further if the end data is higher
+                                                            than the data point of the year
+                                                            2017.
+                    </p>
                     </Typography>
 
                 </div>
@@ -262,9 +263,10 @@ function createAlert(){
                         margin: "0 auto"
                     }}>
                         <Suspense fallback={<div>loading...</div>}>
-                            <LineChartBitcoin type="value" data={lineData} idLine={1} startYear={2016} visState={visCompleted}
-                                       stateHandler={visStateHandler} isCorrect={isCorrect}
-                                       handleIsCorrect={handleIsCorrect}/>
+                            <LineChartBitcoin type="value" data={lineData} idLine={1} startYear={2016}
+                                              visState={visCompleted}
+                                              stateHandler={visStateHandler} isCorrect={isCorrect}
+                                              handleIsCorrect={handleIsCorrect}/>
                         </Suspense>
                     </div>
                     <div style={{marginLeft: '100px'}}>

@@ -25,7 +25,7 @@ const responseSchema = new Schema({
     type: Number,
     default: Date.now
   },
-  quiz: Schema.Types.Mixed,
+  understanding_test: Schema.Types.Mixed,
   textelicitation_drugOverdose: Schema.Types.Mixed,
   attitude_Elicitation: Schema.Types.Mixed,
   topic_Involvement: Schema.Types.Mixed,

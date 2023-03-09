@@ -38,7 +38,7 @@ const PreSurveyPage = (props) => {
             name: "understand-text_before",
             type: "text",
             title:
-              "Please in sentence or two, please describe what this study is asking you to do",
+              "Please in a sentence or two, please describe what this study is asking you to do.",
             isRequired: true,
           },
         ],
