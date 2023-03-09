@@ -91,8 +91,9 @@
 .txtUnique{
     font-style:italic;
     width: 100%;
-    font-size: 14px;
-    font-weight: lighter;
+    font-size: .9rem;
+    color: #282828;
+    font-weight: normal;
 }
 
 .articleIdActive{
