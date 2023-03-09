@@ -208,6 +208,7 @@ function makeImportant(whichText){
                                 makeImportant('subTitle')
                             }</p>
                         </div>
+                        <p className={styles.txtUnique}>{`${articleContent.articles[article].text.subTitle2}`}</p>
                         <div className={styles.articleImageContainer}>
                             <img src={`${articleContent.articles[article].image}`} className={styles.articleImage}
                                  alt='Since 2002 percentage of Americans population with drug use disorders'/>
@@ -228,7 +229,6 @@ function makeImportant(whichText){
                                 return (<div className={styles.subtitle}>
 
                                     <p>{makeImportant('subTitle')}
-
                                         <FormControl sx={{
                                             position: 'relative',
                                             mx: 2,
@@ -299,6 +299,7 @@ function makeImportant(whichText){
                             makeImportant('subTitle')
                         }</p>
                     </div>
+                    <p className={styles.txtUnique}>{`${articleContent.articles[article].text.subTitle2}`}</p>
                     <LineChartDrawHandler
                         articleName={articleContent.articles[article].name}
                         alias = {articleContent.articles[article].alias}
