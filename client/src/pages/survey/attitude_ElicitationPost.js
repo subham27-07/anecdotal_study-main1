@@ -37,7 +37,7 @@ const Attitude_ElicitationPost = (props) => {
             html: "<h4><h4/>",
           },
           {
-            name: "claim",
+            name: "drug_overdose_opinion",
             type: "radiogroup",
             title: ` What is your opinion on drug overdose in US ?`,
             isRequired: true,
@@ -51,7 +51,7 @@ const Attitude_ElicitationPost = (props) => {
             // correctAnswer: "a conclusion about a topic",
           },
           {
-            name: "new",
+            name: "combat_drug_priority",
             type: "radiogroup",
             title: ` Should the US make combating drug abuse and overdose a priority, i:e allocating tax dollars to treatment and prevention programs? `,
             isRequired: true,
@@ -65,7 +65,7 @@ const Attitude_ElicitationPost = (props) => {
             // correctAnswer: "a news headline",
           },
           {
-            name: "headline",
+            name: "opinion_on_drug_legalization",
             type: "radiogroup",
             title: ` What is your opinion on drug legalization and decrimination in the US? `,
             isRequired: true,
@@ -119,7 +119,7 @@ const Attitude_ElicitationPost = (props) => {
   const onComplete = (survey, options) => {
 
     console.log("Survey results: " + JSON.stringify(quizResponses.current));
-    axios.post("/api/attitude_Elicitation", quizResponses.current).then((response) => {
+    axios.post("/api/attitude_ElicitationPost", quizResponses.current).then((response) => {
       let nextPage = pageHandler(props.pages, location.pathname);
       history.push(nextPage);
     });
