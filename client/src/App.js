@@ -131,16 +131,16 @@ const App = () => {
 
     window.scrollTo(0,0);
 
-    useEffect(() => {
-        window.addEventListener("beforeunload", alertUser);
-        return () => {
-            window.removeEventListener("beforeunload", alertUser);
-        };
-    }, []);
-    const alertUser = (e) => {
-        e.preventDefault();
-        e.returnValue = "";
-    };
+    // useEffect(() => {
+    //     window.addEventListener("beforeunload", alertUser);
+    //     return () => {
+    //         window.removeEventListener("beforeunload", alertUser);
+    //     };
+    // }, []);
+    // const alertUser = (e) => {
+    //     e.preventDefault();
+    //     e.returnValue = "";
+    // };
 
 
         useEffect(() => {

@@ -1,9 +1,7 @@
 import React, {useState, useRef, useEffect} from "react";
 import styles from './articles.module.css'
-import Button from "@mui/material/Button";
 import pageHandler from "../pageHandler";
 import {useHistory, useLocation} from "react-router-dom";
-import {FormControl, InputLabel, MenuItem, Select} from "@mui/material";
 import axios from "axios";
 import LineChartDrawHandler from "../survey/visualizations/LineChartDrawHandler";
 import RecallSurvey from "../../components/recallSurvey/RecallSurvey";
@@ -108,16 +106,16 @@ export default function ArticlesRecall(props) {
 
         )
     },[completed,formCompleted])
-    useEffect(() => {
-        if (trend !== "") {
-            // console.log(trend);
-            setCompleted(() => true);
-        } else if (props.treatment.current === 'control') {
-            setCompleted(() => true);
-        } else {
-            setCompleted(() => false);
-        }
-    }, [trend])
+    // useEffect(() => {
+    //     if (trend !== "") {
+    //         // console.log(trend);
+    //         setCompleted(() => true);
+    //     } else if (props.treatment.current === 'control') {
+    //         setCompleted(() => true);
+    //     } else {
+    //         setCompleted(() => false);
+    //     }
+    // }, [trend])
 
 // useEffect(()=>{
 //     if(props.treatment.current === 'visual')
@@ -141,20 +139,20 @@ export default function ArticlesRecall(props) {
 
     // This function controls the behavior of Next button
     function articleChanger() {
-        switch (props.treatment.current) {
-            case 'txt':
-                if (article === 2) {
-                    axios.post("/api/articlesRecall", articleResponses.current).then((response) => {
-                        let nextPage = pageHandler(props.pages, location.pathname);
-                        history.push(nextPage);
-                    });
-                } else {
-                    setCompleted((prev) => false);
-                    setInteractionStep(0);
-                    setArticle((prev) => prev + 1);
-                }
-                break;
-            case 'visual':
+        // switch (props.treatment.current) {
+        //     case 'txt':
+        //         if (article === 2) {
+        //             axios.post("/api/articlesRecall", articleResponses.current).then((response) => {
+        //                 let nextPage = pageHandler(props.pages, location.pathname);
+        //                 history.push(nextPage);
+        //             });
+        //         } else {
+        //             setCompleted((prev) => false);
+        //             setInteractionStep(0);
+        //             setArticle((prev) => prev + 1);
+        //         }
+        //         break;
+        //     case 'visual':
                 if (article === 2) {
                     axios.post("/api/articlesRecall", articleResponses.current).then((response) => {
                         let nextPage = pageHandler(props.pages, location.pathname);
@@ -166,7 +164,7 @@ export default function ArticlesRecall(props) {
                     setInteractionStep(0);
                     setArticle((prev) => prev + 1);
                 }
-                break;
+                // break;
 
             // case 'control':
             //         if (article === 2) {
@@ -176,7 +174,7 @@ export default function ArticlesRecall(props) {
             //           setArticle((prev) => prev + 1);
             //         }
             //     break;
-        }
+        // }
     }
 
     // This function controls the change in the input value for dropdown
@@ -201,72 +199,72 @@ export default function ArticlesRecall(props) {
 
 
     function ArticleTypeSelector() {
-        switch (props.treatment.current) {
-            case 'control':
-                return (<div className={styles.articleStructure}>
-                    <div className={styles.title}>
-                        {`${articleContent.title}`}
-                    </div>
-                    <div className={styles.subtitle}>
-                        <p>{
-                            makeImportant('subTitle')
-                        }</p>
-                    </div>
-                    <LineChartDrawHandler
-                        alias={articleContent.articles2[article].alias}
-                        articleName={articleContent.articles2[article].name}
-                        visStep={interactionStep}
-                        handleVisState={interactionStepHandler}
-                        article={article}
-                        completed={completed}
-                        responses={articleResponses}
-                    />
-                    {(() => {
-                            if (interactionStep === 1) {
-                                return (
-                                    <div className={styles.paragraph}>
-                                        {makeImportant('body')}
-                                    </div>
-                                )
-                            } else {
-                                return ("")
-                            }
-                        }
-                    )()}
-                </div>);
-            case 'txt':
-                return (<div className={styles.articleStructure}>
-                    <div className={styles.title}>
-                        {`${articleContent.title}`}
-                    </div>
-                    <div className={styles.subtitle}>
-                        <p>{
-                            makeImportant('subTitle')
-                        }</p>
-                    </div>
-                    <LineChartDrawHandler
-                        alias={articleContent.articles2[article].alias}
-                        articleName={articleContent.articles2[article].name}
-                        visStep={interactionStep}
-                        handleVisState={interactionStepHandler}
-                        article={article}
-                        completed={completed}
-                        responses={articleResponses}
-                    />
-                    {(() => {
-                            if (interactionStep === 1) {
-                                return (
-                                    <div className={styles.paragraph}>
-                                        {makeImportant('body')}
-                                    </div>
-                                )
-                            } else {
-                                return ("")
-                            }
-                        }
-                    )()}
-                </div>);
-            case 'visual':
+        // switch (props.treatment.current) {
+        //     case 'control':
+        //         return (<div className={styles.articleStructure}>
+        //             <div className={styles.title}>
+        //                 {`${articleContent.title}`}
+        //             </div>
+        //             <div className={styles.subtitle}>
+        //                 <p>{
+        //                     makeImportant('subTitle')
+        //                 }</p>
+        //             </div>
+        //             <LineChartDrawHandler
+        //                 alias={articleContent.articles2[article].alias}
+        //                 articleName={articleContent.articles2[article].name}
+        //                 visStep={interactionStep}
+        //                 handleVisState={interactionStepHandler}
+        //                 article={article}
+        //                 completed={completed}
+        //                 responses={articleResponses}
+        //             />
+        //             {(() => {
+        //                     if (interactionStep === 1) {
+        //                         return (
+        //                             <div className={styles.paragraph}>
+        //                                 {makeImportant('body')}
+        //                             </div>
+        //                         )
+        //                     } else {
+        //                         return ("")
+        //                     }
+        //                 }
+        //             )()}
+        //         </div>);
+        //     case 'txt':
+        //         return (<div className={styles.articleStructure}>
+        //             <div className={styles.title}>
+        //                 {`${articleContent.title}`}
+        //             </div>
+        //             <div className={styles.subtitle}>
+        //                 <p>{
+        //                     makeImportant('subTitle')
+        //                 }</p>
+        //             </div>
+        //             <LineChartDrawHandler
+        //                 alias={articleContent.articles2[article].alias}
+        //                 articleName={articleContent.articles2[article].name}
+        //                 visStep={interactionStep}
+        //                 handleVisState={interactionStepHandler}
+        //                 article={article}
+        //                 completed={completed}
+        //                 responses={articleResponses}
+        //             />
+        //             {(() => {
+        //                     if (interactionStep === 1) {
+        //                         return (
+        //                             <div className={styles.paragraph}>
+        //                                 {makeImportant('body')}
+        //                             </div>
+        //                         )
+        //                     } else {
+        //                         return ("")
+        //                     }
+        //                 }
+        //             )()}
+        //         </div>);
+        //     case 'visual':
                 return (<div className={styles.articleStructure}>
                     <div className={styles.title}>
                         {`${articleContent.title}`}
@@ -319,9 +317,9 @@ export default function ArticlesRecall(props) {
                     }
                     )()}
                 </div>);
-            default:
-                break;
-        }
+        //     default:
+        //         break;
+        // }
     }
         // console.log({
         //     article: article,
@@ -356,7 +354,7 @@ export default function ArticlesRecall(props) {
             </div>
             <div className={styles.navigationContainer}>
                 <button className={styles.actions} type={"button"} onClick={articleChanger}
-                        disabled={!completed && (props.treatment.current !== 'control') && !formCompleted}>
+                        disabled={!completed && !formCompleted}>
                     Next
                 </button>
             </div>

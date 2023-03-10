@@ -117,7 +117,7 @@ const Attitude_ElicitationPost = (props) => {
   };
 
   const onComplete = (survey, options) => {
-
+    axios.post("/api/attitude_ElicitationPost", {study_finish:Date.now()}).then(()=> console.log('timeSaved'))
     console.log("Survey results: " + JSON.stringify(quizResponses.current));
     axios.post("/api/attitude_ElicitationPost", quizResponses.current).then((response) => {
       let nextPage = pageHandler(props.pages, location.pathname);
