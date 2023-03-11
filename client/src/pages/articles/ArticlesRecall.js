@@ -82,8 +82,6 @@ const articleContent = {
             },
             image: "https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/003.png",
         }]
-
-
 }
 
 export default function ArticlesRecall(props) {
@@ -99,8 +97,7 @@ export default function ArticlesRecall(props) {
         responses: {}
     })
     const history = useHistory();
-    // console.log('location',location)
-    // console.log('pages',props.pages)
+
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [])

@@ -100,7 +100,7 @@ const App = () => {
 
     const treatmentSelector = () => {
         // const tr = choose(['txt', 'visual', 'control'])
-        const tr = ['visual','txt','control'][0];   // ONLY FOR TESTING. SHOULD KEEP COMMENTED
+        const tr = ['visual','txt','control'][2];   // ONLY FOR TESTING. SHOULD KEEP COMMENTED
         treatment.current = tr
         // console.log(treatment.current)
         if(tr === 'visual'){

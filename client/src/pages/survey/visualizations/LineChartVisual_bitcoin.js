@@ -320,7 +320,7 @@ class LineChartBitcoin extends Component {
       text.enter().append('text')
         .merge(text)
         .attr('class', 'value-text')
-        .attr('x', d => x(d.year)+ 10)
+        .attr('x', d => x(d.year))
         .attr('y', d => y(d[type])+30)
         .text(d => `${d[type].toFixed(0)}`)
           .style('font-weight','bold');
