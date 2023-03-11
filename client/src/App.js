@@ -109,21 +109,22 @@ const App = () => {
 
     
     
-    // useEffect(() => {
-    //     window.addEventListener("beforeunload", alertUser);
-    //     return () => {
-    //         window.removeEventListener("beforeunload", alertUser);
-    //     };
-    // }, []);
-    // const alertUser = (e) => {
-    //     e.preventDefault();
-    //     e.returnValue = "";
-    // };
-
+    useEffect(() => {
+        window.onbeforeunload = (function(event)
+        {
+            return window.confirm("You may lose your progress and may not get paid.");
+        })()
+        // window.addEventListener("beforeunload", alertUser);
+        // return (() => {
+        //     window.removeEventListener("beforeunload", alertUser);
+        // });
+    }, []);
 
         useEffect(() => {
             study_pages.current = treatmentSelector();
             sessionStorage.setItem('treatment',treatment.current);
+            localStorage.setItem('treatment',treatment.current);
+
         }, [])
 
         // useEffect(() => {
