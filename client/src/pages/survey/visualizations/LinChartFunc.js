@@ -80,6 +80,12 @@ export default function LinChartFunc(props) {
         createLineChart()
     }, [props.article])
 
+    useEffect(()=>{
+        if(props.visStep > 0){
+            d3.select(".overlay").style('pointer-events','none')
+        }
+    },[props.visStep])
+
     const transformData = (data, startYear) => {
         return data
             .map((d) => {
@@ -105,28 +111,8 @@ export default function LinChartFunc(props) {
                       startYear
                   } = props;
 
-            // if(isCompleted){
-            //     const svg = d3.selectAll('svg');
-            //     svg.append('text')
-            //        .attr('class', 'text-2022')
-            //        .attr('x', x(lastDate.year))
-            //        .attr('y', y(lastDate.value) - 10)
-            //        .attr('font-size', '15px')
-            //        .text(lastDate.value)
-            //        .style('font-weight','bold');
-            //
-            //     svg.append('circle')
-            //        .attr('class', 'bubble-2022')
-            //        .attr('cx', x(lastDate.year))
-            //        .attr('cy', y(lastDate.value))
-            //        .attr('r', 7)
-            //        .style('fill', 'teal')
-            //        .style('opacity', 0.7);
-            // }
-
-
             const dataXMax = d3.max(data, d => d.year);
-            clipElement.current.transition().duration(1000).attr('width', xRef.current(dataXMax));
+            clipElement.current.transition().duration(1000).attr('width', xRef.current(dataXMax)+10);
         }
     };
     const clampFunc = (a, b, c) => Math.max(a, Math.min(b, c));
@@ -138,7 +124,7 @@ export default function LinChartFunc(props) {
             switch (props.visStep){
                 case 0:
                     renderAnimation();
-
+                    d3.select(svgRef.current).style('pointer-events','none');
                     props.responses.current.responses[`${props.alias}`] = {
                         time: Date.now(),
                         choice: userDataLine.current,
@@ -148,7 +134,7 @@ export default function LinChartFunc(props) {
                     break;
                 case 1:
                     props.handleVisState();
-                    createLineChart();
+                    // createLineChart();
                     break;
                 default:
                     props.handleVisState();
@@ -173,7 +159,7 @@ export default function LinChartFunc(props) {
         const width = 1000;
         const height = 325;
         const margin = {
-            top: 50,
+            top: 10,
             right: 50,
             bottom: 30,
             left: 50,
@@ -256,7 +242,7 @@ export default function LinChartFunc(props) {
                                  .attr('width', x(startYear))
                                  .attr('height', innerHeight + 20)
                                  .attr('transform', 'translate(0, -20)');
-
+        const lastDate = data[data.length-1]
         const clipPath = svg.append('g').attr('clip-path', 'url(#clip)');
         // MAIN AREA
         clipPath.append('path')
@@ -269,12 +255,29 @@ export default function LinChartFunc(props) {
                 .attr('class', 'line')
                 .attr('d', valueline);
 
+        clipPath.append('text')
+           .attr('class', 'text-2022')
+           .attr('x', x(lastDate.year) - 40)
+           .attr('y', y(lastDate.value) - 10)
+           .attr('font-size', '15px')
+           .text(lastDate.value)
+           .style('font-weight','bold');
+
+        clipPath.append('circle')
+           .attr('class', 'bubble-2022')
+           .attr('cx', x(lastDate.year))
+           .attr('cy', y(lastDate.value))
+           .attr('r', 7)
+           .style('fill', 'teal')
+           .style('opacity', 0.7);
+
+
         // USER LINE
         youDrawIt.current = svg.append('path').attr('class', 'your-line');
 
         const firstDate = data[0]
         const fourthDate = data[3]
-        const lastDate = data[data.length-1]
+
 
         const onChartMessage = {
             recall: `Please recreate the line you saw for ${props.articleName}.`,
@@ -325,23 +328,6 @@ export default function LinChartFunc(props) {
            .style('fill', 'teal')
            .style('opacity', 0.7);
 
-        // if(isCompleted){
-        // svg.append('text')
-        //       .attr('class', 'text-2022')
-        //       .attr('x', x(lastDate.year))
-        //       .attr('y', y(lastDate.value) - 10)
-        //       .attr('font-size', '15px')
-        //       .text(lastDate.value)
-        //       .style('font-weight','bold');
-        //
-        // svg.append('circle')
-        //       .attr('class', 'bubble-2022')
-        //       .attr('cx', x(lastDate.year))
-        //       .attr('cy', y(lastDate.value))
-        //       .attr('r', 7)
-        //       .style('fill', 'teal')
-        //       .style('opacity', 0.7);
-        // }
 
         // Add the X Axis
         svg.append('g')
@@ -415,6 +401,7 @@ export default function LinChartFunc(props) {
     };
 
     const mouseDragLine = (x, y, dataXMax, line, svg) => d3.drag().on('drag', () => {
+
         const {
                   type,
                   startYear
@@ -455,10 +442,12 @@ export default function LinChartFunc(props) {
                 .merge(text)
                 .attr('class', 'value-text')
                 .attr('text-anchor','middle')
-                .attr('x', d => x(d['year']))
+                .attr('x', d => x(d['year'])-10)
                 .attr('y', d => y(d[type])-20)
                 .text(d => `${d[type].toFixed(2)}`)
-                .style('font-weight','bold');
+                .style('font-weight','bold')
+                .style('fill','hwb(17 6% 2%)')
+                .style('opacity',0.7);
 
             svgOverlay.exit().remove();
             svgOverlay.enter()
@@ -468,7 +457,7 @@ export default function LinChartFunc(props) {
                .attr('cx', d => x(d['year']))
                .attr('cy',d => y(d[type]))
                .attr('r', 7)
-               .style('fill', 'darkorange')
+               .style('fill', 'hwb(17 6% 2%)')
                .style('opacity', 0.7);
 
         }

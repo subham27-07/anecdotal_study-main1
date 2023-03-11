@@ -6,12 +6,8 @@ import {answerIndexState} from "./atoms/answerIndex";
 import {qualResponseState} from "./atoms/qualResponseIndex";
 import {questionState} from "./atoms/questionSelector";
 import {instructionResponseState} from "./atoms/instructionResponse";
-import NavBar from "./components/nav/nav";
 import Container from "@mui/material/Container";
-import BottomNav from "./components/bottomNav/bottomNav";
 //pages
-import Task from "./pages/study/task";
-import QualTask from "./pages/study/task_qual";
 import PreSurveyPage from "./pages/survey/pre";
 import PostSurveyPage from "./pages/survey/post";
 import CogRefSurveyPage from "./pages/survey/cogRef";
@@ -29,22 +25,8 @@ import InstructionsShare from "./pages/instructions/instructionsShare_better";
 import Instructions3 from "./pages/instructions/instructions3_better";
 import Instructions4 from "./pages/instructions/instructions4_better";
 import Quiz from "./pages/survey/quiz";
-import Textelicitation_drugOverdose from "./pages/survey/textelicitation_drugOverdose";
-import Textelicitation_AmericanPopulation from "./pages/survey/textelicitation_AmericanPopulation";
-import Textelicitation_Opioids from "./pages/survey/textelicitation_Opioids";
-import Noelicitation_drugOverdose from "./pages/survey/noelicitation_drugOverdose";
-import Noelicitation_AmericanPopulation from "./pages/survey/noelicitation_AmericanPopulation";
-import Noelicitation_Opioids from "./pages/survey/noelicitation_Opioids";
-import Recall_drugOverdose from "./pages/survey/recall_drugOverdose";
-import Attitude_recallDrug from "./pages/survey/attitude_recallDrug";
-import Attitude_recallPopulation from "./pages/survey/attitude_recallPopulation";
-import Attitude_recallOpioids from "./pages/survey/attitude_recallOpioids";
 
 import VisualElicitation_drugOverdose from "./pages/survey/visualElicitation_drugOverdose";
-import VisualElicitation_population from "./pages/survey/visualElicitation_population";
-import VisualElicitation_Opioids from "./pages/survey/visualElicitation_Opioids";
-import Recall_Opioids from "./pages/survey/recall_Opioids";
-import Recall_population from "./pages/survey/recall_population";
 import Attitude_Elicitation from "./pages/survey/attitude_Elicitation";
 import Attitude_ElicitationPost from "./pages/survey/attitude_ElicitationPost";
 import Topic_Involvement from "./pages/survey/topic_Involvement";
@@ -117,8 +99,8 @@ const App = () => {
     const treatment = useRef()
 
     const treatmentSelector = () => {
-        const tr = choose(['txt', 'visual', 'control'])
-        // const tr = 'visual';   // ONLY FOR TESTING. SHOULD KEEP COMMENTED
+        // const tr = choose(['txt', 'visual', 'control'])
+        const tr = ['visual','txt','control'][0];   // ONLY FOR TESTING. SHOULD KEEP COMMENTED
         treatment.current = tr
         // console.log(treatment.current)
         if(tr === 'visual'){

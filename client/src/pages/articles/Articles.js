@@ -25,7 +25,8 @@ const articleContent = {
                 ' the worst drug overdose epidemic in American history, spurred by rising drug abuse, ' +
                 'increased availability of prescription opioids and an influx of Drug Overdose potent synthetics like Fentanyl and Carfentanil.' +
                 ' Drug overdoses are now the leading cause of death for Americans under 50.'],
-            instructions: "",
+            instructions: "How has the number of Americans died from drug overdoses in the US changed since 2002?" +
+                " Draw your guess on the chart below.",
             definitions: "",
         },
         image: 'https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/001.png',
@@ -44,9 +45,9 @@ const articleContent = {
                 " population with drug use disorders steadily climbing every year."+
                 "A drug use disorder is a behavioral condition that affects a person’s brain and behavior, leading" +
                 " to a person’s inability to control their use of drugs including legal or illegal drugs."+
-                "Drug use disorders occur when an individual compulsively misuses drugs or alcohol and continues" +
+                "Drug use disorders occur when an individual compulsively misuses drugs and continues" +
                 " abusing the substance despite knowing the negative impact it has on their life."],
-                instructions: 'Please answer the questions below',
+                instructions: "How has the percentage of Americans with drug use disorders in the US changed" + " since 2002?" + " Draw your guess on the chart below.",
                 definitions: "",
             },
             image: "https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/002.png",
@@ -60,8 +61,8 @@ const articleContent = {
                 " synthetic" +
                 " opioids..."],
 
-                subTitle2: "Synthetic opioids is a type of opioids that are synthesized in a laboratory. Other" +
-                    " opioids include illegal drug heroin, cocaine, prescription opioid such as Oxycodone.",
+                subTitle2: "Synthetic opioids are a type of opioids that are synthesized in a laboratory. Other" +
+                    " opioids include illegal drugs such as heroin and cocaine and prescription opioids such as Oxycodone.",
 
                 body: ["Since 2002,"," the number of ", "Americans who have died every year from overdoses of" +
                 " synthetic" + " opioids has increased by more than"," 5451 percent.", "Substance use disorders" +
@@ -73,13 +74,13 @@ const articleContent = {
                     " fentanyl increased by a marked 18% in 2021, according to the CDC data. Deaths involving" +
                     " cocaine and psychostimulants such as methamphetamine were also significantly more frequent," +
                     " while those involving heroin decreased."],
-                instructions: 'Please answer the questions below',
+                instructions: "How has the number of Americans who have died every year from overdoses of synthetic" +
+                    " opioids in the US changed" + " since" +
+                    " 2002?" + " Draw your guess on the chart below.",
                 definitions: "",
             },
             image: "https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/003.png",
         }]
-
-
 }
 
 export default function Articles(props) {
@@ -224,20 +225,17 @@ function makeImportant(whichText){
                         <div className={styles.title}>
                             {`${articleContent.title}`}
                         </div>
-                        {(() => {
-                            if (!completed) {
-                                return (<div className={styles.subtitle}>
-
-                                    <p>{makeImportant('subTitle')}
-                                        <FormControl sx={{
+                        <div className={styles.subtitle}>
+                            <p>{makeImportant('subTitle')}
+                                <FormControl sx={{
                                             position: 'relative',
                                             mx: 2,
                                             my: 0,
-                                            minWidth: 200,
+                                            minWidth: 400,
                                             top: -15,
                                             py: 2
                                         }}>
-                                            <InputLabel id="trend-selector">Select Here</InputLabel>
+                                            <InputLabel id="trend-selector">Select Your Guess Here</InputLabel>
                                             <Select
                                                 labelId="trend-selector-label"
                                                 id="trend-selector-dropdown"
@@ -245,7 +243,7 @@ function makeImportant(whichText){
                                                 onChange={handleChange}
                                                 autoWidth
                                                 required={true}
-                                                label="Select here..."
+                                                label="Select your guess here..."
                                                 style={{
                                                     display: 'inline-flex',
                                                     position: "relative",
@@ -264,13 +262,9 @@ function makeImportant(whichText){
 
                                             </Select>
                                         </FormControl>
-                                    </p>
-                                    <p className={styles.txtUnique}>{`${articleContent.articles[article].text.subTitle2}`}</p>
-                                </div>)
-                            } else {
-                        return ("");
-                    }
-                        })()}
+                            </p>
+                            <p className={styles.txtUnique}>{`${articleContent.articles[article].text.subTitle2}`}</p>
+                                </div>
                         {(() => {
                             if (completed) {
                                 return (<div>
@@ -294,12 +288,16 @@ function makeImportant(whichText){
                     <div className={styles.title}>
                         {`${articleContent.title}`}
                     </div>
+
                     <div className={styles.subtitle}>
+                        <p className={styles.txtUnique}>{`${articleContent.articles[article].text.instructions}`}</p>
+                        <hr/>
                         <p>{
                             makeImportant('subTitle')
                         }</p>
+                        <p className={styles.txtUnique}>{`${articleContent.articles[article].text.subTitle2}`}</p>
                     </div>
-                    <p className={styles.txtUnique}>{`${articleContent.articles[article].text.subTitle2}`}</p>
+
                     <LineChartDrawHandler
                         articleName={articleContent.articles[article].name}
                         alias = {articleContent.articles[article].alias}

@@ -23,30 +23,25 @@ export default function Warnings(props) {
           </div>
           <div className={styles.articleContainer}>
               <p className={styles.title}>Important Notice</p>
-
-              <p className={styles.subtitle}> Please read the paragraph below carefully.</p>
-              <p className={`${styles.paragraph} ${styles.txtNormal}`}>
-                  Sure, here is a combined version of the paragraph and bulleted items:
-
+              <div className={styles.subtitle}> Please read the paragraph below carefully.</div>
+              <div className={`${styles.paragraph} ${styles.txtNormal}`}>
                   To ensure accurate and valid results, it is important that all study participants follow the
                   instructions carefully. Please take note of the following instructions:
                   <ul>
-                      <li> Do not refresh any page until you reach the debriefing.
+                      <li> Do not refresh any page.
                       </li>
                       <li>Use a laptop/desktop computer.</li>
                       <li>Use an updated version of Chrome browser.</li>
                       <li>Read the information and instructions on each page carefully.</li>
                       <li>Make sure you understand each step of the study before proceeding.</li>
-                      <li>You have to receive a token at the end of the study, when you reach the debriefing page. Copy
-                          and Paste that code before closing the page.
-                          If for any reason you did not receive a token at the end, you have to redo the study from the
-                          beginning to ensure that your results are valid.
-                          Thank you for your cooperation.
+                      <li>You will receive a token at the end of the study when you reach the debriefing page. Copy
+                          and save that code before closing the page.
+                          If you do not provide a token on Prolific at the end, your payment will not be guaranteed.
                       </li>
                   </ul>
+                  <p className={styles.subtitle}><b>Thank you for your cooperation.</b></p>
 
-
-              </p>
+              </div>
           </div>
       </div>
         <div className={styles.navigationContainer}>

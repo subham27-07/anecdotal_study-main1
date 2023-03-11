@@ -14,18 +14,19 @@ const articleContent = {
         name: "Deaths from Drug Overdose",
         id: "One",
         text: {
-            subTitle: ["Since 2002, the", "number of", "Americans who have died" +
+            subTitle:["Since 2002, the", "number of", "Americans who have died" +
             " every year from Drug Overdose..."],
             subTitle2: "",
 
-            body: ['Since 2002,', ' the number of', ' Americans who have died every year from Drug Overdoses has' +
+            body: ['Since 2002,',' the number of',' Americans who have died every year from Drug Overdoses has' +
             ' increased by more than', '222.16 percent.',
                 ' In 2015, more Americans died from drug overdoses than from car accidents and gun homicides' +
                 ' combined.It\'s' +
                 ' the worst drug overdose epidemic in American history, spurred by rising drug abuse, ' +
                 'increased availability of prescription opioids and an influx of Drug Overdose potent synthetics like Fentanyl and Carfentanil.' +
                 ' Drug overdoses are now the leading cause of death for Americans under 50.'],
-            instructions: "",
+            instructions: "How has the number of Americans died from drug overdoses in the US changed since 2002?" +
+                " Recreate the line you saw for this article in the chart below.",
             definitions: "",
         },
         image: 'https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/001.png',
@@ -35,18 +36,19 @@ const articleContent = {
             name: "% of American Population with Drug Overdose Disorder",
             id: "Two",
             text: {
-                subTitle: ["Since 2002, the", "percentage of", "American population with drug use disorders has..."],
+                subTitle: ["Since 2002, the", "percentage of","American population with drug use disorders has..."],
                 subTitle2: "",
 
-                body: ["Since 2002,", " the percentage of", " American population with drug use disorders has" +
-                " increased by more than", " 137 percent.",
+                body: ["Since 2002,"," the percentage of"," American population with drug use disorders has" +
+                " increased by more than"," 137 percent.",
                     "The United States is currently in the grips of a powerful drug epidemic, with the share of" +
-                    " population with drug use disorders steadily climbing every year." +
+                    " population with drug use disorders steadily climbing every year."+
                     "A drug use disorder is a behavioral condition that affects a person’s brain and behavior, leading" +
-                    " to a person’s inability to control their use of drugs including legal or illegal drugs." +
-                    "Drug use disorders occur when an individual compulsively misuses drugs or alcohol and continues" +
+                    " to a person’s inability to control their use of drugs including legal or illegal drugs."+
+                    "Drug use disorders occur when an individual compulsively misuses drugs and continues" +
                     " abusing the substance despite knowing the negative impact it has on their life."],
-                instructions: 'Please answer the questions below',
+                instructions: "How has the percentage of Americans with drug use disorders in the US changed since" +
+                    " 2002?" + " Recreate the line you saw for this article in the chart below.",
                 definitions: "",
             },
             image: "https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/002.png",
@@ -56,12 +58,15 @@ const articleContent = {
             name: "Deaths from Synthetic Opioids Overdose",
             id: "Three",
             text: {
-                subTitle: ["Since 2002, the", "number of", "Americans who have died every year from overdoses of" +
+                subTitle: ["Since 2002, the","number of","Americans who have died every year from overdoses of" +
                 " synthetic" +
                 " opioids..."],
-                subTitle2: "Synthetic opioids is a type of opioids that are synthesized in a laboratory. Other opioids include illegal drug heroin, cocaine, prescription opioid such as oxycodone.",
-                body: ["Since 2002,", " the number of ", "Americans who have died every year from overdoses of" +
-                " synthetic" + " opioids has increased by more than", " 5451 percent.", "Substance use disorders" +
+
+                subTitle2: "Synthetic opioids are a type of opioids that are synthesized in a laboratory. Other" +
+                    " opioids include illegal drugs such as heroin and cocaine and prescription opioids such as Oxycodone.",
+
+                body: ["Since 2002,"," the number of ", "Americans who have died every year from overdoses of" +
+                " synthetic" + " opioids has increased by more than"," 5451 percent.", "Substance use disorders" +
                 " refer to direct deaths from overdoses of illicit drugs synthetic opioids (mostly Fentanyl)." +
                 " We know that substance use is more dangerous than it has ever been, as" + " fentanyl has continued to" +
                 " permeate the illicit drug supply, increasing the risk for overdoses among both people with" +
@@ -70,7 +75,9 @@ const articleContent = {
                 " fentanyl increased by a marked 18% in 2021, according to the CDC data. Deaths involving" +
                 " cocaine and psychostimulants such as methamphetamine were also significantly more frequent," +
                 " while those involving heroin decreased."],
-                instructions: 'Please answer the questions below',
+                instructions: "How has the number of Americans who have died every year from overdoses of synthetic" +
+                    " opioids in the US changed" + " since" +
+                    " 2002?" + " Recreate the line you saw for this article in the chart below.",
                 definitions: "",
             },
             image: "https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/003.png",
@@ -106,23 +113,7 @@ export default function ArticlesRecall(props) {
 
         )
     },[completed,formCompleted])
-    // useEffect(() => {
-    //     if (trend !== "") {
-    //         // console.log(trend);
-    //         setCompleted(() => true);
-    //     } else if (props.treatment.current === 'control') {
-    //         setCompleted(() => true);
-    //     } else {
-    //         setCompleted(() => false);
-    //     }
-    // }, [trend])
 
-// useEffect(()=>{
-//     if(props.treatment.current === 'visual')
-//     {
-//      setCompleted(prev => !prev)
-//     }
-// },[interactionStep])
     function makeImportant(whichText) {
         return articleContent.articles2[article].text[whichText].map((d) => {
             if (['number', 'percentage', 'percent'].some(
@@ -139,20 +130,7 @@ export default function ArticlesRecall(props) {
 
     // This function controls the behavior of Next button
     function articleChanger() {
-        // switch (props.treatment.current) {
-        //     case 'txt':
-        //         if (article === 2) {
-        //             axios.post("/api/articlesRecall", articleResponses.current).then((response) => {
-        //                 let nextPage = pageHandler(props.pages, location.pathname);
-        //                 history.push(nextPage);
-        //             });
-        //         } else {
-        //             setCompleted((prev) => false);
-        //             setInteractionStep(0);
-        //             setArticle((prev) => prev + 1);
-        //         }
-        //         break;
-        //     case 'visual':
+
                 if (article === 2) {
                     axios.post("/api/articlesRecall", articleResponses.current).then((response) => {
                         let nextPage = pageHandler(props.pages, location.pathname);
@@ -164,17 +142,6 @@ export default function ArticlesRecall(props) {
                     setInteractionStep(0);
                     setArticle((prev) => prev + 1);
                 }
-                // break;
-
-            // case 'control':
-            //         if (article === 2) {
-            //           let nextPage = pageHandler(props.pages, location.pathname);
-            //           history.push(nextPage);
-            //         } else {
-            //           setArticle((prev) => prev + 1);
-            //         }
-            //     break;
-        // }
     }
 
     // This function controls the change in the input value for dropdown
@@ -199,81 +166,19 @@ export default function ArticlesRecall(props) {
 
 
     function ArticleTypeSelector() {
-        // switch (props.treatment.current) {
-        //     case 'control':
-        //         return (<div className={styles.articleStructure}>
-        //             <div className={styles.title}>
-        //                 {`${articleContent.title}`}
-        //             </div>
-        //             <div className={styles.subtitle}>
-        //                 <p>{
-        //                     makeImportant('subTitle')
-        //                 }</p>
-        //             </div>
-        //             <LineChartDrawHandler
-        //                 alias={articleContent.articles2[article].alias}
-        //                 articleName={articleContent.articles2[article].name}
-        //                 visStep={interactionStep}
-        //                 handleVisState={interactionStepHandler}
-        //                 article={article}
-        //                 completed={completed}
-        //                 responses={articleResponses}
-        //             />
-        //             {(() => {
-        //                     if (interactionStep === 1) {
-        //                         return (
-        //                             <div className={styles.paragraph}>
-        //                                 {makeImportant('body')}
-        //                             </div>
-        //                         )
-        //                     } else {
-        //                         return ("")
-        //                     }
-        //                 }
-        //             )()}
-        //         </div>);
-        //     case 'txt':
-        //         return (<div className={styles.articleStructure}>
-        //             <div className={styles.title}>
-        //                 {`${articleContent.title}`}
-        //             </div>
-        //             <div className={styles.subtitle}>
-        //                 <p>{
-        //                     makeImportant('subTitle')
-        //                 }</p>
-        //             </div>
-        //             <LineChartDrawHandler
-        //                 alias={articleContent.articles2[article].alias}
-        //                 articleName={articleContent.articles2[article].name}
-        //                 visStep={interactionStep}
-        //                 handleVisState={interactionStepHandler}
-        //                 article={article}
-        //                 completed={completed}
-        //                 responses={articleResponses}
-        //             />
-        //             {(() => {
-        //                     if (interactionStep === 1) {
-        //                         return (
-        //                             <div className={styles.paragraph}>
-        //                                 {makeImportant('body')}
-        //                             </div>
-        //                         )
-        //                     } else {
-        //                         return ("")
-        //                     }
-        //                 }
-        //             )()}
-        //         </div>);
-        //     case 'visual':
                 return (<div className={styles.articleStructure}>
                     <div className={styles.title}>
                         {`${articleContent.title}`}
                     </div>
                     <div className={styles.subtitle}>
+                        <p className={styles.txtUnique}>{`${articleContent.articles2[article].text.instructions}`}</p>
+                        <hr/>
                         <p>{
                             makeImportant('subTitle')
                         }</p>
+                        <p className={styles.txtUnique}>{`${articleContent.articles2[article].text.subTitle2}`}</p>
                     </div>
+
                     <LineChartDrawHandler
                         alias={articleContent.articles2[article].alias}
                         articleName={articleContent.articles2[article].name}
@@ -317,16 +222,7 @@ export default function ArticlesRecall(props) {
                     }
                     )()}
                 </div>);
-        //     default:
-        //         break;
-        // }
     }
-        // console.log({
-        //     article: article,
-        //     completed: completed,
-        //     interactionStep: interactionStep
-        // })
-
         useEffect(() => {
             visualBehaviorHandler();
         }, [interactionStep])

@@ -1,10 +1,10 @@
-import React, {useEffect} from "react";
+import React from "react";
 import {useHistory, useLocation} from "react-router-dom";
 import pageHandler from "../pageHandler";
 import axios from "axios";
 import * as Survey from "survey-react";
 import "survey-react/survey.css";
-import {Divider, Typography, Container, Button} from "@mui/material";
+import {Container} from "@mui/material";
 import styles from "../articles/articles.module.css";
 
 const InstructionPre = (props) => {

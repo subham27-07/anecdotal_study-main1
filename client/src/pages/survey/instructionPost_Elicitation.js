@@ -236,8 +236,8 @@ const InstructionPost_Elicitation = (props) => {
                 <div className={styles.articleStructure}>
 
                     <Typography variant="h3">
-                  <span>Now we ask you to   <span
-                      style={{fontWeight: "bold"}}> practice drawing </span> a timeline in the chart below</span>
+                 Now we ask you to   <span
+                      style={{fontWeight: "bold"}}> practice drawing </span> a timeline in the chart below
                     </Typography>
 
                     <Typography variant={"body1"}>

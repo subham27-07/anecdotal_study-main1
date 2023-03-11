@@ -40,55 +40,45 @@ export default function Debrief(props) {
         <div className={styles.title}>
           Debriefing
         </div>
+        <div>
+          <p><b>Title of the Project:</b> News Articles with Data Visualizations
+             <b>Principal investigator:</b> Dr. Wenwen Dou, Department of Computer Science</p>
+          <p>Title of the Project: News Articles with Data Visualizations
+             Principal investigator: Dr. Wenwen Dou, Department of Computer Science</p>
+        </div>
         <div className={styles.paragraph}>
           <p>
-            Thank you for your participation! In this study, we investigated whether
-            anecdotal evidence (experience of a single person) used as evidence is
-            seen as strong evidence.
+            Thank you for your participation! This study examines how people explore news
+            articles with temporal visualizations with or without asking them to think about the
+            trends first. The task was designed to assess your recall about the main trend/issue
+            from each article. We are interested in how much people recall about the trend
+            related to the news headline as a result of asking them to produce a trend first
+            based on their own opinion. The results of this study will improve our understanding
+            of how people read and learn from news articles with data visualizations and how
+            to design articles that best support better recall and engagement.
           </p>
           <h3>
             Below is your token of completion. Please enter (copy and paste) this
             into Prolific. You may close the page after you have entered the code
           </h3>
           <hr />
-          {/*<h3>463377EF</h3>*/}
-          <h3>{`${token}`}</h3>
+          <h3>463377EF</h3>
+          {/*<h3>{`${token}`}</h3>*/}
           <hr />
 
         </div>
       </div>
       <div className={styles.navigationContainer}></div>
-      {/* <p>
-        <b>Principal investigator:</b> Alireza Karduni, College of Computing and
-        Informatics
-      </p>
-      <p>
-        <b>Faculty Adviser:</b> Dr. Wenwen Dou, College of Computing and
-        Informatics
-      </p>
-      <p>
-        <b>Co-PIs:</b> Dr. Doug Markant (Department of Psychological Science),
-        Ryan Wesslen (College of Computing and Informatics)
-      </p> */}
+      <div className={styles.navigationContainer}>
+        <button className={styles.actions} type={"button"} onClick={(()=>{
+          window.open("about:blank", "_self");
+          window.close();
+          window.close();
 
-
-      {/* <h3>If you a SONA participant, there is nothing else you need to do.</h3>
-      <p>
-        If your instructor has offered extra credits for this study, please
-        email them your unique token. We will confirm your participation by
-        cross-checking your token within our secure database if inquired by the
-        instructor. If you are participating in this study through SONA, you
-        will receive 0.5 credits for your participation. Please click on the
-        following link to be redirected back to SONA.
-      </p>
-      <p>
-        For questions about this research, you may contact Alireza Karduni
-        (akarduni@uncc.edu) and Dr. Wenwen Dou (Wdou1@uncc.edu). If you have
-        questions about your rights as a research participant, or wish to obtain
-        information, ask questions, or discuss any concerns about this study
-        with someone other than the researcher(s), please contact the Office of
-        Research Protections and Integrity at 704-687-1871 or uncc-irb@uncc.edu.
-      </p> */}
+        })} >
+          I copied the token. Close
+        </button>
+      </div>
     </Container>
   );
 }

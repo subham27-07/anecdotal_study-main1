@@ -91,7 +91,7 @@
 .txtUnique{
     font-style:italic;
     width: 100%;
-    font-size: .9rem;
+    font-size: 1rem;
     color: #282828;
     font-weight: normal;
 }
@@ -128,6 +128,11 @@
 
 .articleImage{
     width: 90%;
+    margin: auto;
+}
+
+.articleImageS{
+    width: 60%;
     margin: auto;
 }
 
@@ -188,8 +193,10 @@
 .messageContainer{
     margin:auto;
     border: 1px solid gray;
-    padding: 2%;
-    margin-bottom: 5%;
+    padding: 1%;
+    margin-bottom: 2%;
+    margin-top: 2%;
+
 }
 
 .messageCorrect{

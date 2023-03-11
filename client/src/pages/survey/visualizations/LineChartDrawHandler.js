@@ -1,11 +1,7 @@
-import React, {lazy, Suspense, useState} from 'react';
+import React from 'react';
 import LineChartFunc from './LinChartFunc';
 
 import { populationData, drugOverdoseData, opioidsData } from './datasets';
-
-// const LineChart = lazy(() => import('./LineChartDraw'));
-// import LineChartDraw from "./LineChartDraw";
-
 
 const chartTypes ={
     drugOverdose:

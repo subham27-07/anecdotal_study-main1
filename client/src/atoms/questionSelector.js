@@ -16,13 +16,12 @@ export const questionSelector = selector({
           return `To what extent does the quoted news headline support conclusion?`;
         };
         return getQL;
-
-        break;
       case "share":
         getQL = (tweetText) => {
           return `Would you consider sharing ${tweetText.name}'s tweet on social media (for example Twitter, Facebook, or Whatsapp)?`;
         };
         return getQL;
+      default:
         break;
     }
   },
@@ -42,7 +41,7 @@ export const qualQuestionSelector = selector({
           return `For the tweet above👆 You made the below👇 judgment when asked: "To what extent does the quoted news headline support ${tweetText.name}'s conclusion?"`;
         };
         return getQL;
-
+      default:
         break;
     }
   },
@@ -67,7 +66,6 @@ export const labelSelector = selector({
           "Probably yes",
           "Definitely yes",
         ];
-        break;
       case "strength":
         return [
           "Extremely Serious Problem",
@@ -76,7 +74,7 @@ export const labelSelector = selector({
           "Minor Problem",
           "Not a Problem",
         ];
-
+      default:
         break;
     }
   },
