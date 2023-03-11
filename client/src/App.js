@@ -126,120 +126,120 @@ const App = () => {
             sessionStorage.setItem('treatment',treatment.current);
         }, [])
 
-        useEffect(() => {
-            const localStorage = window.localStorage;
-            /// FOR DEV
-            if (DEV) {
-                localStorage.clear();
-            }
-            if (!DEV) {
-                const sessionResponse = localStorage.getItem("response");
-                const sessionAnswerIndex = localStorage.getItem("answerIndex");
-                const sessionQualResponseIndex =
-                    localStorage.getItem("qualResponseIndex");
-                const sessionQuestion = localStorage.getItem("question");
-                const sessionInstructionResponse = localStorage.getItem(
-                    "instructionResponse"
-                );
-                // console.log(sessionInstructionResponse);
-                // console.log(sessionResponse);
-                if (sessionResponse !== null) {
-                    setResponse(JSON.parse(sessionResponse));
-                    // console.log(sessionResponse);
-                }
-                if (sessionInstructionResponse !== null) {
-                    // console.log(sessionInstructionResponse);
-                    setInstructionResponse(+sessionInstructionResponse);
-                }
-                if (sessionAnswerIndex !== null) {
-                    setAnswerIndex(+sessionAnswerIndex);
-                    // console.log("session answer index", sessionAnswerIndex);
-                }
-                if (sessionQualResponseIndex !== null) {
-                    setQualResponseIndex(+sessionQualResponseIndex);
-                    // console.log("qual response index", sessionQualResponseIndex);
-                }
-                if (sessionQuestion !== null) {
-                    setQuestion(sessionQuestion);
-                    // console.log("session question", sessionQuestion);
-                }
-            }
-        }, []);
+        // useEffect(() => {
+        //     const localStorage = window.localStorage;
+        //     /// FOR DEV
+        //     if (DEV) {
+        //         localStorage.clear();
+        //     }
+        //     if (!DEV) {
+        //         const sessionResponse = localStorage.getItem("response");
+        //         const sessionAnswerIndex = localStorage.getItem("answerIndex");
+        //         const sessionQualResponseIndex =
+        //             localStorage.getItem("qualResponseIndex");
+        //         const sessionQuestion = localStorage.getItem("question");
+        //         const sessionInstructionResponse = localStorage.getItem(
+        //             "instructionResponse"
+        //         );
+        //         // console.log(sessionInstructionResponse);
+        //         // console.log(sessionResponse);
+        //         if (sessionResponse !== null) {
+        //             setResponse(JSON.parse(sessionResponse));
+        //             // console.log(sessionResponse);
+        //         }
+        //         if (sessionInstructionResponse !== null) {
+        //             // console.log(sessionInstructionResponse);
+        //             setInstructionResponse(+sessionInstructionResponse);
+        //         }
+        //         if (sessionAnswerIndex !== null) {
+        //             setAnswerIndex(+sessionAnswerIndex);
+        //             // console.log("session answer index", sessionAnswerIndex);
+        //         }
+        //         if (sessionQualResponseIndex !== null) {
+        //             setQualResponseIndex(+sessionQualResponseIndex);
+        //             // console.log("qual response index", sessionQualResponseIndex);
+        //         }
+        //         if (sessionQuestion !== null) {
+        //             setQuestion(sessionQuestion);
+        //             // console.log("session question", sessionQuestion);
+        //         }
+        //     }
+        // }, []);
 
-        useEffect(() => {
-            if (response && Object.keys(response).length > 0) {
-                window.localStorage.setItem("response", JSON.stringify(response));
-            }
-        }, [response]);
-
-        useEffect(() => {
-            if (response && Object.keys(response).length > 0) {
-                window.localStorage.setItem("answerIndex", answerIndex);
-            }
-        }, [answerIndex]);
-
-        useEffect(() => {
-            // console.log(question);
-            if (response && Object.keys(response).length > 0) {
-                window.localStorage.setItem("qualResponseIndex", qualResponseIndex);
-            }
-        }, [qualResponseIndex]);
-
-        useEffect(() => {
-            // console.log(instructionResponse);
-            if (instructionResponse !== null) {
-                window.localStorage.setItem("instructionResponse", instructionResponse);
-            }
-        }, [instructionResponse]);
-
-        useEffect(() => {
-            // console.log(question);
-            if (question) {
-                window.localStorage.setItem("question", question);
-            }
-        }, [question]);
-
-        useEffect(() => {
-            // console.log(data);
-            if (data) {
-                window.localStorage.setItem("data", JSON.stringify(data));
-            }
-        }, [data]);
-
-        useEffect(() => {
-            async function fetchData() {
-                const result = await axios.get("/api/data");
-                setTimeout(() => {
-                    console.log(result.data);
-                    // let shuffledData = [shuffle(result.data[0]), shuffle(result.data[1])];
-                    let shuffledData;
-                    if (DEV) {
-                        shuffledData = [
-                            result.data[0].slice(0, 8),
-                            result.data[1].slice(0, 8),
-                        ];
-                    } else {
-                        shuffledData = [result.data[0], result.data[1]];
-                        // shuffledData = [
-                        //   result.data[0].slice(0, 4),
-                        //   result.data[1].slice(0, 4),
-                        // ];
-                    }
-
-                    let q = choose(questions);
-                    setQuestion(q);
-                    setData(shuffledData);
-                }, 1000);
-            }
-
-            const sessionData = window.localStorage.getItem("data");
-            // console.log("session data", sessionData);
-            if (sessionData !== null) {
-                setData(JSON.parse(sessionData));
-            } else {
-                fetchData();
-            }
-        }, []);
+        // useEffect(() => {
+        //     if (response && Object.keys(response).length > 0) {
+        //         window.localStorage.setItem("response", JSON.stringify(response));
+        //     }
+        // }, [response]);
+        //
+        // useEffect(() => {
+        //     if (response && Object.keys(response).length > 0) {
+        //         window.localStorage.setItem("answerIndex", answerIndex);
+        //     }
+        // }, [answerIndex]);
+        //
+        // useEffect(() => {
+        //     // console.log(question);
+        //     if (response && Object.keys(response).length > 0) {
+        //         window.localStorage.setItem("qualResponseIndex", qualResponseIndex);
+        //     }
+        // }, [qualResponseIndex]);
+        //
+        // useEffect(() => {
+        //     // console.log(instructionResponse);
+        //     if (instructionResponse !== null) {
+        //         window.localStorage.setItem("instructionResponse", instructionResponse);
+        //     }
+        // }, [instructionResponse]);
+        //
+        // useEffect(() => {
+        //     // console.log(question);
+        //     if (question) {
+        //         window.localStorage.setItem("question", question);
+        //     }
+        // }, [question]);
+        //
+        // useEffect(() => {
+        //     // console.log(data);
+        //     if (data) {
+        //         window.localStorage.setItem("data", JSON.stringify(data));
+        //     }
+        // }, [data]);
+        //
+        // useEffect(() => {
+        //     async function fetchData() {
+        //         const result = await axios.get("/api/data");
+        //         setTimeout(() => {
+        //             console.log(result.data);
+        //             // let shuffledData = [shuffle(result.data[0]), shuffle(result.data[1])];
+        //             let shuffledData;
+        //             if (DEV) {
+        //                 shuffledData = [
+        //                     result.data[0].slice(0, 8),
+        //                     result.data[1].slice(0, 8),
+        //                 ];
+        //             } else {
+        //                 shuffledData = [result.data[0], result.data[1]];
+        //                 // shuffledData = [
+        //                 //   result.data[0].slice(0, 4),
+        //                 //   result.data[1].slice(0, 4),
+        //                 // ];
+        //             }
+        //
+        //             let q = choose(questions);
+        //             setQuestion(q);
+        //             setData(shuffledData);
+        //         }, 1000);
+        //     }
+        //
+        //     const sessionData = window.localStorage.getItem("data");
+        //     // console.log("session data", sessionData);
+        //     if (sessionData !== null) {
+        //         setData(JSON.parse(sessionData));
+        //     } else {
+        //         fetchData();
+        //     }
+        // }, []);
 
         return (
             <div className="app" style={{height: "100%", lineHeight: "150%"}}>
