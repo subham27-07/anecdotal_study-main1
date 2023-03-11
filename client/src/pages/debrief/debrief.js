@@ -41,10 +41,9 @@ export default function Debrief(props) {
           Debriefing
         </div>
         <div>
-          <p><b>Title of the Project:</b> News Articles with Data Visualizations
-             <b>Principal investigator:</b> Dr. Wenwen Dou, Department of Computer Science</p>
-          <p>Title of the Project: News Articles with Data Visualizations
-             Principal investigator: Dr. Wenwen Dou, Department of Computer Science</p>
+          <p><b>Title of the Project:</b> News Articles with Data Visualizations</p>
+          <p><b>Principal investigator:</b> Dr. Wenwen Dou, Department of Computer Science</p>
+
         </div>
         <div className={styles.paragraph}>
           <p>

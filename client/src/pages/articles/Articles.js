@@ -36,10 +36,10 @@ export default function Articles(props) {
             text: {
                 subTitle: ["Since 2002, the", "number of", "Americans who have died" +
                 " every year from Drug Overdose..."],
-                subTitle2: "",
+                subTitle2: "Drug use disorder is a complex condition in which there is uncontrolled use of a drug despite harmful consequences.",
 
                 body: ['Since 2002,', ' the number of', ' Americans who have died every year from Drug Overdoses has' +
-                ' increased by more than', '222.16 percent.',
+                ' increased by more than', '200 percent.',
                     ' In 2015, more Americans died from drug overdoses than from car accidents and gun homicides' +
                     ' combined.It\'s' +
                     ' the worst drug overdose epidemic in American history, spurred by rising drug abuse, ' +
@@ -60,7 +60,7 @@ export default function Articles(props) {
                     subTitle2: "",
 
                     body: ["Since 2002,", " the percentage of", " American population with drug use disorders has" +
-                    " increased by more than", " 137 percent.",
+                    " increased by more than", " 38.6 percent.",
                         "The United States is currently in the grips of a powerful drug epidemic, with the share of" +
                         " population with drug use disorders steadily climbing every year." +
                         "A drug use disorder is a behavioral condition that affects a person’s brain and behavior, leading" +
@@ -82,10 +82,11 @@ export default function Articles(props) {
                     " opioids..."],
 
                     subTitle2: "Synthetic opioids are a type of opioids that are synthesized in a laboratory. Other" +
-                        " opioids include illegal drugs such as heroin and cocaine and prescription opioids such as Oxycodone.",
+                        " (non-synthetic) opioids include illegal drugs such as heroin and cocaine and prescription" +
+                        " opioids such as Oxycodone.",
 
                     body: ["Since 2002,", " the number of ", "Americans who have died every year from overdoses of" +
-                    " synthetic" + " opioids has increased by more than", " 5451 percent.", "Substance use disorders" +
+                    " synthetic" + " opioids has increased by more than", " 5351 percent.", "Substance use disorders" +
                     " refer to direct deaths from overdoses of illicit drugs synthetic opioids (mostly Fentanyl)." +
                     " We know that substance use is more dangerous than it has ever been, as" + " fentanyl has continued to" +
                     " permeate the illicit drug supply, increasing the risk for overdoses among both people with" +
