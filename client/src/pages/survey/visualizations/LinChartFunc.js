@@ -123,6 +123,7 @@ export default function LinChartFunc(props) {
         if (definedValues.length === userDataLine.current.length) {
             switch (props.visStep){
                 case 0:
+                    window.scrollTo(0,0);
                     renderAnimation();
                     d3.select(svgRef.current).style('pointer-events','none');
                     props.responses.current.responses[`${props.alias}`] = {

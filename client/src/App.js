@@ -99,14 +99,14 @@ const App = () => {
     const treatment = useRef()
 
     const treatmentSelector = () => {
-        // const tr = choose(['txt', 'visual', 'control'])
-        const tr = ['visual','txt','control'][2];   // ONLY FOR TESTING. SHOULD KEEP COMMENTED
+        const tr = choose(['txt', 'visual', 'control'])
+        // const tr = ['visual','txt','control'][0];   // ONLY FOR TESTING. SHOULD KEEP COMMENTED
         treatment.current = tr
         // console.log(treatment.current)
         if(tr === 'visual'){
             return [...pre_pages, 'training', 'articles', ...post_pages]
         }else{
-            post_pages.splice(2,1,'training')
+            post_pages.splice(2,0,'training')
         }
         return [...pre_pages, 'articles', ...post_pages]
     }

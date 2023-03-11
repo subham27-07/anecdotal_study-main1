@@ -8,7 +8,7 @@ import LineChartDrawHandler from "../survey/visualizations/LineChartDrawHandler"
 
 const instructionsContent = {
     txt: "Select your guess from the dropdown provided below.",
-    vis: " Draw your guess on the chart below.",
+    visual: " Draw your guess on the chart below.",
     control: "Read the article below."
 }
 
@@ -36,7 +36,7 @@ export default function Articles(props) {
             text: {
                 subTitle: ["Since 2002, the", "number of", "Americans who have died" +
                 " every year from Drug Overdose..."],
-                subTitle2: "Drug use disorder is a complex condition in which there is uncontrolled use of a drug despite harmful consequences.",
+                subTitle2: "",
 
                 body: ['Since 2002,', ' the number of', ' Americans who have died every year from Drug Overdoses has' +
                 ' increased by more than', '200 percent.',
@@ -57,7 +57,7 @@ export default function Articles(props) {
                 id: "Two",
                 text: {
                     subTitle: ["Since 2002, the", "percentage of", "American population with drug use disorders has..."],
-                    subTitle2: "",
+                    subTitle2: "Drug use disorder is a complex condition in which there is uncontrolled use of a drug despite harmful consequences.",
 
                     body: ["Since 2002,", " the percentage of", " American population with drug use disorders has" +
                     " increased by more than", " 38.6 percent.",
@@ -67,7 +67,8 @@ export default function Articles(props) {
                         " to a person’s inability to control their use of drugs including legal or illegal drugs." +
                         "Drug use disorders occur when an individual compulsively misuses drugs and continues" +
                         " abusing the substance despite knowing the negative impact it has on their life."],
-                    instructions: "How has the percentage of Americans with drug use disorders in the US changed" + " since 2002?" + ` ${instructionsContent[props.treatment.current]}`,
+                    instructions: "How has the percentage of Americans with drug use disorders in the US changedsince 2002?"
+                        + ` ${instructionsContent[props.treatment.current]}`,
                     definitions: "",
                 },
                 image: "https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/002.png",

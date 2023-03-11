@@ -51,7 +51,6 @@ export default function RecallSurvey(props){
                             "A lot",
                             "Extremely",
                         ],
-                        // correctAnswer: "a news headline",
                     },
                     {
                         name: "view_opinion",
@@ -65,7 +64,6 @@ export default function RecallSurvey(props){
                             "A lot",
                             "Extremely",
                         ],
-                        // correctAnswer: "a news headline",
                     },
                     ...extraQuestions,
                 ],
@@ -164,6 +162,7 @@ export default function RecallSurvey(props){
         }
     }
     const model = new Survey.Model(json);
+    model.focusFirstQuestionAutomatic = false;
     model.showCompletedPage = false;
     model.onTextMarkdown.add((sender, options) => {
         var text = options.text;

@@ -101,7 +101,10 @@ export default function ArticlesRecall(props) {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-    }, [])
+        if(interactionStep===1){
+            window.scrollTo(0, 0);
+        }
+    }, [article, interactionStep])
     useEffect(()=>{
         console.log(
             ['!completed', !completed],
