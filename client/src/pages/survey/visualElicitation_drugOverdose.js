@@ -1,6 +1,6 @@
-import React, { useRef, lazy, Suspense, useState } from 'react';
+import React from 'react';
 
-import { Divider, Typography, Container, Button } from "@mui/material";
+import { Typography, Container } from "@mui/material";
 
 import "survey-react/survey.css";
 import styles from "./articles.module.css";

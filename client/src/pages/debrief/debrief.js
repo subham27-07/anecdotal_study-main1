@@ -30,7 +30,7 @@ export default function Debrief(props) {
   useEffect(() => {
     axios.get("api/debrief").then((res) => {
       setToken(res.data.token);
-      console.log(res);
+      // console.log(res);
     });
   }, []);
 

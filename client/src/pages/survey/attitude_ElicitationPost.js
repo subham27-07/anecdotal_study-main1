@@ -1,12 +1,10 @@
 import React, { useRef } from "react";
-import { atom, selector } from "recoil";
+import { selector } from "recoil";
 import { useHistory, useLocation } from "react-router-dom";
 import pageHandler from "../pageHandler";
 import axios from "axios";
 import * as Survey from "survey-react";
-import { Divider, Typography, Container } from "@mui/material";
-import Tweet from "../../components/tweet/tweet";
-import TweetQuote from "../../components/tweet/tweetQuote";
+import {  Container } from "@mui/material";
 import { useRecoilValue } from "recoil";
 import { questionState } from "../../atoms/questionSelector";
 import "survey-react/survey.css";
@@ -16,7 +14,6 @@ const Attitude_ElicitationPost = (props) => {
   const history = useHistory();
   const location = useLocation();
   const questionCondition = useRecoilValue(questionState);
-  // console.log(questionCondition);
   const extraQuestions =
     questionCondition === "strength"
       ? [
@@ -130,15 +127,15 @@ const Attitude_ElicitationPost = (props) => {
     if (!option.isNextPage) return;
     let allTrue = true;
     survey.getAllQuestions().forEach((q) => {
-      if (survey.currentPage == q.page) {
+      if (survey.currentPage === q.page) {
         let correct = isAnswerCorrect(q);
-        correct = correct == undefined ? true : correct;
+        correct = correct === undefined ? true : correct;
 
         allTrue = allTrue && correct;
         renderCorrectAnswer(q);
       }
     });
-    console.log(allTrue);
+    // console.log(allTrue);
     if (allTrue) {
       option.allowChanging = true;
     } else {
@@ -159,10 +156,10 @@ const Attitude_ElicitationPost = (props) => {
   }
   function isAnswerCorrect(q) {
     const right = q.correctAnswer;
-    if (right == undefined) return undefined;
+    if (right === undefined) return undefined;
     if (!right || q.isEmpty()) return undefined;
     var left = q.value;
-    if (!Array.isArray(right)) return right == left;
+    if (!Array.isArray(right)) return right === left;
     if (!Array.isArray(left)) left = [left];
     for (var i = 0; i < left.length; i++) {
       if (right.indexOf(left[i]) < 0) return false;
@@ -243,7 +240,6 @@ export const labelSelector = selector({
             "Probably yes",
             "Definitely yes",
           ];
-          break;
         case "strength":
           return [
             "Extremely Serious Problem",
@@ -252,7 +248,7 @@ export const labelSelector = selector({
             "Minor Problem",
             "Not a Problem",
           ];
-  
+        default:
           break;
       }
     },

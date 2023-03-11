@@ -32,9 +32,9 @@ const InstructionPre = (props) => {
 
     const onComplete = (survey, options) => {
         //Write survey results into database
-        console.log("Survey results: " + JSON.stringify(survey.data));
+        // console.log("Survey results: " + JSON.stringify(survey.data));
         axios.post("/api/instructionPost_Recall", survey.data).then((response) => {
-            console.log(response);
+            // console.log(response);
             let nextPage = pageHandler(location.pathname);
             history.push(nextPage);
         });

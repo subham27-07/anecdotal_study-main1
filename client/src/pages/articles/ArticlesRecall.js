@@ -105,24 +105,24 @@ export default function ArticlesRecall(props) {
             window.scrollTo(0, 0);
         }
     }, [article, interactionStep])
-    useEffect(()=>{
-        console.log(
-            ['!completed', !completed],
-            ['formCompleted', !formCompleted],
-            ['cond', (props.treatment.current !== 'control')],
-            ['disabled', (!completed && props.treatment.current !== 'control' && !formCompleted)]
-
-        )
-    },[completed,formCompleted])
+    // useEffect(()=>{
+    //     console.log(
+    //         ['!completed', !completed],
+    //         ['formCompleted', !formCompleted],
+    //         ['cond', (props.treatment.current !== 'control')],
+    //         ['disabled', (!completed && props.treatment.current !== 'control' && !formCompleted)]
+    //
+    //     )
+    // },[completed,formCompleted])
 
     function makeImportant(whichText) {
-        return articleContent.articles2[article].text[whichText].map((d) => {
+        return articleContent.articles2[article].text[whichText].map((d,i) => {
             if (['number', 'percentage', 'percent'].some(
                 (keyword) => {
                     return d.includes(keyword);
                 }
             )) {
-                return (<strong> {d} </strong>);
+                return (<strong key={`text_bold_${i}`}> {d} </strong>);
             } else {
                 return (d)
             }

@@ -1,7 +1,6 @@
-import React, {useRef, useState} from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import React, {useRef} from "react";
 import * as Survey from "survey-react";
-import { Divider, Typography, Container } from "@mui/material";
+import { Container } from "@mui/material";
 import { useRecoilValue } from "recoil";
 import { questionState } from "../../atoms/questionSelector";
 import "survey-react/survey.css";

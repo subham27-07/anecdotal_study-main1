@@ -18,12 +18,6 @@ import InstructionPost_Recall from "./pages/survey/instructionPost_Recall";
 import InstructionPre from "./pages/survey/instructionPre";
 import ConsentPage from "./pages/consent/consent";
 import DebriefPage from "./pages/debrief/debrief";
-import Instructions1 from "./pages/instructions/instruction1_better";
-import InstructionsStrength from "./pages/instructions/instructionsStrength_better";
-import InstructionsShare from "./pages/instructions/instructionsShare_better";
-
-import Instructions3 from "./pages/instructions/instructions3_better";
-import Instructions4 from "./pages/instructions/instructions4_better";
 import Quiz from "./pages/survey/quiz";
 
 import VisualElicitation_drugOverdose from "./pages/survey/visualElicitation_drugOverdose";
@@ -113,6 +107,8 @@ const App = () => {
 
     window.scrollTo(0,0);
 
+    
+    
     // useEffect(() => {
     //     window.addEventListener("beforeunload", alertUser);
     //     return () => {
@@ -248,14 +244,8 @@ const App = () => {
         return (
             <div className="app" style={{height: "100%", lineHeight: "150%"}}>
                 <Router>
-                    {/*<NavBar height={"7%"} className="navBar"></NavBar>*/}
-                    <div
-                        // style={{width: "100%", height: "86%", overflow: "auto"}}
-                        // id="scrollWrapper"
-                    >
+                    <div>
                         <Container
-                            // style={{ height: "86%", margin: "0 auto",  }}
-                            // style={{ height: "93%" }}
                             id="root-container"
                             maxWidth="lg"
                         >
@@ -279,70 +269,24 @@ const App = () => {
                                 <Route path="/pre">
                                     <PreSurveyPage pages={study_pages}/>
                                 </Route>
-                                {/*<Route path="/instructions1">*/}
-                                {/*    <Instructions1*/}
-                                {/*        treatment = {treatment.current}*/}
-                                {/*        pages={study_pages}></Instructions1>*/}
-                                {/*</Route>*/}
-                                {/*<Route*/}
-                                {/*    path="/instructions2"*/}
-                                {/*    render={() => {*/}
-                                {/*        if (question === "strength") {*/}
-                                {/*            return <InstructionsStrength pages={study_pages}/>;*/}
-                                {/*        } else {*/}
-                                {/*            // return <Redirect to="/instructions3"></Redirect>;*/}
-                                {/*            return <InstructionsShare pages={study_pages}/>;*/}
-                                {/*        }*/}
-                                {/*    }}*/}
-                                {/*></Route>*/}
                                 <Route path={'/instructionsGeneral'} >
                                     <InstructionsGeneral treatment={treatment.current} pages={study_pages}/>
                                     </Route>
-                                {/*<Route path="/Instructions3">*/}
-                                {/*    <Instructions3 pages={study_pages}/>*/}
-                                {/*</Route>*/}
                                 <Route path="/quiz">
                                     <Quiz pages={study_pages}/>
                                 </Route>
-                                {/*<Route path="/textelicitation_drugOverdose">*/}
-                                {/*    <Textelicitation_drugOverdose pages={study_pages}/>*/}
-                                {/*</Route>*/}
                                 <Route path="/attitude_Elicitation">
                                     <Attitude_Elicitation pages={study_pages}/>
                                 </Route>
                                 <Route path="/topic_Involvement">
                                     <Topic_Involvement pages={study_pages}/>
                                 </Route>
-                                {/*<Route path="/textelicitation_AmericanPopulation">*/}
-                                {/*    <Textelicitation_AmericanPopulation pages={study_pages}/>*/}
-                                {/*</Route>*/}
-                                {/*<Route path="/textelicitation_Opioids">*/}
-                                {/*    <Textelicitation_Opioids pages={study_pages}/>*/}
-                                {/*</Route>*/}
-                                {/*<Route path="/noelicitation_drugOverdose">*/}
-                                {/*    <Noelicitation_drugOverdose pages={study_pages}/>*/}
-                                {/*</Route>*/}
-                                {/*<Route path="/noelicitation_AmericanPopulation">*/}
-                                {/*    <Noelicitation_AmericanPopulation pages={study_pages}/>*/}
-                                {/*</Route>*/}
-                                {/*<Route path="/noelicitation_Opioids">*/}
-                                {/*    <Noelicitation_Opioids pages={study_pages}/>*/}
-                                {/*</Route>*/}
-                                {/*<Route path="/recall_drugOverdose">*/}
-                                {/*    <Recall_drugOverdose pages={study_pages}/>*/}
-                                {/*</Route>*/}
                                 <Route path="/training">
                                     <InstructionPost_Elicitation pages={study_pages}/>
                                 </Route>
                                 <Route path="/visualElicitation_drugOverdose">
                                     <VisualElicitation_drugOverdose pages={study_pages}/>
                                 </Route>
-                                {/*<Route path="/visualElicitation_population">*/}
-                                {/*    <VisualElicitation_population pages={study_pages}/>*/}
-                                {/*</Route>*/}
-                                {/*<Route path="/visualElicitation_Opioids">*/}
-                                {/*    <VisualElicitation_Opioids pages={study_pages}/>*/}
-                                {/*</Route>*/}
                                 <Route path="/instructionPost_Elicitation">
                                     <InstructionPost_Elicitation pages={study_pages}/>
                                 </Route>
@@ -353,33 +297,9 @@ const App = () => {
                                 <Route path="/instructionPre">
                                     <InstructionPre pages={study_pages}/>
                                 </Route>
-
-                                {/*<Route path="/recall_Opioids">*/}
-                                {/*    <Recall_Opioids pages={study_pages}/>*/}
-                                {/*</Route>*/}
-                                {/*<Route path="/recall_population">*/}
-                                {/*    <Recall_population pages={study_pages}/>*/}
-                                {/*</Route>*/}
-                                {/*<Route path="/attitude_recallDrug">*/}
-                                {/*    <Attitude_recallDrug pages={study_pages}/>*/}
-                                {/*</Route>*/}
-                                {/*<Route path="/attitude_recallPopulation">*/}
-                                {/*    <Attitude_recallPopulation pages={study_pages}/>*/}
-                                {/*</Route>*/}
-                                {/*<Route path="/attitude_recallOpioids">*/}
-                                {/*    <Attitude_recallOpioids pages={study_pages}/>*/}
-                                {/*</Route>*/}
                                 <Route path="/attitude_ElicitationPost">
                                     <Attitude_ElicitationPost pages={study_pages}/>
                                 </Route>
-                                {/*<Route path="/task1">*/}
-                                {/*    <Task*/}
-                                {/*        phase={0}*/}
-                                {/*        opacity={loadingOpacity}*/}
-                                {/*        setLoadingOpacity={setLoadingOpacity}*/}
-                                {/*        pages={study_pages}*/}
-                                {/*    />*/}
-                                {/*</Route>*/}
                                 <Route path="/cogref">
                                     <CogRefSurveyPage pages={study_pages}/>
                                 </Route>
@@ -389,24 +309,6 @@ const App = () => {
                                 <Route path="/warnings">
                                     <Warnings pages={study_pages}/>
                                 </Route>
-                                {/*<Route path="/task2">*/}
-                                {/*    <Task*/}
-                                {/*        phase={1}*/}
-                                {/*        opacity={loadingOpacity}*/}
-                                {/*        setLoadingOpacity={setLoadingOpacity}*/}
-                                {/*        pages={study_pages}*/}
-                                {/*    />*/}
-                                {/*</Route>*/}
-                                {/*<Route path="/Instructions4">*/}
-                                {/*    <Instructions4 pages={study_pages}/>*/}
-                                {/*</Route>*/}
-                                {/*<Route path="/task3">*/}
-                                {/*    <QualTask*/}
-                                {/*        opacity={loadingOpacity}*/}
-                                {/*        setLoadingOpacity={setLoadingOpacity}*/}
-                                {/*        pages={study_pages}*/}
-                                {/*    />*/}
-                                {/*</Route>*/}
                                 <Route path="/post">
                                     <PostSurveyPage pages={study_pages}/>
                                 </Route>
@@ -425,7 +327,6 @@ const App = () => {
                             </Switch>
                         </Container>
                     </div>
-                    {/*<BottomNav height="7%"></BottomNav>*/}
                 </Router>
                 <LoadingCircle opacity={loadingOpacity} pages={study_pages}/>
             </div>
