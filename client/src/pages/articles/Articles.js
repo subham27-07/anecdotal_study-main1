@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from "react";
 import styles from './articles.module.css'
 import pageHandler from "../pageHandler";
 import {useHistory, useLocation} from "react-router-dom";
-import {FormControl, InputLabel, MenuItem, Select} from "@mui/material";
+import {FormControl, FormHelperText, InputLabel, MenuItem, Select} from "@mui/material";
 import axios from "axios";
 import LineChartDrawHandler from "../survey/visualizations/LineChartDrawHandler";
 
@@ -14,18 +14,26 @@ const instructionsContent = {
 
 
 export default function Articles(props) {
-
-    const [article, setArticle] = useState(0);
-    const [completed, setCompleted] = useState(false);
-    const [interactionStep, setInteractionStep] = useState(0);
+    const treatment = localStorage.getItem('treatment');
+    const [article, setArticle] = useState(()=>{
+        const savedArticle = JSON.parse(localStorage.getItem('ArticleNumber'));
+        return savedArticle || 0;
+    });
+    const [completed, setCompleted] = useState(()=>{
+        const articleCompleted = JSON.parse(localStorage.getItem('articleCompleted'));
+        return articleCompleted || false;
+    });
+    const [interactionStep, setInteractionStep] = useState(()=>{
+        const savedIntStep = JSON.parse(localStorage.getItem('articleIntStep'));
+        return savedIntStep || 0;
+    });
     const location = useLocation();
     const [trend, setTrend] = React.useState("");
     const articleResponses = useRef({
-        treatment: props.treatment.current,
+        treatment: treatment,
         responses: {}
     })
     const history = useHistory();
-
 
     const articleContent = {
         title: 'How Bad Is the Drug Overdose Epidemic?',
@@ -46,7 +54,7 @@ export default function Articles(props) {
                     'increased availability of prescription opioids and an influx of Drug Overdose potent synthetics like Fentanyl and Carfentanil.' +
                     ' Drug overdoses are now the leading cause of death for Americans under 50.'],
                 instructions: "How has the number of Americans died from drug overdoses in the US changed since 2002?" +
-                    ` ${instructionsContent[props.treatment.current]}`,
+                    ` ${instructionsContent[treatment]}`,
                 definitions: "",
             },
             image: 'https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/001.png',
@@ -68,7 +76,7 @@ export default function Articles(props) {
                         "Drug use disorders occur when an individual compulsively misuses drugs and continues" +
                         " abusing the substance despite knowing the negative impact it has on their life."],
                     instructions: "How has the percentage of Americans with drug use disorders in the US changedsince 2002?"
-                        + ` ${instructionsContent[props.treatment.current]}`,
+                        + ` ${instructionsContent[treatment]}`,
                     definitions: "",
                 },
                 image: "https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/002.png",
@@ -98,30 +106,35 @@ export default function Articles(props) {
                     " while those involving heroin decreased."],
                     instructions: "How has the number of Americans who have died every year from overdoses of synthetic" +
                         " opioids in the US changed" + " since" +
-                        " 2002?" + ` ${instructionsContent[props.treatment.current]}`,
+                        " 2002?" + ` ${instructionsContent[treatment]}`,
                     definitions: "",
                 },
                 image: "https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/003.png",
             }]
     }
 
+    useEffect(()=>{
+        localStorage.setItem('articleNumber', JSON.stringify(article));
+    },[article])
+
+    useEffect(()=>{
+        localStorage.setItem('articleIntStep', JSON.stringify(interactionStep));
+    },[interactionStep])
+
+    useEffect(()=>{
+        localStorage.setItem('articleCompleted', JSON.stringify(completed));
+    },[completed])
+
 
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [article])
 
-    // useEffect(()=> {
-    //     const savedTreatment = sessionStorage.getItem('treatment')
-    //     if(savedTreatment !== props.treatment.current){
-    //         history.push('/notice')
-    //     }
-    // },[])
-
     useEffect(() => {
         if (trend !== "") {
             // console.log(trend);
             setCompleted(() => true);
-        } else if (props.treatment.current === 'control') {
+        } else if (treatment === 'control') {
             setCompleted(() => true);
         } else {
             setCompleted(() => false);
@@ -144,7 +157,7 @@ export default function Articles(props) {
 
     // This function controls the behavior of Next button
     function articleChanger() {
-        switch (props.treatment.current) {
+        switch (treatment) {
             case 'txt':
                 articleResponses.current.responses[`${articleContent.articles[article].alias}`] = {
                     time: Date.now(),
@@ -157,7 +170,10 @@ export default function Articles(props) {
                     });
                     // pageHandler(props.pages, location.pathname);
                 } else {
-                    setArticle((prev) => prev + 1);
+                    setArticle((prev) => {
+
+                        return prev + 1
+                    });
                     setTrend(() => "");
                     // console.log('res:',articleResponses.current);
                 }
@@ -184,6 +200,7 @@ export default function Articles(props) {
                 }
                 break;
         }
+
     }
 
     // This function controls the change in the input value for dropdown
@@ -196,7 +213,6 @@ export default function Articles(props) {
             setInteractionStep((prev) => prev + 1);
         } else {
             setInteractionStep((prev) => 0);
-
         }
     };
 
@@ -208,7 +224,7 @@ export default function Articles(props) {
 
 
     function ArticleTypeSelector() {
-        switch (props.treatment.current) {
+        switch (treatment) {
             case 'control':
                 return (
                     <div className={styles.articleStructure}>
@@ -241,25 +257,29 @@ export default function Articles(props) {
                         <div className={styles.subtitle}>
                             <p className={styles.txtUnique}>{`${articleContent.articles[article].text.instructions}`}</p>
                             <hr/>
-                            <p>{makeImportant('subTitle')}
-                                <FormControl sx={{
+                            <div style={{lineHeight: '3rem'}}>{makeImportant('subTitle')}
+                                <FormControl
+                                    variant="outlined"
+                                    sx={{
                                     position: 'relative',
-                                    mx: 2,
-                                    my: 2,
+                                    mx: 3,
+                                    my: 1,
                                     minWidth: 300,
                                     top: -15,
                                     py: 2,
-                                }}>
+                                    fontSize: 12
+                                }}
+                                >
                                     <InputLabel id="trend-selector">Select Your Guess Here</InputLabel>
                                     <Select
-                                        labelId="trend-selector-label"
+                                        labelId="trend-selector"
                                         id="trend-selector-dropdown"
                                         value={trend}
                                         onChange={handleChange}
                                         autoWidth
                                         required={true}
                                         disabled={completed}
-                                        label="Select your guess here..."
+                                        // label="Select your guess here..."
                                         style={{
                                             display: 'inline-flex',
                                             position: "relative",
@@ -277,8 +297,9 @@ export default function Articles(props) {
 
 
                                     </Select>
+                                    <FormHelperText>Select your guess from the list</FormHelperText>
                                 </FormControl>
-                            </p>
+                            </div>
                             <p className={styles.txtUnique}>{`${articleContent.articles[article].text.subTitle2}`}</p>
                         </div>
                         {(() => {
@@ -378,7 +399,7 @@ export default function Articles(props) {
             </div>
             <div className={styles.navigationContainer}>
                 <button className={styles.actions} type={"button"} onClick={articleChanger}
-                        disabled={!completed && props.treatment.current !== 'control'}>
+                        disabled={!completed && treatment !== 'control'}>
                     Next
                 </button>
             </div>

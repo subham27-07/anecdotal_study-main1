@@ -135,7 +135,6 @@ export default function LinChartFunc(props) {
                     break;
                 case 1:
                     props.handleVisState();
-                    // createLineChart();
                     break;
                 default:
                     props.handleVisState();

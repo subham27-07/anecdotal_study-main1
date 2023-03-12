@@ -1,11 +1,4 @@
 import React, {useState, useEffect, useRef} from "react";
-import {useRecoilState} from "recoil";
-import {dataState} from "./atoms/data";
-import {responseState} from "./atoms/response";
-import {answerIndexState} from "./atoms/answerIndex";
-import {qualResponseState} from "./atoms/qualResponseIndex";
-import {questionState} from "./atoms/questionSelector";
-import {instructionResponseState} from "./atoms/instructionResponse";
 import Container from "@mui/material/Container";
 //pages
 import PreSurveyPage from "./pages/survey/pre";
@@ -27,7 +20,6 @@ import Topic_Involvement from "./pages/survey/topic_Involvement";
 
 //pages
 import LoadingCircle from "./components/loading/loading";
-import axios from "axios";
 import {
     BrowserRouter as Router,
     Switch,
@@ -36,13 +28,11 @@ import {
     useLocation,
 } from "react-router-dom";
 import {choose} from "./functions/functions";
-
 import "./App.css";
 import InstructionsGeneral from "./pages/instructions/instructions_general";
 import Articles from "./pages/articles/Articles";
 import Notice from "./pages/notice/Notice";
 import ArticlesRecall from "./pages/articles/ArticlesRecall";
-import LineChartBitcoin from "./pages/survey/visualizations/LineChartVisual_bitcoin";
 import Warnings from "./pages/notice/Warnings";
 
 function useQuery() {
@@ -53,18 +43,6 @@ function useQuery() {
 
 const App = () => {
     let query = useQuery();
-    const questions = ["strength", "share"];
-    const DEV = false;
-    const [data, setData] = useRecoilState(dataState);
-    const [response, setResponse] = useRecoilState(responseState);
-    const [answerIndex, setAnswerIndex] = useRecoilState(answerIndexState);
-    const [question, setQuestion] = useRecoilState(questionState);
-    const [qualResponseIndex, setQualResponseIndex] =
-        useRecoilState(qualResponseState);
-    const [instructionResponse, setInstructionResponse] = useRecoilState(
-        instructionResponseState
-    );
-
     const [loadingOpacity, setLoadingOpacity] = useState(0);
 
     //Randomize study flow
@@ -90,12 +68,18 @@ const App = () => {
 
     // Store design flow
     const study_pages = useRef([pre_pages])
-    const treatment = useRef()
+    // const treatment = useRef()
+
+    const [treatment, setTreatment] = useState();
 
     const treatmentSelector = () => {
-        const tr = choose(['txt', 'visual', 'control'])
+        const savedTreatment = localStorage.getItem('treatment');
+        const tr = savedTreatment !== null? savedTreatment: choose(['txt', 'visual', 'control']);
+        localStorage.setItem('treatment', tr);
         // const tr = ['visual','txt','control'][0];   // ONLY FOR TESTING. SHOULD KEEP COMMENTED
-        treatment.current = tr
+        // treatment.current = tr
+        setTreatment(prev => tr );
+        console.log([{saved: savedTreatment },{newT: tr}]);
         // console.log(treatment.current)
         if(tr === 'visual'){
             return [...pre_pages, 'training', 'articles', ...post_pages]
@@ -122,9 +106,7 @@ const App = () => {
 
         useEffect(() => {
             study_pages.current = treatmentSelector();
-            sessionStorage.setItem('treatment',treatment.current);
-            localStorage.setItem('treatment',treatment.current);
-
+            // sessionStorage.setItem('treatment',treatment.current);
         }, [])
 
         // useEffect(() => {
@@ -271,7 +253,7 @@ const App = () => {
                                     <PreSurveyPage pages={study_pages}/>
                                 </Route>
                                 <Route path={'/instructionsGeneral'} >
-                                    <InstructionsGeneral treatment={treatment.current} pages={study_pages}/>
+                                    <InstructionsGeneral pages={study_pages}/>
                                     </Route>
                                 <Route path="/quiz">
                                     <Quiz pages={study_pages}/>
@@ -317,7 +299,7 @@ const App = () => {
                                     <DebriefPage pages={study_pages}/>
                                 </Route>
                                 <Route path="/articles">
-                                    <Articles treatment={treatment} pages={study_pages}/>
+                                    <Articles pages={study_pages}/>
                                 </Route>
                                 <Route path="/articlesRecall">
                                     <ArticlesRecall treatment={treatment} pages={study_pages}/>

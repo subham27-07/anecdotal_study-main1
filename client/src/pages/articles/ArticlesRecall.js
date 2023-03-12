@@ -87,21 +87,27 @@ const articleContent = {
 
 export default function ArticlesRecall(props) {
 
-    const [article, setArticle] = useState(0);
+    const [article, setArticle] = useState(()=>{
+        const savedArticle = JSON.parse(localStorage.getItem('RecallArticleNumber'));
+        return savedArticle || 0;
+    });
     const [completed, setCompleted] = useState(false);
-    const [interactionStep, setInteractionStep] = useState(0);
+    const [interactionStep, setInteractionStep] = useState(()=> {
+        const RecallIntStep = JSON.parse(localStorage.getItem('RecallIntStep'));
+        return RecallIntStep || 0;
+    });
     const location = useLocation();
     const [trend, setTrend] = React.useState("");
     const [formCompleted, setFormCompleted] = useState(false);
     const articleResponses = useRef({
-        treatment: props.treatment.current,
+        treatment: localStorage.getItem('treatment'),
         responses: {}
     })
     const history = useHistory();
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        if(interactionStep===1){
+        if(interactionStep === 1){
             window.scrollTo(0, 0);
         }
     }, [article, interactionStep])
@@ -114,6 +120,15 @@ export default function ArticlesRecall(props) {
     //
     //     )
     // },[completed,formCompleted])
+
+    useEffect(()=>{
+        localStorage.setItem('RecallArticleNumber', JSON.stringify(article))
+    },[article])
+
+    useEffect(()=>{
+        localStorage.setItem('RecallIntStep', JSON.stringify(interactionStep))
+    },[interactionStep])
+
 
     function makeImportant(whichText) {
         return articleContent.articles2[article].text[whichText].map((d,i) => {
