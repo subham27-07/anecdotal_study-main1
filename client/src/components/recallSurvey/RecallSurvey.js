@@ -98,7 +98,7 @@ export default function RecallSurvey(props){
     const onComplete = (survey, options) => {
         //Write survey results into database
         // console.log(options);
-        console.log("Survey results: " + JSON.stringify(quizResponses.current));
+        // console.log("Survey results: " + JSON.stringify(quizResponses.current));
         props.responses.current[props.alias] = quizResponses.current;
 
         props.setFormCompleted(()=> true);
@@ -118,7 +118,7 @@ export default function RecallSurvey(props){
                 renderCorrectAnswer(q);
             }
         });
-        console.log(allTrue);
+        // console.log(allTrue);
         if (allTrue) {
             option.allowChanging = true;
         } else {

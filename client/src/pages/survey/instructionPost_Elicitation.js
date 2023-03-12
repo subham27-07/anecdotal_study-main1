@@ -240,7 +240,8 @@ const InstructionPost_Elicitation = (props) => {
                       style={{fontWeight: "bold"}}> practice drawing </span> a timeline in the chart below
                     </Typography>
 
-                    <Typography variant={"body1"}>
+                    <div className={styles.articleContainer}>
+                        <hr/>
                         <p className={`${styles.paragraph} ${styles.subtitle}`}>Please draw an <span
                             style={{fontWeight: "bold"}}>increasing trend after year 2016.</span>
                         </p><p
@@ -256,7 +257,7 @@ const InstructionPost_Elicitation = (props) => {
                                                                                                                         year
                                                                                                                         2016.</strong>
                     </p>
-                    </Typography>
+                    </div>
 
                 </div>
 

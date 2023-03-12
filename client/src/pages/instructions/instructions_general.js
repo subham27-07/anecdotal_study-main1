@@ -80,7 +80,7 @@ export default function InstructionsGeneral(props) {
         if (step === textual_instructions.length) {
             handleButtonLabel();
         }
-        console.log(`${step}`);
+        // console.log(`${step}`);
     }, [step])
 
     function createMessage() {

@@ -27,11 +27,11 @@
 // gets next page path.
 
 const pageHandler = (pages, donePage) => {
-  console.log(donePage);
+  // console.log(donePage);
   let pageIndex = pages.current.indexOf(donePage.replace("/", ""));
-  console.log(pageIndex);
+  // console.log(pageIndex);
   if (pageIndex !== -1) {
-    console.log(`/${pages.current[pageIndex + 1]}`);
+    // console.log(`/${pages.current[pageIndex + 1]}`);
     return `/${pages.current[pageIndex + 1]}`;
   }
 };

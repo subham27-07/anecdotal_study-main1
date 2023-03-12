@@ -131,7 +131,7 @@ const Topic_Involvement = (props) => {
     //Write survey results into database
     // console.log(options);
 
-    console.log("Survey results: " + JSON.stringify(quizResponses.current));
+    // console.log("Survey results: " + JSON.stringify(quizResponses.current));
     axios.post("/api/topic_Involvement", quizResponses.current).then((response) => {
       let nextPage = pageHandler(props.pages, location.pathname);
       history.push(nextPage);

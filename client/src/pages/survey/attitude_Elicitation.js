@@ -116,7 +116,7 @@ const Attitude_Elicitation = (props) => {
 
   const onComplete = (survey, options) => {
 
-    console.log("Survey results: " + JSON.stringify(quizResponses.current));
+    // console.log("Survey results: " + JSON.stringify(quizResponses.current));
     axios.post("/api/attitude_Elicitation", quizResponses.current).then((response) => {
       let nextPage = pageHandler(props.pages, location.pathname);
       history.push(nextPage);
@@ -135,7 +135,7 @@ const Attitude_Elicitation = (props) => {
         renderCorrectAnswer(q);
       }
     });
-    console.log(allTrue);
+    // console.log(allTrue);
     if (allTrue) {
       option.allowChanging = true;
     } else {

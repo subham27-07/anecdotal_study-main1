@@ -33,7 +33,9 @@ export default function Debrief(props) {
       // console.log(res);
     });
   }, []);
-
+  useEffect(()=>{
+    localStorage.clear();
+  },[])
   return (
     <Container className={styles.mainContainer}>
       <div className={styles.articleStructure}>
