@@ -28,10 +28,9 @@ export default function Warnings(props) {
                   To ensure accurate and valid results, it is important that all study participants follow the
                   instructions carefully. Please take note of the following instructions:
                   <ul>
-                      <li> Do not refresh any page.
-                      </li>
-                      <li>Use a laptop/desktop computer.</li>
+                      <li>Use a <b>laptop/desktop computer.</b></li>
                       <li>Use an updated version of Chrome browser.</li>
+                      <li> Do not refresh any page. Also, <b>do not use the browser's Back button.</b></li>
                       <li>Read the information and instructions on each page carefully.</li>
                       <li>Make sure you understand each step of the study before proceeding.</li>
                       <li>You will receive a token at the end of the study when you reach the debriefing page. Copy
