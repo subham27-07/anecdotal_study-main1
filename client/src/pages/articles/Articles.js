@@ -204,8 +204,10 @@ export default function Articles(props) {
 
             case 'control':
                 if (article === 2) {
-                    let nextPage = pageHandler(props.pages, location.pathname);
-                    history.push(nextPage);
+                    axios.post("/api/articles", articleResponses.current).then((response) => {
+                        let nextPage = pageHandler(props.pages, location.pathname);
+                        history.push(nextPage);
+                    });
                 } else {
                     setArticle((prev) => prev + 1);
                 }
