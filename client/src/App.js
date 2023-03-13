@@ -82,7 +82,6 @@ const App = () => {
         // const tr = ['visual','txt','control'][0];   // ONLY FOR TESTING. SHOULD KEEP COMMENTED
         // treatment.current = tr
         setTreatment(prev => tr);
-        console.log([{saved: savedTreatment}, {newT: tr}]);
         // console.log(treatment.current)
         if (tr === 'visual') {
             return [...pre_pages, 'training', 'articles', ...post_pages]
@@ -94,10 +93,6 @@ const App = () => {
 
     window.scrollTo(0, 0);
 
-    console.log({
-        pageurl: pageURL,
-        refreshlock: refreshLock,
-    })
 
     function refreshAction() {
         return window.confirm("You may lose your progress and may not get paid.");
