@@ -15,20 +15,23 @@ const instructionsContent = {
 
 export default function Articles(props) {
     const treatment = localStorage.getItem('treatment');
-    const [article, setArticle] = useState(()=>{
-        const savedArticle = JSON.parse(localStorage.getItem('ArticleNumber'));
+    const [article, setArticle] = useState(() => {
+        const savedArticle = JSON.parse(localStorage.getItem('articleNumber'));
         return savedArticle || 0;
     });
-    const [completed, setCompleted] = useState(()=>{
+    const [completed, setCompleted] = useState(() => {
         const articleCompleted = JSON.parse(localStorage.getItem('articleCompleted'));
         return articleCompleted || false;
     });
-    const [interactionStep, setInteractionStep] = useState(()=>{
+    const [interactionStep, setInteractionStep] = useState(() => {
         const savedIntStep = JSON.parse(localStorage.getItem('articleIntStep'));
         return savedIntStep || 0;
     });
     const location = useLocation();
-    const [trend, setTrend] = React.useState("");
+    const [trend, setTrend] = React.useState(() => {
+        const savedArticleTrend = JSON.parse(localStorage.getItem('articleTrend'));
+        return savedArticleTrend || "";
+    });
     const articleResponses = useRef({
         treatment: treatment,
         responses: {}
@@ -64,7 +67,8 @@ export default function Articles(props) {
                 name: "% of American Population with Drug Overdose Disorder",
                 id: "Two",
                 text: {
-                    subTitle: ["Since 2002, the", "percentage of", "American population with drug use disorders has..."],
+                    subTitle: ["Since 2002, the", "percentage of", " American population with drug use disorders" +
+                    " has..."],
                     subTitle2: "Drug use disorder is a complex condition in which there is uncontrolled use of a drug despite harmful consequences.",
 
                     body: ["Since 2002,", " the percentage of", " American population with drug use disorders has" +
@@ -75,7 +79,8 @@ export default function Articles(props) {
                         " to a person’s inability to control their use of drugs including legal or illegal drugs." +
                         "Drug use disorders occur when an individual compulsively misuses drugs and continues" +
                         " abusing the substance despite knowing the negative impact it has on their life."],
-                    instructions: "How has the percentage of Americans with drug use disorders in the US changedsince 2002?"
+                    instructions: "How has the percentage of Americans with drug use disorders in the US changed" +
+                        " since 2002?"
                         + ` ${instructionsContent[treatment]}`,
                     definitions: "",
                 },
@@ -94,9 +99,9 @@ export default function Articles(props) {
                         " (non-synthetic) opioids include illegal drugs such as heroin and cocaine and prescription" +
                         " opioids such as Oxycodone.",
 
-                    body: ["Since 2002,", " the number of ", "Americans who have died every year from overdoses of" +
-                    " synthetic" + " opioids has increased by more than", " 5351 percent.", "Substance use disorders" +
-                    " refer to direct deaths from overdoses of illicit drugs synthetic opioids (mostly Fentanyl)." +
+                    body: ["Since 2002,", " the number of ", "Americans who have died every year from" +
+                    " synthetic opioids (mostly Fentanyl) overdoses has increased by more than", " 5351 percent.",
+                        "Substance use disorders refer to direct deaths from overdoses of illicit drugs." +
                     " We know that substance use is more dangerous than it has ever been, as" + " fentanyl has continued to" +
                     " permeate the illicit drug supply, increasing the risk for overdoses among both people with" +
                     " substance use disorders as well as those who use drugs occasionally, said Dr. Nora Volkow," +
@@ -113,17 +118,23 @@ export default function Articles(props) {
             }]
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         localStorage.setItem('articleNumber', JSON.stringify(article));
-    },[article])
+    }, [article])
 
-    useEffect(()=>{
+    useEffect(() => {
+        localStorage.setItem('articleTrend', JSON.stringify(trend));
+    }, [trend])
+
+
+    useEffect(() => {
         localStorage.setItem('articleIntStep', JSON.stringify(interactionStep));
-    },[interactionStep])
+    }, [interactionStep])
 
-    useEffect(()=>{
+    useEffect(() => {
         localStorage.setItem('articleCompleted', JSON.stringify(completed));
-    },[completed])
+
+    }, [completed])
 
 
     useEffect(() => {
@@ -261,14 +272,14 @@ export default function Articles(props) {
                                 <FormControl
                                     variant="outlined"
                                     sx={{
-                                    position: 'relative',
-                                    mx: 3,
-                                    my: 1,
-                                    minWidth: 300,
-                                    top: -15,
-                                    py: 2,
-                                    fontSize: 12
-                                }}
+                                        position: 'relative',
+                                        mx: 3,
+                                        my: 1,
+                                        minWidth: 300,
+                                        top: -15,
+                                        py: 2,
+                                        fontSize: 12
+                                    }}
                                 >
                                     <InputLabel id="trend-selector">Select Your Guess Here</InputLabel>
                                     <Select
