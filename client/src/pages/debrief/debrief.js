@@ -63,7 +63,7 @@ export default function Debrief(props) {
             into Prolific. You may close the page after you have entered the code
           </h3>
           <hr />
-          <h3>463377EF</h3>
+          <h3>C1A1OI90</h3>
           {/*<h3>{`${token}`}</h3>*/}
           <hr />
 

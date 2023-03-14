@@ -82,14 +82,18 @@ const Consent = (props) => {
 
       <h2>Key Information about this research study:</h2>
       <p>
-      You are invited to participate in a research study. Participation in this research study is voluntary. The information provided on this form is to help you decide whether or not to participate. If you have any questions, please ask. 
-      The purpose of this study is to examine how people explore news articles with data visualizations on a range of topics related to public health and policy.
-      We are asking individuals who are age 18 and older and fluent in English to complete an online task in one 30-minute session. You will be asked to complete computer-based tasks in which you answer questions about how you evaluate information, answer questions on your attitudes toward different topics, and explore a series of news articles with data visualizations. These online tasks must be completed using a laptop or desktop computer with a physical keyboard.
-      If you complete the study you will receive you will receive 5 extra credit points toward your grade in DSBA -5122. Although you can choose to end your participation at any time, you must finish the entire task in order to receive extra credit. Low-quality submissions (due to low-effort responses or rapid completion time) will not be eligible for extra credit. If you choose not to participate, you will have the opportunity to complete an alternative extra credit assignment for an equivalent amount of extra credit.
-      This study requires your focused attention for the entire duration of the task. Please do not continue unless you are in a suitable, distraction-free environment that will allow you to focus on the task.
-      There is a rare risk of distress or effects on reputation in the event of a breach of confidentiality, since some of the study materials involve political opinions and attitudes. 
-      The broader benefits of this research include improved scientific understanding of how people engage with news articles with data visualization.
-      Please read this form before you decide whether to participate in this research study.
+      The purpose of this study is to examine how people explore news articles with data visualizations on a range of topics related to public health and policy. 
+      We are asking individuals who are age 18 and older and fluent in English to complete an online task in one 30-minute session. You will be asked to complete computer-based tasks in which you answer questions about how you evaluate information, answer questions on your attitudes toward different topics, and explore a series of news articles with data visualizations. These online tasks must be completed using a laptop or desktop computer with a physical keyboard. 
+      If you complete the study you will receive a $6 payment through Prolific. Although
+you can choose to end your participation at any time, you must finish the entire task in
+order to receive payment. Low-quality submissions (due to low-effort responses or rapid
+completion time) will not be eligible for payment and will lead to rejection (see Prolific
+guidelines for rejection).
+This study requires your focused attention for the entire duration of the task. Please do
+not continue unless you are in a suitable, distraction-free environment that will allow you
+to focus on the task. 
+Please read this form before you decide whether to participate in this research study. 
+
       </p>
 
       <h2>Why are we doing this study? </h2>
@@ -118,7 +122,16 @@ desktop computer with a physical keyboard. You will be asked to complete questio
 
       <h2>How will my information be protected?</h2>
       <p>
-      Research data collected as part of this study will remain confidential to the fullest extent possible. Identifiable information will be stored separately from all other data collected during this study. Records of your responses during the study will be linked to identifiable data using a master list; this list will be permanently deleted upon completion of the study. Until that point any identifiable information will be stored in protected databases or cloud storage accounts accessible only to the researchers or University administrators.
+      Research data collected as part of this study will remain confidential to the fullest extent possible.
+      Identifiable information will be stored separately from all other data collected during this study. Records
+      of your responses during the study will be linked to identifiable data using a master list; this list will be
+      permanently deleted upon completion of the study. Until that point any identifiable information will be
+      stored in protected databases or cloud storage accounts accessible only to the researchers or University
+      administrators. <br></br><br></br>
+      Please note: If you receive a payment upon completion of the study, your identifiable information
+      (Prolific ID#) will be retained as a record of the payment. Identifying information will be stored in a
+      password-protected cloud storage account for 3 years following the expiration of the IRB approval for
+      this study, after which any records containing identifiable information will be deleted. 
       </p>
 
       <h2>How will my information be used after the study is over? </h2>
@@ -128,7 +141,10 @@ desktop computer with a physical keyboard. You will be asked to complete questio
 
       <h2>Will I receive an incentive for taking part in this study? </h2>
       <p>
-          You will receive a <b>5 extra credit</b> points toward your grade in DSBA 5122 upon completion of the study. Although you can choose to end your participation at any time, you must finish the entire task in order to receive the extra credits. Low-quality submissions (due to low-effort responses or rapid completion time) will not be eligible for extra credit. More details on rejection criteria can be found at Prolific guidelines for rejection. If you choose not to participate, you will have the opportunity to complete an alternative extra credit assignment for an equivalent amount of extra credit.
+      You will receive a $6 payment through Prolific for participation upon completion of the study. Although
+      you can choose to end your participation at any time, you must finish the entire task in order to receive
+      payment. Low-quality submissions (due to low-effort responses or rapid completion time) will
+      not be eligible for payment and will lead to rejection (see Prolific guidelines for rejection).
       </p>
 
       <h2>What are my rights if I take part in this study? </h2>
@@ -139,7 +155,7 @@ desktop computer with a physical keyboard. You will be asked to complete questio
       <h2>Who can answer my questions about this study and my rights as a participant? </h2>
       <p>
       For questions about this research, you may contact Dr. Wenwen Dou (wenwen.dou@uncc.edu). 
-If you have questions about your rights as a research participant, or wish to obtain information, ask questions, or discuss any concerns about this study with someone other than the researcher(s), please contact the Office of Research Protections and Integrity at 704-687-1871 or uncc-irb@uncc.edu. 
+      If you have questions about your rights as a research participant, or wish to obtain information, ask questions, or discuss any concerns about this study with someone other than the researcher(s), please contact the Office of Research Protections and Integrity at 704-687-1871 or uncc-irb@uncc.edu. 
 
       </p>
 
