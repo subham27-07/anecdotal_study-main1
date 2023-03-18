@@ -33,14 +33,6 @@ export default function Articles(props) {
         const savedArticleTrend = JSON.parse(localStorage.getItem('articleTrend'));
         return savedArticleTrend || "";
     });
-    const [trend2, setTrend2] = React.useState(() => {
-        const savedArticleTrend = JSON.parse(localStorage.getItem('articleTrend2'));
-        return savedArticleTrend || "";
-    });
-    const [trend3, setTrend3] = React.useState(() => {
-        const savedArticleTrend = JSON.parse(localStorage.getItem('articleTrend3'));
-        return savedArticleTrend || "";
-    });
     const articleResponses = useRef({
         treatment: treatment,
         responses: {}
@@ -169,14 +161,6 @@ export default function Articles(props) {
         localStorage.setItem('articleTrend', JSON.stringify(trend));
     }, [trend])
 
-    useEffect(() => {
-        localStorage.setItem('articleTrend2', JSON.stringify(trend2));
-    }, [trend2])
-
-    useEffect(() => {
-        localStorage.setItem('articleTrend3', JSON.stringify(trend3));
-    }, [trend3])
-
 
     useEffect(() => {
         localStorage.setItem('articleIntStep', JSON.stringify(interactionStep));
@@ -287,6 +271,9 @@ export default function Articles(props) {
     };
 
 
+
+
+
     function ArticleTypeSelector() {
         switch (treatment) {
             case 'control':
@@ -366,15 +353,6 @@ export default function Articles(props) {
                 );
                 case 'txt':
                     return (
-                        <div className={styles.articleStructure}>
-                            <div className={styles.title}>
-                                {`${articleContent.title}`}
-                            </div>
-                            <div className={styles.subtitle}>
-                                <p className={styles.txtUnique}>{`${articleContent.articles[article].text.instructions}`}</p>
-                            </div>
-                            <hr/>
-
                         <TextElicitation 
                         instructionText = {articleContent.articles[article].text.instructions}
                         subTitle = {makeImportant('subTitle')}
@@ -384,32 +362,9 @@ export default function Articles(props) {
                         setTrend = {setTrend}
                         trend = {trend}
                         styles = {styles}
-                       
+                        title ={articleContent.title}
                         >
                         </TextElicitation>
-                        {trend!==''?<TextElicitation
-                        instructionText = {articleContent.articles[article].text.instructions}
-                        subTitle = {makeImportant('subTitleExtra1')}
-                        subTitle2 = {articleContent.articles[article].text.subTitle2}
-                        body = {makeImportant('bodyExtra1')}
-                        images = {articleContent.articles[article].imageExtra1}
-                        setTrend = {setTrend2}
-                        trend = {trend2}
-                        styles = {styles}
-                        >
-                        </TextElicitation>:''}
-                        {trend2!==''?<TextElicitation 
-                        instructionText = {articleContent.articles[article].text.instructions}
-                        subTitle = {makeImportant('subTitleExtra2')}
-                        subTitle2 = {articleContent.articles[article].text.subTitle2}
-                        body = {makeImportant('bodyExtra2')}
-                        images = {articleContent.articles[article].imageExtra2}
-                        setTrend = {setTrend3}
-                        trend = {trend3}
-                        styles = {styles}
-                        >
-                        </TextElicitation>:''}
-                        </div>
                     );
             case 'visual':
                 return (<div className={styles.articleStructure}>

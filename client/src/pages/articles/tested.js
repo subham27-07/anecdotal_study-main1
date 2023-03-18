@@ -5,7 +5,6 @@ import {useHistory, useLocation} from "react-router-dom";
 import {FormControl, FormHelperText, InputLabel, MenuItem, Select} from "@mui/material";
 import axios from "axios";
 import LineChartDrawHandler from "../survey/visualizations/LineChartDrawHandler";
-import TextElicitation from "../../components/TextElicitation/TextElicitation";
 
 const instructionsContent = {
     txt: "Select your guess from the dropdown provided below.",
@@ -31,14 +30,6 @@ export default function Articles(props) {
     const location = useLocation();
     const [trend, setTrend] = React.useState(() => {
         const savedArticleTrend = JSON.parse(localStorage.getItem('articleTrend'));
-        return savedArticleTrend || "";
-    });
-    const [trend2, setTrend2] = React.useState(() => {
-        const savedArticleTrend = JSON.parse(localStorage.getItem('articleTrend2'));
-        return savedArticleTrend || "";
-    });
-    const [trend3, setTrend3] = React.useState(() => {
-        const savedArticleTrend = JSON.parse(localStorage.getItem('articleTrend3'));
         return savedArticleTrend || "";
     });
     const articleResponses = useRef({
@@ -68,12 +59,17 @@ export default function Articles(props) {
                 subTitleExtra1: ["Since 2002, the", "number of", "Americans who have died" +
                 " every year from HIV..."],
                 bodyExtra1: ['Since 2002,', ' the number of', ' Americans who have died every year from HIV' +
-                ' has stedily declined. Death rates fell sharply since the development of antiretroviral treatments. Nevertheless, H.I.V. remains a leading cause of death for those 25 to 44.'],
+                ' has spiked and then plummeted. Death rates fell sharply with the development of antiretroviral treatments. Nevertheless, H.I.V. remains a leading cause of death for those 25 to 44, particularly among black men.'],
                 subTitleExtra2: ["Since 2002, the", "number of", "Americans who have died" +
                 " every year from Gun Violence.."],
-                bodyExtra2: ['Since 2002,', ' the number of Americans', ' who have died every year from from guns ' +
-                    ' has been', 'slowly rising by 8 percent.',
-                        'after a drop between the year 2009 to 2015. Gun deaths, most of which are suicides, the largest single-year jump since the C.D.C. began keeping computerized death records.'],
+                bodyExtra2: ['Since 2002,', ' the number of', 'Americans who have died every year from Gun Violence has' +
+                    ' In 2015, more Americans died from drug overdoses than from car accidents and gun homicides' +
+                    ' combined.It\'s' +
+                    ' the worst drug overdose epidemic in American history, spurred by rising drug abuse, ' +
+                    'increased availability of prescription opioids and an influx of Drug Overdose potent synthetics like Fentanyl and Carfentanil.' +
+                    ' Drug overdoses are now the leading cause of death for Americans under 50.'],
+                // bodyExtra2: ['Since 2002,', ' the number of'+ ' Americans who have died every year from Gun Violence has' +
+                // 'has been slowly rising after a drop in the 1990s. Gun deaths, most of which are suicides, increased by 8 percent in 2015, the largest single-year jump since the C.D.C. began keeping computerized death records.'],
                     instructions: "How has the number of Americans died from drug overdoses in the US changed since 2002?" +
                         ` ${instructionsContent[treatment]}`,
                     definitions: "",
@@ -101,7 +97,8 @@ export default function Articles(props) {
                     " has..."],
                     bodyExtra1: ['Since 2002,', ' the percentage of South African', ' population with drug use disorders has' +
                     ' decreased by more than', '61.6 percent.',
-                        'In South Africa, the share of population with drug use disorders steadily decline every year.'],
+                        'In South Africa, the share of population with drug use disorders steadily decline every year. A drug use disorder is a behavioral condition that affects a person’s brain and behavior, leading to a person’s inability to control their use of drugs including legal or illegal drugs. Drug use disorders occur when an individual compulsively misuses drugs and continues abusing the substance despite knowing the negative impact it has on their life. ' +
+                        ' Drug overdoses are now the leading cause of death for Americans under 50.'],
                     subTitleExtra2: ["Since 2002, the", "percentage of", " Italian population with drug use disorders" +
                     " has..."],
                     bodyExtra2: ['Since 2002,', ' the percentage of Italian', ' population with drug use disorders has' +
@@ -130,26 +127,16 @@ export default function Articles(props) {
                         " (non-synthetic) opioids include illegal drugs such as heroin and cocaine and prescription" +
                         " opioids such as Oxycodone.",
 
-                        body: ["Since 2002,", " the number of ", "Americans who have died every year from" +
-                        " synthetic opioids (mostly Fentanyl) overdoses has increased by more than", " 5351 percent.",
-                            "Substance use disorders refer to direct deaths from overdoses of illicit drugs." +
-                        " We know that substance use is more dangerous than it has ever been, as" + " fentanyl has continued to" +
-                        " permeate the illicit drug supply, increasing the risk for overdoses among both people with" +
-                        " substance use disorders as well as those who use drugs occasionally, said Dr. Nora Volkow," +
-                        " director of the National Institute on Drug Abuse. Deaths involving synthetic opioids such as" +
-                        " fentanyl increased by a marked 18% in 2021, according to the CDC data. Deaths involving" +
-                        " cocaine and psychostimulants such as methamphetamine were also significantly more frequent," +
-                        " while those involving heroin decreased."],
+                    body: ["Since 2002,", " the number of ", "Americans who have died every year from" +
+                    " synthetic opioids (mostly Fentanyl) overdoses has increased by more than"],
                     subTitleExtra1: ["Since 2002, the", "number of", "Americans who have died" +
                     " every year from Cocaine..."],
-                    bodyExtra1: ['Since 2002,', ' the percentage of Americann', ' population with Cocaine use has' +
-                    ' steadily increased by more than', '3 percent.',
-                        ''],
+                    bodyExtra1: ['Since 2002,', ' the number of', ' Americans who have died every year from HIV' +
+                    ' has spiked and then plummeted. Death rates fell sharply with the development of antiretroviral treatments. Nevertheless, H.I.V. remains a leading cause of death for those 25 to 44, particularly among black men.'],
                     subTitleExtra2: ["Since 2002, the", "number of", "Americans who have died" +
                     " every year from Heroin..."],
-                    bodyExtra2: ['Since 2002,', ' the percentage of Americann', ' population with Heroin use has' +
-                    ' steadily increased and declined after 2016 by more than', '3 percent.',
-                        ''],
+                    bodyExtra2: ['Since 2002,', ' the number of', ' Americans who have died every year from Gun Violence has' +
+                    'has been slowly rising after a drop in the 1990s. Gun deaths, most of which are suicides, increased by 8 percent in 2015, the largest single-year jump since the C.D.C. began keeping computerized death records.'],
                     instructions: "How has the number of Americans who have died every year from overdoses of synthetic" +
                         " opioids in the US changed" + " since" +
                         " 2002?" + ` ${instructionsContent[treatment]}`,
@@ -168,14 +155,6 @@ export default function Articles(props) {
     useEffect(() => {
         localStorage.setItem('articleTrend', JSON.stringify(trend));
     }, [trend])
-
-    useEffect(() => {
-        localStorage.setItem('articleTrend2', JSON.stringify(trend2));
-    }, [trend2])
-
-    useEffect(() => {
-        localStorage.setItem('articleTrend3', JSON.stringify(trend3));
-    }, [trend3])
 
 
     useEffect(() => {
@@ -372,43 +351,68 @@ export default function Articles(props) {
                             </div>
                             <div className={styles.subtitle}>
                                 <p className={styles.txtUnique}>{`${articleContent.articles[article].text.instructions}`}</p>
+                                <hr/>
+                                <div style={{lineHeight: '3rem'}}>{makeImportant('subTitle')}
+                                    <FormControl
+                                        variant="outlined"
+                                        sx={{
+                                            position: 'relative',
+                                            mx: 3,
+                                            my: 1,
+                                            minWidth: 300,
+                                            top: -15,
+                                            py: 2,
+                                            fontSize: 12
+                                        }}
+                                    >
+                                        <InputLabel id="trend-selector">Select Your Guess Here</InputLabel>
+                                        <Select
+                                            labelId="trend-selector"
+                                            id="trend-selector-dropdown"
+                                            value={trend}
+                                            onChange={handleChange}
+                                            autoWidth
+                                            required={true}
+                                            disabled={completed}
+                                            // label="Select your guess here..."
+                                            style={{
+                                                display: 'inline-flex',
+                                                position: "relative",
+                                                border: '1px solid white',
+                                                height: '18pt',
+                                                fontSize: '12pt',
+                                                backgroundColor: 'lightgray'
+                                            }}
+                                        >
+                                            <MenuItem value={1}>Significantly Decreased</MenuItem>
+                                            <MenuItem value={2}>Slightly Decreased</MenuItem>
+                                            <MenuItem value={3}>Not Much Changed</MenuItem>
+                                            <MenuItem value={4}>Slightly Increased</MenuItem>
+                                            <MenuItem value={5}>Significantly Increased</MenuItem>
+    
+    
+                                        </Select>
+                                        <FormHelperText>Select your guess from the list</FormHelperText>
+                                    </FormControl>
+                                </div>
+                                <p className={styles.txtUnique}>{`${articleContent.articles[article].text.subTitle2}`}</p>
                             </div>
-                            <hr/>
-
-                        <TextElicitation 
-                        instructionText = {articleContent.articles[article].text.instructions}
-                        subTitle = {makeImportant('subTitle')}
-                        subTitle2 = {articleContent.articles[article].text.subTitle2}
-                        body = {makeImportant('body')}
-                        images = {articleContent.articles[article].image}
-                        setTrend = {setTrend}
-                        trend = {trend}
-                        styles = {styles}
-                       
-                        >
-                        </TextElicitation>
-                        {trend!==''?<TextElicitation
-                        instructionText = {articleContent.articles[article].text.instructions}
-                        subTitle = {makeImportant('subTitleExtra1')}
-                        subTitle2 = {articleContent.articles[article].text.subTitle2}
-                        body = {makeImportant('bodyExtra1')}
-                        images = {articleContent.articles[article].imageExtra1}
-                        setTrend = {setTrend2}
-                        trend = {trend2}
-                        styles = {styles}
-                        >
-                        </TextElicitation>:''}
-                        {trend2!==''?<TextElicitation 
-                        instructionText = {articleContent.articles[article].text.instructions}
-                        subTitle = {makeImportant('subTitleExtra2')}
-                        subTitle2 = {articleContent.articles[article].text.subTitle2}
-                        body = {makeImportant('bodyExtra2')}
-                        images = {articleContent.articles[article].imageExtra2}
-                        setTrend = {setTrend3}
-                        trend = {trend3}
-                        styles = {styles}
-                        >
-                        </TextElicitation>:''}
+                            {(() => {
+                                if (completed) {
+                                    return (<div>
+                                        <div className={styles.articleImageContainer}>
+                                            <img src={`${articleContent.articles[article].image}`}
+                                                 className={styles.articleImage}
+                                                 alt='Since 2002 percentage of Americans population with drug use disorders'/>
+                                        </div>
+                                        <div className={styles.paragraph}>
+                                            {makeImportant('body')}
+                                        </div>
+                                    </div>)
+                                } else {
+                                    return ("");
+                                }
+                            })()}
                         </div>
                     );
             case 'visual':
@@ -454,7 +458,11 @@ export default function Articles(props) {
         }
     }
 
-
+    // console.log({
+    //     article: article,
+    //     completed: completed,
+    //     interactionStep: interactionStep
+    // })
 
     useEffect(() => {
         visualBehaviorHandler();
@@ -492,3 +500,65 @@ export default function Articles(props) {
             </div>
         </div>)
 };
+
+
+
+
+
+
+
+
+{/* <div className={styles.subtitle}>
+                                {makeImportant('subTitleExtra1')}
+                                <div style={{lineHeight: '3rem'}}>{makeImportant('subTitle')}
+                                    <FormControl
+                                        variant="outlined"
+                                        sx={{
+                                            position: 'relative',
+                                            mx: 3,
+                                            my: 1,
+                                            minWidth: 300,
+                                            top: -15,
+                                            py: 2,
+                                            fontSize: 12
+                                        }}
+                                    >
+                                        <InputLabel id="trend-selector">Select Your Guess Here</InputLabel>
+                                        <Select
+                                            labelId="trend-selector"
+                                            id="trend-selector-dropdown"
+                                            value={trend}
+                                            onChange={handleChange}
+                                            autoWidth
+                                            required={true}
+                                            disabled={completed}
+                                            // label="Select your guess here..."
+                                            style={{
+                                                display: 'inline-flex',
+                                                position: "relative",
+                                                border: '1px solid white',
+                                                height: '18pt',
+                                                fontSize: '12pt',
+                                                backgroundColor: 'lightgray'
+                                            }}
+                                        >
+                                            <MenuItem value={1}>Significantly Decreased</MenuItem>
+                                            <MenuItem value={2}>Slightly Decreased</MenuItem>
+                                            <MenuItem value={3}>Not Much Changed</MenuItem>
+                                            <MenuItem value={4}>Slightly Increased</MenuItem>
+                                            <MenuItem value={5}>Significantly Increased</MenuItem>
+    
+    
+                                        </Select>
+                                        <FormHelperText>Select your guess from the list</FormHelperText>
+                                    </FormControl>
+                                </div>
+                            </div>
+                            <div className={styles.paragraph}>
+                                {makeImportant('bodyExtra1')}
+                            </div>
+                            <div className={styles.articleImageContainer}>
+                                <img src={`${articleContent.articles[article].imageExtra1}`}
+                                    className={styles.articleImage}
+                                    alt='Extra image 1'/>
+                            </div> */}

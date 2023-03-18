@@ -18,7 +18,7 @@ let config;
 
 // const url = `mongodb+srv://${config.USERNAME}:${config.PASSWORD}@cluster0.7mtj9.mongodb.net/anecdotalstudy?retryWrites=true&w=majority`;
 
-const url= "mongodb+srv://subham2:12345@cluster0.t4iwt.mongodb.net/vizstudy?retryWrites=true&w=majority";
+const url= "mongodb+srv://subham2:12345@cluster0.t4iwt.mongodb.net/study2?retryWrites=true&w=majority";
 console.log(url);
 mongoose.connect(url);
 mongoose.promise = global.Promise;
