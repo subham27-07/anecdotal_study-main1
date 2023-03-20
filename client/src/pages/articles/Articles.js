@@ -24,10 +24,10 @@ export default function Articles(props) {
         const articleCompleted = JSON.parse(localStorage.getItem('articleCompleted'));
         return articleCompleted || false;
     });
-    const [interactionStep, setInteractionStep] = useState(() => {
-        const savedIntStep = JSON.parse(localStorage.getItem('articleIntStep'));
-        return savedIntStep || 0 ;
-    });
+    // const [interactionStep, setInteractionStep] = useState(() => {
+    //     const savedIntStep = JSON.parse(localStorage.getItem('articleIntStep'));
+    //     return savedIntStep || 0 ;
+    // });
     
     const[elicitationStep, setElicitationStep]=useState(()=>{
         const savedElicitationStep = JSON.parse(localStorage.getItem('savedElicitationStep'));
@@ -103,6 +103,8 @@ export default function Articles(props) {
         
             {
                 alias: 'population',
+                alias1: 'italy',
+                alias2: 'southAfrica',
                 name: "% of American Population with Drug Overdose Disorder",
                 id: "Two",
                 text: {
@@ -138,6 +140,8 @@ export default function Articles(props) {
             },
             {
                 alias: 'opioids',
+                alias1: 'cocaine',
+                alias2: 'heroin',
                 name: "Deaths from Synthetic Opioids Overdose",
                 id: "Three",
                 text: {
@@ -199,17 +203,11 @@ export default function Articles(props) {
     }, [trend3])
 
 
-    useEffect(() => {
-        localStorage.setItem('articleIntStep', JSON.stringify(interactionStep));
-    }, [interactionStep])
-
     // useEffect(() => {
-    //     localStorage.setItem('articleIntStep2', JSON.stringify(interactionStep2));
-    // }, [interactionStep2])
+    //     localStorage.setItem('articleIntStep', JSON.stringify(interactionStep));
+    // }, [interactionStep])
 
-    // useEffect(() => {
-    //     localStorage.setItem('articleIntStep3', JSON.stringify(interactionStep3));
-    // }, [interactionStep3])
+
 
     useEffect(() => {
         localStorage.setItem('articleCompleted', JSON.stringify(completed));
@@ -234,6 +232,14 @@ export default function Articles(props) {
             setCompleted(() => false);
         }
     }, [trend,trend2,trend3])
+
+    useEffect(()=>{
+        if(elicitationStep===3){
+            setCompleted(true)
+        } else{
+            setCompleted(false)
+        }
+    },[elicitationStep])
 
     function makeImportant(whichText) {
         return articleContent.articles[article].text[whichText].map((d, i) => {
@@ -280,7 +286,7 @@ export default function Articles(props) {
                     });
                 } else {
                     setCompleted((prev) => false);
-                    setInteractionStep(0);
+                    // setInteractionStep(0);
                     setArticle((prev) => prev + 1);
                 }
                 break;
@@ -304,19 +310,19 @@ export default function Articles(props) {
         setTrend(event.target.value);
     };
 
-    const interactionStepHandler = () => {
-        if (interactionStep < 1) {
-            setInteractionStep((prev) => prev + 1);
-        } else {
-            setInteractionStep((prev) => 0);
-        }
-    };
+    // const interactionStepHandler = () => {
+    //     if (interactionStep < 1) {
+    //         setInteractionStep((prev) => prev + 1);
+    //     } else {
+    //         setInteractionStep((prev) => 0);
+    //     }
+    // };
 
-    const visualBehaviorHandler = () => {
-        if (interactionStep === 1) {
-            setCompleted(() => true);
-        }
-    };
+    // const visualBehaviorHandler = () => {
+    //     if (interactionStep === 1) {
+    //         setCompleted(() => true);
+    //     }
+    // };
 
 
     function ArticleTypeSelector() {
@@ -473,69 +479,47 @@ export default function Articles(props) {
                     <LineChartDrawHandler
                     articleName={articleContent.articles[article].name}
                     alias={articleContent.articles[article].alias1}
-                    visStep={interactionStep}
-                    handleVisState={interactionStepHandler}
+                    // visStep={interactionStep}
+                    // handleVisState={interactionStepHandler}
                     handleElicitationStep = {handleElicitationStep}
                     article={article}
+                    body = {makeImportant('body')}
                     completed={completed}
                     responses={articleResponses}
                     >
                     </LineChartDrawHandler>
 
-                    {elicitationStep === 1?<LineChartDrawHandler
+                    {elicitationStep >= 1?<LineChartDrawHandler
                     articleName={articleContent.articles[article].name}
                     alias={articleContent.articles[article].alias}
-                    visStep={interactionStep}
-                    handleVisState={interactionStepHandler}
+                    // visStep={interactionStep}
+                    // handleVisState={interactionStepHandler}
                     handleElicitationStep = {handleElicitationStep}
                     article={article}
+                    body = {makeImportant('bodyExtra1')}
                     completed={completed}
                     responses={articleResponses}
                     >
                     </LineChartDrawHandler>:''}
 
-                    {elicitationStep===2?<LineChartDrawHandler
+                    {elicitationStep >= 2?<LineChartDrawHandler
                     articleName={articleContent.articles[article].name}
                     alias={articleContent.articles[article].alias2}
-                    visStep={interactionStep}
-                    handleVisState={interactionStepHandler}
+                    // visStep={interactionStep}
+                    // handleVisState={interactionStepHandler}
                     handleElicitationStep = {handleElicitationStep}
                     article={article}
+                    body = {makeImportant('bodyExtra2')}
                     completed={completed}
                     responses={articleResponses}
                     >
                     </LineChartDrawHandler>:''}
 
-                    
 
-                    {/* <LineChartDrawHandler
-                    articleName={articleContent.articles[article].name}
-                    alias={articleContent.articles[article].alias1}
-                    visStep={interactionStep2}
-                    handleVisState={interactionStepHandler}
-                    article={article}
-                    completed={completed}
-                    responses={articleResponses}
-                    >
-                    </LineChartDrawHandler>
-
-                    <LineChartDrawHandler
-                    articleName={articleContent.articles[article].name}
-                    alias={articleContent.articles[article].alias1}
-                    visStep={interactionStep3}
-                    handleVisState={interactionStepHandler}
-                    article={article}
-                    completed={completed}
-                    responses={articleResponses}
-                    >
-                    </LineChartDrawHandler> */}
-                    
-                    
-                   
                     </div>
                     
                     {(() => {
-                            if (interactionStep === 1) {
+                            if (handleElicitationStep === 1) {
                                 return (
                                     <div className={styles.paragraph}>
                                         {makeImportant('body')}
@@ -554,9 +538,9 @@ export default function Articles(props) {
 
 
 
-    useEffect(() => {
-        visualBehaviorHandler();
-    }, [interactionStep])
+    // useEffect(() => {
+    //     visualBehaviorHandler();
+    // }, [interactionStep])
 
     return (
         <div className={styles.mainContainer}>
@@ -584,7 +568,7 @@ export default function Articles(props) {
             </div>
             <div className={styles.navigationContainer}>
                 <button className={styles.actions} type={"button"} onClick={articleChanger}
-                        disabled={!completed && treatment && treatment !== 'control'}>
+                        disabled={!completed  && treatment !== 'control'}>
                     Next
                 </button>
             </div>

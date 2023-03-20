@@ -48,6 +48,10 @@ const App = () => {
     const location = useLocation();
     const [pageURL, setPageURL] = useState(location.pathname);
     const [refreshLock, setRefreshLock] = useState(false);
+    
+    useEffect (()=>{
+        window.localStorage.clear()
+    },[])
 
     // study flow based on randomization
     const pre_pages = [

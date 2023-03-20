@@ -40,6 +40,26 @@ const marginConvention = (selection, props) => {
 
 export default function LinChartFunc(props) {
 
+    // const [interactionStep, setInteractionStep] = useState(() => {
+    //     const savedIntStep = JSON.parse(localStorage.getItem('articleIntStep'));
+    //     return savedIntStep || 0 ;
+    // });
+    const [interactionStep, setInteractionStep] = useState(() => {
+        return  0 ;
+    });
+
+    // useEffect(() => {
+    //     localStorage.setItem('articleIntStep', JSON.stringify(interactionStep));
+    // }, [interactionStep])
+
+    const interactionStepHandler = () => {
+        if (interactionStep < 1) {
+            setInteractionStep((prev) => prev + 1);
+        } else {
+            setInteractionStep((prev) => 0);
+        }
+    };
+
     const data = props.data
         .map((d) => {
             if (d.year === props.startYear) {
@@ -85,10 +105,10 @@ export default function LinChartFunc(props) {
     }, [props.article,svgRef])
 
     useEffect(()=>{
-        if(props.visStep > 0){
-            d3.select(".overlay").style('pointer-events','none')
+        if(interactionStep > 0){
+            d3.select(svgRef.current).select(".overlay").style('pointer-events','none')
         }
-    },[props.visStep])
+    },[interactionStep])
 
     const transformData = (data, startYear) => {
         return data
@@ -121,11 +141,13 @@ export default function LinChartFunc(props) {
     };
     const clampFunc = (a, b, c) => Math.max(a, Math.min(b, c));
 
+
+
     const handleClick = () => {
         setIsCompleted((prev)=>!prev);
         const definedValues = userDataLine.current.filter(d => d.defined === true);
         if (definedValues.length === userDataLine.current.length) {
-            switch (props.visStep){
+            switch (interactionStep){
                 case 0:
                     // window.scrollTo(0,0);
                     console.log('here')
@@ -135,15 +157,15 @@ export default function LinChartFunc(props) {
                         time: Date.now(),
                         choice: userDataLine.current,
                     }
-                    props.handleVisState();
+                    interactionStepHandler();
                     setIsCompleted(()=> false);
                     props.handleElicitationStep();
                     break;
                 case 1:
-                    props.handleVisState();
+                    interactionStepHandler();
                     break;
                 default:
-                    props.handleVisState();
+                    interactionStepHandler();
                     break;
 
             }
@@ -246,13 +268,13 @@ export default function LinChartFunc(props) {
         }
 
         clipElement.current = svg.append('clipPath')
-                                 .attr('id', 'clip')
+                                 .attr('id', `clip-${props.alias}`)
                                  .append('rect')
                                  .attr('width', x(startYear))
                                  .attr('height', innerHeight + 20)
                                  .attr('transform', 'translate(0, -20)');
         const lastDate = data[data.length-1]
-        const clipPath = svg.append('g').attr('clip-path', 'url(#clip)');
+        const clipPath = svg.append('g').attr('clip-path', `url(#clip-${props.alias})`);
         // MAIN AREA
         clipPath.append('path')
                 .data([mainLine])
@@ -415,7 +437,7 @@ export default function LinChartFunc(props) {
                   type,
                   startYear
               } = props;
-        const overlay = d3.select('.overlay').node();
+        const overlay = svg.select('.overlay').node();
         const mousePos = d3.mouse(overlay);
         const year = clampFunc(startYear + 1, dataXMax, x.invert(mousePos[0]));
         const newVal = clampFunc(0, y.domain()[1], y.invert(mousePos[1]));
