@@ -29,6 +29,7 @@ export default function Articles(props) {
         return savedIntStep || 0;
     });
     const location = useLocation();
+    
     const [trend, setTrend] = React.useState(() => {
         const savedArticleTrend = JSON.parse(localStorage.getItem('articleTrend'));
         return savedArticleTrend || "";
@@ -41,6 +42,10 @@ export default function Articles(props) {
         const savedArticleTrend = JSON.parse(localStorage.getItem('articleTrend3'));
         return savedArticleTrend || "";
     });
+
+    
+
+    
     const articleResponses = useRef({
         treatment: treatment,
         responses: {}
@@ -51,6 +56,8 @@ export default function Articles(props) {
         title: 'How Bad Is the Drug Overdose Epidemic?',
         articles: [{
             alias: 'drugOverdose',
+            alias1: 'gun',
+            alias2: 'hiv',
             name: "Deaths from Drug Overdose",
             id: "One",
             text: {
@@ -81,7 +88,9 @@ export default function Articles(props) {
                 image: 'https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/001.png',
                 imageExtra1: 'https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/HIV_data.png',
                 imageExtra2: 'https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/Gun_violence.png',
+                       
         },
+        
             {
                 alias: 'population',
                 name: "% of American Population with Drug Overdose Disorder",
@@ -158,7 +167,9 @@ export default function Articles(props) {
                 image: "https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/003.png",
                 imageExtra1: "https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/cocain.png",
                 imageExtra2: "https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/Heroin.png",
-            }]
+            },
+
+        ]
     }
 
     useEffect(() => {
@@ -193,15 +204,18 @@ export default function Articles(props) {
     }, [article])
 
     useEffect(() => {
-        if (trend !== "") {
-            // console.log(trend);
-            setCompleted(() => true);
+        if (trend && trend2 && trend3) {
+            console.log('testCompleted');
+            setCompleted((prev) => {
+            // localStorage.setItem('articleCompleted','true')
+            return true});
+            
         } else if (treatment === 'control') {
             setCompleted(() => true);
         } else {
             setCompleted(() => false);
         }
-    }, [trend])
+    }, [trend,trend2,trend3])
 
     function makeImportant(whichText) {
         return articleContent.articles[article].text[whichText].map((d, i) => {
@@ -369,18 +383,19 @@ export default function Articles(props) {
                         <div className={styles.articleStructure}>
                             <div className={styles.title}>
                                 {`${articleContent.title}`}
+                                
                             </div>
                             <div className={styles.subtitle}>
                                 <p className={styles.txtUnique}>{`${articleContent.articles[article].text.instructions}`}</p>
+                                <hr/>
                             </div>
-                            <hr/>
 
                         <TextElicitation 
                         instructionText = {articleContent.articles[article].text.instructions}
-                        subTitle = {makeImportant('subTitle')}
+                        subTitle = {makeImportant('subTitleExtra1')}
                         subTitle2 = {articleContent.articles[article].text.subTitle2}
-                        body = {makeImportant('body')}
-                        images = {articleContent.articles[article].image}
+                        body = {makeImportant('bodyExtra1')}
+                        images = {articleContent.articles[article].imageExtra1}
                         setTrend = {setTrend}
                         trend = {trend}
                         styles = {styles}
@@ -389,10 +404,10 @@ export default function Articles(props) {
                         </TextElicitation>
                         {trend!==''?<TextElicitation
                         instructionText = {articleContent.articles[article].text.instructions}
-                        subTitle = {makeImportant('subTitleExtra1')}
+                        subTitle = {makeImportant('subTitleExtra2')}
                         subTitle2 = {articleContent.articles[article].text.subTitle2}
-                        body = {makeImportant('bodyExtra1')}
-                        images = {articleContent.articles[article].imageExtra1}
+                        body = {makeImportant('bodyExtra2')}
+                        images = {articleContent.articles[article].imageExtra2}
                         setTrend = {setTrend2}
                         trend = {trend2}
                         styles = {styles}
@@ -400,10 +415,10 @@ export default function Articles(props) {
                         </TextElicitation>:''}
                         {trend2!==''?<TextElicitation 
                         instructionText = {articleContent.articles[article].text.instructions}
-                        subTitle = {makeImportant('subTitleExtra2')}
+                        subTitle = {makeImportant('subTitle')}
                         subTitle2 = {articleContent.articles[article].text.subTitle2}
-                        body = {makeImportant('bodyExtra2')}
-                        images = {articleContent.articles[article].imageExtra2}
+                        body = {makeImportant('body')}
+                        images = {articleContent.articles[article].image}
                         setTrend = {setTrend3}
                         trend = {trend3}
                         styles = {styles}
@@ -426,6 +441,27 @@ export default function Articles(props) {
                         <p className={styles.txtUnique}>{`${articleContent.articles[article].text.subTitle2}`}</p>
                     </div>
 
+                    <div>
+                   
+                    <LineChartDrawHandler
+                        articleName={articleContent.articles[article].name}
+                        alias={articleContent.articles[article].alias1}
+                        visStep={interactionStep}
+                        handleVisState={interactionStepHandler}
+                        article={article}
+                        completed={completed}
+                        responses={articleResponses}
+                    />
+                    
+                    <LineChartDrawHandler
+                        articleName={articleContent.articles[article].name}
+                        alias={articleContent.articles[article].alias2}
+                        visStep={interactionStep}
+                        handleVisState={interactionStepHandler}
+                        article={article}
+                        completed={completed}
+                        responses={articleResponses}
+                    />
                     <LineChartDrawHandler
                         articleName={articleContent.articles[article].name}
                         alias={articleContent.articles[article].alias}
@@ -435,11 +471,12 @@ export default function Articles(props) {
                         completed={completed}
                         responses={articleResponses}
                     />
+                   
+                    </div>
                     {(() => {
                             if (interactionStep === 1) {
                                 return (
                                     <div className={styles.paragraph}>
-
                                         {makeImportant('body')}
                                     </div>
                                 )
@@ -486,7 +523,7 @@ export default function Articles(props) {
             </div>
             <div className={styles.navigationContainer}>
                 <button className={styles.actions} type={"button"} onClick={articleChanger}
-                        disabled={!completed && treatment !== 'control'}>
+                        disabled={!completed && treatment && treatment !== 'control'}>
                     Next
                 </button>
             </div>

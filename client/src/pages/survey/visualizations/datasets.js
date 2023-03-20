@@ -333,6 +333,222 @@ export const populationData = [
     },
   ];
 
+export const italyData = [
+    {
+      id: 1,
+      value: 2.51,
+      year: 1999,
+    },
+    {
+      id: 1,
+      value: 2.55,
+      year: 2000,
+    },
+    {
+      id: 1,
+      value: 2.60,
+      year: 2001,
+    },
+    {
+      id: 1,
+      value: 2.67,
+      year: 2002,
+    },
+    {
+      id: 1,
+      value: 2.75,
+      year: 2003,
+    },
+    {
+      id: 1,
+      value: 2.81,
+      year: 2004,
+    },
+    {
+      id: 1,
+      value: 2.87,
+      year: 2005,
+    },
+    {
+      id: 1,
+      value: 2.91,
+      year: 2006,
+    },
+    {
+      id: 1,
+      value: 2.94,
+      year: 2007,
+    },
+    {
+      id: 1,
+      value: 2.98,
+      year: 2008,
+    },
+    {
+      id: 1,
+      value: 3.01,
+      year: 2009,
+    },
+    {
+      id: 1,
+      value: 3.05,
+      year: 2010,
+    },
+    {
+      id: 1,
+      value: 3.11,
+      year: 2011,
+    },
+    {
+      id: 1,
+      value: 3.19,
+      year: 2012,
+    },
+    {
+      id: 1,
+      value: 3.28,
+      year: 2013,
+    },
+    {
+      id: 1,
+      value: 3.37,
+      year: 2014,
+    },
+    {
+      id: 1,
+      value: 3.46,
+      year: 2015,
+    },
+    {
+      id: 1,
+      value: 3.56,
+      year: 2016,
+    },
+    {
+      id: 1,
+      value: 3.64,
+      year: 2017,
+    },
+    {
+      id: 1,
+      value: 3.67,
+      year: 2018,
+    },
+    {
+      id: 1,
+      value: 3.70,
+      year: 2019,
+    },
+  ];
+
+export const southAfricaData = [
+    {
+      id: 1,
+      value: 2.51,
+      year: 1999,
+    },
+    {
+      id: 1,
+      value: 2.55,
+      year: 2000,
+    },
+    {
+      id: 1,
+      value: 2.60,
+      year: 2001,
+    },
+    {
+      id: 1,
+      value: 2.67,
+      year: 2002,
+    },
+    {
+      id: 1,
+      value: 2.75,
+      year: 2003,
+    },
+    {
+      id: 1,
+      value: 2.81,
+      year: 2004,
+    },
+    {
+      id: 1,
+      value: 2.87,
+      year: 2005,
+    },
+    {
+      id: 1,
+      value: 2.91,
+      year: 2006,
+    },
+    {
+      id: 1,
+      value: 2.94,
+      year: 2007,
+    },
+    {
+      id: 1,
+      value: 2.98,
+      year: 2008,
+    },
+    {
+      id: 1,
+      value: 3.01,
+      year: 2009,
+    },
+    {
+      id: 1,
+      value: 3.05,
+      year: 2010,
+    },
+    {
+      id: 1,
+      value: 3.11,
+      year: 2011,
+    },
+    {
+      id: 1,
+      value: 3.19,
+      year: 2012,
+    },
+    {
+      id: 1,
+      value: 3.28,
+      year: 2013,
+    },
+    {
+      id: 1,
+      value: 3.37,
+      year: 2014,
+    },
+    {
+      id: 1,
+      value: 3.46,
+      year: 2015,
+    },
+    {
+      id: 1,
+      value: 3.56,
+      year: 2016,
+    },
+    {
+      id: 1,
+      value: 3.64,
+      year: 2017,
+    },
+    {
+      id: 1,
+      value: 3.67,
+      year: 2018,
+    },
+    {
+      id: 1,
+      value: 3.70,
+      year: 2019,
+    },
+  ];
+
 export const bitcoinData = [
   {
     id: 1,
@@ -383,4 +599,434 @@ export const bitcoinData = [
 ];
 
 
+export const hivData = [
+  {
+    id: 1,
+    value: 17187,
+    year: 1999,
+  },
+  {
+    id: 1,
+    value: 16072,
+    year: 2000,
+  },
+  {
+    id: 1,
+    value: 15493,
+    year: 2001,
+  },
+  {
+    id: 1,
+    value: 15477,
+    year: 2002,
+  },
+  {
+    id: 1,
+    value: 15100,
+    year: 2003,
+  },
+  {
+    id: 1,
+    value: 14416,
+    year: 2004,
+  },
+  {
+    id: 1,
+    value: 13839,
+    year: 2005,
+  },
+  {
+    id: 1,
+    value: 13265,
+    year: 2006,
+  },
+  {
+    id: 1,
+    value: 12444,
+    year: 2007,
+  },
+  {
+    id: 1,
+    value: 11400,
+    year: 2008,
+  },
+  {
+    id: 1,
+    value: 10551,
+    year: 2009,
+  },
+  {
+    id: 1,
+    value: 9143,
+    year: 2010,
+  },
+  {
+    id: 1,
+    value: 8428,
+    year: 2011,
+  },
+  {
+    id: 1,
+    value: 7973,
+    year: 2012,
+  },
+  {
+    id: 1,
+    value: 7682,
+    year: 2013,
+  },
+  {
+    id: 1,
+    value: 7413,
+    year: 2014,
+  },
+  {
+    id: 1,
+    value: 7089,
+    year: 2015,
+  },
+  {
+    id: 1,
+    value: 7430,
+    year: 2016,
+  },
+  {
+    id: 1,
+    value: 7338,
+    year: 2017,
+  },
+  {
+    id: 1,
+    value: 7200,
+    year: 2018,
+  },
+  {
+    id: 1,
+    value: 7053,
+    year: 2019,
+  },
+];
 
+export const gunData = [
+  {
+    id: 1,
+    value: 42401,
+    year: 1999,
+  },
+  {
+    id: 1,
+    value: 43354,
+    year: 2000,
+  },
+  {
+    id: 1,
+    value: 43788,
+    year: 2001,
+  },
+  {
+    id: 1,
+    value: 45380,
+    year: 2002,
+  },
+  {
+    id: 1,
+    value: 44757,
+    year: 2003,
+  },
+  {
+    id: 1,
+    value: 44933,
+    year: 2004,
+  },
+  {
+    id: 1,
+    value: 45343,
+    year: 2005,
+  },
+  {
+    id: 1,
+    value: 45316,
+    year: 2006,
+  },
+  {
+    id: 1,
+    value: 43945,
+    year: 2007,
+  },
+  {
+    id: 1,
+    value: 39790,
+    year: 2008,
+  },
+  {
+    id: 1,
+    value: 36216,
+    year: 2009,
+  },
+  {
+    id: 1,
+    value: 35332,
+    year: 2010,
+  },
+  {
+    id: 1,
+    value: 35303,
+    year: 2011,
+  },
+  {
+    id: 1,
+    value: 36415,
+    year: 2012,
+  },
+  {
+    id: 1,
+    value: 35369,
+    year: 2013,
+  },
+  {
+    id: 1,
+    value: 35398,
+    year: 2014,
+  },
+  {
+    id: 1,
+    value: 37757,
+    year: 2015,
+  },
+  {
+    id: 1,
+    value: 40327,
+    year: 2016,
+  },
+  {
+    id: 1,
+    value: 40231,
+    year: 2017,
+  },
+  {
+    id: 1,
+    value: 39404,
+    year: 2018,
+  },
+  {
+    id: 1,
+    value: 39107,
+    year: 2019,
+  },
+];
+
+export const cocaineData = [
+  {
+    id: 1,
+    value: 42401,
+    year: 1999,
+  },
+  {
+    id: 1,
+    value: 43354,
+    year: 2000,
+  },
+  {
+    id: 1,
+    value: 43788,
+    year: 2001,
+  },
+  {
+    id: 1,
+    value: 45380,
+    year: 2002,
+  },
+  {
+    id: 1,
+    value: 44757,
+    year: 2003,
+  },
+  {
+    id: 1,
+    value: 44933,
+    year: 2004,
+  },
+  {
+    id: 1,
+    value: 45343,
+    year: 2005,
+  },
+  {
+    id: 1,
+    value: 45316,
+    year: 2006,
+  },
+  {
+    id: 1,
+    value: 43945,
+    year: 2007,
+  },
+  {
+    id: 1,
+    value: 39790,
+    year: 2008,
+  },
+  {
+    id: 1,
+    value: 36216,
+    year: 2009,
+  },
+  {
+    id: 1,
+    value: 35332,
+    year: 2010,
+  },
+  {
+    id: 1,
+    value: 35303,
+    year: 2011,
+  },
+  {
+    id: 1,
+    value: 36415,
+    year: 2012,
+  },
+  {
+    id: 1,
+    value: 35369,
+    year: 2013,
+  },
+  {
+    id: 1,
+    value: 35398,
+    year: 2014,
+  },
+  {
+    id: 1,
+    value: 37757,
+    year: 2015,
+  },
+  {
+    id: 1,
+    value: 40327,
+    year: 2016,
+  },
+  {
+    id: 1,
+    value: 40231,
+    year: 2017,
+  },
+  {
+    id: 1,
+    value: 39404,
+    year: 2018,
+  },
+  {
+    id: 1,
+    value: 39107,
+    year: 2019,
+  },
+];
+
+export const heroinData = [
+  {
+    id: 1,
+    value: 42401,
+    year: 1999,
+  },
+  {
+    id: 1,
+    value: 43354,
+    year: 2000,
+  },
+  {
+    id: 1,
+    value: 43788,
+    year: 2001,
+  },
+  {
+    id: 1,
+    value: 45380,
+    year: 2002,
+  },
+  {
+    id: 1,
+    value: 44757,
+    year: 2003,
+  },
+  {
+    id: 1,
+    value: 44933,
+    year: 2004,
+  },
+  {
+    id: 1,
+    value: 45343,
+    year: 2005,
+  },
+  {
+    id: 1,
+    value: 45316,
+    year: 2006,
+  },
+  {
+    id: 1,
+    value: 43945,
+    year: 2007,
+  },
+  {
+    id: 1,
+    value: 39790,
+    year: 2008,
+  },
+  {
+    id: 1,
+    value: 36216,
+    year: 2009,
+  },
+  {
+    id: 1,
+    value: 35332,
+    year: 2010,
+  },
+  {
+    id: 1,
+    value: 35303,
+    year: 2011,
+  },
+  {
+    id: 1,
+    value: 36415,
+    year: 2012,
+  },
+  {
+    id: 1,
+    value: 35369,
+    year: 2013,
+  },
+  {
+    id: 1,
+    value: 35398,
+    year: 2014,
+  },
+  {
+    id: 1,
+    value: 37757,
+    year: 2015,
+  },
+  {
+    id: 1,
+    value: 40327,
+    year: 2016,
+  },
+  {
+    id: 1,
+    value: 40231,
+    year: 2017,
+  },
+  {
+    id: 1,
+    value: 39404,
+    year: 2018,
+  },
+  {
+    id: 1,
+    value: 39107,
+    year: 2019,
+  },
+];

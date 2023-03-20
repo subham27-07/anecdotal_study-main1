@@ -72,13 +72,17 @@ export default function LinChartFunc(props) {
 //     },[props.visStep])
 
     useEffect(() => {
-        d3.selectAll("svg > *").remove();
+        // d3.selectAll("svg > *").remove();
+        if(svgRef.current===null){
+            return
+        }
+        d3.select(svgRef.current).selectAll("*").remove()
         userDataLine.current = data;
         xRef.current = null;
         youDrawIt.current = null;
         clipElement.current = null;
         createLineChart()
-    }, [props.article])
+    }, [props.article,svgRef])
 
     useEffect(()=>{
         if(props.visStep > 0){
@@ -123,7 +127,8 @@ export default function LinChartFunc(props) {
         if (definedValues.length === userDataLine.current.length) {
             switch (props.visStep){
                 case 0:
-                    window.scrollTo(0,0);
+                    // window.scrollTo(0,0);
+                    console.log('here')
                     renderAnimation();
                     d3.select(svgRef.current).style('pointer-events','none');
                     props.responses.current.responses[`${props.alias}`] = {
@@ -164,16 +169,19 @@ export default function LinChartFunc(props) {
             bottom: 30,
             left: 50,
         };
-        const svgContainer = d3.select(svgRef.current);
+        const containerDiv = d3.select(svgRef.current);
 
-        const containerDiv = document.getElementById('line-chart');
+        // const containerDiv = document.getElementById('line-chart');
+        console.log(containerDiv)
+        console.log(svgRef.current)
+        
 
         const {
                   svg,
                   innerWidth,
                   innerHeight
-              } = marginConvention(svgContainer, {
-            width: containerDiv.offsetWidth,
+              } = marginConvention(containerDiv, {
+            width: containerDiv.node().getBoundingClientRect().width,
 
             height,
             margin,
@@ -465,8 +473,11 @@ export default function LinChartFunc(props) {
     });
     return (
         <div>
-            <div id="line-chart">
+            {/* <div id="line-chart">
                 <svg ref={svgRef}/>
+            </div> */}
+            <div class="line-chart" width ="100%">
+                <svg ref={svgRef} width ="100%"/>
             </div>
             <div style={{
                 marginTop: '5%',

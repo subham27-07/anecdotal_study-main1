@@ -7,9 +7,7 @@ const TextElicitation = (props)=>{
     const completed = props.trend !== ''
     const handleChange = (event)=>{
         props.setTrend(event.target.value);
-
-    // 
-        
+    //   
     }
     // const styles = props.styles
     // 
