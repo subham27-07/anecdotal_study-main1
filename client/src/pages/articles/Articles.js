@@ -26,24 +26,34 @@ export default function Articles(props) {
     });
     const [interactionStep, setInteractionStep] = useState(() => {
         const savedIntStep = JSON.parse(localStorage.getItem('articleIntStep'));
-        return savedIntStep || 0;
+        return savedIntStep || 0 ;
     });
+    
+    const[elicitationStep, setElicitationStep]=useState(()=>{
+        const savedElicitationStep = JSON.parse(localStorage.getItem('savedElicitationStep'));
+        return savedElicitationStep || 0;
+    })
+    
+
     const location = useLocation();
     
-    const [trend, setTrend] = React.useState(() => {
+    const [trend, setTrend] = useState(() => {
         const savedArticleTrend = JSON.parse(localStorage.getItem('articleTrend'));
         return savedArticleTrend || "";
     });
-    const [trend2, setTrend2] = React.useState(() => {
+    const [trend2, setTrend2] = useState(() => {
         const savedArticleTrend = JSON.parse(localStorage.getItem('articleTrend2'));
         return savedArticleTrend || "";
     });
-    const [trend3, setTrend3] = React.useState(() => {
+    const [trend3, setTrend3] = useState(() => {
         const savedArticleTrend = JSON.parse(localStorage.getItem('articleTrend3'));
         return savedArticleTrend || "";
     });
 
-    
+    const handleElicitationStep= ()=>{
+        setElicitationStep((prev) => prev + 1)
+
+    }
 
     
     const articleResponses = useRef({
@@ -192,6 +202,14 @@ export default function Articles(props) {
     useEffect(() => {
         localStorage.setItem('articleIntStep', JSON.stringify(interactionStep));
     }, [interactionStep])
+
+    // useEffect(() => {
+    //     localStorage.setItem('articleIntStep2', JSON.stringify(interactionStep2));
+    // }, [interactionStep2])
+
+    // useEffect(() => {
+    //     localStorage.setItem('articleIntStep3', JSON.stringify(interactionStep3));
+    // }, [interactionStep3])
 
     useEffect(() => {
         localStorage.setItem('articleCompleted', JSON.stringify(completed));
@@ -443,7 +461,7 @@ export default function Articles(props) {
 
                     <div>
                    
-                    <LineChartDrawHandler
+                    {/* <LineChartDrawHandler
                         articleName={articleContent.articles[article].name}
                         alias={articleContent.articles[article].alias1}
                         visStep={interactionStep}
@@ -451,28 +469,71 @@ export default function Articles(props) {
                         article={article}
                         completed={completed}
                         responses={articleResponses}
-                    />
+                    /> */}
+                    <LineChartDrawHandler
+                    articleName={articleContent.articles[article].name}
+                    alias={articleContent.articles[article].alias1}
+                    visStep={interactionStep}
+                    handleVisState={interactionStepHandler}
+                    handleElicitationStep = {handleElicitationStep}
+                    article={article}
+                    completed={completed}
+                    responses={articleResponses}
+                    >
+                    </LineChartDrawHandler>
+
+                    {elicitationStep === 1?<LineChartDrawHandler
+                    articleName={articleContent.articles[article].name}
+                    alias={articleContent.articles[article].alias}
+                    visStep={interactionStep}
+                    handleVisState={interactionStepHandler}
+                    handleElicitationStep = {handleElicitationStep}
+                    article={article}
+                    completed={completed}
+                    responses={articleResponses}
+                    >
+                    </LineChartDrawHandler>:''}
+
+                    {elicitationStep===2?<LineChartDrawHandler
+                    articleName={articleContent.articles[article].name}
+                    alias={articleContent.articles[article].alias2}
+                    visStep={interactionStep}
+                    handleVisState={interactionStepHandler}
+                    handleElicitationStep = {handleElicitationStep}
+                    article={article}
+                    completed={completed}
+                    responses={articleResponses}
+                    >
+                    </LineChartDrawHandler>:''}
+
                     
+
+                    {/* <LineChartDrawHandler
+                    articleName={articleContent.articles[article].name}
+                    alias={articleContent.articles[article].alias1}
+                    visStep={interactionStep2}
+                    handleVisState={interactionStepHandler}
+                    article={article}
+                    completed={completed}
+                    responses={articleResponses}
+                    >
+                    </LineChartDrawHandler>
+
                     <LineChartDrawHandler
-                        articleName={articleContent.articles[article].name}
-                        alias={articleContent.articles[article].alias2}
-                        visStep={interactionStep}
-                        handleVisState={interactionStepHandler}
-                        article={article}
-                        completed={completed}
-                        responses={articleResponses}
-                    />
-                    <LineChartDrawHandler
-                        articleName={articleContent.articles[article].name}
-                        alias={articleContent.articles[article].alias}
-                        visStep={interactionStep}
-                        handleVisState={interactionStepHandler}
-                        article={article}
-                        completed={completed}
-                        responses={articleResponses}
-                    />
+                    articleName={articleContent.articles[article].name}
+                    alias={articleContent.articles[article].alias1}
+                    visStep={interactionStep3}
+                    handleVisState={interactionStepHandler}
+                    article={article}
+                    completed={completed}
+                    responses={articleResponses}
+                    >
+                    </LineChartDrawHandler> */}
+                    
+                    
                    
                     </div>
+                    
                     {(() => {
                             if (interactionStep === 1) {
                                 return (

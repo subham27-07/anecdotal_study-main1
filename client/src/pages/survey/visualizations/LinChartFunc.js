@@ -137,6 +137,7 @@ export default function LinChartFunc(props) {
                     }
                     props.handleVisState();
                     setIsCompleted(()=> false);
+                    props.handleElicitationStep();
                     break;
                 case 1:
                     props.handleVisState();

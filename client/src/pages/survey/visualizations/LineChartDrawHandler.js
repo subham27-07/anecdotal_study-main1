@@ -165,6 +165,7 @@ export default function LineChartDrawHandler (props) {
             articleName={props.articleName}
             visStep={props.visStep}
             handleVisState = {props.handleVisState}
+            handleElicitationStep = {props.handleElicitationStep}
             article = {props.article}
             completed = {props.completed}
             responses = {props.responses}
