@@ -53,11 +53,12 @@ export default function LinChartFunc(props) {
     // }, [interactionStep])
 
     const interactionStepHandler = () => {
-        if (interactionStep < 1) {
-            setInteractionStep((prev) => prev + 1);
-        } else {
-            setInteractionStep((prev) => 0);
-        }
+        interactionStep===0? setInteractionStep(1): setInteractionStep(0)
+        // if (interactionStep < 1) {
+        //     setInteractionStep((prev) => prev + 1);
+        // } else {
+        //     setInteractionStep((prev) => 0);
+        // }
     };
 
     const data = props.data
@@ -144,6 +145,7 @@ export default function LinChartFunc(props) {
 
 
     const handleClick = () => {
+        console.log('interactionStep',interactionStep)
         setIsCompleted((prev)=>!prev);
         const definedValues = userDataLine.current.filter(d => d.defined === true);
         if (definedValues.length === userDataLine.current.length) {
@@ -157,15 +159,20 @@ export default function LinChartFunc(props) {
                         time: Date.now(),
                         choice: userDataLine.current,
                     }
-                    interactionStepHandler();
+                    props.handleShowArticle();
+                    // interactionStepHandler();
                     setIsCompleted(()=> false);
                     props.handleElicitationStep();
+                    console.log('inside')
+                    // interactionStepHandler();
                     break;
                 case 1:
+                    console.log('case1')
                     interactionStepHandler();
                     break;
                 default:
-                    interactionStepHandler();
+                    // interactionStepHandler();
+                    // props.handleElicitationStep();
                     break;
 
             }
@@ -458,7 +465,7 @@ export default function LinChartFunc(props) {
                  .attr('d', line.defined(d => d.defined));
 
 
-        d3.select('.instructionText').style('display', 'none');
+        svg.select('.instructionText').style('display', 'none');
 
         const definedValues = userDataLine.current.filter(d => d.defined === true);
         if (definedValues.length === userDataLine.current.length) {

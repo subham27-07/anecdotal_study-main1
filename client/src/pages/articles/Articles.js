@@ -50,10 +50,25 @@ export default function Articles(props) {
         return savedArticleTrend || "";
     });
 
+    useEffect(()=>{
+        console.log('elicitationStep',elicitationStep)
+    },[elicitationStep])
+
     const handleElicitationStep= ()=>{
         setElicitationStep((prev) => prev + 1)
 
     }
+
+    // const handleElicitationStep= ()=>{
+    //     // setElicitationStep((prev) => prev + 1)
+    //     if(elicitationStep>=3){
+    //         setElicitationStep
+    //     } else {
+    //         setElicitationStep((prev) => prev + 1)
+
+    //     }
+
+    // }
 
     
     const articleResponses = useRef({
@@ -84,12 +99,12 @@ export default function Articles(props) {
                     ' Drug overdoses are now the leading cause of death for Americans under 50.'],
                 subTitleExtra1: ["Since 2002, the", "number of", "Americans who have died" +
                 " every year from HIV..."],
-                bodyExtra1: ['Since 2002,', ' the number of', ' Americans who have died every year from HIV' +
-                ' has stedily declined. Death rates fell sharply since the development of antiretroviral treatments. Nevertheless, H.I.V. remains a leading cause of death for those 25 to 44.'],
+                bodyExtra1: ['Since 2002,', ' the number of', ' Americans who have died every year from HIV ' +
+                ' has stedily declined'+' by 54.4 percent. '+ ' Death rates fell sharply since the development of antiretroviral treatments. Nevertheless, H.I.V. remains a leading cause of death for those 25 to 44.'],
                 subTitleExtra2: ["Since 2002, the", "number of", "Americans who have died" +
                 " every year from Gun Violence.."],
                 bodyExtra2: ['Since 2002,', ' the number of Americans', ' who have died every year from from guns ' +
-                    ' has been', 'slowly rising by 8 percent.',
+                    ' has been', 'slowly declined by 13.8 percent.',
                         'after a drop between the year 2009 to 2015. Gun deaths, most of which are suicides, the largest single-year jump since the C.D.C. began keeping computerized death records.'],
                     instructions: "How has the number of Americans died from drug overdoses in the US changed since 2002?" +
                         ` ${instructionsContent[treatment]}`,
@@ -103,8 +118,8 @@ export default function Articles(props) {
         
             {
                 alias: 'population',
-                alias1: 'italy',
-                alias2: 'southAfrica',
+                alias1: 'southAfrica',
+                alias2: 'italy',
                 name: "% of American Population with Drug Overdose Disorder",
                 id: "Two",
                 text: {
@@ -121,12 +136,12 @@ export default function Articles(props) {
                     subTitleExtra1: ["Since 2002, the", "percentage of", " South African population with drug use disorders" +
                     " has..."],
                     bodyExtra1: ['Since 2002,', ' the percentage of South African', ' population with drug use disorders has' +
-                    ' decreased by more than', '61.6 percent.',
+                    ' decreased by more than', '37.1 percent.',
                         'In South Africa, the share of population with drug use disorders steadily decline every year.'],
                     subTitleExtra2: ["Since 2002, the", "percentage of", " Italian population with drug use disorders" +
                     " has..."],
                     bodyExtra2: ['Since 2002,', ' the percentage of Italian', ' population with drug use disorders has' +
-                    ' decreased by more than', '76.5 percent.',
+                    ' decreased by more than', '23.5 percent.',
                         'In Italy, the share of population with drug use disorders steadily decline every year. The declining rate is slightly higher/lower (choose based on data) than South Africa.'],
 
                     instructions: "How has the percentage of Americans with drug use disorders in the US changed" +
@@ -166,12 +181,12 @@ export default function Articles(props) {
                     subTitleExtra1: ["Since 2002, the", "number of", "Americans who have died" +
                     " every year from Cocaine..."],
                     bodyExtra1: ['Since 2002,', ' the percentage of Americann', ' population with Cocaine use has' +
-                    ' steadily increased by more than', '3 percent.',
+                    ' steadily increased by more than', '242 percent.',
                         ''],
                     subTitleExtra2: ["Since 2002, the", "number of", "Americans who have died" +
                     " every year from Heroin..."],
                     bodyExtra2: ['Since 2002,', ' the percentage of Americann', ' population with Heroin use has' +
-                    ' steadily increased and declined after 2016 by more than', '3 percent.',
+                    ' steadily increased and declined after 2016 by more than', 'XX percent.',
                         ''],
                     instructions: "How has the number of Americans who have died every year from overdoses of synthetic" +
                         " opioids in the US changed" + " since" +
@@ -274,6 +289,7 @@ export default function Articles(props) {
 
                         return prev + 1
                     });
+                    console.log('testTrend')
                     setTrend(() => "");
                     // console.log('res:',articleResponses.current);
                 }
@@ -287,6 +303,9 @@ export default function Articles(props) {
                 } else {
                     setCompleted((prev) => false);
                     // setInteractionStep(0);
+
+                    setElicitationStep(prev=>0)
+                    
                     setArticle((prev) => prev + 1);
                 }
                 break;
@@ -310,19 +329,17 @@ export default function Articles(props) {
         setTrend(event.target.value);
     };
 
-    // const interactionStepHandler = () => {
-    //     if (interactionStep < 1) {
-    //         setInteractionStep((prev) => prev + 1);
-    //     } else {
-    //         setInteractionStep((prev) => 0);
-    //     }
-    // };
+    
 
-    // const visualBehaviorHandler = () => {
-    //     if (interactionStep === 1) {
-    //         setCompleted(() => true);
-    //     }
-    // };
+    useEffect(()=>{
+        console.log(elicitationStep)
+        
+    },[elicitationStep])
+    
+
+    
+
+    // console.log(elicitationStep)
 
 
     function ArticleTypeSelector() {
@@ -459,58 +476,56 @@ export default function Articles(props) {
                     <div className={styles.subtitle}>
                         <p className={styles.txtUnique}>{`${articleContent.articles[article].text.instructions}`}</p>
                         <hr/>
-                        <p>{
+                        {/* <p>{
                             makeImportant('subTitle')
                         }</p>
-                        <p className={styles.txtUnique}>{`${articleContent.articles[article].text.subTitle2}`}</p>
+                        <p className={styles.txtUnique}>{`${articleContent.articles[article].text.subTitle2}`}</p> */}
                     </div>
 
                     <div>
-                   
-                    {/* <LineChartDrawHandler
-                        articleName={articleContent.articles[article].name}
-                        alias={articleContent.articles[article].alias1}
-                        visStep={interactionStep}
-                        handleVisState={interactionStepHandler}
-                        article={article}
-                        completed={completed}
-                        responses={articleResponses}
-                    /> */}
                     <LineChartDrawHandler
                     articleName={articleContent.articles[article].name}
+                    subTitle = {makeImportant('subTitleExtra2')}
                     alias={articleContent.articles[article].alias1}
                     // visStep={interactionStep}
                     // handleVisState={interactionStepHandler}
-                    handleElicitationStep = {handleElicitationStep}
-                    article={article}
-                    body = {makeImportant('body')}
-                    completed={completed}
-                    responses={articleResponses}
-                    >
-                    </LineChartDrawHandler>
-
-                    {elicitationStep >= 1?<LineChartDrawHandler
-                    articleName={articleContent.articles[article].name}
-                    alias={articleContent.articles[article].alias}
-                    // visStep={interactionStep}
-                    // handleVisState={interactionStepHandler}
+                    elicitationStep = {elicitationStep}
                     handleElicitationStep = {handleElicitationStep}
                     article={article}
                     body = {makeImportant('bodyExtra1')}
-                    completed={completed}
+                    // completed={completed}
+                    responses={articleResponses}
+                    >
+                        
+                    </LineChartDrawHandler>
+                    
+
+                    {elicitationStep >= 1?<LineChartDrawHandler
+                    articleName={articleContent.articles[article].name}
+                    subTitle = {makeImportant('subTitleExtra1')}
+                    alias={articleContent.articles[article].alias2}
+                    // visStep={interactionStep}
+                    // handleVisState={interactionStepHandler}
+                    elicitationStep = {elicitationStep}
+                    handleElicitationStep = {handleElicitationStep}
+                    article={article}
+                    body = {makeImportant('bodyExtra2')}
+                    // completed={completed}
                     responses={articleResponses}
                     >
                     </LineChartDrawHandler>:''}
 
                     {elicitationStep >= 2?<LineChartDrawHandler
                     articleName={articleContent.articles[article].name}
-                    alias={articleContent.articles[article].alias2}
+                    subTitle = {makeImportant('subTitle')}
+                    alias={articleContent.articles[article].alias}
                     // visStep={interactionStep}
                     // handleVisState={interactionStepHandler}
+                    elicitationStep = {elicitationStep}
                     handleElicitationStep = {handleElicitationStep}
                     article={article}
-                    body = {makeImportant('bodyExtra2')}
-                    completed={completed}
+                    body = {makeImportant('body')}
+                    // completed={completed}
                     responses={articleResponses}
                     >
                     </LineChartDrawHandler>:''}
@@ -518,7 +533,7 @@ export default function Articles(props) {
 
                     </div>
                     
-                    {(() => {
+                    {/* {(() => {
                             if (handleElicitationStep === 1) {
                                 return (
                                     <div className={styles.paragraph}>
@@ -529,7 +544,7 @@ export default function Articles(props) {
                                 return ("")
                             }
                         }
-                    )()}
+                    )()} */}
                 </div>);
             default:
                 break;
