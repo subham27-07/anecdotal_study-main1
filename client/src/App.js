@@ -49,9 +49,9 @@ const App = () => {
     const [pageURL, setPageURL] = useState(location.pathname);
     const [refreshLock, setRefreshLock] = useState(false);
     
-    useEffect (()=>{
-        window.localStorage.clear()
-    },[])
+    // useEffect (()=>{
+    //     window.localStorage.clear()
+    // },[])
 
     // study flow based on randomization
     const pre_pages = [
@@ -81,8 +81,8 @@ const App = () => {
 
     const treatmentSelector = () => {
         const savedTreatment = localStorage.getItem('treatment');
-        // const tr = savedTreatment !== null ? savedTreatment : choose(['txt', 'visual', 'control']);
-        const tr = 'visual'
+        const tr = savedTreatment !== null ? savedTreatment : choose(['txt', 'visual', 'control']);
+        // const tr = 'txt'
         localStorage.setItem('treatment', tr);
         // const tr = ['visual','txt','control'][0];   // ONLY FOR TESTING. SHOULD KEEP COMMENTED
         // treatment.current = tr

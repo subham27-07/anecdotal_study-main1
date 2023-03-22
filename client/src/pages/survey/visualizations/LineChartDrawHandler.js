@@ -2,7 +2,7 @@ import React,{useEffect, useState} from 'react';
 import LineChartFunc from './LinChartFunc';
 import styles from '../articles.module.css'
 import { populationData, drugOverdoseData, opioidsData, hivData, gunData, cocaineData, heroinData, italyData,southAfricaData } from './datasets';
-
+import RecallSurvey from '../../../components/recallSurvey/RecallSurvey';
 
 const chartTypes ={
     drugOverdose:
@@ -106,31 +106,29 @@ export default function LineChartDrawHandler (props) {
         {
             showArticle?
             <div>
-                    {/* <p className={styles.txtUnique}>{`${props.subTitle}`}</p> */}
+                
                     <div className={styles.paragraph}>
                         {props.body}
+                        
+                        <br>
+                        </br>
                         <hr/>
+                        <br>
+                        </br>
+                        <br>
+                        </br>
                     </div>
-
                 </div>:''
-        // (() => {
-        //     if (showArticle) {
-        //         return (<div>
-        //             {/* <p className={styles.txtUnique}>{`${props.subTitle}`}</p> */}
-        //             <div className={styles.paragraph}>
-        //                 {props.body}
-        //                 <hr/>
-        //             </div>
-
-        //         </div>)
-        //     } else {
-        //         return ("");
-        //     }
-        // })()
         }
 
         
+
+        
         </div>
+     
+            
+        
+
         
         
         </div>

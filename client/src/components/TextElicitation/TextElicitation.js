@@ -24,7 +24,7 @@ const TextElicitation = (props)=>{
         <div className={styles.articleStructure}>
         
         <div className={styles.subtitle}>
-            
+            <hr/>
             <div style={{lineHeight: '3rem'}}>{props.subTitle}
                 <FormControl
                     variant="outlined"
@@ -68,7 +68,7 @@ const TextElicitation = (props)=>{
                     <FormHelperText>Select your guess from the list</FormHelperText>
                 </FormControl>
             </div>
-            <p className={styles.txtUnique}>{`${props.subTitle2}`}</p>
+            
         </div>
         {(() => {
             if (completed) {

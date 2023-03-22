@@ -20,6 +20,7 @@ export default function Articles(props) {
         const savedArticle = JSON.parse(localStorage.getItem('articleNumber'));
         return savedArticle || 0;
     });
+    
     const [completed, setCompleted] = useState(() => {
         const articleCompleted = JSON.parse(localStorage.getItem('articleCompleted'));
         return articleCompleted || false;
@@ -51,7 +52,7 @@ export default function Articles(props) {
     });
 
     useEffect(()=>{
-        console.log('elicitationStep',elicitationStep)
+        // console.log('elicitationStep',elicitationStep)
     },[elicitationStep])
 
     const handleElicitationStep= ()=>{
@@ -87,7 +88,7 @@ export default function Articles(props) {
             id: "One",
             text: {
                 subTitle: ["Since 2002, the", "number of", "Americans who have died" +
-                " every year from Drug Overdose..."],
+                " every year from ", "Drug Overdose..."],
                 subTitle2: "",
 
                 body: ['Since 2002,', ' the number of', ' Americans who have died every year from Drug Overdoses has' +
@@ -97,16 +98,14 @@ export default function Articles(props) {
                     ' the worst drug overdose epidemic in American history, spurred by rising drug abuse, ' +
                     'increased availability of prescription opioids and an influx of Drug Overdose potent synthetics like Fentanyl and Carfentanil.' +
                     ' Drug overdoses are now the leading cause of death for Americans under 50.'],
-                subTitleExtra1: ["Since 2002, the", "number of", "Americans who have died" +
-                " every year from HIV..."],
-                bodyExtra1: ['Since 2002,', ' the number of', ' Americans who have died every year from HIV ' +
-                ' has stedily declined'+' by 54.4 percent. '+ ' Death rates fell sharply since the development of antiretroviral treatments. Nevertheless, H.I.V. remains a leading cause of death for those 25 to 44.'],
-                subTitleExtra2: ["Since 2002, the", "number of", "Americans who have died" +
-                " every year from Gun Violence.."],
-                bodyExtra2: ['Since 2002,', ' the number of Americans', ' who have died every year from from guns ' +
-                    ' has been', 'slowly declined by 13.8 percent.',
-                        'after a drop between the year 2009 to 2015. Gun deaths, most of which are suicides, the largest single-year jump since the C.D.C. began keeping computerized death records.'],
-                    instructions: "How has the number of Americans died from drug overdoses in the US changed since 2002?" +
+                subTitleExtra1: ["Since 2002, the", "number of", "Americans who have died",
+                    " every year from ", "Gun Violence..."],
+                bodyExtra1: ['Since 2002,', ' the number of Americans', ' who have died every year from guns has generally ', 'declined','but slowly risen in recent years. Compared to 2002, the ','number of deaths from guns,',' most of which are suicides,', 'decreased by 13.8 percent in 2019.'],
+                subTitleExtra2: ["Since 2002, the", "number of", "Americans who have died",
+                    " every year from ", "HIV.."],
+                bodyExtra2: ['Since 2002,', ' the number of', ' Americans who have died every year','from HIV ',
+                    ' has steadily declined',' by 54.4 percent. ', ' Death rates fell sharply since the development of antiretroviral treatments. Nevertheless, H.I.V. remains a leading cause of death for those 25 to 44.'],
+                    instructions: "How do the yearly deaths from drug overdoses compare with deaths from HIV and Gun Violence in the U.S.?" +
                         ` ${instructionsContent[treatment]}`,
                     definitions: "",
                 },
@@ -124,28 +123,28 @@ export default function Articles(props) {
                 id: "Two",
                 text: {
                     
-                    subTitle: ["Since 2002, the", "percentage of", " American population with drug use disorders" +
+                    subTitle: ["Since 2002, the", "percentage of American", " population with drug use disorders" +
                     " has..."],
                     subTitle2: "Drug use disorder is a complex condition in which there is uncontrolled use of a drug despite harmful consequences.",
 
-                    body: ["Since 2002,", " the percentage of", " American population with drug use disorders has" +
+                    body: ["Since 2002,", " the percentage of American"," population with drug use disorders has" +
                     " increased by more than", " 38.6 percent.",
                         "The United States is currently in the grips of a powerful drug epidemic, with the share of" +
                         " population with drug use disorders steadily climbing every year."],
                   
-                    subTitleExtra1: ["Since 2002, the", "percentage of", " South African population with drug use disorders" +
+                    subTitleExtra1: ["Since 2002, the", "percentage of", " South African", " population with drug use disorders" +
                     " has..."],
                     bodyExtra1: ['Since 2002,', ' the percentage of South African', ' population with drug use disorders has' +
                     ' decreased by more than', '37.1 percent.',
-                        'In South Africa, the share of population with drug use disorders steadily decline every year.'],
-                    subTitleExtra2: ["Since 2002, the", "percentage of", " Italian population with drug use disorders" +
+                        'In South Africa,',' the share of population with drug use disorders steadily decline every year.'],
+                    subTitleExtra2: ["Since 2002, the", "percentage of Italian"," population with drug use disorders" +
                     " has..."],
                     bodyExtra2: ['Since 2002,', ' the percentage of Italian', ' population with drug use disorders has' +
                     ' decreased by more than', '23.5 percent.',
-                        'In Italy, the share of population with drug use disorders steadily decline every year. The declining rate is slightly higher/lower (choose based on data) than South Africa.'],
+                        'In Italy,',' the share of population with drug use disorders steadily decline every year. The declining rate is slightly lower than ','South Africa.'],
 
-                    instructions: "How has the percentage of Americans with drug use disorders in the US changed" +
-                        " since 2002?"
+                    instructions: "How is the percentage of Americans with drug use disorders in the US" + " since 2002 " + " compared to South Africa and Italy?" +
+                        ""
                         + ` ${instructionsContent[treatment]}`,
                     definitions: "",
                 },
@@ -160,7 +159,7 @@ export default function Articles(props) {
                 name: "Deaths from Synthetic Opioids Overdose",
                 id: "Three",
                 text: {
-                    subTitle: ["Since 2002, the", "number of", "Americans who have died every year from overdoses of" +
+                    subTitle: ["Since 2002, the", "number of Americans"," who have died every year from overdoses of" +
                     " synthetic" +
                     " opioids..."],
 
@@ -178,18 +177,17 @@ export default function Articles(props) {
                         " fentanyl increased by a marked 18% in 2021, according to the CDC data. Deaths involving" +
                         " cocaine and psychostimulants such as methamphetamine were also significantly more frequent," +
                         " while those involving heroin decreased."],
-                    subTitleExtra1: ["Since 2002, the", "number of", "Americans who have died" +
-                    " every year from Cocaine..."],
-                    bodyExtra1: ['Since 2002,', ' the percentage of Americann', ' population with Cocaine use has' +
+                    subTitleExtra1: ["Since 2002, the", "number of Americans"," who have died" +
+                    " every year from ","Cocaine..."],
+                    bodyExtra1: ['Since 2002,', ' the number of Americans', ' population ', 'who have died from' ,'Cocaine',' overdose ',
                     ' steadily increased by more than', '242 percent.',
                         ''],
-                    subTitleExtra2: ["Since 2002, the", "number of", "Americans who have died" +
-                    " every year from Heroin..."],
-                    bodyExtra2: ['Since 2002,', ' the percentage of Americann', ' population with Heroin use has' +
-                    ' steadily increased and declined after 2016 by more than', 'XX percent.',
+                    subTitleExtra2: ["Since 2002, the", "number of Americans"," who have died" +
+                    " every year from ","Heroin..."],
+                    bodyExtra2: ['Since 2002,', ' the number of Americans', ' population ','who have died from','Heroin',' overdose ','steadily increased and then declined after 2016. Compared to 2002, the', ' number of Americans ', ' who have died from',' Heroin',' overdose increased by', '339 percent.',
                         ''],
-                    instructions: "How has the number of Americans who have died every year from overdoses of synthetic" +
-                        " opioids in the US changed" + " since" +
+                    instructions: "How has the number of Americans who have died every year from synthetic opioids overdose compared to deaths from Cocaine and Heroin "
+                         + " since" +
                         " 2002?" + ` ${instructionsContent[treatment]}`,
                     definitions: "",
                 },
@@ -235,11 +233,15 @@ export default function Articles(props) {
     }, [article])
 
     useEffect(() => {
-        if (trend && trend2 && trend3) {
-            console.log('testCompleted');
+
+        if (treatment==='txt' && (trend && trend2 && trend3)) {
+            // console.log('complted',completed)
+            // console.log('testCompleted',trend,trend2,trend3);
+
             setCompleted((prev) => {
             // localStorage.setItem('articleCompleted','true')
             return true});
+
             
         } else if (treatment === 'control') {
             setCompleted(() => true);
@@ -258,7 +260,7 @@ export default function Articles(props) {
 
     function makeImportant(whichText) {
         return articleContent.articles[article].text[whichText].map((d, i) => {
-            if (['number', 'percentage', 'percent'].some(
+            if (['number', 'percentage', 'percent','HIV','Gun Violence','South Africa','Italy','Heroin','Cocaine','Drug Overdose...','declined'].some(
                 (keyword) => {
                     return d.includes(keyword);
                 }
@@ -289,8 +291,17 @@ export default function Articles(props) {
 
                         return prev + 1
                     });
-                    console.log('testTrend')
+                    // console.log('testTrend')
                     setTrend(() => "");
+                   
+                    
+                    setTrend2((prev) => {
+                            // localStorage.setItem('articleCompleted','true')
+                        return ""});
+                    
+                    setTrend3((prev) => {
+                                // localStorage.setItem('articleCompleted','true')
+                        return ""});
                     // console.log('res:',articleResponses.current);
                 }
                 break;
@@ -332,7 +343,7 @@ export default function Articles(props) {
     
 
     useEffect(()=>{
-        console.log(elicitationStep)
+        // console.log(elicitationStep)
         
     },[elicitationStep])
     
@@ -424,17 +435,15 @@ export default function Articles(props) {
                         <div className={styles.articleStructure}>
                             <div className={styles.title}>
                                 {`${articleContent.title}`}
-                                
                             </div>
                             <div className={styles.subtitle}>
                                 <p className={styles.txtUnique}>{`${articleContent.articles[article].text.instructions}`}</p>
-                                <hr/>
+                                <p className={styles.txtUnique}>{`${articleContent.articles[article].text.subTitle2}`}</p>
                             </div>
 
                         <TextElicitation 
                         instructionText = {articleContent.articles[article].text.instructions}
                         subTitle = {makeImportant('subTitleExtra1')}
-                        subTitle2 = {articleContent.articles[article].text.subTitle2}
                         body = {makeImportant('bodyExtra1')}
                         images = {articleContent.articles[article].imageExtra1}
                         setTrend = {setTrend}
@@ -446,7 +455,6 @@ export default function Articles(props) {
                         {trend!==''?<TextElicitation
                         instructionText = {articleContent.articles[article].text.instructions}
                         subTitle = {makeImportant('subTitleExtra2')}
-                        subTitle2 = {articleContent.articles[article].text.subTitle2}
                         body = {makeImportant('bodyExtra2')}
                         images = {articleContent.articles[article].imageExtra2}
                         setTrend = {setTrend2}
@@ -457,7 +465,6 @@ export default function Articles(props) {
                         {trend2!==''?<TextElicitation 
                         instructionText = {articleContent.articles[article].text.instructions}
                         subTitle = {makeImportant('subTitle')}
-                        subTitle2 = {articleContent.articles[article].text.subTitle2}
                         body = {makeImportant('body')}
                         images = {articleContent.articles[article].image}
                         setTrend = {setTrend3}
@@ -475,17 +482,15 @@ export default function Articles(props) {
 
                     <div className={styles.subtitle}>
                         <p className={styles.txtUnique}>{`${articleContent.articles[article].text.instructions}`}</p>
+                        
+                        <p className={styles.txtUnique}>{`${articleContent.articles[article].text.subTitle2}`}</p>
                         <hr/>
-                        {/* <p>{
-                            makeImportant('subTitle')
-                        }</p>
-                        <p className={styles.txtUnique}>{`${articleContent.articles[article].text.subTitle2}`}</p> */}
                     </div>
 
                     <div>
                     <LineChartDrawHandler
                     articleName={articleContent.articles[article].name}
-                    subTitle = {makeImportant('subTitleExtra2')}
+                    subTitle = {makeImportant('subTitleExtra1')}
                     alias={articleContent.articles[article].alias1}
                     // visStep={interactionStep}
                     // handleVisState={interactionStepHandler}
@@ -502,7 +507,7 @@ export default function Articles(props) {
 
                     {elicitationStep >= 1?<LineChartDrawHandler
                     articleName={articleContent.articles[article].name}
-                    subTitle = {makeImportant('subTitleExtra1')}
+                    subTitle = {makeImportant('subTitleExtra2')}
                     alias={articleContent.articles[article].alias2}
                     // visStep={interactionStep}
                     // handleVisState={interactionStepHandler}
@@ -533,18 +538,7 @@ export default function Articles(props) {
 
                     </div>
                     
-                    {/* {(() => {
-                            if (handleElicitationStep === 1) {
-                                return (
-                                    <div className={styles.paragraph}>
-                                        {makeImportant('body')}
-                                    </div>
-                                )
-                            } else {
-                                return ("")
-                            }
-                        }
-                    )()} */}
+                    
                 </div>);
             default:
                 break;
