@@ -237,7 +237,7 @@ export default function Articles(props) {
         if (treatment==='txt' && (trend && trend2 && trend3)) {
             // console.log('complted',completed)
             // console.log('testCompleted',trend,trend2,trend3);
-
+            console.log('responses',articleResponses)
             setCompleted((prev) => {
             // localStorage.setItem('articleCompleted','true')
             return true});
@@ -276,9 +276,17 @@ export default function Articles(props) {
     function articleChanger() {
         switch (treatment) {
             case 'txt':
-                articleResponses.current.responses[`${articleContent.articles[article].alias}`] = {
+                articleResponses.current.responses[`${articleContent.articles[article].alias1}`] = {
                     time: Date.now(),
                     choice: trend,
+                }
+                articleResponses.current.responses[`${articleContent.articles[article].alias2}`] = {
+                    time: Date.now(),
+                    choice: trend2,
+                }
+                articleResponses.current.responses[`${articleContent.articles[article].alias}`] = {
+                    time: Date.now(),
+                    choice: trend3,
                 }
                 if (article === 2) {
                     axios.post("/api/articles", articleResponses.current).then((response) => {
@@ -452,6 +460,7 @@ export default function Articles(props) {
                         setTrend = {setTrend}
                         trend = {trend}
                         styles = {styles}
+                        responses={articleResponses}
                        
                         >
                         </TextElicitation>
@@ -463,6 +472,7 @@ export default function Articles(props) {
                         setTrend = {setTrend2}
                         trend = {trend2}
                         styles = {styles}
+                        responses={articleResponses}
                         >
                         </TextElicitation>:''}
                         {trend2!==''?<TextElicitation 
@@ -473,6 +483,7 @@ export default function Articles(props) {
                         setTrend = {setTrend3}
                         trend = {trend3}
                         styles = {styles}
+                        responses={articleResponses}
                         >
                         </TextElicitation>:''}
                         </div>
