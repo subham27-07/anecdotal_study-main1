@@ -375,6 +375,7 @@ export default function Articles(props) {
                         <div className={styles.subtitle}>
                                     {/* <p className={styles.txtUnique}>{`${articleContent.articles[article].text.instructions}`}</p> */}
                                     <hr/>
+                                    
                                     <p>{
                                         makeImportant('subTitleExtra1')
                                     }</p>
@@ -393,6 +394,7 @@ export default function Articles(props) {
                         <div className={styles.subtitle}>
                                     {/* <p className={styles.txtUnique}>{`${articleContent.articles[article].text.instructions}`}</p> */}
                                     <hr/>
+                                    <br></br>
                                     <p>{
                                         makeImportant('subTitleExtra2')
                                     }</p>
@@ -411,6 +413,7 @@ export default function Articles(props) {
                         <div className={styles.subtitle}>
                                     {/* <p className={styles.txtUnique}>{`${articleContent.articles[article].text.instructions}`}</p> */}
                                     <hr/>
+                                    <br></br>
                                     <p>{
                                         makeImportant('subTitle')
                                     }</p>
