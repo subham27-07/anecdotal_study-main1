@@ -88,8 +88,8 @@ export default function InstructionsGeneral(props) {
             <div className={styles.paragraph}>
                 In this study you will see a series of news articles related to the <span
                 style={{fontWeight: "bold"}}> drug overdose epidemic. </span>
-                Each article includes multiple data visualizations and accompanying texts. Please review the visualizations and
-                read the texts carefully to ensure you understand the message of each article.
+                Each article includes multiple data visualizations and accompanying text. Please review the visualization and
+                read the text carefully to ensure you understand the message of each article.
             </div>
         )
     }
