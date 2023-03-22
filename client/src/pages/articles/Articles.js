@@ -110,8 +110,8 @@ export default function Articles(props) {
                     definitions: "",
                 },
                 image: 'https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/001.png',
-                imageExtra1: 'https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/HIV_data.png',
-                imageExtra2: 'https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/Gun_violence.png',
+                imageExtra1: 'https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/Gun_violence.png',
+                imageExtra2: 'https://raw.githubusercontent.com/subham27-07/youdrawitnew/main/HIV_data.png',
                        
         },
         
